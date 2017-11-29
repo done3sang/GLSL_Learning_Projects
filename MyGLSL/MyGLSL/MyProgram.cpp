@@ -6,6 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#include <glm/glm.hpp>
 #include "MyProgram.hpp"
 #include "MyShader.hpp"
 #include "MyErrorDesc.hpp"
@@ -134,6 +135,74 @@ void MyProgram::deleteProgram(void) {
 
 bool MyProgram::validate(void) const {
     return glIsProgram(_programId);
+}
+
+int MyProgram::bindAttribLocation(GLuint location, const std::string &name) const {
+    if(!valid()) {
+        return MyErrorDesc::kErrProgramNotIntialized;
+    }
+    
+    glBindAttribLocation(_programId, location, name.c_str());
+    
+    return MyErrorDesc::kErrOk;
+}
+
+int MyProgram::uniformLocation(const std::string &name) {
+    auto iter = _uniformLocation.find(name);
+    int location(-1);
+    
+    if(_uniformLocation.end() == iter) {
+        if(!linked()) {
+            MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramNotLinked);
+            return location;
+        }
+        
+        location = glGetUniformLocation(_programId, name.c_str());
+        
+        if(location < 0) {
+            MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramUniformNotExists);
+            return location;
+        }
+        
+        _uniformLocation[name] = location;
+    } else {
+        location = iter->second;
+    }
+    
+    return location;
+}
+
+int MyProgram::uniformMatrix4(const std::string &name, const glm::mat4 &mat) {
+    int location(uniformLocation(name));
+    
+    if(location < 0) {
+        return MyErrorDesc::kErrProgramUniformNotExists;
+    }
+    
+    glUniformMatrix4fv(_uniformLocation[name], 1, GL_FALSE, &mat[0][0]);
+    return MyErrorDesc::kErrOk;
+}
+
+int MyProgram::uniformFloat(const std::string &name, float value) {
+    int location(uniformLocation(name));
+    
+    if(location < 0) {
+        return MyErrorDesc::kErrProgramUniformNotExists;
+    }
+    
+    glUniform1f(location, value);
+    return MyErrorDesc::kErrOk;
+}
+
+int MyProgram::uniformInteger(const std::string &name, int value) {
+    int location(uniformLocation(name));
+    
+    if(location < 0) {
+        return MyErrorDesc::kErrProgramUniformNotExists;
+    }
+    
+    glUniform1i(location, value);
+    return MyErrorDesc::kErrOk;
 }
 
 MINE_NAMESPACE_END

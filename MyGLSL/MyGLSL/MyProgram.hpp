@@ -11,7 +11,9 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include <GLFW/glfw3.h>
+#include <glm/fwd.hpp>
 #include "Precompiled.h"
 
 /* The classes below are exported */
@@ -46,7 +48,10 @@ public:
     
     bool validate(void) const;
     
-    void bindAttribLocation(int location, const std::string &name) const;
+    int bindAttribLocation(GLuint location, const std::string &name) const;
+    int uniformMatrix4(const std::string &name, const glm::mat4 &mat);
+    int uniformFloat(const std::string &name, float value);
+    int uniformInteger(const std::string &name, int value);
     
     static MyProgram* runningProgram(void);
     
@@ -62,8 +67,11 @@ private:
     bool _linked;
     std::string _programLog;
     std::vector<const MyShader*>  _shaderVec;
+    std::map<std::string, int> _uniformLocation;
     
     static MyProgram *_runningProgram;
+    
+    int uniformLocation(const std::string &name);
     
     MyProgram(const MyProgram&);
     MyProgram& operator=(const MyProgram&);

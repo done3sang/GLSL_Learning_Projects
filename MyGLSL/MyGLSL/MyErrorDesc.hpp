@@ -41,6 +41,7 @@ public:
     static const int kErrProgramLinkingFailed = 9;
     static const int kErrProgramNotLinked = 10;
     static const int kErrProgramShaderAlreadyAttached = 11;
+    static const int kErrProgramUniformNotExists = 12;
     
 public:
     std::string& errorString(int errCode);
