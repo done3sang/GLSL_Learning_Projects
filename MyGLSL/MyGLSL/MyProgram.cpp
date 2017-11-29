@@ -34,13 +34,13 @@ bool MyProgram::shaderAttached(const Mine::MyShader &shader) const {
 
 int MyProgram::attachShader(const Mine::MyShader &shader) {
     if(linked()) {
-        return MyErrorDesc::kErrProgramLinked;
+        return MyErrorDesc::kErrProgramAlreadyLinked;
     }
     
     if(!valid()) {
         _programId = glCreateProgram();
         if(0 == _programId) {
-            return MyErrorDesc::kErrProgramNotCreated;
+            return MyErrorDesc::kErrProgramCreatingFailed;
         }
     }
     

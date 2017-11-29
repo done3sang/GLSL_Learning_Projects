@@ -22,19 +22,20 @@ class MyErrorCallback;
 
 class MyErrorDesc {
 public:
-    static MyErrorDesc& sharedErrorDesc(void);
+    static MyErrorDesc* sharedErrorDesc(void);
     static void closeErrorDesc(void);
 
     static bool successed(int errCode);
-
+    static int invokeErrorCode(int errCode);
+    
 public:
     static const int kErrOk = 0;
     static const int kErrFileNotExists = 1;
     static const int kErrShaderCreatingFailed = 2;
     static const int kErrShaderNotCompiled = 3;
     static const int kErrShaderCompilingFailed = 4;
-    static const int kErrProgramLinked = 5;
-    static const int kErrProgramNotCreated = 6;
+    static const int kErrProgramAlreadyLinked = 5;
+    static const int kErrProgramCreatingFailed = 6;
     static const int kErrProgramShaderNotAttached = 7;
     static const int kErrProgramNotIntialized = 8;
     static const int kErrProgramLinkingFailed = 9;
