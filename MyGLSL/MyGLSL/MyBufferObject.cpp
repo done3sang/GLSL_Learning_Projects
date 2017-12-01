@@ -7,12 +7,23 @@
 //
 
 #include "MyTemplate.hpp"
+#include "MyRef.hpp"
 #include "MyBufferObject.hpp"
 
 MINE_NAMESPACE_BEGIN
 
+MyBufferObject* MyBufferObject::_runningBufferObject = nullptr;
+
+MyBufferObject* MyBufferObject::runningBufferObject(void) {
+    return _runningBufferObject;
+}
+
 MyBufferObject::~MyBufferObject(void) {
     deleteBuffer();
+}
+
+MyBufferObject* MyBufferObject::createWithBufferType(int bufferType) {
+    return new MyBufferObject(bufferType);
 }
 
 void MyBufferObject::deleteBuffer(void) {

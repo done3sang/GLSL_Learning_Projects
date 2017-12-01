@@ -6,11 +6,26 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#include "MyRef.hpp"
 #include "MyErrorDesc.hpp"
 
 MINE_NAMESPACE_BEGIN
 
 MyErrorDesc* MyErrorDesc::_sharedErrorDesc = nullptr;
+
+const int MyErrorDesc::kErrOk = 0;
+const int MyErrorDesc::kErrFileNotExists = 1;
+const int MyErrorDesc::kErrShaderCreatingFailed = 2;
+const int MyErrorDesc::kErrShaderNotCompiled = 3;
+const int MyErrorDesc::kErrShaderCompilingFailed = 4;
+const int MyErrorDesc::kErrProgramAlreadyLinked = 5;
+const int MyErrorDesc::kErrProgramCreatingFailed = 6;
+const int MyErrorDesc::kErrProgramShaderNotAttached = 7;
+const int MyErrorDesc::kErrProgramNotIntialized = 8;
+const int MyErrorDesc::kErrProgramLinkingFailed = 9;
+const int MyErrorDesc::kErrProgramNotLinked = 10;
+const int MyErrorDesc::kErrProgramShaderAlreadyAttached = 11;
+const int MyErrorDesc::kErrProgramUniformNotExists = 12;
 
 MyErrorDesc* MyErrorDesc::sharedErrorDesc(void) {
     if(nullptr == _sharedErrorDesc) {
@@ -35,7 +50,7 @@ int MyErrorDesc::invokeErrorCode(int errCode) {
     return sharedErrorDesc()->invokeError(errCode);
 }
 
-MyErrorDesc::MyErrorDesc(void) {
+MyErrorDesc::MyErrorDesc(void): _errCallback(nullptr) {
     initialize();
 }
 

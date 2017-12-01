@@ -7,6 +7,8 @@
 //
 
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include "MyRef.hpp"
 #include "MyProgram.hpp"
 #include "MyShader.hpp"
 #include "MyErrorDesc.hpp"
@@ -21,6 +23,10 @@ _linked(false) {}
 
 MyProgram::~MyProgram(void) {
     deleteProgram();
+}
+
+MyProgram* MyProgram::create(void) {
+    return new MyProgram;
 }
 
 bool MyProgram::shaderAttached(const Mine::MyShader &shader) const {
@@ -77,6 +83,12 @@ int MyProgram::linkPorgram(void) {
         return MyErrorDesc::kErrProgramNotIntialized;
     }
     
+    glBindAttribLocation(_programId, kAttribPosition, "vertexPosition");
+    glBindAttribLocation(_programId, kAttribColor, "vertexColor");
+    glBindAttribLocation(_programId, kAttribTexCoord0, "vertexTexCoord0");
+    glBindAttribLocation(_programId, kAttribNormal, "vertexNormal");
+    glBindAttribLocation(_programId, kAttribTangent, "vertexTangent");
+    
     glLinkProgram(_programId);
     
     GLint status;
@@ -99,6 +111,7 @@ int MyProgram::linkPorgram(void) {
         return MyErrorDesc::kErrProgramLinkingFailed;
     }
     
+    _linked = true;
     _programLog.clear();
     return MyErrorDesc::kErrOk;
 }
@@ -109,15 +122,15 @@ MyProgram* MyProgram::runningProgram(void) {
 
 int MyProgram::useProgram(void) {
     if(!linked()) {
-        return MyErrorDesc::kErrProgramNotLinked;
+        return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramNotLinked);
     }
     if(_runningProgram && operator==(*_runningProgram)) {
-        return MyErrorDesc::kErrOk;
+        return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrOk);
     }
     
     glUseProgram(_programId);
     _runningProgram = this;
-    return MyErrorDesc::kErrOk;
+    return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrOk);
 }
 
 void MyProgram::deleteProgram(void) {
@@ -139,7 +152,7 @@ bool MyProgram::validate(void) const {
 
 int MyProgram::bindAttribLocation(GLuint location, const std::string &name) const {
     if(!valid()) {
-        return MyErrorDesc::kErrProgramNotIntialized;
+        return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramNotIntialized);
     }
     
     glBindAttribLocation(_programId, location, name.c_str());
@@ -176,10 +189,10 @@ int MyProgram::uniformMatrix4(const std::string &name, const glm::mat4 &mat) {
     int location(uniformLocation(name));
     
     if(location < 0) {
-        return MyErrorDesc::kErrProgramUniformNotExists;
+        return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramUniformNotExists);
     }
     
-    glUniformMatrix4fv(_uniformLocation[name], 1, GL_FALSE, &mat[0][0]);
+    glUniformMatrix4fv(_uniformLocation[name], 1, GL_FALSE, glm::value_ptr(mat));
     return MyErrorDesc::kErrOk;
 }
 
@@ -187,7 +200,7 @@ int MyProgram::uniformFloat(const std::string &name, float value) {
     int location(uniformLocation(name));
     
     if(location < 0) {
-        return MyErrorDesc::kErrProgramUniformNotExists;
+        return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramUniformNotExists);
     }
     
     glUniform1f(location, value);
@@ -198,7 +211,7 @@ int MyProgram::uniformInteger(const std::string &name, int value) {
     int location(uniformLocation(name));
     
     if(location < 0) {
-        return MyErrorDesc::kErrProgramUniformNotExists;
+        return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramUniformNotExists);
     }
     
     glUniform1i(location, value);

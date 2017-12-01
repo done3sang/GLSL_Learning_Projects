@@ -7,13 +7,25 @@
 //
 
 #include "MyTemplate.hpp"
+#include "MyRef.hpp"
 #include "MyBufferObject.hpp"
 #include "MyVertexArrayObject.hpp"
+#include "MyProgram.hpp"
 
 MINE_NAMESPACE_BEGIN
 
+MyVertexArrayObject* MyVertexArrayObject::_runningVertexArrayObject = nullptr;
+
+MyVertexArrayObject* MyVertexArrayObject::runningVertexArrayObject(void) {
+    return _runningVertexArrayObject;
+}
+
 MyVertexArrayObject::~MyVertexArrayObject(void) {
     deleteVertexArray();
+}
+
+MyVertexArrayObject* MyVertexArrayObject::create(void) {
+    return new MyVertexArrayObject;
 }
 
 void MyVertexArrayObject::deleteVertexArray(void) {
@@ -32,6 +44,12 @@ void MyVertexArrayObject::bindVertexArray(void) {
     
     if(!valid()) {
         glGenVertexArrays(1, &_vertexArrayId);
+        
+        //glEnableVertexAttribArray(MyProgram::kAttribPosition);
+        //glEnableVertexAttribArray(MyProgram::kAttribColor);
+        //glEnableVertexAttribArray(MyProgram::kAttribTexCoord0);
+        //glEnableVertexAttribArray(MyProgram::kAttribNormal);
+        //glEnableVertexAttribArray(MyProgram::kAttribTangent);
     }
     
     glBindVertexArray(_vertexArrayId);
@@ -44,7 +62,9 @@ void MyVertexArrayObject::enableVertexAttribArray(int attrib) {
 }
 
 void MyVertexArrayObject::vertexAttribPoint(MyBufferObject &bufferObject,
-                                            int attrib, int size, int stride) const {
+                                            int attrib, int size, int stride) {
+    bindVertexArray();
+    glEnableVertexAttribArray(attrib);
     bufferObject.bindBuffer();
     glVertexAttribPointer(attrib, size, GL_FLOAT, GL_FALSE, stride, nullptr);
 }

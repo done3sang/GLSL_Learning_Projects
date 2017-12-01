@@ -6,6 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#include "MyRef.hpp"
 #include "MyShader.hpp"
 #include "MyFileUtil.hpp"
 #include "MyErrorDesc.hpp"
@@ -26,6 +27,15 @@ _compiled(false) {
 
 MyShader::~MyShader(void) {
     deleteShader();
+}
+
+MyShader* MyShader::createWithShaderType(int shaderType) {
+    return new MyShader(shaderType);
+}
+
+
+MyShader* MyShader::createWithShaderTypeAndPath(int shaderType, const std::string &filepath) {
+    return new MyShader(shaderType, filepath);
 }
 
 bool MyShader::validate(void) const {

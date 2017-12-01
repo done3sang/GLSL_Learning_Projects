@@ -9,22 +9,32 @@
 #ifndef MyGLSL_
 #define MyGLSL_
 
+#include "Precompiled.h"
+
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
-class MyGLSL
-{
-    public:
-    void HelloWorld(const char *);
+MINE_NAMESPACE_BEGIN
+
+class MySingleton;
+
+class MyGLSL: public MySingleton {
+public:
+    static MyGLSL* sharedGLSL(void);
+    
+    void closeGLSL(void);
+    
+private:
+    MyGLSL(void) {}
+    ~MyGLSL(void);
+    
+    static MyGLSL *_shardeGLSL;
+    
+    void initialize(void);
 };
 
-namespace Mine {
-    class MyShader {
-    public:
-        
-    private:
-        
-    };
-}
+MINE_NAMESPACE_END
+
 #pragma GCC visibility pop
+
 #endif

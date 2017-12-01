@@ -38,4 +38,6 @@ private:
 
 MINE_NAMESPACE_END
 
+#pragma GCC visibility pop
+
 #endif /* MySingleton_hpp */

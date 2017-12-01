@@ -17,7 +17,9 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyFileUtil {
+class MyRef;
+
+class MyFileUtil: public MyRef {
 public:
     ~MyFileUtil(void) {}
     
@@ -37,5 +39,7 @@ private:
 };
 
 MINE_NAMESPACE_END
+
+#pragma GCC visibility pop
 
 #endif /* MyFileUtility_hpp */

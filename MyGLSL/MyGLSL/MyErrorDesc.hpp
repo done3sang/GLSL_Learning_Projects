@@ -18,9 +18,10 @@
 
 MINE_NAMESPACE_BEGIN
 
+class MyRef;
 class MyErrorCallback;
 
-class MyErrorDesc {
+class MyErrorDesc: public MyRef {
 public:
     static MyErrorDesc* sharedErrorDesc(void);
     static void closeErrorDesc(void);
@@ -29,19 +30,19 @@ public:
     static int invokeErrorCode(int errCode);
     
 public:
-    static const int kErrOk = 0;
-    static const int kErrFileNotExists = 1;
-    static const int kErrShaderCreatingFailed = 2;
-    static const int kErrShaderNotCompiled = 3;
-    static const int kErrShaderCompilingFailed = 4;
-    static const int kErrProgramAlreadyLinked = 5;
-    static const int kErrProgramCreatingFailed = 6;
-    static const int kErrProgramShaderNotAttached = 7;
-    static const int kErrProgramNotIntialized = 8;
-    static const int kErrProgramLinkingFailed = 9;
-    static const int kErrProgramNotLinked = 10;
-    static const int kErrProgramShaderAlreadyAttached = 11;
-    static const int kErrProgramUniformNotExists = 12;
+    static const int kErrOk;
+    static const int kErrFileNotExists;
+    static const int kErrShaderCreatingFailed;
+    static const int kErrShaderNotCompiled;
+    static const int kErrShaderCompilingFailed;
+    static const int kErrProgramAlreadyLinked;
+    static const int kErrProgramCreatingFailed;
+    static const int kErrProgramShaderNotAttached;
+    static const int kErrProgramNotIntialized;
+    static const int kErrProgramLinkingFailed;
+    static const int kErrProgramNotLinked;
+    static const int kErrProgramShaderAlreadyAttached;
+    static const int kErrProgramUniformNotExists;
     
 public:
     std::string& errorString(int errCode);
@@ -78,5 +79,7 @@ public:
 };
 
 MINE_NAMESPACE_END
+
+#pragma GCC visibility pop
 
 #endif /* MyErrorDesc_hpp */

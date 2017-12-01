@@ -18,11 +18,17 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyShader {
+class MyRef;
+
+class MyShader: public MyRef {
 public:
+    explicit
     MyShader(int shaderType = kShaderTypeVertex);
     MyShader(int shaderType, const std::string &filepath);
     ~MyShader(void);
+    
+    static MyShader* createWithShaderType(int shaderType = kShaderTypeVertex);
+    static MyShader* createWithShaderTypeAndPath(int shaderType, const std::string &filepath);
     
     bool operator==(const MyShader &another) const {
         return 0 != _shaderId && _shaderId == another.shaderId();
@@ -56,5 +62,7 @@ private:
 };
 
 MINE_NAMESPACE_END
+
+#pragma GCC visibility pop
 
 #endif /* MyShader_hpp */

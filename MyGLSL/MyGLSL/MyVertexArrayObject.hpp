@@ -20,11 +20,14 @@ MINE_NAMESPACE_BEGIN
 
 class MyUnique;
 class MyBufferObject;
+class MyRef;
 
-class MyVertexArrayObject: public MyUnique {
+class MyVertexArrayObject: public MyUnique, public MyRef {
 public:
     MyVertexArrayObject(void) {}
     ~MyVertexArrayObject(void);
+    
+    static MyVertexArrayObject* create(void);
     
     bool operator==(const MyVertexArrayObject& another) const {
         return 0 != _vertexArrayId && _vertexArrayId == another._vertexArrayId;
@@ -40,7 +43,7 @@ public:
     void enableVertexAttribArray(int attrib);
     
     void vertexAttribPoint(MyBufferObject &bufferObject,
-                           int attrib, int size, int stride) const;
+                           int attrib, int size, int stride);
     
     void deleteVertexArray(void);
     
@@ -54,5 +57,7 @@ private:
 };
 
 MINE_NAMESPACE_END
+
+#pragma GCC visibility pop
 
 #endif /* MyVertexArrayObject_hpp */

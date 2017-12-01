@@ -11,7 +11,7 @@
 
 #define MINE_NAMESPACE_BEGIN namespace Mine {
 #define MINE_NAMESPACE_END }
-#define USING_MINE_NAMESPACE using Mine
+#define USING_MINE_NAMESPACE using namespace Mine
 #define MINE_NAMESPACE Mine
 
 #endif /* Header_h */

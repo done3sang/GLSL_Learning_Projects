@@ -19,8 +19,9 @@
 MINE_NAMESPACE_BEGIN
 
 class MyUnique;
+class MyRef;
 
-class MyBufferObject: public MyUnique {
+class MyBufferObject: public MyUnique, public MyRef {
 public:
     static const int kBufferArray = GL_ARRAY_BUFFER;
     static const int kBufferElementArray = GL_ELEMENT_ARRAY_BUFFER;
@@ -29,11 +30,13 @@ public:
     
 public:
     explicit
-    MyBufferObject(int bufferType): _bufferType(bufferType),
-        _bufferId(0), _bufferUsage(kBufferArray) {}
+    MyBufferObject(int bufferType = GL_ARRAY_BUFFER): _bufferType(bufferType),
+        _bufferId(0), _bufferUsage(kBufferUsageStaticDraw) {}
     ~MyBufferObject(void);
     
-    bool valid(void) const { return 0 == _bufferId; }
+    static MyBufferObject* createWithBufferType(int bufferType = GL_ARRAY_BUFFER);
+    
+    bool valid(void) const { return 0 != _bufferId; }
     
     bool operator==(const MyBufferObject& another) const {
         return 0 != _bufferId && _bufferId == another.bufferId();
@@ -47,11 +50,11 @@ public:
     int bufferUsage(void) const { return _bufferUsage; }
     
     void bindBuffer(void);
-    void bufferData(int bufferSize, const void *buffer, int usage);
+    void bufferData(int bufferSize, const void *buffer, int usage = kBufferUsageStaticDraw);
     
     void deleteBuffer(void);
     
-    static MyBufferObject *runningBufferObject(void) { return _runningBufferObject; }
+    static MyBufferObject *runningBufferObject(void);
     
 private:
     int _bufferType;
@@ -64,5 +67,7 @@ private:
 };
 
 MINE_NAMESPACE_END
+
+#pragma GCC visibility pop
 
 #endif /* MyBufferObject_hpp */

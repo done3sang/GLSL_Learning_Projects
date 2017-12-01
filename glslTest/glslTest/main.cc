@@ -63,6 +63,7 @@ int main(int argc, char **argv) {
         update(0.016f);
         render();
         
+        
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

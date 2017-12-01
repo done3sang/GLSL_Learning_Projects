@@ -8,6 +8,7 @@
 
 #include <fstream>
 #include <sstream>
+#include "MyRef.hpp"
 #include "MyFileUtil.hpp"
 #include "MyErrorDesc.hpp"
 

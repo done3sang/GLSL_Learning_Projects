@@ -22,11 +22,14 @@
 MINE_NAMESPACE_BEGIN
 
 class MyShader;
+class MyRef;
 
-class MyProgram {
+class MyProgram: public MyRef {
 public:
     MyProgram(void);
     ~MyProgram(void);
+    
+    static MyProgram* create(void);
     
     bool operator==(const MyProgram &another) const {
         return this == &another || (0 != _programId && _programId == another.programId());
@@ -57,10 +60,10 @@ public:
     
 public:
     static const int kAttribPosition = 0;
-    static const int kAttribTexColor = 1;
+    static const int kAttribColor = 1;
     static const int kAttribTexCoord0 = 2;
     static const int kAttribNormal = 3;
-    static const int kAttribTagent = 4;
+    static const int kAttribTangent = 4;
     
 private:
     GLuint _programId;
@@ -78,5 +81,7 @@ private:
 };
 
 MINE_NAMESPACE_END
+
+#pragma GCC visibility pop
 
 #endif /* MyProgram_hpp */
