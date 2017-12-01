@@ -36,6 +36,10 @@ void MyBufferObject::deleteBuffer(void) {
 }
 
 void MyBufferObject::bindBuffer(void) {
+    if(_runningBufferObject || operator==(*_runningBufferObject)) {
+        return;
+    }
+    
     if(!valid()) {
         glGenBuffers(1, &_bufferId);
     }
@@ -45,10 +49,7 @@ void MyBufferObject::bindBuffer(void) {
 }
 
 void MyBufferObject::bufferData(int bufferSize, const void *buffer, int usage) {
-    if(!_runningBufferObject || operator!=(*_runningBufferObject)) {
-        bindBuffer();
-    }
-    
+    bindBuffer();
     glBufferData(_bufferType, bufferSize, buffer, usage);
 }
 
