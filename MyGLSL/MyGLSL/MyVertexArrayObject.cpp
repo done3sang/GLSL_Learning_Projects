@@ -28,6 +28,10 @@ MyVertexArrayObject* MyVertexArrayObject::create(void) {
     return new MyVertexArrayObject;
 }
 
+bool MyVertexArrayObject::validate(void) const {
+    return glIsVertexArray(_vertexArrayId);
+}
+
 void MyVertexArrayObject::deleteVertexArray(void) {
     if(!valid()) {
         return;

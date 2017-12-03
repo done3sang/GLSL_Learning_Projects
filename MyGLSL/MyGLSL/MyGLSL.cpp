@@ -6,6 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#include <OpenGL/glu.h>
 #include "MyTemplate.hpp"
 #include "MyAutoreleasePool.hpp"
 #include "MyGLSL.hpp"
@@ -25,6 +26,19 @@ MyGLSL* MyGLSL::sharedGLSL(void) {
 
 MyGLSL::~MyGLSL(void) {
     MyAutoreleasePool::deleteAutoreleasePool();
+}
+
+bool MyGLSL::checkOpenGLError() {
+    GLenum err = glGetError();
+    
+    _errCode = err;
+    if(GL_NO_ERROR != err) {
+        _errDesc = reinterpret_cast<const char*>(gluErrorString(err));
+    } else {
+        _errDesc.clear();
+    }
+    
+    return GL_NO_ERROR == err;
 }
 
 void MyGLSL::closeGLSL(void) {

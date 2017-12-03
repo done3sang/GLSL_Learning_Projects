@@ -37,6 +37,7 @@ public:
     static MyBufferObject* createWithBufferType(int bufferType = GL_ARRAY_BUFFER);
     
     bool valid(void) const { return 0 != _bufferId; }
+    bool validate(void) const;
     
     bool operator==(const MyBufferObject& another) const {
         return 0 != _bufferId && _bufferId == another.bufferId();
@@ -54,14 +55,10 @@ public:
     
     void deleteBuffer(void);
     
-    static MyBufferObject *runningBufferObject(void);
-    
 private:
     int _bufferType;
     GLuint _bufferId;
     int _bufferUsage;
-    
-    static MyBufferObject *_runningBufferObject;
     
     GLuint bufferId(void) const { return _bufferId; }
 };

@@ -24,7 +24,7 @@ class MyRef;
 
 class MyVertexArrayObject: public MyUnique, public MyRef {
 public:
-    MyVertexArrayObject(void) {}
+    MyVertexArrayObject(void):_vertexArrayId(0) {}
     ~MyVertexArrayObject(void);
     
     static MyVertexArrayObject* create(void);
@@ -38,6 +38,7 @@ public:
     }
     
     bool valid(void) const { return 0 != _vertexArrayId; }
+    bool validate(void) const;
     
     void bindVertexArray(void);
     void enableVertexAttribArray(int attrib);

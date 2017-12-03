@@ -15,6 +15,8 @@
 #define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
 
+#include <OpenGL/glu.h>
+
 USING_MINE_NAMESPACE;
 
 static void errorCallback(int err, const char *desc) {
@@ -60,7 +62,7 @@ int main(int argc, const char * argv[]) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+    glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
     
     GLFWwindow *window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
     if (!window) {
@@ -111,6 +113,16 @@ int main(int argc, const char * argv[]) {
         return -4;
     }
     
+    if(!sharedGLSL->checkOpenGLError()) {
+        std::cout << "OpenGL Error(" << sharedGLSL->errCode() << ") = " <<
+        sharedGLSL->errDesc() << "\n";
+        
+        glfwTerminate();
+        sharedGLSL->closeGLSL();
+        
+        return -1;
+    }
+    
     float positionData[] = {
         -0.8f, -0.8f, 0.0f,
         0.8f, -0.8f, 0.0f,
@@ -128,21 +140,41 @@ int main(int argc, const char * argv[]) {
     MyBufferObject *colorBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
     colorBuffer->bufferData(9 * sizeof(float), colorData);
     
+    if(!sharedGLSL->checkOpenGLError()) {
+        std::cout << "OpenGL Error(" << sharedGLSL->errCode() << ") = " <<
+        sharedGLSL->errDesc() << "\n";
+        
+        glfwTerminate();
+        sharedGLSL->closeGLSL();
+        
+        return -1;
+    }
+    
     MyVertexArrayObject *vertexArray = MyVertexArrayObject::create();
     vertexArray->vertexAttribPoint(*positionBuffer, MyProgram::kAttribPosition, 3, 0);
     vertexArray->vertexAttribPoint(*colorBuffer, MyProgram::kAttribColor, 3, 0);
+    
+    if(!sharedGLSL->checkOpenGLError()) {
+        std::cout << "OpenGL Error(" << sharedGLSL->errCode() << ") = " <<
+        sharedGLSL->errDesc() << "\n";
+        
+        glfwTerminate();
+        sharedGLSL->closeGLSL();
+        
+        return -1;
+    }
     
     glm::mat4 rotationMatrix;
     float rotationAngle(0.0f);
     
     while(!glfwWindowShouldClose(window)) {
         rotationMatrix = glm::rotate(glm::mat4(1.0f), rotationAngle, glm::vec3(0.0f, 0.0f, 1.0f));
-        rotationAngle += 1.0f;
+        rotationAngle += glm::radians(1.0f);
         
         sharedRenderer->prepareRender();
         
         program->useProgram();
-        //program->uniformMatrix4("modelViewProjectionMatrix", rotationMatrix);
+        program->uniformMatrix4("modelViewProjectionMatrix", rotationMatrix);
         
         vertexArray->bindVertexArray();
         sharedRenderer->drawArrays(MyRenderer::kRenderPrimitiveTriangles, 0, 3);
