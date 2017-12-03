@@ -7,11 +7,27 @@
 //
 
 #include <OpenGL/glu.h>
+#include "MyRef.hpp"
+#include "MyErrorDesc.hpp"
 #include "MyTemplate.hpp"
+#include "MyRenderer.hpp"
 #include "MyAutoreleasePool.hpp"
+#include "MyRef.hpp"
 #include "MyGLSL.hpp"
 
 MINE_NAMESPACE_BEGIN
+
+static void myWindowErrorCallback(int errCode, const char *errDesc) {
+    MyErrorCallback *errCallback = MyGLSL::sharedGLSL()->windowErrorCallback();
+    
+    if(errCallback) {
+        errCallback->disposeError(errCode, errDesc);
+    }
+}
+
+static void myWindowResizeCallback(GLFWwindow *window, int width, int height) {
+    glViewport(0, 0, width, height);
+}
 
 MyGLSL* MyGLSL::_shardeGLSL = nullptr;
 
@@ -25,7 +41,18 @@ MyGLSL* MyGLSL::sharedGLSL(void) {
 }
 
 MyGLSL::~MyGLSL(void) {
+    destroy();
+}
+
+void MyGLSL::destroy(void) {
     MyAutoreleasePool::deleteAutoreleasePool();
+    
+    if(_glfwWindow) {
+        glfwDestroyWindow(_glfwWindow);
+        _glfwWindow = nullptr;
+    }
+    
+    glfwTerminate();
 }
 
 bool MyGLSL::checkOpenGLError() {
@@ -48,8 +75,56 @@ void MyGLSL::closeGLSL(void) {
     }
 }
 
+void MyGLSL::runMainLoop(void) {
+    while(!windowShouldClose()) {
+        if(_mainRenderer) {
+            _mainRenderer->prepareRender();
+        }
+        
+        if(_mainFunc) {
+            _mainFunc->update(0.016f);
+            _mainFunc->render();
+        }
+        
+        if(_glfwWindow) {
+            glfwSwapBuffers(_glfwWindow);
+        }
+        
+        glfwPollEvents();
+    }
+}
+
 void MyGLSL::initialize(void) {
     MyAutoreleasePool::sharedAutoreleasePool();
+    
+    glfwSetErrorCallback(myWindowErrorCallback);
+    if(!glfwInit()) {
+        return;
+    }
+    
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+}
+
+bool MyGLSL::createWindow(int width, int height, const std::string &title) {
+    GLFWwindow *window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+    
+    if(!window) {
+        return false;
+    }
+    
+    glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, myWindowResizeCallback);
+    _glfwWindow = window;
+    
+    return true;
+}
+
+bool MyGLSL::windowShouldClose(void) const {
+    return _glfwWindow && glfwWindowShouldClose(_glfwWindow);
 }
 
 MINE_NAMESPACE_END

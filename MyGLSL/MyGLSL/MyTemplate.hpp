@@ -19,7 +19,7 @@ MINE_NAMESPACE_BEGIN
 class MySingleton {
 protected:
     MySingleton(void) {}
-    ~MySingleton(void) {}
+    virtual ~MySingleton(void) {}
     
 private:
     MySingleton(const MySingleton&);
@@ -29,7 +29,7 @@ private:
 class MyUnique {
 protected:
     MyUnique(void) {}
-    ~MyUnique(void) {}
+    virtual ~MyUnique(void) {}
     
 private:
     MyUnique(const MyUnique&);

@@ -67,6 +67,7 @@ void MyErrorDesc::initialize(void) {
     _errorDesc[kErrProgramLinkingFailed] = "Program linking failed";
     _errorDesc[kErrProgramNotLinked] = "Program NOT linked";
     _errorDesc[kErrProgramShaderAlreadyAttached] = "Shader already attached to program";
+    _errorDesc[kErrProgramUniformNotExists] = "Program uniform NOT exists";
 }
 
 std::string& MyErrorDesc::errorString(int errCode) {
