@@ -26,7 +26,10 @@ MyProgram::~MyProgram(void) {
 }
 
 MyProgram* MyProgram::create(void) {
-    return new MyProgram;
+    MyProgram *prog = new MyProgram;
+    prog->refName("MyProgram");
+    
+    return prog;
 }
 
 bool MyProgram::shaderAttached(const Mine::MyShader &shader) const {

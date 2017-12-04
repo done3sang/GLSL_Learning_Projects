@@ -17,6 +17,7 @@ MyRenderer* MyRenderer::_sharedRenderer = nullptr;
 MyRenderer* MyRenderer::sharedRenderer(void) {
     if(nullptr == _sharedRenderer) {
         _sharedRenderer = new MyRenderer;
+        _sharedRenderer->refName("MyRenderer");
     }
     
     return _sharedRenderer;

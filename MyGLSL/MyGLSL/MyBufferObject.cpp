@@ -12,12 +12,17 @@
 
 MINE_NAMESPACE_BEGIN
 
+MyBufferObject* MyBufferObject::_runningBufferObject = nullptr;
+
 MyBufferObject::~MyBufferObject(void) {
     deleteBuffer();
 }
 
 MyBufferObject* MyBufferObject::createWithBufferType(int bufferType) {
-    return new MyBufferObject(bufferType);
+    MyBufferObject *obj = new MyBufferObject(bufferType);
+    obj->refName("MyBufferObject");
+    
+    return obj;
 }
 
 bool MyBufferObject::validate(void) const {
@@ -34,6 +39,10 @@ void MyBufferObject::deleteBuffer(void) {
 }
 
 void MyBufferObject::bindBuffer(void) {
+    if(_runningBufferObject && operator==(*_runningBufferObject)) {
+        return;
+    }
+    
     if(!valid()) {
         glGenBuffers(1, &_bufferId);
     }

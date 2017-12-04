@@ -30,12 +30,18 @@ MyShader::~MyShader(void) {
 }
 
 MyShader* MyShader::createWithShaderType(int shaderType) {
-    return new MyShader(shaderType);
+    MyShader *shader = new MyShader(shaderType);
+    shader->refName("MyShader");
+    
+    return shader;
 }
 
 
 MyShader* MyShader::createWithShaderTypeAndPath(int shaderType, const std::string &filepath) {
-    return new MyShader(shaderType, filepath);
+    MyShader *shader = new MyShader(shaderType, filepath);
+    shader->refName("MyShader");
+    
+    return shader;
 }
 
 bool MyShader::validate(void) const {

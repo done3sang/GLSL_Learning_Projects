@@ -55,10 +55,14 @@ public:
     
     void deleteBuffer(void);
     
+    static MyBufferObject* runningBufferObject(void) { return _runningBufferObject; }
+    
 private:
     int _bufferType;
     GLuint _bufferId;
     int _bufferUsage;
+    
+    static MyBufferObject *_runningBufferObject;
     
     GLuint bufferId(void) const { return _bufferId; }
 };

@@ -138,7 +138,10 @@ public:
     void destroy(void) {}
     
     static MyMainObject* create(void) {
-        return new MyMainObject;
+        MyMainObject *obj =  new MyMainObject;
+        obj->refName("MyMainObject");
+        
+        return obj;
     }
     
 private:

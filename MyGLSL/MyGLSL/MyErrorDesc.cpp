@@ -30,6 +30,7 @@ const int MyErrorDesc::kErrProgramUniformNotExists = 12;
 MyErrorDesc* MyErrorDesc::sharedErrorDesc(void) {
     if(nullptr == _sharedErrorDesc) {
         _sharedErrorDesc = new MyErrorDesc;
+        _sharedErrorDesc->refName("MyErrorDesc");
     }
     
     return _sharedErrorDesc;

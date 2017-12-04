@@ -19,6 +19,7 @@ MyFileUtil* MyFileUtil::_sharedFileUtil = nullptr;
 MyFileUtil& MyFileUtil::sharedFileUtil(void) {
     if(nullptr == _sharedFileUtil) {
         _sharedFileUtil = new MyFileUtil;
+        _sharedFileUtil->refName("MyFileUtil");
     }
     
     return *_sharedFileUtil;

@@ -66,6 +66,7 @@ private:
     
     MyErrorDesc(void);
     ~MyErrorDesc(void) {}
+    
     MyErrorDesc(const MyErrorDesc&);
     MyErrorDesc& operator=(const MyErrorDesc&);
 };

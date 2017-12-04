@@ -25,7 +25,10 @@ MyVertexArrayObject::~MyVertexArrayObject(void) {
 }
 
 MyVertexArrayObject* MyVertexArrayObject::create(void) {
-    return new MyVertexArrayObject;
+    MyVertexArrayObject *obj = new MyVertexArrayObject;
+    obj->refName("MyVertexArrayObject");
+    
+    return obj;
 }
 
 bool MyVertexArrayObject::validate(void) const {
