@@ -18,5 +18,6 @@
 #include "MyBufferObject.hpp"
 #include "MyVertexArrayObject.hpp"
 #include "MyErrorDesc.hpp"
+#include "MyScene.hpp"
 
 #endif /* MyGLSLAll_h */

@@ -13,6 +13,8 @@
 		144349471FD14E5A006DD6D2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144349441FD14E44006DD6D2 /* Cocoa.framework */; };
 		144349491FD14E67006DD6D2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144349481FD14E62006DD6D2 /* IOKit.framework */; };
 		1443494B1FD14E74006DD6D2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1443494A1FD14E6E006DD6D2 /* CoreVideo.framework */; };
+		144396DB1FD6A4480068D685 /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396D91FD6A4480068D685 /* BaseScene.cpp */; };
+		144396DF1FD6ADF90068D685 /* UniformScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396DD1FD6ADF90068D685 /* UniformScene.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,10 @@
 		144349451FD14E4A006DD6D2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		144349481FD14E62006DD6D2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		1443494A1FD14E6E006DD6D2 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		144396D91FD6A4480068D685 /* BaseScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseScene.cpp; sourceTree = "<group>"; };
+		144396DA1FD6A4480068D685 /* BaseScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseScene.hpp; sourceTree = "<group>"; };
+		144396DD1FD6ADF90068D685 /* UniformScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UniformScene.cpp; sourceTree = "<group>"; };
+		144396DE1FD6ADF90068D685 /* UniformScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UniformScene.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,10 @@
 			isa = PBXGroup;
 			children = (
 				144349271FD14B6F006DD6D2 /* main.cpp */,
+				144396DA1FD6A4480068D685 /* BaseScene.hpp */,
+				144396D91FD6A4480068D685 /* BaseScene.cpp */,
+				144396DE1FD6ADF90068D685 /* UniformScene.hpp */,
+				144396DD1FD6ADF90068D685 /* UniformScene.cpp */,
 			);
 			path = MyGLSLTest;
 			sourceTree = "<group>";
@@ -181,7 +191,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				144396DF1FD6ADF90068D685 /* UniformScene.cpp in Sources */,
 				144349281FD14B6F006DD6D2 /* main.cpp in Sources */,
+				144396DB1FD6A4480068D685 /* BaseScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

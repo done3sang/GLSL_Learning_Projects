@@ -10,6 +10,7 @@
 #define MyGLSL_
 
 #include <string>
+#include <map>
 #include "Precompiled.h"
 
 #define GLFW_INCLUDE_GLCOREARB
@@ -25,17 +26,7 @@ class MyUnique;
 class MyRef;
 class MyErrorCallback;
 class MyRenderer;
-
-class MyMainFuncObject: public MyUnique {
-public:
-    virtual bool initialize(void) = 0;
-    virtual void update(float deltaTime) = 0;
-    virtual void render(void) = 0;
-    virtual void destroy(void) {}
-    
-protected:
-    virtual ~MyMainFuncObject(void) { destroy(); }
-};
+class MyScene;
 
 class MyGLSL: public MySingleton {
 public:
@@ -57,8 +48,8 @@ public:
     bool windowShouldClose(void) const;
     
     // main relative
-    MyMainFuncObject* mainFunc(void) const { return _mainFunc; }
-    void mainFunc(MyMainFuncObject *mainFunc) { _mainFunc = mainFunc; }
+    MyScene* mainFunc(void) const { return _mainFunc; }
+    void mainFunc(MyScene *mainFunc) { _mainFunc = mainFunc; }
     
     // renderer relative
     MyRenderer* mainRenderer(void) const { return _mainRenderer; }
@@ -76,9 +67,10 @@ private:
     std::string _errDesc;
     MyErrorCallback *_windowErrorCallback;
     GLFWwindow *_glfwWindow;
-    MyMainFuncObject *_mainFunc;
+    MyScene *_mainFunc;
     MyRenderer *_mainRenderer;
-        
+    std::map<int, std::string> _glErrorMap;
+    
     static MyGLSL *_shardeGLSL;
     
     void initialize(void);

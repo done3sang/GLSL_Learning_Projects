@@ -6,13 +6,13 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include <OpenGL/glu.h>
 #include "MyRef.hpp"
 #include "MyErrorDesc.hpp"
 #include "MyTemplate.hpp"
 #include "MyRenderer.hpp"
 #include "MyAutoreleasePool.hpp"
 #include "MyRef.hpp"
+#include "MyScene.hpp"
 #include "MyGLSL.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -60,7 +60,7 @@ bool MyGLSL::checkOpenGLError() {
     
     _errCode = err;
     if(GL_NO_ERROR != err) {
-        _errDesc = reinterpret_cast<const char*>(gluErrorString(err));
+        _errDesc = _glErrorMap[err];
     } else {
         _errDesc.clear();
     }
@@ -107,6 +107,12 @@ void MyGLSL::initialize(void) {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+    
+    _glErrorMap[GL_INVALID_ENUM] = "Invalid enum";
+    _glErrorMap[GL_INVALID_VALUE] = "Invalid value";
+    _glErrorMap[GL_INVALID_OPERATION] = "Invalid operation";
+    _glErrorMap[GL_OUT_OF_MEMORY] = "Out of memory";
+    _glErrorMap[GL_NO_ERROR] = "No error";
 }
 
 bool MyGLSL::createWindow(int width, int height, const std::string &title) {

@@ -30,6 +30,10 @@
 		14B24D901FCEAC4800121A65 /* MyVertexArrayObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B24D8E1FCEAC4800121A65 /* MyVertexArrayObject.cpp */; };
 		14B24D911FCEAC4800121A65 /* MyVertexArrayObject.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14B24D8F1FCEAC4800121A65 /* MyVertexArrayObject.hpp */; };
 		14B24D951FCEAD9900121A65 /* MyTemplate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14B24D931FCEAD9900121A65 /* MyTemplate.hpp */; };
+		14EF00741FD69BEA0048F4D5 /* MyScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EF00721FD69BEA0048F4D5 /* MyScene.cpp */; };
+		14EF00751FD69BEA0048F4D5 /* MyScene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EF00731FD69BEA0048F4D5 /* MyScene.hpp */; };
+		14EF00781FD69FD70048F4D5 /* MyDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EF00761FD69FD70048F4D5 /* MyDirector.cpp */; };
+		14EF00791FD69FD70048F4D5 /* MyDirector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EF00771FD69FD70048F4D5 /* MyDirector.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +62,10 @@
 		14B24D8E1FCEAC4800121A65 /* MyVertexArrayObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyVertexArrayObject.cpp; sourceTree = "<group>"; };
 		14B24D8F1FCEAC4800121A65 /* MyVertexArrayObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyVertexArrayObject.hpp; sourceTree = "<group>"; };
 		14B24D931FCEAD9900121A65 /* MyTemplate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyTemplate.hpp; sourceTree = "<group>"; };
+		14EF00721FD69BEA0048F4D5 /* MyScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyScene.cpp; sourceTree = "<group>"; };
+		14EF00731FD69BEA0048F4D5 /* MyScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyScene.hpp; sourceTree = "<group>"; };
+		14EF00761FD69FD70048F4D5 /* MyDirector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyDirector.cpp; sourceTree = "<group>"; };
+		14EF00771FD69FD70048F4D5 /* MyDirector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyDirector.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +122,10 @@
 				1443490B1FD12BB3006DD6D2 /* MyRef.cpp */,
 				144349181FD13B20006DD6D2 /* MyAutoreleasePool.hpp */,
 				144349171FD13B20006DD6D2 /* MyAutoreleasePool.cpp */,
+				14EF00731FD69BEA0048F4D5 /* MyScene.hpp */,
+				14EF00721FD69BEA0048F4D5 /* MyScene.cpp */,
+				14EF00771FD69FD70048F4D5 /* MyDirector.hpp */,
+				14EF00761FD69FD70048F4D5 /* MyDirector.cpp */,
 				1443494C1FD16AE8006DD6D2 /* MyGLSLAll.hpp */,
 			);
 			path = MyGLSL;
@@ -134,6 +146,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14EF00791FD69FD70048F4D5 /* MyDirector.hpp in Headers */,
 				1443494D1FD16B53006DD6D2 /* MyGLSLAll.hpp in Headers */,
 				1443490E1FD12BB3006DD6D2 /* MyRef.hpp in Headers */,
 				1443491A1FD13B20006DD6D2 /* MyAutoreleasePool.hpp in Headers */,
@@ -143,6 +156,7 @@
 				14B24D911FCEAC4800121A65 /* MyVertexArrayObject.hpp in Headers */,
 				1401E5F11FCC0EE100D83812 /* MyFileUtil.hpp in Headers */,
 				1401E5FA1FCCFC6600D83812 /* MyShader.hpp in Headers */,
+				14EF00751FD69BEA0048F4D5 /* MyScene.hpp in Headers */,
 				144349061FD103CC006DD6D2 /* MyRenderer.hpp in Headers */,
 				14B24D951FCEAD9900121A65 /* MyTemplate.hpp in Headers */,
 				144349021FCEBA61006DD6D2 /* MyBufferObject.hpp in Headers */,
@@ -211,11 +225,13 @@
 				1401E6001FCD11EA00D83812 /* MyProgram.cpp in Sources */,
 				1401E5F51FCC13BD00D83812 /* MyErrorDesc.cpp in Sources */,
 				144349191FD13B20006DD6D2 /* MyAutoreleasePool.cpp in Sources */,
+				14EF00781FD69FD70048F4D5 /* MyDirector.cpp in Sources */,
 				144349051FD103CC006DD6D2 /* MyRenderer.cpp in Sources */,
 				1401E5F01FCC0EE100D83812 /* MyFileUtil.cpp in Sources */,
 				1401E5F91FCCFC6600D83812 /* MyShader.cpp in Sources */,
 				1401E5E81FCC0AE500D83812 /* MyGLSL.cpp in Sources */,
 				1443490D1FD12BB3006DD6D2 /* MyRef.cpp in Sources */,
+				14EF00741FD69BEA0048F4D5 /* MyScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
