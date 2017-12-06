@@ -25,8 +25,10 @@ class MyBufferObject: public MyUnique, public MyRef {
 public:
     static const int kBufferArray = GL_ARRAY_BUFFER;
     static const int kBufferElementArray = GL_ELEMENT_ARRAY_BUFFER;
+    static const int kBufferUniform = GL_UNIFORM_BUFFER;
     
     static const int kBufferUsageStaticDraw = GL_STATIC_DRAW;
+    static const int kBufferUsageDynamicDraw = GL_DYNAMIC_DRAW;
     
 public:
     explicit
@@ -49,10 +51,11 @@ public:
     
     int bufferType(void) const { return _bufferType; }
     int bufferUsage(void) const { return _bufferUsage; }
+    GLuint bufferId(void) const { return _bufferId; }
     
     void bindBuffer(void);
-    void bufferData(int bufferSize, const void *buffer, int usage = kBufferUsageStaticDraw);
-    
+    void bufferData(int bufferSize, const void *data, int usage = kBufferUsageStaticDraw);
+    void bufferSubData(int bufferOffset, int bufferSize, const void *data);
     void deleteBuffer(void);
     
     static MyBufferObject* runningBufferObject(void) { return _runningBufferObject; }
@@ -63,8 +66,6 @@ private:
     int _bufferUsage;
     
     static MyBufferObject *_runningBufferObject;
-    
-    GLuint bufferId(void) const { return _bufferId; }
 };
 
 MINE_NAMESPACE_END

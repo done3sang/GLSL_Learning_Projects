@@ -1,13 +1,13 @@
 //
-//  MyGLSLAll.h
+//  Mine.h
 //  MyGLSL
 //
-//  Created by xy on 01/12/2017.
+//  Created by xy on 06/12/2017.
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#ifndef MyGLSLAll_h
-#define MyGLSLAll_h
+#ifndef Mine_hpp
+#define Mine_hpp
 
 #include "MyTemplate.hpp"
 #include "MyGLSL.hpp"
@@ -20,4 +20,4 @@
 #include "MyErrorDesc.hpp"
 #include "MyScene.hpp"
 
-#endif /* MyGLSLAll_h */
+#endif /* Mine_h */

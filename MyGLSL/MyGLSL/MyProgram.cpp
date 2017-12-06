@@ -9,6 +9,8 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "MyRef.hpp"
+#include "MyTemplate.hpp"
+#include "MyBufferObject.hpp"
 #include "MyProgram.hpp"
 #include "MyShader.hpp"
 #include "MyErrorDesc.hpp"
@@ -221,4 +223,82 @@ int MyProgram::uniformInteger(const std::string &name, int value) {
     return MyErrorDesc::kErrOk;
 }
 
+int MyProgram::uniformBlockIndex(const std::string &blockName, const std::string &indexName, int valueSize, void *valueptr) {
+    auto iter = _uniformLocation.find(blockName);
+    int blockIndex(-1);
+    
+    if(_uniformLocation.end() == iter) {
+        if(!linked()) {
+            return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramNotLinked);
+        }
+        
+        blockIndex = glGetUniformBlockIndex(_programId, blockName.c_str());
+        
+        if(blockIndex < 0) {
+            return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramUniformNotExists);
+        }
+        
+        _uniformLocation[blockName] = blockIndex;
+    } else {
+        blockIndex = iter->second;
+    }
+    
+    auto bufferIter = _uniformBlock.find(blockIndex);
+    MyBufferObject *blockBuffer = nullptr;
+    if(_uniformBlock.end() == bufferIter) {
+        blockBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferUniform);
+        int blockSize(0);
+        
+        glGetActiveUniformBlockiv(_programId, blockIndex, GL_UNIFORM_BLOCK_DATA_SIZE, &blockSize);
+        blockBuffer->bindBuffer();
+        blockBuffer->bufferData(blockSize, nullptr, MyBufferObject::kBufferUsageDynamicDraw);
+        
+        useProgram();
+        glBindBufferBase(MyBufferObject::kBufferUniform, blockIndex, blockBuffer->bufferId());
+        
+        _uniformBlock[blockIndex] = blockBuffer;
+    } else {
+        blockBuffer = bufferIter->second;
+    }
+    
+    GLuint index;
+    const GLchar *indexArr[] = {indexName.c_str()};
+    glGetUniformIndices(_programId, 1, indexArr, &index);
+    if(index < 0 ) {
+        return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramUniformBlockIndexNotExists);
+    }
+    
+    GLint offset;
+    glGetActiveUniformsiv(_programId, 1, &index, GL_UNIFORM_OFFSET, &offset);
+    blockBuffer->bufferSubData(offset, valueSize, valueptr);
+    
+    return MyErrorDesc::kErrOk;
+}
+
+std::string MyProgram::activeUniform(void) const {
+    std::string uniformStr;
+    
+    if(!linked()) {
+        return uniformStr;
+    }
+    
+    GLint numUniform, maxLen;
+    
+    glGetUniformiv(_programId, GL_ACTIVE_UNIFORM_MAX_LENGTH, &maxLen);
+    glGetUniformiv(_programId, GL_ACTIVE_UNIFORMS, &numUniform);
+    
+    GLchar *name = new GLchar[maxLen];
+    GLint size, location;
+    GLsizei written;
+    GLenum type;
+    for(int i = 0; i < numUniform; ++i) {
+        glGetActiveUniform(_programId, i, maxLen, &written, &size, &type, name);
+        location = glGetUniformLocation(_programId, name);
+        
+        uniformStr += name;
+        uniformStr += " ";
+    }
+    
+    return uniformStr;
+}
 MINE_NAMESPACE_END

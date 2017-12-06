@@ -22,7 +22,7 @@ class MyRef;
 class MyScene: public MyUnique, public MyRef {
 public:
     virtual bool initialize(void) = 0;
-    virtual void update(float deltaTime) = 0;
+    virtual void update(float deltaTime) {}
     virtual void render(void) = 0;
     virtual void destroy(void) {}
     

@@ -64,7 +64,7 @@ int MyShader::loadFromFile(const std::string &filepath) {
     int errCode = sharedFileUtil.readFile(filepath, source);
     
     if(!MyErrorDesc::successed(errCode)) {
-        return errCode;
+        return MyErrorDesc::invokeErrorCode(errCode);
     }
     
     _filepath = filepath;

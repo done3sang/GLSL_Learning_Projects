@@ -15,6 +15,7 @@
 		1443494B1FD14E74006DD6D2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1443494A1FD14E6E006DD6D2 /* CoreVideo.framework */; };
 		144396DB1FD6A4480068D685 /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396D91FD6A4480068D685 /* BaseScene.cpp */; };
 		144396DF1FD6ADF90068D685 /* UniformScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396DD1FD6ADF90068D685 /* UniformScene.cpp */; };
+		14F9EFE01FD7CF1C00EAF6E1 /* Shader in Resources */ = {isa = PBXBuildFile; fileRef = 14F9EFCA1FD79C8100EAF6E1 /* Shader */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,12 +31,12 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		144349221FD14B6F006DD6D2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			buildActionMask = 12;
+			dstPath = /usr/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -51,6 +52,7 @@
 		144396DA1FD6A4480068D685 /* BaseScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseScene.hpp; sourceTree = "<group>"; };
 		144396DD1FD6ADF90068D685 /* UniformScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UniformScene.cpp; sourceTree = "<group>"; };
 		144396DE1FD6ADF90068D685 /* UniformScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UniformScene.hpp; sourceTree = "<group>"; };
+		14F9EFCA1FD79C8100EAF6E1 /* Shader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shader; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				144349341FD14BBC006DD6D2 /* MyGLSL.xcodeproj */,
 				144349261FD14B6F006DD6D2 /* MyGLSLTest */,
+				14F9EFDF1FD7CEFD00EAF6E1 /* Resources */,
 				144349251FD14B6F006DD6D2 /* Products */,
 				1443493A1FD14C03006DD6D2 /* Frameworks */,
 			);
@@ -118,6 +121,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		14F9EFDF1FD7CEFD00EAF6E1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				14F9EFCA1FD79C8100EAF6E1 /* Shader */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,6 +139,8 @@
 				144349201FD14B6F006DD6D2 /* Sources */,
 				144349211FD14B6F006DD6D2 /* Frameworks */,
 				144349221FD14B6F006DD6D2 /* CopyFiles */,
+				14F9EFD51FD7CE8800EAF6E1 /* Resources */,
+				14F9EFE11FD7CFDB00EAF6E1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -185,6 +198,33 @@
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		14F9EFD51FD7CE8800EAF6E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14F9EFE01FD7CF1C00EAF6E1 /* Shader in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		14F9EFE11FD7CFDB00EAF6E1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/usr/bin/env bash\n\necho \"what's your name?\"\necho \"$PROJECT_DIR\"\necho \"$BUILT_PRODUCTS_DIR\"\necho \"$TARGET_NAME\"\necho \"$SRCROOT\"\necho \"$CURRENT_PROJECT_VERSION\"\n\ncp -R \"$PROJECT_DIR/Resources/Shader\" \"$BUILT_PRODUCTS_DIR/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		144349201FD14B6F006DD6D2 /* Sources */ = {

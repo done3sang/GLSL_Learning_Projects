@@ -26,7 +26,6 @@
 		1443490E1FD12BB3006DD6D2 /* MyRef.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1443490C1FD12BB3006DD6D2 /* MyRef.hpp */; };
 		144349191FD13B20006DD6D2 /* MyAutoreleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144349171FD13B20006DD6D2 /* MyAutoreleasePool.cpp */; };
 		1443491A1FD13B20006DD6D2 /* MyAutoreleasePool.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 144349181FD13B20006DD6D2 /* MyAutoreleasePool.hpp */; };
-		1443494D1FD16B53006DD6D2 /* MyGLSLAll.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1443494C1FD16AE8006DD6D2 /* MyGLSLAll.hpp */; };
 		14B24D901FCEAC4800121A65 /* MyVertexArrayObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B24D8E1FCEAC4800121A65 /* MyVertexArrayObject.cpp */; };
 		14B24D911FCEAC4800121A65 /* MyVertexArrayObject.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14B24D8F1FCEAC4800121A65 /* MyVertexArrayObject.hpp */; };
 		14B24D951FCEAD9900121A65 /* MyTemplate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14B24D931FCEAD9900121A65 /* MyTemplate.hpp */; };
@@ -34,6 +33,7 @@
 		14EF00751FD69BEA0048F4D5 /* MyScene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EF00731FD69BEA0048F4D5 /* MyScene.hpp */; };
 		14EF00781FD69FD70048F4D5 /* MyDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EF00761FD69FD70048F4D5 /* MyDirector.cpp */; };
 		14EF00791FD69FD70048F4D5 /* MyDirector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EF00771FD69FD70048F4D5 /* MyDirector.hpp */; };
+		14F9EFC91FD79B9D00EAF6E1 /* Mine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14F9EFC81FD79B7E00EAF6E1 /* Mine.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +58,6 @@
 		1443490C1FD12BB3006DD6D2 /* MyRef.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyRef.hpp; sourceTree = "<group>"; };
 		144349171FD13B20006DD6D2 /* MyAutoreleasePool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyAutoreleasePool.cpp; sourceTree = "<group>"; };
 		144349181FD13B20006DD6D2 /* MyAutoreleasePool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyAutoreleasePool.hpp; sourceTree = "<group>"; };
-		1443494C1FD16AE8006DD6D2 /* MyGLSLAll.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyGLSLAll.hpp; sourceTree = "<group>"; };
 		14B24D8E1FCEAC4800121A65 /* MyVertexArrayObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyVertexArrayObject.cpp; sourceTree = "<group>"; };
 		14B24D8F1FCEAC4800121A65 /* MyVertexArrayObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyVertexArrayObject.hpp; sourceTree = "<group>"; };
 		14B24D931FCEAD9900121A65 /* MyTemplate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyTemplate.hpp; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		14EF00731FD69BEA0048F4D5 /* MyScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyScene.hpp; sourceTree = "<group>"; };
 		14EF00761FD69FD70048F4D5 /* MyDirector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyDirector.cpp; sourceTree = "<group>"; };
 		14EF00771FD69FD70048F4D5 /* MyDirector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyDirector.hpp; sourceTree = "<group>"; };
+		14F9EFC81FD79B7E00EAF6E1 /* Mine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mine.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +126,7 @@
 				14EF00721FD69BEA0048F4D5 /* MyScene.cpp */,
 				14EF00771FD69FD70048F4D5 /* MyDirector.hpp */,
 				14EF00761FD69FD70048F4D5 /* MyDirector.cpp */,
-				1443494C1FD16AE8006DD6D2 /* MyGLSLAll.hpp */,
+				14F9EFC81FD79B7E00EAF6E1 /* Mine.hpp */,
 			);
 			path = MyGLSL;
 			sourceTree = "<group>";
@@ -146,8 +146,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F9EFC91FD79B9D00EAF6E1 /* Mine.hpp in Headers */,
 				14EF00791FD69FD70048F4D5 /* MyDirector.hpp in Headers */,
-				1443494D1FD16B53006DD6D2 /* MyGLSLAll.hpp in Headers */,
 				1443490E1FD12BB3006DD6D2 /* MyRef.hpp in Headers */,
 				1443491A1FD13B20006DD6D2 /* MyAutoreleasePool.hpp in Headers */,
 				1401E6011FCD11EA00D83812 /* MyProgram.hpp in Headers */,

@@ -10,7 +10,7 @@
 #define BaseScene_hpp
 
 #include <glm/glm.hpp>
-#include "MyGLSLAll.hpp"
+#include "Mine.hpp"
 
 USING_MINE_NAMESPACE;
 

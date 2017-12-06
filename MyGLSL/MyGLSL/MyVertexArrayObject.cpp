@@ -69,11 +69,11 @@ void MyVertexArrayObject::enableVertexAttribArray(int attrib) {
 }
 
 void MyVertexArrayObject::vertexAttribPoint(MyBufferObject &bufferObject,
-                                            int attrib, int size, int stride) {
+                                            int attrib, int size, int stride, int offset) {
     bindVertexArray();
     glEnableVertexAttribArray(attrib);
     bufferObject.bindBuffer();
-    glVertexAttribPointer(attrib, size, GL_FLOAT, GL_FALSE, stride, nullptr);
+    glVertexAttribPointer(attrib, size, GL_FLOAT, GL_FALSE, stride, (GLubyte*)NULL + offset);
 }
 
 MINE_NAMESPACE_END

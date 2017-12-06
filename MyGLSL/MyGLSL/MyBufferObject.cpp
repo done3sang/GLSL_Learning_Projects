@@ -6,6 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#include <cassert>
 #include "MyTemplate.hpp"
 #include "MyRef.hpp"
 #include "MyBufferObject.hpp"
@@ -50,9 +51,17 @@ void MyBufferObject::bindBuffer(void) {
     glBindBuffer(_bufferType, _bufferId);
 }
 
-void MyBufferObject::bufferData(int bufferSize, const void *buffer, int usage) {
+void MyBufferObject::bufferData(int bufferSize, const void *data, int usage) {
     bindBuffer();
-    glBufferData(_bufferType, bufferSize, buffer, usage);
+    _bufferUsage = usage;
+    glBufferData(_bufferType, bufferSize, data, usage);
+}
+
+void MyBufferObject::bufferSubData(int bufferOffset, int bufferSize, const void *data) {
+    assert(kBufferUsageDynamicDraw == _bufferUsage && "Buffer sub data should be operated on dynamic buffer");
+    
+    bindBuffer();
+    glBufferSubData(_bufferType, bufferOffset, bufferSize, data);
 }
 
 MINE_NAMESPACE_END

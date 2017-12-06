@@ -44,7 +44,7 @@ public:
     void enableVertexAttribArray(int attrib);
     
     void vertexAttribPoint(MyBufferObject &bufferObject,
-                           int attrib, int size, int stride);
+                           int attrib, int size, int stride, int offset = 0);
     
     void deleteVertexArray(void);
     

@@ -45,6 +45,8 @@ public:
         _windowErrorCallback = &windowErrCallback;
     }
     bool createWindow(int width, int height, const std::string &title);
+    void resizeWindow(int width, int height);
+    void windowTitle(const std::string &title);
     bool windowShouldClose(void) const;
     
     // main relative

@@ -26,6 +26,7 @@ const int MyErrorDesc::kErrProgramLinkingFailed = 9;
 const int MyErrorDesc::kErrProgramNotLinked = 10;
 const int MyErrorDesc::kErrProgramShaderAlreadyAttached = 11;
 const int MyErrorDesc::kErrProgramUniformNotExists = 12;
+const int MyErrorDesc::kErrProgramUniformBlockIndexNotExists = 13;
 
 MyErrorDesc* MyErrorDesc::sharedErrorDesc(void) {
     if(nullptr == _sharedErrorDesc) {
@@ -69,6 +70,7 @@ void MyErrorDesc::initialize(void) {
     _errorDesc[kErrProgramNotLinked] = "Program NOT linked";
     _errorDesc[kErrProgramShaderAlreadyAttached] = "Shader already attached to program";
     _errorDesc[kErrProgramUniformNotExists] = "Program uniform NOT exists";
+    _errorDesc[kErrProgramUniformBlockIndexNotExists] = "Program uniform block index NOT exists";
 }
 
 std::string& MyErrorDesc::errorString(int errCode) {

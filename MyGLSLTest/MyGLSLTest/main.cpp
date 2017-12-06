@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include "BaseScene.hpp"
+#include "UniformScene.hpp"
 
 USING_MINE_NAMESPACE;
 
@@ -31,7 +32,7 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    BaseScene *myScene = BaseScene::create();
+    MyScene *myScene = UniformScene::create();
     
     if(!myScene->initialize()) {
         sharedGLSL->closeGLSL();

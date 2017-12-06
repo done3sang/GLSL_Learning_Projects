@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
 #include <glm/fwd.hpp>
 #include "Precompiled.h"
@@ -23,6 +24,7 @@ MINE_NAMESPACE_BEGIN
 
 class MyShader;
 class MyRef;
+class MyBufferObject;
 
 class MyProgram: public MyRef {
 public:
@@ -55,6 +57,9 @@ public:
     int uniformMatrix4(const std::string &name, const glm::mat4 &mat);
     int uniformFloat(const std::string &name, float value);
     int uniformInteger(const std::string &name, int value);
+    int uniformBlockIndex(const std::string &blockName, const std::string &indexName, int valueSize, void *valueptr);
+    
+    std::string activeUniform(void) const;
     
     static MyProgram* runningProgram(void);
     
@@ -71,6 +76,7 @@ private:
     std::string _programLog;
     std::vector<const MyShader*>  _shaderVec;
     std::map<std::string, int> _uniformLocation;
+    std::map<int, MyBufferObject*> _uniformBlock;
     
     static MyProgram *_runningProgram;
     

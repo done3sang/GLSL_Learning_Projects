@@ -129,6 +129,18 @@ bool MyGLSL::createWindow(int width, int height, const std::string &title) {
     return true;
 }
 
+void MyGLSL::resizeWindow(int width, int height) {
+    if(_glfwWindow) {
+        glfwSetWindowSize(_glfwWindow, width, height);
+    }
+}
+
+void MyGLSL::windowTitle(const std::string &title) {
+    if(_glfwWindow) {
+        glfwSetWindowTitle(_glfwWindow, title.c_str());
+    }
+}
+
 bool MyGLSL::windowShouldClose(void) const {
     return _glfwWindow && glfwWindowShouldClose(_glfwWindow);
 }

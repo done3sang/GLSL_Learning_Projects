@@ -43,6 +43,7 @@ public:
     static const int kErrProgramNotLinked;
     static const int kErrProgramShaderAlreadyAttached;
     static const int kErrProgramUniformNotExists;
+    static const int kErrProgramUniformBlockIndexNotExists;
     
 public:
     std::string& errorString(int errCode);
