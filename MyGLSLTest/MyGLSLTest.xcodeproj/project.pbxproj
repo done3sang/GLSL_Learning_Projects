@@ -222,7 +222,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/usr/bin/env bash\n\necho \"what's your name?\"\necho \"$PROJECT_DIR\"\necho \"$BUILT_PRODUCTS_DIR\"\necho \"$TARGET_NAME\"\necho \"$SRCROOT\"\necho \"$CURRENT_PROJECT_VERSION\"\n\ncp -R \"$PROJECT_DIR/Resources/Shader\" \"$BUILT_PRODUCTS_DIR/\"";
+			shellScript = "#!/usr/bin/env bash\n\ncp -R \"$PROJECT_DIR/Resources/Shader\" \"$BUILT_PRODUCTS_DIR/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
