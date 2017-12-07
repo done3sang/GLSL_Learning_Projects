@@ -35,43 +35,43 @@ BaseScene* BaseScene::create(void) {
 }
 
 bool BaseScene::initialize(void) {
-        MyGLSL *sharedGLSL = MyGLSL::sharedGLSL();
+        MyDirector *sharedDirector = MyDirector::sharedDirector();
         
-        _myRenderer = MyRenderer::sharedRenderer();
+        _myRenderer = MyRenderer::create("Normal");
         _myRenderer->clearBufferBit(MyRenderer::kBufferBitColor | MyRenderer::kBufferBitDepth);
-        sharedGLSL->mainRenderer(_myRenderer);
+        sharedDirector->mainRenderer(_myRenderer);
         
-        MyShader *vertexShader = MyShader::createWithShaderType(MyShader::kShaderTypeVertex);
+        MyShader *vertexShader = MyShader::createWithShaderType("basic_vert", MyShader::kShaderTypeVertex);
         if(!MyErrorDesc::successed(vertexShader->loadFromSource(vertexShaderSource))) {
             std::cout << "Error occurs in shader: " << vertexShader->shaderLog() << "\n";
             
-            sharedGLSL->closeGLSL();
+            sharedDirector->closeDirector();
             return false;
         }
         
-        MyShader *fragmentShader = MyShader::createWithShaderType(MyShader::kShaderTypeFragment);
+        MyShader *fragmentShader = MyShader::createWithShaderType("basic_frag", MyShader::kShaderTypeFragment);
         if(!MyErrorDesc::successed(fragmentShader->loadFromSource(fragmentShaderSource))) {
             std::cout << "Error occurs in shader: " << fragmentShader->shaderLog() << "\n";
             
-            sharedGLSL->closeGLSL();
+            sharedDirector->closeDirector();
             return false;
         }
         
-        _myProgram = MyProgram::create();
-        _myProgram->attachShader(*vertexShader);
-        _myProgram->attachShader(*fragmentShader);
+        _myProgram = MyProgram::create("basic");
+        _myProgram->attachShader(vertexShader);
+        _myProgram->attachShader(fragmentShader);
         if(!MyErrorDesc::successed(_myProgram->linkPorgram())) {
             std::cout << "Error occurs in program: " << _myProgram->programLog() << "\n";
             
-            sharedGLSL->closeGLSL();
+            sharedDirector->closeDirector();
             return false;
         }
         
-        if(!sharedGLSL->checkOpenGLError()) {
-            std::cout << "OpenGL Error(" << sharedGLSL->errCode() << ") = " <<
-            sharedGLSL->errDesc() << "\n";
+        if(!sharedDirector->checkError()) {
+            std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
+            sharedDirector->errDesc() << "\n";
             
-            sharedGLSL->closeGLSL();
+            sharedDirector->closeDirector();
             return false;
         }
         
@@ -92,11 +92,11 @@ bool BaseScene::initialize(void) {
         MyBufferObject *colorBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
         colorBuffer->bufferData(9 * sizeof(float), colorData);
         
-        if(!sharedGLSL->checkOpenGLError()) {
-            std::cout << "OpenGL Error(" << sharedGLSL->errCode() << ") = " <<
-            sharedGLSL->errDesc() << "\n";
+        if(!sharedDirector->checkError()) {
+            std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
+            sharedDirector->errDesc() << "\n";
             
-            sharedGLSL->closeGLSL();
+            sharedDirector->closeDirector();
             return false;
         }
         
@@ -104,11 +104,11 @@ bool BaseScene::initialize(void) {
         _myVertexArray->vertexAttribPoint(*positionBuffer, MyProgram::kAttribPosition, 3, 0);
         _myVertexArray->vertexAttribPoint(*colorBuffer, MyProgram::kAttribColor, 3, 0);
         
-        if(!sharedGLSL->checkOpenGLError()) {
-            std::cout << "OpenGL Error(" << sharedGLSL->errCode() << ") = " <<
-            sharedGLSL->errDesc() << "\n";
+        if(!sharedDirector->checkError()) {
+            std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
+            sharedDirector->errDesc() << "\n";
             
-            sharedGLSL->closeGLSL();
+            sharedDirector->closeDirector();
             return false;
         }
     

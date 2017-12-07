@@ -21,27 +21,29 @@ public:
 };
 
 int main(int argc, const char * argv[]) {
-    MyGLSL *sharedGLSL = MyGLSL::sharedGLSL();
-    MyErrorDisposer errDisposer;
     
-    sharedGLSL->windowErrorCallback(errDisposer);
-    MyErrorDesc::sharedErrorDesc()->errorCallback(errDisposer);
+    /*
+    MyDirector *sharedDirector = MyDirector::sharedDirector();
+    MyErrorDisposer *errDisposer = new MyErrorDisposer;
     
-    if(!sharedGLSL->createWindow(800, 600, "Hello World")) {
-        sharedGLSL->closeGLSL();
+    sharedDirector->errorCallback(errDisposer);
+    
+    if(!sharedDirector->createWindow(800, 600, "Hello World")) {
+        sharedDirector->closeDirector();
         return -1;
     }
     
     MyScene *myScene = UniformScene::create();
     
     if(!myScene->initialize()) {
-        sharedGLSL->closeGLSL();
+        sharedDirector->closeDirector();
         return -1;
     }
     
-    sharedGLSL->mainFunc(myScene);
-    sharedGLSL->runMainLoop();
+    sharedDirector->runningScene(myScene);
+    sharedDirector->runMainLoop();
     
-    sharedGLSL->closeGLSL();
+    sharedDirector->closeDirector();
+    */
     return 0;
 }

@@ -10,7 +10,7 @@
 #define MyAutoreleasePool_hpp
 
 #include <vector>
-#include "Precompiled.h"
+#include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
@@ -23,14 +23,16 @@ class MySingleton;
 class MyAutoreleasePool: public MySingleton {
 public:
     static MyAutoreleasePool* sharedAutoreleasePool(void);
-    static void deleteAutoreleasePool(void);
+    static void closeAutoreleasePool(void);
     
     void addObject(MyRef *object);
     bool contains(const MyRef *object) const;
-    void clear(void);
+    
+    void clearPool(void);
+    void purgePool(void);
     
 private:
-    ~MyAutoreleasePool(void) { clear(); }
+    ~MyAutoreleasePool(void) { purgePool(); }
     
     std::vector<MyRef*> _objectArray;
     

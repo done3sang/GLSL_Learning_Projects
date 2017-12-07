@@ -6,7 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include "MyRef.hpp"
+#include "MyTemplate.hpp"
 #include "MyErrorDesc.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -29,9 +29,11 @@ const int MyErrorDesc::kErrProgramUniformNotExists = 12;
 const int MyErrorDesc::kErrProgramUniformBlockIndexNotExists = 13;
 
 MyErrorDesc* MyErrorDesc::sharedErrorDesc(void) {
-    if(nullptr == _sharedErrorDesc) {
+    if(!_sharedErrorDesc) {
         _sharedErrorDesc = new MyErrorDesc;
         _sharedErrorDesc->refName("MyErrorDesc");
+        _sharedErrorDesc->retain();
+        _sharedErrorDesc->autorelase();
     }
     
     return _sharedErrorDesc;
@@ -39,17 +41,20 @@ MyErrorDesc* MyErrorDesc::sharedErrorDesc(void) {
 
 void MyErrorDesc::closeErrorDesc(void) {
     if(_sharedErrorDesc) {
-        delete _sharedErrorDesc;
+        _sharedErrorDesc->release();
         _sharedErrorDesc = nullptr;
     }
 }
-
 bool MyErrorDesc::successed(int errCode) {
     return kErrOk == errCode;
 }
 
 int MyErrorDesc::invokeErrorCode(int errCode) {
     return sharedErrorDesc()->invokeError(errCode);
+}
+
+bool MyErrorDesc::invokeErrorFailed(int errCode) {
+    return successed(sharedErrorDesc()->invokeError(errCode));
 }
 
 MyErrorDesc::MyErrorDesc(void): _errCallback(nullptr) {

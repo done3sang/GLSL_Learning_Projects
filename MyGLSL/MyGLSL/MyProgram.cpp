@@ -6,6 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#include <cassert>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "MyRef.hpp"
@@ -19,24 +20,27 @@ MINE_NAMESPACE_BEGIN
 
 MyProgram* MyProgram::_runningProgram = nullptr;
 
-MyProgram::MyProgram(void):
+MyProgram::MyProgram(const std::string &programName):
 _programId(0),
+_programName(programName),
 _linked(false) {}
 
 MyProgram::~MyProgram(void) {
     deleteProgram();
 }
 
-MyProgram* MyProgram::create(void) {
-    MyProgram *prog = new MyProgram;
+MyProgram* MyProgram::create(const std::string &programName) {
+    MyProgram *prog = new MyProgram(programName);
     prog->refName("MyProgram");
     
     return prog;
 }
 
-bool MyProgram::shaderAttached(const Mine::MyShader &shader) const {
+bool MyProgram::shaderAttached(const Mine::MyShader *shader) const {
+    assert(shader && "MyProgram::shaderAttached = Shader should be non-null");
+    
     for(auto iter: _shaderVec) {
-        if(shader == *iter) {
+        if(shader == iter) {
             return true;
         }
     }
@@ -44,7 +48,9 @@ bool MyProgram::shaderAttached(const Mine::MyShader &shader) const {
     return false;
 }
 
-int MyProgram::attachShader(const Mine::MyShader &shader) {
+int MyProgram::attachShader(Mine::MyShader *shader) {
+    assert(shader && "MyProgram::attachShader = Shader should be non-null");
+    
     if(linked()) {
         return MyErrorDesc::kErrProgramAlreadyLinked;
     }
@@ -56,7 +62,7 @@ int MyProgram::attachShader(const Mine::MyShader &shader) {
         }
     }
     
-    if(!shader.compiled()) {
+    if(!shader->compiled()) {
         return MyErrorDesc::kErrShaderNotCompiled;
     }
     
@@ -64,23 +70,36 @@ int MyProgram::attachShader(const Mine::MyShader &shader) {
         return MyErrorDesc::kErrProgramShaderAlreadyAttached;
     }
     
-    glAttachShader(_programId, shader.shaderId());
-    _shaderVec.push_back(&shader);
+    glAttachShader(_programId, shader->shaderId());
+    shader->addRef();
+    _shaderVec.push_back(shader);
     
     return MyErrorDesc::kErrOk;
 }
 
-int MyProgram::detachShader(const Mine::MyShader &shader) {
+int MyProgram::detachShader(Mine::MyShader *shader) {
+    assert(shader && "MyProgram::detachShader = Shader should be non-null");
+    
     for(auto iter = _shaderVec.begin(); iter != _shaderVec.end(); ++iter) {
-        if(shader == **iter) {
-            glDetachShader(_programId, shader.shaderId());
+        if(shader == *iter) {
+            glDetachShader(_programId, shader->shaderId());
             _shaderVec.erase(iter);
+            shader->release();
             
             return MyErrorDesc::kErrOk;
         }
     }
     
     return MyErrorDesc::kErrProgramShaderNotAttached;
+}
+
+void MyProgram::clearShader(void) {
+    for(auto iter: _shaderVec) {
+        glDetachShader(_programId, iter->shaderId());
+        iter->release();
+    }
+    
+    _shaderVec.clear();
 }
 
 int MyProgram::linkPorgram(void) {
@@ -147,6 +166,7 @@ void MyProgram::deleteProgram(void) {
         _runningProgram = nullptr;
     }
     
+    clearShader();
     glDeleteProgram(_programId);
     _programId = 0;
 }

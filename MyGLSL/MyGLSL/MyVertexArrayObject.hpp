@@ -11,18 +11,18 @@
 
 #include <vector>
 #include <GLFW/glfw3.h>
-#include "Precompiled.h"
+#include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
 MINE_NAMESPACE_BEGIN
 
-class MyUnique;
+class MyUniqueRef;
 class MyBufferObject;
 class MyRef;
 
-class MyVertexArrayObject: public MyUnique, public MyRef {
+class MyVertexArrayObject: public MyUniqueRef {
 public:
     MyVertexArrayObject(void):_vertexArrayId(0) {}
     ~MyVertexArrayObject(void);

@@ -10,7 +10,7 @@
 #define MyRef_hpp
 
 #include <string>
-#include "Precompiled.h"
+#include "MyPrecompiled.hpp"
 
 /* The c/Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSL/MyGLSLlasses below are exported */
 #pragma GCC visibility push(default)
@@ -26,6 +26,7 @@ public:
     MyRef& operator=(const MyRef &another) { return *this; }
     
     int refCount(void) const { return _refCount; }
+    void addRef(void) { ++_refCount; }
     void retain(void) { ++_refCount; }
     
     const std::string& refName(void) const { return _refName; }

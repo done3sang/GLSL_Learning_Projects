@@ -9,17 +9,16 @@
 #ifndef MyScene_hpp
 #define MyScene_hpp
 
-#include "Precompiled.h"
+#include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
 MINE_NAMESPACE_BEGIN
 
-class MyUnique;
-class MyRef;
+class MyUniqueRef;
 
-class MyScene: public MyUnique, public MyRef {
+class MyScene: public MyUniqueRef {
 public:
     virtual bool initialize(void) = 0;
     virtual void update(float deltaTime) {}

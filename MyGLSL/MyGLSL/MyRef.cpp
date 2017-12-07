@@ -24,7 +24,7 @@ _refCount(1) {
 }
 
 void MyRef::release(void) {
-    assert(_refCount > 0 && "Reference count should be greater than 0");
+    assert(_refCount > 0 && "Reference count should be greater than 0");    
     if(0 == --_refCount) {
         delete this;
     }

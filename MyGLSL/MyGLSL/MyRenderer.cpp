@@ -12,18 +12,16 @@
 
 MINE_NAMESPACE_BEGIN
 
-MyRenderer* MyRenderer::_sharedRenderer = nullptr;
-
-MyRenderer* MyRenderer::sharedRenderer(void) {
-    if(nullptr == _sharedRenderer) {
-        _sharedRenderer = new MyRenderer;
-        _sharedRenderer->refName("MyRenderer");
-    }
+MyRenderer* MyRenderer::create(const std::string &name) {
+    MyRenderer *mr = new MyRenderer(name);
+    mr->refName(name);
+    mr->autorelase();
     
-    return _sharedRenderer;
+    return mr;
 }
 
-MyRenderer::MyRenderer(void):
+MyRenderer::MyRenderer(const std::string &name):
+_rendererName(name),
 _bufferBits(kBufferBitColor | kBufferBitDepth) {
     initialize();
 }

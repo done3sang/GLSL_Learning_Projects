@@ -10,32 +10,28 @@
 #define MyFileUtility_hpp
 
 #include <string>
-#include "Precompiled.h"
+#include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
 MINE_NAMESPACE_BEGIN
 
-class MyRef;
+class MySingletonRef;
 
-class MyFileUtil: public MyRef {
+class MyFileUtil: public MySingletonRef {
 public:
-    ~MyFileUtil(void) {}
-    
-    static MyFileUtil& sharedFileUtil(void);
+    static MyFileUtil* sharedFileUtil(void);
     static void closeFileUtil(void);
     
 public:
     int readFile(const std::string &filepath, std::string &outstr);
     
 private:
-    static MyFileUtil *_sharedFileUtil;
-    
     MyFileUtil(void) {}
+    ~MyFileUtil(void) {}
     
-    MyFileUtil(const MyFileUtil&);
-    MyFileUtil& operator=(const MyFileUtil&);
+    static MyFileUtil *_sharedFileUtil;
 };
 
 MINE_NAMESPACE_END

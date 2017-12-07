@@ -15,37 +15,39 @@
 #define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
 #include <glm/fwd.hpp>
-#include "Precompiled.h"
+#include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
 MINE_NAMESPACE_BEGIN
 
+class MyUniqueRef;
 class MyShader;
-class MyRef;
 class MyBufferObject;
 
-class MyProgram: public MyRef {
+class MyProgram: public MyUniqueRef {
 public:
-    MyProgram(void);
+    explicit
+    MyProgram(const std::string &programName);
     ~MyProgram(void);
     
-    static MyProgram* create(void);
+    static MyProgram* create(const std::string &programName);
     
     bool operator==(const MyProgram &another) const {
         return this == &another || (0 != _programId && _programId == another.programId());
     }
     
     GLuint programId(void) const { return _programId; }
+    const std::string& programName(void) const { return _programName; }
     const std::string& programLog(void) const { return _programLog; }
     bool linked(void) const { return _linked; }
     bool valid(void) const { return 0 != _programId; }
     
-    int attachShader(const MyShader &shader);
-    int detachShader(const MyShader &shader);
-    
-    bool shaderAttached(const MyShader &shader) const;
+    int attachShader(MyShader *shader);
+    int detachShader(MyShader *shader);
+    void clearShader(void);
+    bool shaderAttached(const MyShader *shader) const;
     
     int linkPorgram(void);
     int useProgram(void);
@@ -72,18 +74,16 @@ public:
     
 private:
     GLuint _programId;
+    std::string _programName;
     bool _linked;
     std::string _programLog;
-    std::vector<const MyShader*>  _shaderVec;
+    std::vector<MyShader*>  _shaderVec;
     std::map<std::string, int> _uniformLocation;
     std::map<int, MyBufferObject*> _uniformBlock;
     
     static MyProgram *_runningProgram;
     
     int uniformLocation(const std::string &name);
-    
-    MyProgram(const MyProgram&);
-    MyProgram& operator=(const MyProgram&);
 };
 
 MINE_NAMESPACE_END

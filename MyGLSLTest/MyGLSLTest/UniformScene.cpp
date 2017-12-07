@@ -17,45 +17,45 @@ UniformScene* UniformScene::create(void) {
 }
 
 bool UniformScene::initialize(void) {
-    MyGLSL *sharedGLSL = MyGLSL::sharedGLSL();
-    sharedGLSL->resizeWindow(800, 800);
-    sharedGLSL->windowTitle("Uniform Block");
+    MyDirector *sharedDirector = MyDirector::sharedDirector();
+    sharedDirector->resizeWindow(800, 800);
+    sharedDirector->windowTitle("Uniform Block");
     
-    _myRenderer = MyRenderer::sharedRenderer();
+    _myRenderer = MyRenderer::create("normal");
     _myRenderer->clearBufferBit(MyRenderer::kBufferBitColor | MyRenderer::kBufferBitDepth);
-    sharedGLSL->mainRenderer(_myRenderer);
+    sharedDirector->mainRenderer(_myRenderer);
     
-    MyShader *vertexShader = MyShader::createWithShaderType(MyShader::kShaderTypeVertex);
+    MyShader *vertexShader = MyShader::createWithShaderType("uniformblock_vert", MyShader::kShaderTypeVertex);
     if(!MyErrorDesc::successed(vertexShader->loadFromFile("./Shader/uniformblock.vert"))) {
         std::cout << "Error occurs in shader: " << vertexShader->shaderLog() << "\n";
         
-        sharedGLSL->closeGLSL();
+        sharedDirector->closeDirector();
         return false;
     }
     
-    MyShader *fragmentShader = MyShader::createWithShaderType(MyShader::kShaderTypeFragment);
+    MyShader *fragmentShader = MyShader::createWithShaderType("uniformblock_frag", MyShader::kShaderTypeFragment);
     if(!MyErrorDesc::successed(fragmentShader->loadFromFile("./Shader/uniformblock.frag"))) {
         std::cout << "Error occurs in shader: " << fragmentShader->shaderLog() << "\n";
         
-        sharedGLSL->closeGLSL();
+        sharedDirector->closeDirector();
         return false;
     }
     
-    _myProgram = MyProgram::create();
-    _myProgram->attachShader(*vertexShader);
-    _myProgram->attachShader(*fragmentShader);
+    _myProgram = MyProgram::create("uniformblock");
+    _myProgram->attachShader(vertexShader);
+    _myProgram->attachShader(fragmentShader);
     if(!MyErrorDesc::successed(_myProgram->linkPorgram())) {
         std::cout << "Error occurs in program: " << _myProgram->programLog() << "\n";
         
-        sharedGLSL->closeGLSL();
+        sharedDirector->closeDirector();
         return false;
     }
     
-    if(!sharedGLSL->checkOpenGLError()) {
-        std::cout << "OpenGL Error(" << sharedGLSL->errCode() << ") = " <<
-        sharedGLSL->errDesc() << "\n";
+    if(!sharedDirector->checkError()) {
+        std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
+        sharedDirector->errDesc() << "\n";
         
-        sharedGLSL->closeGLSL();
+        sharedDirector->closeDirector();
         return false;
     }
     
@@ -71,11 +71,11 @@ bool UniformScene::initialize(void) {
     MyBufferObject *vertexBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
     vertexBuffer->bufferData(30 * sizeof(float), vertexData);
     
-    if(!sharedGLSL->checkOpenGLError()) {
-        std::cout << "OpenGL Error(" << sharedGLSL->errCode() << ") = " <<
-        sharedGLSL->errDesc() << "\n";
+    if(!sharedDirector->checkError()) {
+        std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
+        sharedDirector->errDesc() << "\n";
         
-        sharedGLSL->closeGLSL();
+        sharedDirector->closeDirector();
         return false;
     }
     
@@ -83,11 +83,11 @@ bool UniformScene::initialize(void) {
     _myVertexArray->vertexAttribPoint(*vertexBuffer, MyProgram::kAttribPosition, 3, 5 * sizeof(float));
     _myVertexArray->vertexAttribPoint(*vertexBuffer, MyProgram::kAttribTexCoord0, 2, 5 * sizeof(float), 3 * sizeof(float));
     
-    if(!sharedGLSL->checkOpenGLError()) {
-        std::cout << "OpenGL Error(" << sharedGLSL->errCode() << ") = " <<
-        sharedGLSL->errDesc() << "\n";
+    if(!sharedDirector->checkError()) {
+        std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
+        sharedDirector->errDesc() << "\n";
         
-        sharedGLSL->closeGLSL();
+        sharedDirector->closeDirector();
         return false;
     }
     
@@ -101,11 +101,11 @@ bool UniformScene::initialize(void) {
     _myProgram->uniformBlockIndex("BlobSetting", "BlobSetting.innerRadius", sizeof(innerRadius), &innerRadius);
     _myProgram->uniformBlockIndex("BlobSetting", "BlobSetting.outerRadius", sizeof(outerRadius), &outerRadius);
     
-    if(!sharedGLSL->checkOpenGLError()) {
-        std::cout << "OpenGL Error(" << sharedGLSL->errCode() << ") = " <<
-        sharedGLSL->errDesc() << "\n";
+    if(!sharedDirector->checkError()) {
+        std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
+        sharedDirector->errDesc() << "\n";
         
-        sharedGLSL->closeGLSL();
+        sharedDirector->closeDirector();
         return false;
     }
     

@@ -10,7 +10,7 @@
 #define Mine_hpp
 
 #include "MyTemplate.hpp"
-#include "MyGLSL.hpp"
+#include "MyDirector.hpp"
 #include "MyRef.hpp"
 #include "MyRenderer.hpp"
 #include "MyShader.hpp"

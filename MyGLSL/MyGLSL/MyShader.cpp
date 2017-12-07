@@ -6,20 +6,22 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include "MyRef.hpp"
+#include "MyTemplate.hpp"
 #include "MyShader.hpp"
 #include "MyFileUtil.hpp"
 #include "MyErrorDesc.hpp"
 
 MINE_NAMESPACE_BEGIN
 
-MyShader::MyShader(int shaderType):
+MyShader::MyShader(const std::string &shaderName, int shaderType):
 _shaderId(0),
+_shaderName(shaderName),
 _shaderType(shaderType),
 _compiled(false) {}
 
-MyShader::MyShader(int shaderType, const std::string &filepath):
+MyShader::MyShader(const std::string &shaderName, int shaderType, const std::string &filepath):
 _shaderId(0),
+_shaderName(shaderName),
 _shaderType(shaderType),
 _compiled(false) {
     loadFromFile(filepath);
@@ -29,16 +31,16 @@ MyShader::~MyShader(void) {
     deleteShader();
 }
 
-MyShader* MyShader::createWithShaderType(int shaderType) {
-    MyShader *shader = new MyShader(shaderType);
+MyShader* MyShader::createWithShaderType(const std::string &shaderName, int shaderType) {
+    MyShader *shader = new MyShader(shaderName, shaderType);
     shader->refName("MyShader");
     
     return shader;
 }
 
 
-MyShader* MyShader::createWithShaderTypeAndPath(int shaderType, const std::string &filepath) {
-    MyShader *shader = new MyShader(shaderType, filepath);
+MyShader* MyShader::createWithShaderTypeAndPath(const std::string &shaderName, int shaderType, const std::string &filepath) {
+    MyShader *shader = new MyShader(shaderName, shaderType, filepath);
     shader->refName("MyShader");
     
     return shader;
@@ -60,8 +62,8 @@ void MyShader::deleteShader(void) {
 
 int MyShader::loadFromFile(const std::string &filepath) {
     std::string source;
-    MyFileUtil &sharedFileUtil = MyFileUtil::sharedFileUtil();
-    int errCode = sharedFileUtil.readFile(filepath, source);
+    MyFileUtil *sharedFileUtil = MyFileUtil::sharedFileUtil();
+    int errCode = sharedFileUtil->readFile(filepath, source);
     
     if(!MyErrorDesc::successed(errCode)) {
         return MyErrorDesc::invokeErrorCode(errCode);

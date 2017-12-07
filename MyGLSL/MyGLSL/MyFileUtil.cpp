@@ -8,7 +8,7 @@
 
 #include <fstream>
 #include <sstream>
-#include "MyRef.hpp"
+#include "MyTemplate.hpp"
 #include "MyFileUtil.hpp"
 #include "MyErrorDesc.hpp"
 
@@ -16,18 +16,20 @@ MINE_NAMESPACE_BEGIN
 
 MyFileUtil* MyFileUtil::_sharedFileUtil = nullptr;
 
-MyFileUtil& MyFileUtil::sharedFileUtil(void) {
-    if(nullptr == _sharedFileUtil) {
+MyFileUtil* MyFileUtil::sharedFileUtil(void) {
+    if(!_sharedFileUtil) {
         _sharedFileUtil = new MyFileUtil;
         _sharedFileUtil->refName("MyFileUtil");
+        _sharedFileUtil->retain();
+        _sharedFileUtil->autorelase();
     }
     
-    return *_sharedFileUtil;
+    return _sharedFileUtil;
 }
 
 void MyFileUtil::closeFileUtil(void) {
     if(_sharedFileUtil) {
-        delete _sharedFileUtil;
+        _sharedFileUtil->release();
         _sharedFileUtil = nullptr;
     }
 }

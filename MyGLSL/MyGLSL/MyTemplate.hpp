@@ -9,7 +9,8 @@
 #ifndef MySingleton_hpp
 #define MySingleton_hpp
 
-#include "Precompiled.h"
+#include "MyPrecompiled.hpp"
+#include "MyRef.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
@@ -34,6 +35,29 @@ protected:
 private:
     MyUnique(const MyUnique&);
     MyUnique& operator=(const MyUnique&);
+};
+
+class MySingletonRef: public MyRef {
+protected:
+    MySingletonRef(void) {}
+    virtual ~MySingletonRef(void) {}
+    
+    void addRef(void) { MyRef::addRef(); }
+    void retain(void) { MyRef::retain(); }
+    
+private:
+    MySingletonRef(const MySingleton&);
+    MySingletonRef& operator=(const MySingleton&);
+};
+
+class MyUniqueRef: public MyRef {
+protected:
+    MyUniqueRef(void) {}
+    virtual ~MyUniqueRef(void) {}
+    
+private:
+    MyUniqueRef(const MyUnique&);
+    MyUniqueRef& operator=(const MyUnique&);
 };
 
 MINE_NAMESPACE_END

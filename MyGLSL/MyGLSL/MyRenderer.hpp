@@ -9,21 +9,22 @@
 #ifndef MyRenderer_hpp
 #define MyRenderer_hpp
 
+#include <string>
 #define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
-#include "Precompiled.h"
+
+#include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
 MINE_NAMESPACE_BEGIN
 
-class MySingleton;
-class MyRef;
+class MyUniqueRef;
 
-class MyRenderer: public MySingleton, public MyRef {
+class MyRenderer: public MyUniqueRef {
 public:
-    static MyRenderer* sharedRenderer(void);
+    static MyRenderer* create(const std::string &name);
     
     static const int kBufferBitColor = GL_COLOR_BUFFER_BIT;
     static const int kBufferBitDepth = GL_DEPTH_BUFFER_BIT;
@@ -32,6 +33,8 @@ public:
     static const int kRenderPrimitiveTriangleStrip = GL_TRIANGLE_STRIP;
     
 public:
+    const std::string &rendererName(void) const { return _rendererName;}
+    
     void clearColor(float red, float green, float blue, float alpha);
     void clearBufferBit(int bufferBits);
     void viewport(int, int ,int, int);
@@ -40,12 +43,12 @@ public:
     void drawArrays(int primType, int first, int count);
     
 private:
-    MyRenderer(void);
+    explicit
+    MyRenderer(const std::string &name);
     ~MyRenderer(void) {}
     
+    std::string _rendererName;
     int _bufferBits;
-    
-    static MyRenderer *_sharedRenderer;
     
     void initialize(void);
 };

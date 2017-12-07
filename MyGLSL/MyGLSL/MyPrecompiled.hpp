@@ -6,8 +6,8 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#ifndef Percompiled_h
-#define Percompiled_h
+#ifndef MyPercompiled_hpp
+#define MyPercompiled_hpp
 
 #define MINE_NAMESPACE_BEGIN namespace Mine {
 #define MINE_NAMESPACE_END }

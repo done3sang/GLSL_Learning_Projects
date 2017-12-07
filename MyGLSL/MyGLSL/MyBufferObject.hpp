@@ -11,17 +11,17 @@
 
 #define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
-#include "Precompiled.h"
+#include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
 MINE_NAMESPACE_BEGIN
 
-class MyUnique;
+class MyUniqueRef;
 class MyRef;
 
-class MyBufferObject: public MyUnique, public MyRef {
+class MyBufferObject: public MyUniqueRef {
 public:
     static const int kBufferArray = GL_ARRAY_BUFFER;
     static const int kBufferElementArray = GL_ELEMENT_ARRAY_BUFFER;

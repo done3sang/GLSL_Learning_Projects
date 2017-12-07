@@ -11,23 +11,25 @@
 
 #include <map>
 #include <string>
-#include "Precompiled.h"
+#include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
 MINE_NAMESPACE_BEGIN
 
-class MyRef;
+class MySingletonRef;
+class MyUniqueRef;
 class MyErrorCallback;
 
-class MyErrorDesc: public MyRef {
+class MyErrorDesc: public MySingletonRef {
 public:
     static MyErrorDesc* sharedErrorDesc(void);
     static void closeErrorDesc(void);
-
+    
     static bool successed(int errCode);
     static int invokeErrorCode(int errCode);
+    static bool invokeErrorFailed(int errCode);
     
 public:
     static const int kErrOk;
@@ -72,12 +74,17 @@ private:
     MyErrorDesc& operator=(const MyErrorDesc&);
 };
 
-class MyErrorCallback {
+class MyErrorCallback: public MyUniqueRef {
 public:
-    MyErrorCallback(void) {}
-    virtual ~MyErrorCallback(void) {}
+    static MyErrorCallback* create(void) { return nullptr;}
     
     virtual void disposeError(int errCode, const std::string &errDesc) = 0;
+    
+protected:
+    virtual ~MyErrorCallback(void) {}
+    
+private:
+    MyErrorCallback(void) {}
 };
 
 MINE_NAMESPACE_END
