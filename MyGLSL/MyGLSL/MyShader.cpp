@@ -34,7 +34,7 @@ MyShader::~MyShader(void) {
 MyShader* MyShader::createWithShaderType(const std::string &shaderName, int shaderType) {
     MyShader *shader = new MyShader(shaderName, shaderType);
     shader->refName("MyShader");
-    
+    shader->autorelase();
     return shader;
 }
 
@@ -60,24 +60,23 @@ void MyShader::deleteShader(void) {
     _shaderLog.clear();
 }
 
-int MyShader::loadFromFile(const std::string &filepath) {
+bool MyShader::loadFromFile(const std::string &filepath) {
     std::string source;
     MyFileUtil *sharedFileUtil = MyFileUtil::sharedFileUtil();
-    int errCode = sharedFileUtil->readFile(filepath, source);
     
-    if(!MyErrorDesc::successed(errCode)) {
-        return MyErrorDesc::invokeErrorCode(errCode);
+    if(!sharedFileUtil->readFile(filepath, source)) {
+        return false;
     }
     
     _filepath = filepath;
     return loadFromSource(source);
 }
 
-int MyShader::loadFromSource(const std::string &source) {
+bool MyShader::loadFromSource(const std::string &source) {
     GLuint shaderId = glCreateShader(_shaderType);
     
     if(0 == shaderId) {
-        return MyErrorDesc::kErrShaderCreatingFailed;
+        return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrShaderCreatingFailed);
     }
     
     const GLchar *sourceArr[1] = {source.c_str()};
@@ -102,14 +101,14 @@ int MyShader::loadFromSource(const std::string &source) {
             delete[] log;
         }
         
-        return MyErrorDesc::kErrShaderCompilingFailed;
+        return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrShaderCompilingFailed);
     }
     
     deleteShader();
     _shaderId = shaderId;
     _compiled = true;
     
-    return MyErrorDesc::kErrOk;
+    return true;
 }
 
 MINE_NAMESPACE_END

@@ -25,7 +25,7 @@ public:
     static void closeFileUtil(void);
     
 public:
-    int readFile(const std::string &filepath, std::string &outstr);
+    bool readFile(const std::string &filepath, std::string &outstr);
     
 private:
     MyFileUtil(void) {}

@@ -46,6 +46,7 @@ public:
     static const int kErrProgramShaderAlreadyAttached;
     static const int kErrProgramUniformNotExists;
     static const int kErrProgramUniformBlockIndexNotExists;
+    static const int kErrXMLParseFailed;
     
 public:
     std::string& errorString(int errCode);

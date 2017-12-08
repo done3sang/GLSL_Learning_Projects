@@ -1,0 +1,65 @@
+//
+//  MyXMLNode.hpp
+//  MyGLSL
+//
+//  Created by xy on 08/12/2017.
+//  Copyright © 2017 SangDesu. All rights reserved.
+//
+
+#ifndef MyXMLNode_hpp
+#define MyXMLNode_hpp
+
+#include <string>
+#include "MyPrecompiled.hpp"
+
+/* The classes below are exported */
+#pragma GCC visibility push(default)
+
+MINE_NAMESPACE_BEGIN
+
+class MyUniqueRef;
+
+class MyXMLNode: public MyUniqueRef {
+public:
+    static MyXMLNode* create(int nodeType = kXMLNodeTypeElement);
+    
+    const std::string& nodeName(void) const { return _nodeName; }
+    const std::string& nodeValue(void) const { return _nodeValue; }
+    MyXMLNode* siblingNode(void) const { return _siblingNode; }
+    MyXMLNode* childNode(void) const { return _childNode; }
+    
+    int nodeType(void) const { return _nodeType; }
+    
+public:
+    static const int kXMLNodeTypeRoot;
+    static const int kXMLNodeTypeDeclaration;
+    static const int kXMLNodeTypeElement;
+    static const int kXMLNodeTypeComment;
+    static const int kXMLNodeTypeText;
+    
+private:
+    explicit
+    MyXMLNode(int nodeType = kXMLNodeTypeElement): _nodeType(nodeType), _siblingNode(nullptr), _childNode(nullptr) {}
+    ~MyXMLNode(void) { destroy(); }
+    
+    int _nodeType;
+    std::string _nodeName;
+    std::string _nodeValue;
+    MyXMLNode *_siblingNode;
+    MyXMLNode *_childNode;
+    
+    friend class MyXMLDocument;
+    
+    void siblingNode(MyXMLNode *node);
+    void childNode(MyXMLNode *node);
+    void nodeName(const std::string &name) { _nodeName = name; }
+    void nodeValue(const std::string &value) { _nodeValue = value; }
+    
+    void destroy(void);
+};
+
+MINE_NAMESPACE_END
+
+#pragma GCC visibility pop
+
+#endif /* MyXMLNode_hpp */

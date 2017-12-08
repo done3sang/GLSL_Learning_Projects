@@ -34,8 +34,8 @@ public:
         return 0 != _shaderId && _shaderId == another.shaderId();
     }
     
-    int loadFromFile(const std::string &filepath);
-    int loadFromSource(const std::string &source);
+    bool loadFromFile(const std::string &filepath);
+    bool loadFromSource(const std::string &source);
     
     int shaderType(void) const { return _shaderType; }
     GLuint shaderId(void) const { return _shaderId; }

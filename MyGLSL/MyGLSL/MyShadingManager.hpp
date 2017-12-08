@@ -37,8 +37,8 @@ public:
     bool containShader(const std::string &shaderName) const;
     bool containProgram(const std::string &programName) const;
     
-    MyShader* shaderByName(const std::string &name);
-    MyProgram* programByName(const std::string &name);
+    MyShader* shaderByName(const std::string &name) const;
+    MyProgram* programByName(const std::string &name) const;
     
 private:
     ~MyShadingManager(void);
@@ -56,7 +56,6 @@ private:
     void addShader(MyShader *shader);
     void addProgram(MyProgram *program);
     
-    bool parse(const std::string &data);
     void destroy(void);
 };
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <shader>
+        <basic>
+            <vertex>basic.vert</vertex>
+            <fragment>basic.frag</fragment>
+        </basic>
+        <uniformblock>
+            <vertex>uniformblock.vert</vertex>
+            <fragment>uniformblock.frag</fragment>
+        </uniformblock>
+    </shader>
+    <program>
+        <basic>
+            <vertex>basic_vert</vertex>
+            <fragment>basic_frag</fragment>
+        </basic>
+        <uniformblock>
+            <vertex>uniformblock_vert</vertex>
+            <fragment>uniformblock_frag</fragment>
+        </uniformblock>
+    </program>
+</root>

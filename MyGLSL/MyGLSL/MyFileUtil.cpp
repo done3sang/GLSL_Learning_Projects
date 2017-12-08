@@ -34,10 +34,10 @@ void MyFileUtil::closeFileUtil(void) {
     }
 }
 
-int MyFileUtil::readFile(const std::string &filepath, std::string &outstr) {
+bool MyFileUtil::readFile(const std::string &filepath, std::string &outstr) {
     std::ifstream infile(filepath, std::ifstream::in);
     if(!infile) {
-        return MyErrorDesc::kErrFileNotExists;
+        return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrFileNotExists);
     }
     
     std::istreambuf_iterator<char> beg(infile), end;
@@ -45,7 +45,7 @@ int MyFileUtil::readFile(const std::string &filepath, std::string &outstr) {
     outstr.assign(beg, end);
     infile.close();
     
-    return MyErrorDesc::kErrOk;
+    return true;
 }
 
 MINE_NAMESPACE_END

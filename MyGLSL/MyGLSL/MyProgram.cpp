@@ -32,6 +32,7 @@ MyProgram::~MyProgram(void) {
 MyProgram* MyProgram::create(const std::string &programName) {
     MyProgram *prog = new MyProgram(programName);
     prog->refName("MyProgram");
+    prog->autorelase();
     
     return prog;
 }

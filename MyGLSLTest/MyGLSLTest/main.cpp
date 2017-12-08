@@ -10,6 +10,7 @@
 #include <string>
 #include "BaseScene.hpp"
 #include "UniformScene.hpp"
+#include "tinyxml/tinyxml.h"
 
 USING_MINE_NAMESPACE;
 
@@ -20,8 +21,10 @@ public:
     }
 };
 
+bool myReadShader(const std::string &path);
+
 int main(int argc, const char * argv[]) {
-    
+    myReadShader("./Shader/shader.xml");
     /*
     MyDirector *sharedDirector = MyDirector::sharedDirector();
     MyErrorDisposer *errDisposer = new MyErrorDisposer;
@@ -46,4 +49,23 @@ int main(int argc, const char * argv[]) {
     sharedDirector->closeDirector();
     */
     return 0;
+}
+
+bool myReadShader(const std::string &path) {
+    TiXmlDocument doc(path.c_str());
+    
+    if(!doc.LoadFile()) {
+        std::cout << "Could not load test file " << path << ". Error = " << doc.ErrorDesc() << ".\n";
+        return false;
+    }
+    
+    TiXmlElement *root = doc.RootElement();
+    std::cout << "---------------------------------\n\n";
+    std::cout << "----------" << root->Value() << "-----\n";
+    std::cout << "   contacted person information    \n\n";
+    for(TiXmlNode *node = root->FirstChild(); node; node = node->NextSibling()) {
+        std::cout << "--------" << node->Value() << "------\n";
+    }
+    
+    return true;
 }

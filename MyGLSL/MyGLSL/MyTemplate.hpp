@@ -37,6 +37,15 @@ private:
     MyUnique& operator=(const MyUnique&);
 };
 
+class MyStatic {
+private:
+    MyStatic(void);
+    MyStatic(const MyStatic&);
+    ~MyStatic(void);
+    
+    MyStatic& operator=(const MyStatic);
+};
+
 class MySingletonRef: public MyRef {
 protected:
     MySingletonRef(void) {}

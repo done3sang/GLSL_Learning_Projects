@@ -27,6 +27,7 @@ const int MyErrorDesc::kErrProgramNotLinked = 10;
 const int MyErrorDesc::kErrProgramShaderAlreadyAttached = 11;
 const int MyErrorDesc::kErrProgramUniformNotExists = 12;
 const int MyErrorDesc::kErrProgramUniformBlockIndexNotExists = 13;
+const int MyErrorDesc::kErrXMLParseFailed = 14;
 
 MyErrorDesc* MyErrorDesc::sharedErrorDesc(void) {
     if(!_sharedErrorDesc) {
@@ -76,6 +77,7 @@ void MyErrorDesc::initialize(void) {
     _errorDesc[kErrProgramShaderAlreadyAttached] = "Shader already attached to program";
     _errorDesc[kErrProgramUniformNotExists] = "Program uniform NOT exists";
     _errorDesc[kErrProgramUniformBlockIndexNotExists] = "Program uniform block index NOT exists";
+    _errorDesc[kErrXMLParseFailed] = "XML failed to parse";
 }
 
 std::string& MyErrorDesc::errorString(int errCode) {
