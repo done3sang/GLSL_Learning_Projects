@@ -25,9 +25,10 @@ class MyXMLDocument: public MyUniqueRef {
 public:
     static MyXMLDocument* create(void);
     
-    bool loadFromFile(const std::string &path);
+    bool loadDocument(const std::string &path);
     
-    const std::string& attributeByName(const std::string &name);
+    const auto& attributeMap(void) const { return _attributeMap; }
+    bool attributeByName(const std::string &name, std::string &value) const;
     MyXMLNode* rootNode(void) const { return _rootNode; }
     
 private:
@@ -39,20 +40,12 @@ private:
     
     void rootNode(MyXMLNode *node);
     bool parseXML(const std::string &xmldata);
-    
     bool parseAttribute(const std::string &xmldata,
-                        std::string::size_type &nextpos,
-                        const std::string::size_type pos = 0);
-    bool parseComment(const std::string &xmldata,
-                      std::string::size_type &nextpos,
-                      const std::string::size_type pos = 0);
-    MyXMLNode* parseElement(const std::string &xmldata,
-                            std::string::size_type &nextpos,
-                            const std::string::size_type pos = 0,
-                            std::string::size_type endpos = std::string::npos);
-    MyXMLNode* parseText(const std::string &xmldata,
-                         std::string::size_type &nextpos,
-                         const std::string::size_type pos = 0);
+                     std::string::size_type &nextpos,
+                     const std::string::size_type pos = 0);
+    
+    std::string::size_type skipwhitespace(const std::string &xmldata,
+                                          const std::string::size_type pos = 0);
 };
 
 MINE_NAMESPACE_END

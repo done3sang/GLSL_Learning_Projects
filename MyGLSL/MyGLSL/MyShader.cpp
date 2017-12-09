@@ -34,7 +34,6 @@ MyShader::~MyShader(void) {
 MyShader* MyShader::createWithShaderType(const std::string &shaderName, int shaderType) {
     MyShader *shader = new MyShader(shaderName, shaderType);
     shader->refName("MyShader");
-    shader->autorelase();
     return shader;
 }
 

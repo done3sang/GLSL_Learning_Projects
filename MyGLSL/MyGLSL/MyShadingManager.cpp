@@ -12,7 +12,6 @@
 #include "MyProgram.hpp"
 #include "MyFileUtil.hpp"
 #include "MyErrorDesc.hpp"
-#include "tinyxml.h"
 #include "MyShadingManager.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -24,7 +23,6 @@ MyShadingManager* MyShadingManager::sharedShadingManager() {
         _sharedShadingManager = new MyShadingManager;
         _sharedShadingManager->refName("MyShadingManager");
         _sharedShadingManager->retain();
-        _sharedShadingManager->autorelase();
     }
     
     return _sharedShadingManager;

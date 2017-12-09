@@ -7,6 +7,7 @@
 //
 
 #include <cassert>
+#include <stack>
 #include "MyTemplate.hpp"
 #include "MyFileUtil.hpp"
 #include "MyErrorDesc.hpp"
@@ -23,9 +24,29 @@ MyXMLDocument* MyXMLDocument::create(void) {
     return doc;
 }
 
-bool MyXMLDocument::loadFromFile(const std::string &path) {
+bool MyXMLDocument::attributeByName(const std::string &name,
+                                    std::string &value) const {
+    auto iter = _attributeMap.find(name);
+    if(_attributeMap.end() != iter) {
+        value = iter->second;
+        return true;
+    }
+    return false;
+}
+
+void MyXMLDocument::rootNode(MyXMLNode *node) {
+    if(_rootNode) {
+        _rootNode->release();
+    }
+    if(node) {
+        node->addRef();
+    }
+    _rootNode = node;
+}
+
+bool MyXMLDocument::loadDocument(const std::string &path) {
     std::string filedata;
-    if(!MyErrorDesc::invokeErrorFailed(MyFileUtil::sharedFileUtil()->readFile(path, filedata))) {
+    if(!MyFileUtil::sharedFileUtil()->readFile(path, filedata)) {
         return false;
     }
     
@@ -35,221 +56,223 @@ bool MyXMLDocument::loadFromFile(const std::string &path) {
 bool MyXMLDocument::parseXML(const std::string &xmldata) {
     assert(!xmldata.empty() && "MyXMLDocument::parseXML = xml data cannot be empty");
     
-    MyXMLNode *rootNode = MyXMLNode::create(MyXMLNode::kXMLNodeTypeRoot);
-    MyXMLNode *childNode = nullptr;
-    std::string::size_type currpos(0), nextpos, overpos;
-    std::string nodeOverKey;
-    char curr, next;
+    std::stack<std::string> docstack;
+    std::stack<MyXMLNode*> nodestack;
+    MyXMLNode *firstnode = nullptr, *currnode, *prevnode, *childnode, *siblingnode;
+    MyXMLNode *rootnode = nullptr;
+    std::string::size_type currpos(0), nextpos, keypos, keyendpos, valpos(0), valendpos(0);
+    std::string key, value;
+    const std::string::size_type xmllen(xmldata.length());
+    char curr;
+    bool endflag(false);
     
-    while(currpos < xmldata.length()) {
+    while(currpos < xmllen) {
         curr = xmldata[currpos];
-        
         if(MyStringUtil::whitespace(curr)) {
             ++currpos;
             continue;
         }
         
-        nextpos = currpos + 1;
-        if('<' != curr || nextpos >= xmldata.length()) {
-            return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-        }
-        
-        next = xmldata[nextpos];
-        if('?' == next) {
-            if(!parseAttribute(xmldata, overpos, currpos)) {
-                return false;
-            }
-            currpos = overpos;
-        } else if('!' == next) {
-            if(!parseComment(xmldata, overpos, currpos)) {
-                return false;
-            }
-            currpos = overpos;
-        } else if(MyStringUtil::digit_alpha(next)) {
-            MyXMLNode *elemNode = parseElement(xmldata, overpos, currpos, xmldata.length() - 1);
-            
-            if(!elemNode) {
-                return false;
-            }
-            
-            if(!childNode) {
-                rootNode->childNode(elemNode);
-            } else {
-                childNode->siblingNode(elemNode);
-            }
-            childNode = elemNode;
-            
-            currpos = overpos;
-        } else {
-            return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-        }
-    }
-    
-    return true;
-}
-
-bool MyXMLDocument::parseComment(const std::string &xmldata,
-                                 std::string::size_type &nextpos,
-                                 const std::string::size_type pos) {
-    std::string::size_type xmlpos = xmldata.find_first_of("<!--", pos);
-    
-    if(pos != xmlpos || xmlpos + 6 >= xmldata.length()) {
-        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-        return false;
-    }
-    xmlpos += 3;
-    
-    std::string::size_type overpos = xmldata.find_first_of("-->", xmlpos);
-    if(std::string::npos == overpos) {
-        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-        return false;
-    }
-    
-    nextpos = overpos + 3;
-    return true;
-}
-
-// <?xml ?>
-bool MyXMLDocument::parseAttribute(const std::string &xmldata,
-                                     std::string::size_type &nextpos,
-                                     const std::string::size_type pos) {
-    std::string::size_type xmlpos = xmldata.find_first_of("<?xml", pos);
-    
-    if(pos != xmlpos || xmlpos + 7 >= xmldata.length()) {
-        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-        return false;
-    }
-    
-    xmlpos += 5;
-    if(!MyStringUtil::whitespace(xmldata[xmlpos])) {
-        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-        return false;
-    }
-    
-    ++xmlpos;
-    std::string::size_type overpos = xmldata.find_first_of("?>", xmlpos);
-    if(std::string::npos == overpos) {
-        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-        return false;
-    }
-    
-    std::string::size_type mappos;
-    std::string key, value;
-    while(xmlpos < overpos) {
-        if(MyStringUtil::whitespace(xmldata[xmlpos])) {
-            ++xmlpos;
-            continue;
-        }
-        
-        mappos = xmlpos;
-        while(MyStringUtil::digit_alpha(xmldata[mappos])) {
-            ++mappos;
-        }
-        if(xmlpos == mappos) {
-            MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-            return false;
-        }
-        if(!MyStringUtil::whitespace(xmldata[mappos]) && '='  != xmldata[mappos]) {
-            MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-            return false;
-        }
-        key = xmldata.substr(xmlpos, mappos - xmlpos);
-        xmlpos = mappos;
-        while(MyStringUtil::whitespace(xmldata[xmlpos])) {
-            ++xmlpos;
-        }
-        if('=' != xmldata[xmlpos]) {
-            MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-            return false;
-        }
-        while(MyStringUtil::whitespace(xmldata[++xmlpos]));
-        if('\"' != xmldata[xmlpos]) {
-            MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-            return false;
-        }
-        ++xmlpos;
-        mappos = xmlpos;
-        while(mappos < overpos && '\"' != xmldata[mappos]) {
-            if(MyStringUtil::newline(xmldata[mappos])) {
+        if('<' == curr) {
+            if(++currpos >= xmllen) {
                 MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
                 return false;
             }
-            ++mappos;
+            
+            curr = xmldata[currpos];
+            if('?' == curr) {
+                // <?xml ?>
+                if(currpos + 5 >= xmllen ||
+                   'x' != xmldata[++currpos] ||
+                   'm' != xmldata[++currpos] ||
+                   'l' != xmldata[++currpos] ||
+                   !parseAttribute(xmldata, nextpos, ++currpos)) {
+                    MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+                    return false;
+                }
+                currpos = nextpos;
+            } else if('!' == curr) {
+                // <¡-- -->
+                if(currpos + 2 >= xmllen ||
+                   '-' != xmldata[++currpos] ||
+                   '-' != xmldata[++currpos]) {
+                    MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+                    return false;
+                }
+                
+                currpos = xmldata.find("-->", ++currpos);
+                if(std::string::npos == currpos) {
+                    if(docstack.empty()) {
+                        return true;
+                    } else {
+                        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+                        return false;
+                    }
+                }
+                currpos += 3;
+            } else {
+                if(xmllen <= (currpos = skipwhitespace(xmldata, currpos))) {
+                    MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+                    return false;
+                }
+                if('/' == xmldata[currpos]) {
+                    endflag = true;
+                    if(xmllen <= (currpos = skipwhitespace(xmldata, ++currpos))) {
+                        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+                        return false;
+                    }
+                } else {
+                    endflag = false;
+                }
+                keypos = currpos;
+                while(MyStringUtil::variable(xmldata[currpos])) {
+                    ++currpos;
+                    if(currpos >= xmllen) {
+                        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+                        return false;
+                    }
+                }
+                if(keypos == currpos) {
+                    MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+                    return false;
+                }
+                keyendpos = currpos;
+                if(xmllen <= (currpos = skipwhitespace(xmldata, currpos))) {
+                    MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+                    return false;
+                }
+                curr = xmldata[currpos];
+                if('>' != curr) {
+                    MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+                    return false;
+                }
+                ++currpos;
+                key = xmldata.substr(keypos, keyendpos - keypos);
+                if(endflag) {
+                    if(docstack.empty() || docstack.top() != key) {
+                        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+                        return false;
+                    }
+                    docstack.pop();
+                    
+                    currnode = nodestack.top();
+                    if(valpos > 0) {
+                        currnode->nodeType(MyXMLNode::kXMLNodeTypeText);
+                        currnode->nodeValue(xmldata.substr(valpos, valendpos - valpos));
+                        valpos = 0;
+                    }
+                    nodestack.pop();
+                    
+                    if(nodestack.empty()) {
+                        // root node
+                        rootnode = currnode;
+                    } else {
+                        prevnode = nodestack.top();
+                        childnode = prevnode->childNode();
+                        if(childnode) {
+                            if(0 == valpos) {
+                                firstnode = childnode;
+                            }
+                            firstnode->siblingNode(currnode);
+                            firstnode = currnode;
+                        } else {
+                            prevnode->childNode(currnode);
+                            firstnode = currnode;
+                        }
+                    }
+                } else {
+                    currnode = MyXMLNode::createWithNameType(key);
+                    docstack.push(key);
+                    nodestack.push(currnode);
+                }
+            }
+        } else {
+            valpos = currpos;
+            if(docstack.empty() ||
+               std::string::npos == (currpos = xmldata.find('<', ++currpos))) {
+                MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+                return false;
+            }
+            valendpos = currpos;
         }
-        if(mappos >= overpos) {
-            MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-            return false;
-        }
-        value = xmldata.substr(xmlpos, mappos - xmlpos);
-        _attributeMap[key] = value;
-        xmlpos = mappos + 1;
     }
     
-    nextpos = overpos + 2;
+    if(!docstack.empty()) {
+        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
+        return false;
+    }
+    
+    rootNode(rootnode);
     return true;
 }
 
-MyXMLNode* MyXMLDocument::parseElement(const std::string &xmldata,
-                                       std::string::size_type &nextpos,
-                                       const std::string::size_type pos,
-                                       std::string::size_type endpos) {
-    std::string::size_type xmlpos(pos + 1);
-    std::string::size_type keypos(pos + 1);
-    char keychar;
+bool MyXMLDocument::parseAttribute(const std::string &xmldata,
+                                   std::string::size_type &nextpos,
+                                   const std::string::size_type pos) {
+    std::string::size_type xmlpos(pos), keypos, valpos, keyendpos;
+    const std::string::size_type xmllen(xmldata.length());
+    char xmlchar;
+    bool endflag(false);
     
-    if(std::string::npos == endpos) {
-        endpos = xmldata.length();
-    }
-    
-    while(keypos < endpos) {
-        keychar = xmldata[keypos];
-        if(MyStringUtil::digit_alpha(keychar)) {
-            ++keypos;
-            continue;
-        } else if('>' == keychar) {
-            break;
-        } else {
-            MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-            return nullptr;
-        }
-    }
-    
-    if(keypos >= endpos) {
-        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-        return nullptr;
-    }
-    
-    std::string key(xmldata.substr(xmlpos, keypos - xmlpos));
-    std::string overkey("</");
-    std::string::size_type overpos;
-    
-    overkey += key;
-    overkey += ">";
-    overpos = xmldata.find_first_of(overkey, keypos + 1);
-    if(std::string::npos == overpos || overpos >= endpos) {
-        MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrXMLParseFailed);
-        return nullptr;
-    }
-    
-    MyXMLNode *node = nullptr;
-    
-    xmlpos = keypos;
-    while(MyStringUtil::whitespace(xmldata[++xmlpos]));
-    if('<' == xmldata[xmlpos]) {
-        node = parseElement(xmldata, nextpos, xmlpos, overpos);
-    } else {
-        node = MyXMLNode::create(MyXMLNode::kXMLNodeTypeText);
-        node->nodeName(key);
+    while(xmlpos < xmllen) {
+        xmlchar = xmldata[xmlpos];
         
-        std::string::size_type valuepos(overpos);
-        while(valuepos >= xmlpos && MyStringUtil::whitespace(xmldata[valuepos])) {
-            --valuepos;
+        if('?' == xmlchar) {
+            if(++xmlpos >= xmllen) {
+                break;
+            }
+            xmlchar = xmldata[xmlpos];
+            if('>' == xmlchar) {
+                nextpos = ++xmlpos;
+                endflag = true;
+                break;
+            }
         }
-        node->nodeValue(xmldata.substr(xmlpos, valuepos - xmlpos + 1));
-        nextpos = overpos + overkey.length();
+        if(MyStringUtil::variable(xmlchar)) {
+            keypos = xmlpos;
+            while(++xmlpos < xmllen && MyStringUtil::variable(xmldata[xmlpos]));
+            if(xmlpos >= xmllen) {
+                break;
+            }
+            keyendpos = xmlpos;
+            if((xmlpos = skipwhitespace(xmldata, xmlpos)) >= xmllen) {
+                break;
+            }
+            xmlchar = xmldata[xmlpos];
+            if('=' == xmlchar) {
+                ++xmlpos;
+                if((xmlpos = skipwhitespace(xmldata, xmlpos)) >= xmllen) {
+                    break;
+                }
+                xmlchar = xmldata[xmlpos];
+                if('"' == xmlchar) {
+                    valpos = ++xmlpos;
+                    xmlpos = xmldata.find('"', xmlpos);
+                    if(std::string::npos == xmlpos) {
+                        break;
+                    }
+                    _attributeMap[xmldata.substr(keypos, keyendpos - keypos)] = xmldata.substr(valpos, xmlpos - valpos);
+                    ++xmlpos;
+                }
+            }
+        } else {
+            ++xmlpos;
+        }
     }
     
-    return node;
+    return endflag;
+}
+
+std::string::size_type MyXMLDocument::skipwhitespace(const std::string &xmldata,
+                                                     const std::string::size_type pos) {
+    assert(pos < xmldata.length() && "MyXMLDocument::skipwhitespace = pos invalid");
+    
+    std::string::size_type idxpos(pos);
+    while(idxpos < xmldata.length() && MyStringUtil::whitespace(xmldata[idxpos])) {
+        ++idxpos;
+    }
+    
+    return idxpos;
 }
 
 MINE_NAMESPACE_END

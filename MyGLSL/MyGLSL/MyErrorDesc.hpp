@@ -51,12 +51,8 @@ public:
 public:
     std::string& errorString(int errCode);
     
-    const MyErrorCallback* errorCallback(MyErrorCallback &errCallback) {
-        const MyErrorCallback *prev = _errCallback;
-        _errCallback = &errCallback;
-        
-        return prev;
-    }
+    MyErrorCallback* errorCallback(void) const { return _errCallback; }
+    void errorCallback(MyErrorCallback *errCallback);
     
     int invokeError(int errCode);
     
@@ -67,9 +63,10 @@ private:
     MyErrorCallback *_errCallback;
     
     void initialize(void);
+    void destroy(void);
     
     MyErrorDesc(void);
-    ~MyErrorDesc(void) {}
+    ~MyErrorDesc(void) { destroy(); }
     
     MyErrorDesc(const MyErrorDesc&);
     MyErrorDesc& operator=(const MyErrorDesc&);
@@ -82,10 +79,8 @@ public:
     virtual void disposeError(int errCode, const std::string &errDesc) = 0;
     
 protected:
-    virtual ~MyErrorCallback(void) {}
-    
-private:
     MyErrorCallback(void) {}
+    virtual ~MyErrorCallback(void) {}
 };
 
 MINE_NAMESPACE_END

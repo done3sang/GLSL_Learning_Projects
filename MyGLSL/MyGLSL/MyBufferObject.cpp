@@ -22,7 +22,6 @@ MyBufferObject::~MyBufferObject(void) {
 MyBufferObject* MyBufferObject::createWithBufferType(int bufferType) {
     MyBufferObject *obj = new MyBufferObject(bufferType);
     obj->refName("MyBufferObject");
-    obj->autorelase();
     
     return obj;
 }

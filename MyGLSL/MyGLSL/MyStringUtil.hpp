@@ -49,6 +49,10 @@ public:
     static bool digit_alpha(char c) {
         return digit(c) || alpha(c);
     }
+    
+    static bool variable(char c) {
+        return digit_alpha(c) || '_' == c;
+    }
 };
 
 MINE_NAMESPACE_END

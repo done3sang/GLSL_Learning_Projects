@@ -21,14 +21,20 @@ class MyUniqueRef;
 
 class MyXMLNode: public MyUniqueRef {
 public:
-    static MyXMLNode* create(int nodeType = kXMLNodeTypeElement);
+    static MyXMLNode* createWithType(int nodeType = kXMLNodeTypeElement);
+    static MyXMLNode* createWithNameType(const std::string &name,
+                                         int nodeType = kXMLNodeTypeElement);
     
     const std::string& nodeName(void) const { return _nodeName; }
     const std::string& nodeValue(void) const { return _nodeValue; }
     MyXMLNode* siblingNode(void) const { return _siblingNode; }
     MyXMLNode* childNode(void) const { return _childNode; }
-    
     int nodeType(void) const { return _nodeType; }
+    bool element(void) const { return kXMLNodeTypeElement == _nodeType; }
+    bool text(void) const { return kXMLNodeTypeText == _nodeType; }
+    bool iteratable(void) const {
+        return kXMLNodeTypeElement == _nodeType || kXMLNodeTypeText == _nodeType;
+    }
     
 public:
     static const int kXMLNodeTypeRoot;
@@ -38,6 +44,9 @@ public:
     static const int kXMLNodeTypeText;
     
 private:
+    explicit
+    MyXMLNode(const std::string &name, int nodeType = kXMLNodeTypeElement):
+        _nodeName(name), _nodeType(nodeType), _siblingNode(nullptr), _childNode(nullptr) {}
     explicit
     MyXMLNode(int nodeType = kXMLNodeTypeElement): _nodeType(nodeType), _siblingNode(nullptr), _childNode(nullptr) {}
     ~MyXMLNode(void) { destroy(); }
@@ -52,6 +61,7 @@ private:
     
     void siblingNode(MyXMLNode *node);
     void childNode(MyXMLNode *node);
+    void nodeType(int nt) { _nodeType = nt; }
     void nodeName(const std::string &name) { _nodeName = name; }
     void nodeValue(const std::string &value) { _nodeValue = value; }
     

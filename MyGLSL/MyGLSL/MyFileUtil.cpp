@@ -21,7 +21,6 @@ MyFileUtil* MyFileUtil::sharedFileUtil(void) {
         _sharedFileUtil = new MyFileUtil;
         _sharedFileUtil->refName("MyFileUtil");
         _sharedFileUtil->retain();
-        _sharedFileUtil->autorelase();
     }
     
     return _sharedFileUtil;

@@ -10,7 +10,8 @@
 #include <string>
 #include "BaseScene.hpp"
 #include "UniformScene.hpp"
-#include "tinyxml/tinyxml.h"
+#include "myxml/MyXMLDocument.hpp"
+#include "myxml/MyXMLNode.hpp"
 
 USING_MINE_NAMESPACE;
 
@@ -19,12 +20,73 @@ public:
     void disposeError(int errCode, const std::string &errDesc) {
         std::cout << "Error(" << errCode << ") = " << errDesc << "\n";
     }
+    
+    static MyErrorDisposer* create(void);
 };
 
-bool myReadShader(const std::string &path);
+MyErrorDisposer* MyErrorDisposer::create(void) {
+    MyErrorDisposer *disposer = new MyErrorDisposer;
+    disposer->refName("MyErrorDisposer");
+    return disposer;
+}
+
+void printXMLNode(const MyXMLNode *xmlnode, std::string &desc) {
+    if(!xmlnode) {
+        return;
+    }
+    
+    desc += xmlnode->nodeName() + " = ";
+    if(xmlnode->text()) {
+        desc += xmlnode->nodeValue();
+    } else {
+        desc += "element";
+    }
+    desc += "(";
+    if(xmlnode->childNode()) {
+        desc += xmlnode->childNode()->nodeName() + ", ";
+    } else {
+        desc += "nullptr, ";
+    }
+    if(xmlnode->siblingNode()) {
+        desc += xmlnode->siblingNode()->nodeName();
+    } else {
+        desc += "nullptr";
+    }
+    desc += ")\n";
+    
+    printXMLNode(xmlnode->childNode(), desc);
+    printXMLNode(xmlnode->siblingNode(), desc);
+}
+
+std::string printXMLDoc(const MyXMLDocument *doc) {
+    std::string desc;
+    
+    if(!doc) {
+        return desc;
+    }
+    
+    desc += "-----------xml attribute-----------\n";
+    for(auto iter: doc->attributeMap()) {
+        desc += iter.first + " = ";
+        desc += iter.second + "\n";
+    }
+    
+    desc += "\n----------xml root--------------\n";
+    printXMLNode(doc->rootNode(), desc);
+    
+    return desc;
+}
 
 int main(int argc, const char * argv[]) {
-    myReadShader("./Shader/shader.xml");
+    MyDirector::sharedDirector();
+    MyErrorDesc::sharedErrorDesc()->errorCallback(MyErrorDisposer::create());
+    
+    MyXMLDocument *doc = MyXMLDocument::create();
+    if(!doc->loadDocument("./Shader/shader.xml")) {
+        std::cout << "Failed to load xml\n";
+    }
+    
+    std::cout << "hello world\n" << printXMLDoc(doc);
     /*
     MyDirector *sharedDirector = MyDirector::sharedDirector();
     MyErrorDisposer *errDisposer = new MyErrorDisposer;
@@ -49,23 +111,4 @@ int main(int argc, const char * argv[]) {
     sharedDirector->closeDirector();
     */
     return 0;
-}
-
-bool myReadShader(const std::string &path) {
-    TiXmlDocument doc(path.c_str());
-    
-    if(!doc.LoadFile()) {
-        std::cout << "Could not load test file " << path << ". Error = " << doc.ErrorDesc() << ".\n";
-        return false;
-    }
-    
-    TiXmlElement *root = doc.RootElement();
-    std::cout << "---------------------------------\n\n";
-    std::cout << "----------" << root->Value() << "-----\n";
-    std::cout << "   contacted person information    \n\n";
-    for(TiXmlNode *node = root->FirstChild(); node; node = node->NextSibling()) {
-        std::cout << "--------" << node->Value() << "------\n";
-    }
-    
-    return true;
 }

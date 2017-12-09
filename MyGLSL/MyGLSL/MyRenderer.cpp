@@ -15,7 +15,6 @@ MINE_NAMESPACE_BEGIN
 MyRenderer* MyRenderer::create(const std::string &name) {
     MyRenderer *mr = new MyRenderer(name);
     mr->refName(name);
-    mr->autorelase();
     
     return mr;
 }

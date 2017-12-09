@@ -31,12 +31,6 @@
 		14B24D901FCEAC4800121A65 /* MyVertexArrayObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B24D8E1FCEAC4800121A65 /* MyVertexArrayObject.cpp */; };
 		14B24D911FCEAC4800121A65 /* MyVertexArrayObject.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14B24D8F1FCEAC4800121A65 /* MyVertexArrayObject.hpp */; };
 		14B24D951FCEAD9900121A65 /* MyTemplate.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14B24D931FCEAD9900121A65 /* MyTemplate.hpp */; };
-		14BBD6511FDA42AC00EFBF0D /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14BBD64B1FDA42AC00EFBF0D /* tinyxml.cpp */; };
-		14BBD6521FDA42AC00EFBF0D /* tinyxml.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BBD64C1FDA42AC00EFBF0D /* tinyxml.h */; };
-		14BBD6531FDA42AC00EFBF0D /* tinystr.h in Headers */ = {isa = PBXBuildFile; fileRef = 14BBD64D1FDA42AC00EFBF0D /* tinystr.h */; };
-		14BBD6541FDA42AC00EFBF0D /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14BBD64E1FDA42AC00EFBF0D /* tinyxmlparser.cpp */; };
-		14BBD6551FDA42AC00EFBF0D /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14BBD64F1FDA42AC00EFBF0D /* tinystr.cpp */; };
-		14BBD6561FDA42AC00EFBF0D /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14BBD6501FDA42AC00EFBF0D /* tinyxmlerror.cpp */; };
 		14BBD65A1FDA5A3A00EFBF0D /* MyXMLDocument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14BBD6581FDA5A3A00EFBF0D /* MyXMLDocument.cpp */; };
 		14BBD65B1FDA5A3A00EFBF0D /* MyXMLDocument.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14BBD6591FDA5A3A00EFBF0D /* MyXMLDocument.hpp */; };
 		14BBD65E1FDA655300EFBF0D /* MyXMLNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14BBD65C1FDA655300EFBF0D /* MyXMLNode.cpp */; };
@@ -75,12 +69,6 @@
 		14B24D8E1FCEAC4800121A65 /* MyVertexArrayObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyVertexArrayObject.cpp; sourceTree = "<group>"; };
 		14B24D8F1FCEAC4800121A65 /* MyVertexArrayObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyVertexArrayObject.hpp; sourceTree = "<group>"; };
 		14B24D931FCEAD9900121A65 /* MyTemplate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyTemplate.hpp; sourceTree = "<group>"; };
-		14BBD64B1FDA42AC00EFBF0D /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
-		14BBD64C1FDA42AC00EFBF0D /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
-		14BBD64D1FDA42AC00EFBF0D /* tinystr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinystr.h; sourceTree = "<group>"; };
-		14BBD64E1FDA42AC00EFBF0D /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
-		14BBD64F1FDA42AC00EFBF0D /* tinystr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinystr.cpp; sourceTree = "<group>"; };
-		14BBD6501FDA42AC00EFBF0D /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlerror.cpp; sourceTree = "<group>"; };
 		14BBD6581FDA5A3A00EFBF0D /* MyXMLDocument.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyXMLDocument.cpp; sourceTree = "<group>"; };
 		14BBD6591FDA5A3A00EFBF0D /* MyXMLDocument.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyXMLDocument.hpp; sourceTree = "<group>"; };
 		14BBD65C1FDA655300EFBF0D /* MyXMLNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyXMLNode.cpp; sourceTree = "<group>"; };
@@ -125,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				14BBD6571FDA59F800EFBF0D /* myxml */,
-				14BBD64A1FDA428600EFBF0D /* tinyxml */,
 				14EF00771FD69FD70048F4D5 /* MyDirector.hpp */,
 				14EF00761FD69FD70048F4D5 /* MyDirector.cpp */,
 				144349181FD13B20006DD6D2 /* MyAutoreleasePool.hpp */,
@@ -167,19 +154,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		14BBD64A1FDA428600EFBF0D /* tinyxml */ = {
-			isa = PBXGroup;
-			children = (
-				14BBD64C1FDA42AC00EFBF0D /* tinyxml.h */,
-				14BBD64B1FDA42AC00EFBF0D /* tinyxml.cpp */,
-				14BBD64D1FDA42AC00EFBF0D /* tinystr.h */,
-				14BBD64F1FDA42AC00EFBF0D /* tinystr.cpp */,
-				14BBD6501FDA42AC00EFBF0D /* tinyxmlerror.cpp */,
-				14BBD64E1FDA42AC00EFBF0D /* tinyxmlparser.cpp */,
-			);
-			path = tinyxml;
-			sourceTree = "<group>";
-		};
 		14BBD6571FDA59F800EFBF0D /* myxml */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,10 +187,8 @@
 				14EF00751FD69BEA0048F4D5 /* MyScene.hpp in Headers */,
 				144349061FD103CC006DD6D2 /* MyRenderer.hpp in Headers */,
 				14BBD65B1FDA5A3A00EFBF0D /* MyXMLDocument.hpp in Headers */,
-				14BBD6531FDA42AC00EFBF0D /* tinystr.h in Headers */,
 				14B24D951FCEAD9900121A65 /* MyTemplate.hpp in Headers */,
 				144349021FCEBA61006DD6D2 /* MyBufferObject.hpp in Headers */,
-				14BBD6521FDA42AC00EFBF0D /* tinyxml.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,22 +249,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14BBD6561FDA42AC00EFBF0D /* tinyxmlerror.cpp in Sources */,
 				14B24D901FCEAC4800121A65 /* MyVertexArrayObject.cpp in Sources */,
-				14BBD6551FDA42AC00EFBF0D /* tinystr.cpp in Sources */,
 				14BBD65A1FDA5A3A00EFBF0D /* MyXMLDocument.cpp in Sources */,
 				144349011FCEBA61006DD6D2 /* MyBufferObject.cpp in Sources */,
 				1401E6001FCD11EA00D83812 /* MyProgram.cpp in Sources */,
 				1401E5F51FCC13BD00D83812 /* MyErrorDesc.cpp in Sources */,
 				144349191FD13B20006DD6D2 /* MyAutoreleasePool.cpp in Sources */,
 				14EF00781FD69FD70048F4D5 /* MyDirector.cpp in Sources */,
-				14BBD6511FDA42AC00EFBF0D /* tinyxml.cpp in Sources */,
 				144349051FD103CC006DD6D2 /* MyRenderer.cpp in Sources */,
 				1401E5F01FCC0EE100D83812 /* MyFileUtil.cpp in Sources */,
 				1451AAD51FD8F1FB007D9335 /* MyShadingManager.cpp in Sources */,
 				14AB95F41FDA78FF00CE8617 /* MyStringUtil.cpp in Sources */,
 				14BBD65E1FDA655300EFBF0D /* MyXMLNode.cpp in Sources */,
-				14BBD6541FDA42AC00EFBF0D /* tinyxmlparser.cpp in Sources */,
 				1401E5F91FCCFC6600D83812 /* MyShader.cpp in Sources */,
 				1443490D1FD12BB3006DD6D2 /* MyRef.cpp in Sources */,
 				14EF00741FD69BEA0048F4D5 /* MyScene.cpp in Sources */,

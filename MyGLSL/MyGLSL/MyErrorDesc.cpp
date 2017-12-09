@@ -34,7 +34,6 @@ MyErrorDesc* MyErrorDesc::sharedErrorDesc(void) {
         _sharedErrorDesc = new MyErrorDesc;
         _sharedErrorDesc->refName("MyErrorDesc");
         _sharedErrorDesc->retain();
-        _sharedErrorDesc->autorelase();
     }
     
     return _sharedErrorDesc;
@@ -78,6 +77,23 @@ void MyErrorDesc::initialize(void) {
     _errorDesc[kErrProgramUniformNotExists] = "Program uniform NOT exists";
     _errorDesc[kErrProgramUniformBlockIndexNotExists] = "Program uniform block index NOT exists";
     _errorDesc[kErrXMLParseFailed] = "XML failed to parse";
+}
+
+void MyErrorDesc::destroy(void) {
+    if(_errCallback) {
+        _errCallback->release();
+        _errCallback = nullptr;
+    }
+}
+
+void MyErrorDesc::errorCallback(MyErrorCallback *errCallback) {
+    if(_errCallback) {
+        _errCallback->release();
+    }
+    if(errCallback) {
+        errCallback->addRef();
+    }
+    _errCallback = errCallback;
 }
 
 std::string& MyErrorDesc::errorString(int errCode) {

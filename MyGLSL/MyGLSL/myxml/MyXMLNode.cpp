@@ -17,16 +17,29 @@ const int MyXMLNode::kXMLNodeTypeElement = 2;
 const int MyXMLNode::kXMLNodeTypeComment = 3;
 const int MyXMLNode::kXMLNodeTypeText = 4;
 
-MyXMLNode* MyXMLNode::create(int nodeType) {
+MyXMLNode* MyXMLNode::createWithType(int nodeType) {
     MyXMLNode *node = new MyXMLNode(nodeType);
     node->refName("MyXMLNode");
     node->autorelase();
     return node;
 }
 
+MyXMLNode* MyXMLNode::createWithNameType(const std::string &name,
+                                         int nodeType) {
+    MyXMLNode *node = new MyXMLNode(name, nodeType);
+    node->refName("MyXMLNode");
+    node->autorelase();
+    return node;
+}
+
 void MyXMLNode::destroy(void) {
+    if(_childNode) {
+        _childNode->release();
+        _childNode = nullptr;
+    }
     if(_siblingNode) {
         _siblingNode->release();
+        _siblingNode = nullptr;
     }
 }
 
