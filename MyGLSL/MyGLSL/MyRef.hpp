@@ -33,7 +33,7 @@ public:
     void refName(const std::string& name) { _refName = name; }
     
     void release(void);
-    void autorelase(void);
+    void autorelease(void);
     
 private:
     int _refCount;

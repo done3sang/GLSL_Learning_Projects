@@ -5,11 +5,23 @@
         <basic>
             <vertex>basic.vert</vertex>
             <fragment>basic.frag</fragment>
+            <geometry>
+                <cube>cube</cube>
+                <triangle>triange</triangle>
+                <rectangle>
+                    <square>square</square>
+                    <rect>rect</rect>
+                </rectangle>
+            </geometry>
         </basic>
         <uniformblock>
             <vertex>uniformblock.vert</vertex>
             <fragment>uniformblock.frag</fragment>
         </uniformblock>
+        <uniform>
+            <vertex>uniform.vert</vertex>
+            <fragment>uniform.frag</fragment>
+        </uniform>
     </shader>
     <program>
         <basic>

@@ -20,7 +20,6 @@ const int MyXMLNode::kXMLNodeTypeText = 4;
 MyXMLNode* MyXMLNode::createWithType(int nodeType) {
     MyXMLNode *node = new MyXMLNode(nodeType);
     node->refName("MyXMLNode");
-    node->autorelase();
     return node;
 }
 
@@ -28,7 +27,6 @@ MyXMLNode* MyXMLNode::createWithNameType(const std::string &name,
                                          int nodeType) {
     MyXMLNode *node = new MyXMLNode(name, nodeType);
     node->refName("MyXMLNode");
-    node->autorelase();
     return node;
 }
 

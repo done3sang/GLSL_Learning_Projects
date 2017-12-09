@@ -15,12 +15,12 @@ MINE_NAMESPACE_BEGIN
 
 MyRef::MyRef(void):
 _refCount(1) {
-    autorelase();
+    autorelease();
 }
 
 MyRef::MyRef(const MyRef& another):
 _refCount(1) {
-    autorelase();
+    autorelease();
 }
 
 void MyRef::release(void) {
@@ -30,7 +30,7 @@ void MyRef::release(void) {
     }
 }
 
-void MyRef::autorelase(void) {
+void MyRef::autorelease(void) {
     MyAutoreleasePool *pool = MyAutoreleasePool::sharedAutoreleasePool();
     
     pool->addObject(this);

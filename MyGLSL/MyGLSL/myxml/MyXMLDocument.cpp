@@ -20,7 +20,6 @@ MINE_NAMESPACE_BEGIN
 MyXMLDocument* MyXMLDocument::create(void) {
     MyXMLDocument *doc = new MyXMLDocument;
     doc->refName("MyXMLDocument");
-    doc->autorelase();
     return doc;
 }
 
@@ -57,7 +56,7 @@ bool MyXMLDocument::parseXML(const std::string &xmldata) {
     assert(!xmldata.empty() && "MyXMLDocument::parseXML = xml data cannot be empty");
     
     std::stack<std::string> docstack;
-    std::stack<MyXMLNode*> nodestack;
+    std::stack<MyXMLNode*> nodestack, firststack;
     MyXMLNode *firstnode = nullptr, *currnode, *prevnode, *childnode, *siblingnode;
     MyXMLNode *rootnode = nullptr;
     std::string::size_type currpos(0), nextpos, keypos, keyendpos, valpos(0), valendpos(0);
@@ -159,7 +158,6 @@ bool MyXMLDocument::parseXML(const std::string &xmldata) {
                     if(valpos > 0) {
                         currnode->nodeType(MyXMLNode::kXMLNodeTypeText);
                         currnode->nodeValue(xmldata.substr(valpos, valendpos - valpos));
-                        valpos = 0;
                     }
                     nodestack.pop();
                     
@@ -169,17 +167,18 @@ bool MyXMLDocument::parseXML(const std::string &xmldata) {
                     } else {
                         prevnode = nodestack.top();
                         childnode = prevnode->childNode();
+                        if(0 == valpos) {
+                            firststack.pop();
+                        }
                         if(childnode) {
-                            if(0 == valpos) {
-                                firstnode = childnode;
-                            }
-                            firstnode->siblingNode(currnode);
-                            firstnode = currnode;
+                            firststack.top()->siblingNode(currnode);
+                            firststack.pop();
                         } else {
                             prevnode->childNode(currnode);
-                            firstnode = currnode;
                         }
+                        firststack.push(currnode);
                     }
+                    valpos = 0;
                 } else {
                     currnode = MyXMLNode::createWithNameType(key);
                     docstack.push(key);

@@ -9,7 +9,7 @@
                value = "docstack.size()">
             </PersistentString>
             <PersistentString
-               value = "xmldata[currpos]">
+               value = "xmldata[currpos-3]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
