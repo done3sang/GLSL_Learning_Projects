@@ -16,48 +16,37 @@ UniformScene* UniformScene::create(void) {
     return obj;
 }
 
+void UniformScene::destroy(void) {
+    if(_myRenderer) {
+        _myRenderer->release();
+        _myRenderer = nullptr;
+    }
+    if(_myProgram) {
+        _myProgram->release();
+        _myProgram = nullptr;
+    }
+    if(_myVertexBuffer) {
+        _myVertexBuffer->release();
+        _myVertexBuffer = nullptr;
+    }
+    if(_myVertexArray) {
+        _myVertexArray->release();
+        _myVertexArray = nullptr;
+    }
+}
+
 bool UniformScene::initialize(void) {
     MyDirector *sharedDirector = MyDirector::sharedDirector();
     sharedDirector->resizeWindow(800, 800);
     sharedDirector->windowTitle("Uniform Block");
     
     _myRenderer = MyRenderer::create("normal");
+    _myRenderer->addRef();
     _myRenderer->clearBufferBit(MyRenderer::kBufferBitColor | MyRenderer::kBufferBitDepth);
     sharedDirector->mainRenderer(_myRenderer);
     
-    MyShader *vertexShader = MyShader::createWithShaderType("uniformblock_vert", MyShader::kShaderTypeVertex);
-    if(!MyErrorDesc::successed(vertexShader->loadFromFile("./Shader/uniformblock.vert"))) {
-        std::cout << "Error occurs in shader: " << vertexShader->shaderLog() << "\n";
-        
-        sharedDirector->closeDirector();
-        return false;
-    }
-    
-    MyShader *fragmentShader = MyShader::createWithShaderType("uniformblock_frag", MyShader::kShaderTypeFragment);
-    if(!MyErrorDesc::successed(fragmentShader->loadFromFile("./Shader/uniformblock.frag"))) {
-        std::cout << "Error occurs in shader: " << fragmentShader->shaderLog() << "\n";
-        
-        sharedDirector->closeDirector();
-        return false;
-    }
-    
-    _myProgram = MyProgram::create("uniformblock");
-    _myProgram->attachShader(vertexShader);
-    _myProgram->attachShader(fragmentShader);
-    if(!MyErrorDesc::successed(_myProgram->linkPorgram())) {
-        std::cout << "Error occurs in program: " << _myProgram->programLog() << "\n";
-        
-        sharedDirector->closeDirector();
-        return false;
-    }
-    
-    if(!sharedDirector->checkError()) {
-        std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
-        sharedDirector->errDesc() << "\n";
-        
-        sharedDirector->closeDirector();
-        return false;
-    }
+    _myProgram = MyShadingManager::sharedShadingManager()->programByName("uniformblock");
+    _myProgram->addRef();
     
     float vertexData[] = {
         -0.8f, -0.8f, 0.0f, 0.0f, 0.0f,
@@ -68,8 +57,9 @@ bool UniformScene::initialize(void) {
         -0.8f, 0.8f, 0.0f, 0.0f, 1.0f
     };
     
-    MyBufferObject *vertexBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
-    vertexBuffer->bufferData(30 * sizeof(float), vertexData);
+    _myVertexBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
+    _myVertexBuffer->addRef();
+    _myVertexBuffer->bufferData(30 * sizeof(float), vertexData);
     
     if(!sharedDirector->checkError()) {
         std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
@@ -80,8 +70,9 @@ bool UniformScene::initialize(void) {
     }
     
     _myVertexArray = MyVertexArrayObject::create();
-    _myVertexArray->vertexAttribPoint(*vertexBuffer, MyProgram::kAttribPosition, 3, 5 * sizeof(float));
-    _myVertexArray->vertexAttribPoint(*vertexBuffer, MyProgram::kAttribTexCoord0, 2, 5 * sizeof(float), 3 * sizeof(float));
+    _myVertexArray->addRef();
+    _myVertexArray->vertexAttribPoint(*_myVertexBuffer, MyProgram::kAttribPosition, 3, 5 * sizeof(float));
+    _myVertexArray->vertexAttribPoint(*_myVertexBuffer, MyProgram::kAttribTexCoord0, 2, 5 * sizeof(float), 3 * sizeof(float));
     
     if(!sharedDirector->checkError()) {
         std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<

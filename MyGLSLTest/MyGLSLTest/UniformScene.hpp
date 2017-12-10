@@ -16,15 +16,20 @@ USING_MINE_NAMESPACE;
 
 class UniformScene: public MyScene  {
 public:
-    bool initialize(void);
-    void update(float deltaTime);
-    void render(void);
+    bool initialize(void) override;
+    void update(float deltaTime) override;
+    void render(void) override;
+    void destroy(void) override;
     
     static UniformScene* create(void);
     
 private:
+    UniformScene(void) {}
+    ~UniformScene(void) { destroy(); }
+    
     MyRenderer *_myRenderer;
     MyProgram *_myProgram;
+    MyBufferObject *_myVertexBuffer;
     MyVertexArrayObject *_myVertexArray;
 };
 

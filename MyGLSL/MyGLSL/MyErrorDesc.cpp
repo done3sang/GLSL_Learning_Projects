@@ -33,7 +33,6 @@ MyErrorDesc* MyErrorDesc::sharedErrorDesc(void) {
     if(!_sharedErrorDesc) {
         _sharedErrorDesc = new MyErrorDesc;
         _sharedErrorDesc->refName("MyErrorDesc");
-        _sharedErrorDesc->retain();
     }
     
     return _sharedErrorDesc;

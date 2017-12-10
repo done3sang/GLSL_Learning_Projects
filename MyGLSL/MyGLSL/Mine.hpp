@@ -19,5 +19,6 @@
 #include "MyVertexArrayObject.hpp"
 #include "MyErrorDesc.hpp"
 #include "MyScene.hpp"
+#include "MyShadingManager.hpp"
 
 #endif /* Mine_h */

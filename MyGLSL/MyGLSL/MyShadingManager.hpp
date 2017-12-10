@@ -28,11 +28,12 @@ public:
     static MyShadingManager* sharedShadingManager();
     static void closeShadingManager(void);
     
-    bool loadShaderConfig(const std::string  &shaderConfigPath);
+    bool loadShaderConfig(const std::string  &path);
     bool shaderLoaded(void) const { return _shaderLoaded; }
     
     bool loadShader(int shaderType, const std::string &name, const std::string &path);
-    MyProgram* createProgram(const std::string &name, const std::vector<std::string> &shaderNameVec);
+    MyProgram* createProgram(const std::string &name,
+                             const std::vector<std::string> &shaderNameVec);
     
     bool containShader(const std::string &shaderName) const;
     bool containProgram(const std::string &programName) const;
@@ -44,9 +45,6 @@ private:
     ~MyShadingManager(void);
     
     bool _shaderLoaded;
-    
-    std::map<std::string, std::string> _shaderPathMap;
-    std::map<std::string, std::vector<std::string> > _programPathMap;
     
     std::map<std::string, MyShader*> _shaderMap;
     std::map<std::string, MyProgram*> _programMap;

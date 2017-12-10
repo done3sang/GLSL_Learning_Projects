@@ -23,6 +23,20 @@ MyXMLDocument* MyXMLDocument::create(void) {
     return doc;
 }
 
+void MyXMLDocument::destroy(void) {
+    if(_rootNode) {
+        _rootNode->release();
+        _rootNode = nullptr;
+    }
+}
+
+MyXMLDocument* MyXMLDocument::createWithDocument(const std::string &path) {
+    MyXMLDocument *doc = new MyXMLDocument;
+    doc->refName("MyXMLDocument");
+    
+    return doc->loadDocument(path) ? doc : nullptr;
+}
+
 bool MyXMLDocument::attributeByName(const std::string &name,
                                     std::string &value) const {
     auto iter = _attributeMap.find(name);

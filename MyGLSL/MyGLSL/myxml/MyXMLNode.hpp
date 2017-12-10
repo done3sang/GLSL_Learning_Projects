@@ -62,7 +62,10 @@ private:
     void siblingNode(MyXMLNode *node);
     void childNode(MyXMLNode *node);
     void nodeType(int nt) { _nodeType = nt; }
-    void nodeName(const std::string &name) { _nodeName = name; }
+    void nodeName(const std::string &name) {
+        _nodeName = name;
+        refName(name + "_MyXMLNode");
+    }
     void nodeValue(const std::string &value) { _nodeValue = value; }
     
     void destroy(void);

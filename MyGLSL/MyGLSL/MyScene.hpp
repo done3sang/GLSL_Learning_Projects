@@ -23,12 +23,13 @@ public:
     virtual bool initialize(void) = 0;
     virtual void update(float deltaTime) {}
     virtual void render(void) = 0;
-    virtual void destroy(void) {}
+    virtual void destroy(void) = 0;
     
-    static MyScene* create(void);
+    static MyScene* create(void) { return nullptr; }
     
 protected:
-    virtual ~MyScene(void);
+    MyScene(void) {}
+    virtual ~MyScene(void) {}
 };
 
 MINE_NAMESPACE_END

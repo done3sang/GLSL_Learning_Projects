@@ -24,6 +24,7 @@ class MyXMLNode;
 class MyXMLDocument: public MyUniqueRef {
 public:
     static MyXMLDocument* create(void);
+    static MyXMLDocument* createWithDocument(const std::string &path);
     
     bool loadDocument(const std::string &path);
     
@@ -33,11 +34,12 @@ public:
     
 private:
     MyXMLDocument(void): _rootNode(nullptr) {}
-    ~MyXMLDocument(void) {}
+    ~MyXMLDocument(void) { destroy(); }
     
     std::map<std::string, std::string> _attributeMap;
     MyXMLNode *_rootNode;
     
+    void destroy(void);
     void rootNode(MyXMLNode *node);
     bool parseXML(const std::string &xmldata);
     bool parseAttribute(const std::string &xmldata,

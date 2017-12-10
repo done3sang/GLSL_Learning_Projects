@@ -26,7 +26,7 @@ MyXMLNode* MyXMLNode::createWithType(int nodeType) {
 MyXMLNode* MyXMLNode::createWithNameType(const std::string &name,
                                          int nodeType) {
     MyXMLNode *node = new MyXMLNode(name, nodeType);
-    node->refName("MyXMLNode");
+    node->refName(name + "_MyXMLNode");
     return node;
 }
 

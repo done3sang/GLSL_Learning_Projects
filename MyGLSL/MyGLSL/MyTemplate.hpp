@@ -48,7 +48,7 @@ private:
 
 class MySingletonRef: public MyRef {
 protected:
-    MySingletonRef(void) {}
+    MySingletonRef(void) { MyRef::retain(); }
     virtual ~MySingletonRef(void) {}
     
     void addRef(void) { MyRef::addRef(); }

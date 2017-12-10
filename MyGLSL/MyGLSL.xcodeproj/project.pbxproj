@@ -40,6 +40,8 @@
 		14EF00781FD69FD70048F4D5 /* MyDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EF00761FD69FD70048F4D5 /* MyDirector.cpp */; };
 		14EF00791FD69FD70048F4D5 /* MyDirector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EF00771FD69FD70048F4D5 /* MyDirector.hpp */; };
 		14F9EFC91FD79B9D00EAF6E1 /* Mine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14F9EFC81FD79B7E00EAF6E1 /* Mine.hpp */; };
+		25A889841FDD12E10078F455 /* MyTimerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25A889821FDD12E10078F455 /* MyTimerManager.cpp */; };
+		25A889851FDD12E10078F455 /* MyTimerManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25A889831FDD12E10078F455 /* MyTimerManager.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		14EF00761FD69FD70048F4D5 /* MyDirector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyDirector.cpp; sourceTree = "<group>"; };
 		14EF00771FD69FD70048F4D5 /* MyDirector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyDirector.hpp; sourceTree = "<group>"; };
 		14F9EFC81FD79B7E00EAF6E1 /* Mine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mine.hpp; sourceTree = "<group>"; };
+		25A889821FDD12E10078F455 /* MyTimerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyTimerManager.cpp; sourceTree = "<group>"; };
+		25A889831FDD12E10078F455 /* MyTimerManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MyTimerManager.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +116,14 @@
 		1401E5E21FCC0AE500D83812 /* MyGLSL */ = {
 			isa = PBXGroup;
 			children = (
+				25A889811FDD121D0078F455 /* mytimer */,
 				14BBD6571FDA59F800EFBF0D /* myxml */,
 				14EF00771FD69FD70048F4D5 /* MyDirector.hpp */,
 				14EF00761FD69FD70048F4D5 /* MyDirector.cpp */,
 				144349181FD13B20006DD6D2 /* MyAutoreleasePool.hpp */,
 				144349171FD13B20006DD6D2 /* MyAutoreleasePool.cpp */,
+				25A889831FDD12E10078F455 /* MyTimerManager.hpp */,
+				25A889821FDD12E10078F455 /* MyTimerManager.cpp */,
 				1401E5EF1FCC0EE100D83812 /* MyFileUtil.hpp */,
 				1401E5EE1FCC0EE100D83812 /* MyFileUtil.cpp */,
 				14AB95F31FDA78FF00CE8617 /* MyStringUtil.hpp */,
@@ -165,6 +172,13 @@
 			path = myxml;
 			sourceTree = "<group>";
 		};
+		25A889811FDD121D0078F455 /* mytimer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = mytimer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -180,6 +194,7 @@
 				1401E5F61FCC13BD00D83812 /* MyErrorDesc.hpp in Headers */,
 				1451AAD61FD8F1FB007D9335 /* MyShadingManager.hpp in Headers */,
 				14B24D911FCEAC4800121A65 /* MyVertexArrayObject.hpp in Headers */,
+				25A889851FDD12E10078F455 /* MyTimerManager.hpp in Headers */,
 				1401E5F11FCC0EE100D83812 /* MyFileUtil.hpp in Headers */,
 				1401E5FA1FCCFC6600D83812 /* MyShader.hpp in Headers */,
 				14BBD65F1FDA655300EFBF0D /* MyXMLNode.hpp in Headers */,
@@ -254,6 +269,7 @@
 				144349011FCEBA61006DD6D2 /* MyBufferObject.cpp in Sources */,
 				1401E6001FCD11EA00D83812 /* MyProgram.cpp in Sources */,
 				1401E5F51FCC13BD00D83812 /* MyErrorDesc.cpp in Sources */,
+				25A889841FDD12E10078F455 /* MyTimerManager.cpp in Sources */,
 				144349191FD13B20006DD6D2 /* MyAutoreleasePool.cpp in Sources */,
 				14EF00781FD69FD70048F4D5 /* MyDirector.cpp in Sources */,
 				144349051FD103CC006DD6D2 /* MyRenderer.cpp in Sources */,

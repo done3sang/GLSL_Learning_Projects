@@ -30,6 +30,45 @@ MyErrorDisposer* MyErrorDisposer::create(void) {
     return disposer;
 }
 
+void printXMLNode(const MyXMLNode *xmlnode, std::string &desc);
+std::string printXMLDoc(const MyXMLDocument *doc);
+
+int main(int argc, const char * argv[]) {
+    /*
+    MyDirector::sharedDirector();
+    MyErrorDesc::sharedErrorDesc()->errorCallback(MyErrorDisposer::create());
+    
+    MyXMLDocument *doc = MyXMLDocument::create();
+    if(!doc->loadDocument("./Shader/shader.xml")) {
+        std::cout << "Failed to load xml\n";
+    }
+    
+    std::cout << "hello world\n" << printXMLDoc(doc);
+     */
+    MyDirector *sharedDirector = MyDirector::sharedDirector();
+    MyErrorDisposer *errDisposer = new MyErrorDisposer;
+    
+    sharedDirector->errorCallback(errDisposer);
+    
+    if(!sharedDirector->createWindow(800, 600, "Hello World")) {
+        sharedDirector->closeDirector();
+        return -1;
+    }
+    
+    MyScene *myScene = UniformScene::create();
+    
+    if(!myScene->initialize()) {
+        sharedDirector->closeDirector();
+        return -1;
+    }
+    
+    sharedDirector->runningScene(myScene);
+    sharedDirector->runMainLoop();
+    
+    sharedDirector->closeDirector();
+    return 0;
+}
+
 void printXMLNode(const MyXMLNode *xmlnode, std::string &desc) {
     if(!xmlnode) {
         return;
@@ -75,40 +114,4 @@ std::string printXMLDoc(const MyXMLDocument *doc) {
     printXMLNode(doc->rootNode(), desc);
     
     return desc;
-}
-
-int main(int argc, const char * argv[]) {
-    MyDirector::sharedDirector();
-    MyErrorDesc::sharedErrorDesc()->errorCallback(MyErrorDisposer::create());
-    
-    MyXMLDocument *doc = MyXMLDocument::create();
-    if(!doc->loadDocument("./Shader/shader.xml")) {
-        std::cout << "Failed to load xml\n";
-    }
-    
-    std::cout << "hello world\n" << printXMLDoc(doc);
-    /*
-    MyDirector *sharedDirector = MyDirector::sharedDirector();
-    MyErrorDisposer *errDisposer = new MyErrorDisposer;
-    
-    sharedDirector->errorCallback(errDisposer);
-    
-    if(!sharedDirector->createWindow(800, 600, "Hello World")) {
-        sharedDirector->closeDirector();
-        return -1;
-    }
-    
-    MyScene *myScene = UniformScene::create();
-    
-    if(!myScene->initialize()) {
-        sharedDirector->closeDirector();
-        return -1;
-    }
-    
-    sharedDirector->runningScene(myScene);
-    sharedDirector->runMainLoop();
-    
-    sharedDirector->closeDirector();
-    */
-    return 0;
 }

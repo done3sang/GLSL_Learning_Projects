@@ -54,12 +54,19 @@ public:
     MyRenderer* mainRenderer(void) const { return _mainRenderer; }
     void mainRenderer(MyRenderer *renderer);
     
+    // main loop
     void runMainLoop(void);
+    
+    // close
     void closeDirector(void);
+    
+    // fps
+    float framesPerSecond(void) const { return _framesPerSecond; }
     
 private:
     MyDirector(void): _errCode(0),
-    _errorCallback(nullptr), _glfwWindow(nullptr) {}
+        _mainRenderer(nullptr), _runningScene(nullptr),
+        _errorCallback(nullptr), _glfwWindow(nullptr), _framesPerSecond(0.0f) {}
     ~MyDirector(void);
     
     int _errCode;
@@ -69,6 +76,9 @@ private:
     MyScene *_runningScene;
     MyRenderer *_mainRenderer;
     std::map<int, std::string> _glErrorMap;
+    
+    // fps
+    float _framesPerSecond;
     
     static MyDirector* _sharedDirector;
     

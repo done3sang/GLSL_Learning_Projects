@@ -11,10 +11,18 @@
 #include "MyTemplate.hpp"
 #include "MyAutoreleasePool.hpp"
 
+#ifdef DEBUG
+#include <iostream>
+static int refObjectCount(0);
+#endif
+
 MINE_NAMESPACE_BEGIN
 
 MyRef::MyRef(void):
 _refCount(1) {
+#ifdef DEBUG
+    std::cout << "MyRef::MyRef = " << ++refObjectCount << "\n";
+#endif
     autorelease();
 }
 
@@ -24,8 +32,11 @@ _refCount(1) {
 }
 
 void MyRef::release(void) {
-    assert(_refCount > 0 && "Reference count should be greater than 0");    
+    assert(_refCount > 0 && "Reference count should be greater than 0");
     if(0 == --_refCount) {
+#ifdef DEBUG
+        std::cout << "MyRef::release = " << --refObjectCount << "\n";
+#endif
         delete this;
     }
 }

@@ -31,18 +31,20 @@ MyShader::~MyShader(void) {
     deleteShader();
 }
 
-MyShader* MyShader::createWithShaderType(const std::string &shaderName, int shaderType) {
+MyShader* MyShader::createWithShaderType(const std::string &shaderName,
+                                         int shaderType) {
     MyShader *shader = new MyShader(shaderName, shaderType);
     shader->refName("MyShader");
     return shader;
 }
 
-
-MyShader* MyShader::createWithShaderTypeAndPath(const std::string &shaderName, int shaderType, const std::string &filepath) {
-    MyShader *shader = new MyShader(shaderName, shaderType, filepath);
+MyShader* MyShader::createWithShaderTypeAndPath(const std::string &shaderName,
+                                                int shaderType,
+                                                const std::string &filepath) {
+    MyShader *shader = new MyShader(shaderName, shaderType);
     shader->refName("MyShader");
     
-    return shader;
+    return shader->loadFromFile(filepath) ? shader : nullptr;
 }
 
 bool MyShader::validate(void) const {

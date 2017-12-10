@@ -2,26 +2,14 @@
 <!-- what's this in english -->
 <root>
     <shader>
-        <basic>
-            <vertex>basic.vert</vertex>
-            <fragment>basic.frag</fragment>
-            <geometry>
-                <cube>cube</cube>
-                <triangle>triange</triangle>
-                <rectangle>
-                    <square>square</square>
-                    <rect>rect</rect>
-                </rectangle>
-            </geometry>
-        </basic>
-        <uniformblock>
-            <vertex>uniformblock.vert</vertex>
-            <fragment>uniformblock.frag</fragment>
-        </uniformblock>
-        <uniform>
-            <vertex>uniform.vert</vertex>
-            <fragment>uniform.frag</fragment>
-        </uniform>
+        <vertex>
+            <basic_vert>./Shader/basic.vert</basic_vert>
+            <uniformblock_vert>./Shader/uniformblock.vert</uniformblock_vert>
+        </vertex>
+        <fragment>
+            <basic_frag>./Shader/basic.frag</basic_frag>
+            <uniformblock_frag>./Shader/uniformblock.frag</uniformblock_frag>
+        </fragment>
     </shader>
     <program>
         <basic>

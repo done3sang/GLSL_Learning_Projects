@@ -167,6 +167,7 @@ void MyProgram::deleteProgram(void) {
     }
     
     clearShader();
+    clearUniformBlock();
     glDeleteProgram(_programId);
     _programId = 0;
 }
@@ -276,7 +277,7 @@ int MyProgram::uniformBlockIndex(const std::string &blockName, const std::string
         useProgram();
         glBindBufferBase(MyBufferObject::kBufferUniform, blockIndex, blockBuffer->bufferId());
         
-        _uniformBlock[blockIndex] = blockBuffer;
+        addUniformBlock(blockIndex, blockBuffer);
     } else {
         blockBuffer = bufferIter->second;
     }
@@ -293,6 +294,19 @@ int MyProgram::uniformBlockIndex(const std::string &blockName, const std::string
     blockBuffer->bufferSubData(offset, valueSize, valueptr);
     
     return MyErrorDesc::kErrOk;
+}
+
+void MyProgram::addUniformBlock(int blockIndex, Mine::MyBufferObject *blockBuffer) {
+    assert(blockBuffer && _uniformBlock.end() == _uniformBlock.find(blockIndex));
+    _uniformBlock[blockIndex] = blockBuffer;
+    blockBuffer->addRef();
+}
+
+void MyProgram::clearUniformBlock(void) {
+    for(auto &iter: _uniformBlock) {
+        iter.second->release();
+    }
+    _uniformBlock.clear();
 }
 
 std::string MyProgram::activeUniform(void) const {

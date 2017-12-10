@@ -12,6 +12,8 @@
 #include "MyAutoreleasePool.hpp"
 #include "MyScene.hpp"
 #include "MyFileUtil.hpp"
+#include "MyShadingManager.hpp"
+#include "MyTimerManager.hpp"
 #include "MyDirector.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -66,6 +68,8 @@ void MyDirector::destroy(void) {
     
     MyFileUtil::closeFileUtil();
     MyErrorDesc::closeErrorDesc();
+    MyTimerManager::closeTimerManager();
+    MyShadingManager::sharedShadingManager()->closeShadingManager();
     MyAutoreleasePool::closeAutoreleasePool();
     
     if(_glfwWindow) {
@@ -123,13 +127,22 @@ void MyDirector::runningScene(MyScene *scene) {
 }
 
 void MyDirector::runMainLoop(void) {
+    MyTimerManager *timerMgr = MyTimerManager::sharedTimerManager();
+    double fpstime(0.0f);
+    double frames(0.0f);
+    
+    timerMgr->beginTiming();
+    
+    fpstime = timerMgr->currentTime();
     while(!windowShouldClose()) {
+        timerMgr->beginTick();
+        
         if(_mainRenderer) {
             _mainRenderer->prepareRender();
         }
         
         if(_runningScene) {
-            _runningScene->update(0.016f);
+            _runningScene->update(static_cast<float>(timerMgr->tickTime()));
             _runningScene->render();
         }
         
@@ -138,7 +151,21 @@ void MyDirector::runMainLoop(void) {
         }
         
         glfwPollEvents();
+        
+        timerMgr->endTick();
+        
+        ++frames;
+        if(60.0 <= frames) {
+            fpstime = timerMgr->currentTime() - fpstime;
+            _framesPerSecond = frames/fpstime;
+            fpstime = timerMgr->currentTime();
+            frames = 0.0f;
+            
+            MyAutoreleasePool::sharedAutoreleasePool()->clearPool();
+        }
     }
+    
+    timerMgr->stopTiming();
 }
 
 void MyDirector::initialize(void) {
@@ -172,6 +199,9 @@ bool MyDirector::createWindow(int width, int height, const std::string &title) {
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, myWindowResizeCallback);
     _glfwWindow = window;
+    
+    // initializing in valid opengl context
+    MyShadingManager::sharedShadingManager()->loadShaderConfig("./Shader/shader.xml");
     
     return true;
 }

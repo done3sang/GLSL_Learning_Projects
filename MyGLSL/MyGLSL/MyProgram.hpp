@@ -61,6 +61,8 @@ public:
     int uniformInteger(const std::string &name, int value);
     int uniformBlockIndex(const std::string &blockName, const std::string &indexName, int valueSize, void *valueptr);
     
+    void clearUniformBlock(void);
+    
     std::string activeUniform(void) const;
     
     static MyProgram* runningProgram(void);
@@ -84,6 +86,7 @@ private:
     static MyProgram *_runningProgram;
     
     int uniformLocation(const std::string &name);
+    void addUniformBlock(int blockIndex, MyBufferObject *blockBuffer);
 };
 
 MINE_NAMESPACE_END

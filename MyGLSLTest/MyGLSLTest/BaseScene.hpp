@@ -19,6 +19,7 @@ public:
     bool initialize(void);
     void update(float deltaTime);
     void render(void);
+    void destroy(void) {}
     
     static BaseScene* create(void);
     

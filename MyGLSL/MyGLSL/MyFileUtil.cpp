@@ -20,7 +20,6 @@ MyFileUtil* MyFileUtil::sharedFileUtil(void) {
     if(!_sharedFileUtil) {
         _sharedFileUtil = new MyFileUtil;
         _sharedFileUtil->refName("MyFileUtil");
-        _sharedFileUtil->retain();
     }
     
     return _sharedFileUtil;

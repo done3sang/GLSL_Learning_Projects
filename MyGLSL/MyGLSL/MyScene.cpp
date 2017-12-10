@@ -12,12 +12,4 @@
 
 MINE_NAMESPACE_BEGIN
 
-MyScene* MyScene::create(void) {
-    return nullptr;
-}
-
-MyScene::~MyScene(void) {
-    destroy();
-}
-
 MINE_NAMESPACE_END
