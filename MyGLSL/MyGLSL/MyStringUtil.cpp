@@ -6,4 +6,5 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#include "MyTemplate.hpp"
 #include "MyStringUtil.hpp"

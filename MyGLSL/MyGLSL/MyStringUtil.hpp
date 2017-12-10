@@ -9,12 +9,14 @@
 #ifndef MyStringUtil_hpp
 #define MyStringUtil_hpp
 
-#include "MyTemplate.hpp"
+#include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
 MINE_NAMESPACE_BEGIN
+
+class MyStatic;
 
 class MyStringUtil: private MyStatic {
 public:
