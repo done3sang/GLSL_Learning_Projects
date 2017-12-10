@@ -43,7 +43,7 @@ private:
     MyStatic(const MyStatic&);
     ~MyStatic(void);
     
-    MyStatic& operator=(const MyStatic);
+    MyStatic& operator=(const MyStatic&);
 };
 
 class MySingletonRef: public MyRef {

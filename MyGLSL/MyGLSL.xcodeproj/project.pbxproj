@@ -116,7 +116,6 @@
 		1401E5E21FCC0AE500D83812 /* MyGLSL */ = {
 			isa = PBXGroup;
 			children = (
-				25A889811FDD121D0078F455 /* mytimer */,
 				14BBD6571FDA59F800EFBF0D /* myxml */,
 				14EF00771FD69FD70048F4D5 /* MyDirector.hpp */,
 				14EF00761FD69FD70048F4D5 /* MyDirector.cpp */,
@@ -170,13 +169,6 @@
 				14BBD65C1FDA655300EFBF0D /* MyXMLNode.cpp */,
 			);
 			path = myxml;
-			sourceTree = "<group>";
-		};
-		25A889811FDD121D0078F455 /* mytimer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = mytimer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
