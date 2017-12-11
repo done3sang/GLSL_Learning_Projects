@@ -285,7 +285,7 @@ int MyProgram::uniformBlockIndex(const std::string &blockName, const std::string
     GLuint index;
     const GLchar *indexArr[] = {indexName.c_str()};
     glGetUniformIndices(_programId, 1, indexArr, &index);
-    if(index < 0 ) {
+    if(static_cast<int>(index) < 0 ) {
         return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramUniformBlockIndexNotExists);
     }
     

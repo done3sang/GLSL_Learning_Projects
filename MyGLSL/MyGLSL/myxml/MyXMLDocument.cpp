@@ -71,7 +71,7 @@ bool MyXMLDocument::parseXML(const std::string &xmldata) {
     
     std::stack<std::string> docstack;
     std::stack<MyXMLNode*> nodestack, firststack;
-    MyXMLNode *firstnode = nullptr, *currnode, *prevnode, *childnode, *siblingnode;
+    MyXMLNode *currnode, *prevnode;
     MyXMLNode *rootnode = nullptr;
     std::string::size_type currpos(0), nextpos, keypos, keyendpos, valpos(0), valendpos(0);
     std::string key, value;
@@ -180,11 +180,10 @@ bool MyXMLDocument::parseXML(const std::string &xmldata) {
                         rootnode = currnode;
                     } else {
                         prevnode = nodestack.top();
-                        childnode = prevnode->childNode();
                         if(0 == valpos) {
                             firststack.pop();
                         }
-                        if(childnode) {
+                        if(prevnode->childNode()) {
                             firststack.top()->siblingNode(currnode);
                             firststack.pop();
                         } else {

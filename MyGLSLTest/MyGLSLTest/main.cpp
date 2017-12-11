@@ -34,6 +34,11 @@ void printXMLNode(const MyXMLNode *xmlnode, std::string &desc);
 std::string printXMLDoc(const MyXMLDocument *doc);
 
 int main(int argc, const char * argv[]) {
+    unsigned int val(-1);
+    int test(0);
+    
+    test = static_cast<int>(val);
+    std::cout << "val,  test = " << val << ", " << test << "\n";
     /*
     MyDirector::sharedDirector();
     MyErrorDesc::sharedErrorDesc()->errorCallback(MyErrorDisposer::create());
