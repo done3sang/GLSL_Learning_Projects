@@ -32,9 +32,25 @@ public:
     void actorPosition(const glm::vec3 &pos) { _actorPosition = pos; }
     const glm::vec3& actorPosition(void) const { return _actorPosition; }
     
+    MyActorComponent* componentByType(int compType) const {
+        auto iter = _actorComponents.find(compType);
+        return _actorComponents.end() != iter ? iter->second: nullptr;
+    }
+    bool containComponent(int compType) const {
+        return _actorComponents.end() != _actorComponents.find(compType);
+    }
+    bool containComponent(const MyActorComponent *comp) const;
+    
+    bool addComponent(MyActorComponent *comp);
+    bool deleteComponent(MyActorComponent *comp);
+    bool deleteComponent(int compType);
+    
+    void clearComponent(void);
+    
 protected:
-    MyActor(const std::string &name = "Actor"): _actorName(name), _actorId(++_sharedActorCount) {}
-    ~MyActor(void) {}
+    MyActor(const std::string &name = "Actor"):
+    _actorName(name), _actorId(++_sharedActorCount) {}
+    ~MyActor(void) { destroy(); }
     
 private:
     int _actorId;
@@ -45,6 +61,7 @@ private:
     static int _sharedActorCount;
     
     void actorId(int id) { _actorId = id; }
+    void destroy(void);
 };
 
 MINE_NAMESPACE_END

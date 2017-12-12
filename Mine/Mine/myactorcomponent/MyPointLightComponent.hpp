@@ -22,12 +22,8 @@ class MyLightComponent;
 class MyPointLightComponent: public MyLightComponent {
 public:
     static MyPointLightComponent* create(void);
-    static MyPointLightComponent* createWithPosition(const glm::vec3 &pos);
     
 public:
-    const glm::vec3& lightPosition(void) const { return _lightPosition; }
-    void lightPosition(const glm::vec3 &pos) { _lightPosition = pos; }
-    
     int attenuationType(void) const { return _attenuationType; }
     void attenuationType(int type) { _attenuationType = type; }
     
@@ -36,12 +32,11 @@ public:
     
 private:
     explicit
-    MyPointLightComponent(const glm::vec3 &pos = glm::vec3(0.0f)):
+    MyPointLightComponent(void):
     MyLightComponent(MyActorComponent::kComponentTypePointLight, "Point Light"),
     _attenuationDistance(100.0f), _attenuationType(MyLightComponent::kLightAttenuationQuadratic) {}
     ~MyPointLightComponent(void) {}
     
-    glm::vec3 _lightPosition;
     float _attenuationDistance;
     int _attenuationType;
 };

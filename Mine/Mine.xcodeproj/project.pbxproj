@@ -49,6 +49,22 @@
 		14E6D0B61FDE894500999ED6 /* MyLightComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E6D0B41FDE894500999ED6 /* MyLightComponent.hpp */; };
 		14E6D0B91FDE8AA900999ED6 /* MyPointLightComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E6D0B71FDE8AA900999ED6 /* MyPointLightComponent.cpp */; };
 		14E6D0BA1FDE8AA900999ED6 /* MyPointLightComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E6D0B81FDE8AA900999ED6 /* MyPointLightComponent.hpp */; };
+		14EBA11A1FDF8021007972D0 /* MyDirectionalLightComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EBA1181FDF8021007972D0 /* MyDirectionalLightComponent.cpp */; };
+		14EBA11B1FDF8021007972D0 /* MyDirectionalLightComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA1191FDF8021007972D0 /* MyDirectionalLightComponent.hpp */; };
+		14EBA11E1FDF816C007972D0 /* MySpotLightComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EBA11C1FDF816C007972D0 /* MySpotLightComponent.cpp */; };
+		14EBA11F1FDF816C007972D0 /* MySpotLightComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA11D1FDF816C007972D0 /* MySpotLightComponent.hpp */; };
+		14EBA1231FDF82A7007972D0 /* MyMathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EBA1211FDF82A7007972D0 /* MyMathUtil.cpp */; };
+		14EBA1241FDF82A7007972D0 /* MyMathUtil.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA1221FDF82A7007972D0 /* MyMathUtil.hpp */; };
+		14EBA1271FDFAAA6007972D0 /* MyPointLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EBA1251FDFAAA6007972D0 /* MyPointLight.cpp */; };
+		14EBA1281FDFAAA6007972D0 /* MyPointLight.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA1261FDFAAA6007972D0 /* MyPointLight.hpp */; };
+		14EBA12B1FDFAFD7007972D0 /* MyDirectionalLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EBA1291FDFAFD7007972D0 /* MyDirectionalLight.cpp */; };
+		14EBA12C1FDFAFD7007972D0 /* MyDirectionalLight.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA12A1FDFAFD7007972D0 /* MyDirectionalLight.hpp */; };
+		14EBA12F1FDFB170007972D0 /* MySpotLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EBA12D1FDFB170007972D0 /* MySpotLight.cpp */; };
+		14EBA1301FDFB170007972D0 /* MySpotLight.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA12E1FDFB170007972D0 /* MySpotLight.hpp */; };
+		14EBA1331FDFB7CC007972D0 /* MyModelComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EBA1311FDFB7CC007972D0 /* MyModelComponent.cpp */; };
+		14EBA1341FDFB7CC007972D0 /* MyModelComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA1321FDFB7CC007972D0 /* MyModelComponent.hpp */; };
+		14EBA1371FDFBBFF007972D0 /* MyMemoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EBA1351FDFBBFF007972D0 /* MyMemoryManager.cpp */; };
+		14EBA1381FDFBBFF007972D0 /* MyMemoryManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA1361FDFBBFF007972D0 /* MyMemoryManager.hpp */; };
 		14EF00741FD69BEA0048F4D5 /* MyScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EF00721FD69BEA0048F4D5 /* MyScene.cpp */; };
 		14EF00751FD69BEA0048F4D5 /* MyScene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EF00731FD69BEA0048F4D5 /* MyScene.hpp */; };
 		14EF00781FD69FD70048F4D5 /* MyDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EF00761FD69FD70048F4D5 /* MyDirector.cpp */; };
@@ -59,7 +75,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1401E5E01FCC0AE500D83812 /* libMyGLSL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMyGLSL.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1401E5E01FCC0AE500D83812 /* libMine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1401E5EE1FCC0EE100D83812 /* MyFileUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyFileUtil.cpp; sourceTree = "<group>"; };
 		1401E5EF1FCC0EE100D83812 /* MyFileUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyFileUtil.hpp; sourceTree = "<group>"; };
 		1401E5F21FCC0F0600D83812 /* MyPrecompiled.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyPrecompiled.hpp; sourceTree = "<group>"; };
@@ -103,6 +119,22 @@
 		14E6D0B41FDE894500999ED6 /* MyLightComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyLightComponent.hpp; sourceTree = "<group>"; };
 		14E6D0B71FDE8AA900999ED6 /* MyPointLightComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyPointLightComponent.cpp; sourceTree = "<group>"; };
 		14E6D0B81FDE8AA900999ED6 /* MyPointLightComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyPointLightComponent.hpp; sourceTree = "<group>"; };
+		14EBA1181FDF8021007972D0 /* MyDirectionalLightComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyDirectionalLightComponent.cpp; sourceTree = "<group>"; };
+		14EBA1191FDF8021007972D0 /* MyDirectionalLightComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyDirectionalLightComponent.hpp; sourceTree = "<group>"; };
+		14EBA11C1FDF816C007972D0 /* MySpotLightComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MySpotLightComponent.cpp; sourceTree = "<group>"; };
+		14EBA11D1FDF816C007972D0 /* MySpotLightComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MySpotLightComponent.hpp; sourceTree = "<group>"; };
+		14EBA1211FDF82A7007972D0 /* MyMathUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyMathUtil.cpp; sourceTree = "<group>"; };
+		14EBA1221FDF82A7007972D0 /* MyMathUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyMathUtil.hpp; sourceTree = "<group>"; };
+		14EBA1251FDFAAA6007972D0 /* MyPointLight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyPointLight.cpp; sourceTree = "<group>"; };
+		14EBA1261FDFAAA6007972D0 /* MyPointLight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyPointLight.hpp; sourceTree = "<group>"; };
+		14EBA1291FDFAFD7007972D0 /* MyDirectionalLight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyDirectionalLight.cpp; sourceTree = "<group>"; };
+		14EBA12A1FDFAFD7007972D0 /* MyDirectionalLight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyDirectionalLight.hpp; sourceTree = "<group>"; };
+		14EBA12D1FDFB170007972D0 /* MySpotLight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MySpotLight.cpp; sourceTree = "<group>"; };
+		14EBA12E1FDFB170007972D0 /* MySpotLight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MySpotLight.hpp; sourceTree = "<group>"; };
+		14EBA1311FDFB7CC007972D0 /* MyModelComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyModelComponent.cpp; sourceTree = "<group>"; };
+		14EBA1321FDFB7CC007972D0 /* MyModelComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyModelComponent.hpp; sourceTree = "<group>"; };
+		14EBA1351FDFBBFF007972D0 /* MyMemoryManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyMemoryManager.cpp; sourceTree = "<group>"; };
+		14EBA1361FDFBBFF007972D0 /* MyMemoryManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyMemoryManager.hpp; sourceTree = "<group>"; };
 		14EF00721FD69BEA0048F4D5 /* MyScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyScene.cpp; sourceTree = "<group>"; };
 		14EF00731FD69BEA0048F4D5 /* MyScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyScene.hpp; sourceTree = "<group>"; };
 		14EF00761FD69FD70048F4D5 /* MyDirector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyDirector.cpp; sourceTree = "<group>"; };
@@ -127,7 +159,7 @@
 		1401E5D71FCC0AE500D83812 = {
 			isa = PBXGroup;
 			children = (
-				1401E5E21FCC0AE500D83812 /* MyGLSL */,
+				1401E5E21FCC0AE500D83812 /* Mine */,
 				1401E5E11FCC0AE500D83812 /* Products */,
 				1401E5FB1FCD007300D83812 /* Frameworks */,
 			);
@@ -136,14 +168,15 @@
 		1401E5E11FCC0AE500D83812 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1401E5E01FCC0AE500D83812 /* libMyGLSL.a */,
+				1401E5E01FCC0AE500D83812 /* libMine.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1401E5E21FCC0AE500D83812 /* MyGLSL */ = {
+		1401E5E21FCC0AE500D83812 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				14EBA1201FDF8291007972D0 /* mymath */,
 				14E6D0911FDE447000999ED6 /* myactor */,
 				14E6D0AA1FDE7E1800999ED6 /* myactorcomponent */,
 				14E6D08C1FDE31A800999ED6 /* mylight */,
@@ -152,6 +185,8 @@
 				14EF00761FD69FD70048F4D5 /* MyDirector.cpp */,
 				144349181FD13B20006DD6D2 /* MyAutoreleasePool.hpp */,
 				144349171FD13B20006DD6D2 /* MyAutoreleasePool.cpp */,
+				14EBA1361FDFBBFF007972D0 /* MyMemoryManager.hpp */,
+				14EBA1351FDFBBFF007972D0 /* MyMemoryManager.cpp */,
 				25A889831FDD12E10078F455 /* MyTimerManager.hpp */,
 				25A889821FDD12E10078F455 /* MyTimerManager.cpp */,
 				1401E5EF1FCC0EE100D83812 /* MyFileUtil.hpp */,
@@ -180,7 +215,7 @@
 				14EF00721FD69BEA0048F4D5 /* MyScene.cpp */,
 				14F9EFC81FD79B7E00EAF6E1 /* Mine.hpp */,
 			);
-			path = MyGLSL;
+			path = Mine;
 			sourceTree = "<group>";
 		};
 		1401E5FB1FCD007300D83812 /* Frameworks */ = {
@@ -218,6 +253,12 @@
 			children = (
 				14E6D0A31FDE6F4F00999ED6 /* MyActor.hpp */,
 				14E6D0A21FDE6F4F00999ED6 /* MyActor.cpp */,
+				14EBA1261FDFAAA6007972D0 /* MyPointLight.hpp */,
+				14EBA1251FDFAAA6007972D0 /* MyPointLight.cpp */,
+				14EBA12A1FDFAFD7007972D0 /* MyDirectionalLight.hpp */,
+				14EBA1291FDFAFD7007972D0 /* MyDirectionalLight.cpp */,
+				14EBA12E1FDFB170007972D0 /* MySpotLight.hpp */,
+				14EBA12D1FDFB170007972D0 /* MySpotLight.cpp */,
 			);
 			path = myactor;
 			sourceTree = "<group>";
@@ -233,8 +274,23 @@
 				14E6D0B31FDE894500999ED6 /* MyLightComponent.cpp */,
 				14E6D0B81FDE8AA900999ED6 /* MyPointLightComponent.hpp */,
 				14E6D0B71FDE8AA900999ED6 /* MyPointLightComponent.cpp */,
+				14EBA1191FDF8021007972D0 /* MyDirectionalLightComponent.hpp */,
+				14EBA1181FDF8021007972D0 /* MyDirectionalLightComponent.cpp */,
+				14EBA11D1FDF816C007972D0 /* MySpotLightComponent.hpp */,
+				14EBA11C1FDF816C007972D0 /* MySpotLightComponent.cpp */,
+				14EBA1321FDFB7CC007972D0 /* MyModelComponent.hpp */,
+				14EBA1311FDFB7CC007972D0 /* MyModelComponent.cpp */,
 			);
 			path = myactorcomponent;
+			sourceTree = "<group>";
+		};
+		14EBA1201FDF8291007972D0 /* mymath */ = {
+			isa = PBXGroup;
+			children = (
+				14EBA1221FDF82A7007972D0 /* MyMathUtil.hpp */,
+				14EBA1211FDF82A7007972D0 /* MyMathUtil.cpp */,
+			);
+			path = mymath;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,20 +300,28 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14EBA12C1FDFAFD7007972D0 /* MyDirectionalLight.hpp in Headers */,
+				14EBA1281FDFAAA6007972D0 /* MyPointLight.hpp in Headers */,
 				14F9EFC91FD79B9D00EAF6E1 /* Mine.hpp in Headers */,
 				14EF00791FD69FD70048F4D5 /* MyDirector.hpp in Headers */,
 				1443490E1FD12BB3006DD6D2 /* MyRef.hpp in Headers */,
 				1443491A1FD13B20006DD6D2 /* MyAutoreleasePool.hpp in Headers */,
+				14EBA11F1FDF816C007972D0 /* MySpotLightComponent.hpp in Headers */,
 				1401E6011FCD11EA00D83812 /* MyProgram.hpp in Headers */,
 				14E6D0901FDE36E800999ED6 /* MyLight.hpp in Headers */,
 				1401E5F61FCC13BD00D83812 /* MyErrorDesc.hpp in Headers */,
 				1451AAD61FD8F1FB007D9335 /* MyShadingManager.hpp in Headers */,
+				14EBA11B1FDF8021007972D0 /* MyDirectionalLightComponent.hpp in Headers */,
+				14EBA1241FDF82A7007972D0 /* MyMathUtil.hpp in Headers */,
+				14EBA1301FDFB170007972D0 /* MySpotLight.hpp in Headers */,
 				14B24D911FCEAC4800121A65 /* MyVertexArrayObject.hpp in Headers */,
 				25A889851FDD12E10078F455 /* MyTimerManager.hpp in Headers */,
 				14E6D0AE1FDE7E4400999ED6 /* MyActorComponent.hpp in Headers */,
+				14EBA1381FDFBBFF007972D0 /* MyMemoryManager.hpp in Headers */,
 				14E6D0B61FDE894500999ED6 /* MyLightComponent.hpp in Headers */,
 				14E6D0A91FDE759D00999ED6 /* MyDirectoinalLight.hpp in Headers */,
 				1401E5F11FCC0EE100D83812 /* MyFileUtil.hpp in Headers */,
+				14EBA1341FDFB7CC007972D0 /* MyModelComponent.hpp in Headers */,
 				1401E5FA1FCCFC6600D83812 /* MyShader.hpp in Headers */,
 				14E6D0A51FDE6F4F00999ED6 /* MyActor.hpp in Headers */,
 				14BBD65F1FDA655300EFBF0D /* MyXMLNode.hpp in Headers */,
@@ -275,9 +339,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1401E5DF1FCC0AE500D83812 /* MyGLSL */ = {
+		1401E5DF1FCC0AE500D83812 /* Mine */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1401E5EB1FCC0AE500D83812 /* Build configuration list for PBXNativeTarget "MyGLSL" */;
+			buildConfigurationList = 1401E5EB1FCC0AE500D83812 /* Build configuration list for PBXNativeTarget "Mine" */;
 			buildPhases = (
 				1401E5DC1FCC0AE500D83812 /* Sources */,
 				1401E5DD1FCC0AE500D83812 /* Frameworks */,
@@ -287,9 +351,9 @@
 			);
 			dependencies = (
 			);
-			name = MyGLSL;
+			name = Mine;
 			productName = MyGLSL;
-			productReference = 1401E5E01FCC0AE500D83812 /* libMyGLSL.a */;
+			productReference = 1401E5E01FCC0AE500D83812 /* libMine.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -307,7 +371,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1401E5DB1FCC0AE500D83812 /* Build configuration list for PBXProject "MyGLSL" */;
+			buildConfigurationList = 1401E5DB1FCC0AE500D83812 /* Build configuration list for PBXProject "Mine" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -319,7 +383,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1401E5DF1FCC0AE500D83812 /* MyGLSL */,
+				1401E5DF1FCC0AE500D83812 /* Mine */,
 			);
 		};
 /* End PBXProject section */
@@ -332,17 +396,24 @@
 				14B24D901FCEAC4800121A65 /* MyVertexArrayObject.cpp in Sources */,
 				14E6D0A41FDE6F4F00999ED6 /* MyActor.cpp in Sources */,
 				14E6D0B51FDE894500999ED6 /* MyLightComponent.cpp in Sources */,
+				14EBA1231FDF82A7007972D0 /* MyMathUtil.cpp in Sources */,
+				14EBA12F1FDFB170007972D0 /* MySpotLight.cpp in Sources */,
 				14BBD65A1FDA5A3A00EFBF0D /* MyXMLDocument.cpp in Sources */,
+				14EBA11E1FDF816C007972D0 /* MySpotLightComponent.cpp in Sources */,
 				144349011FCEBA61006DD6D2 /* MyBufferObject.cpp in Sources */,
 				1401E6001FCD11EA00D83812 /* MyProgram.cpp in Sources */,
+				14EBA1271FDFAAA6007972D0 /* MyPointLight.cpp in Sources */,
 				1401E5F51FCC13BD00D83812 /* MyErrorDesc.cpp in Sources */,
 				25A889841FDD12E10078F455 /* MyTimerManager.cpp in Sources */,
 				144349191FD13B20006DD6D2 /* MyAutoreleasePool.cpp in Sources */,
+				14EBA1331FDFB7CC007972D0 /* MyModelComponent.cpp in Sources */,
 				14EF00781FD69FD70048F4D5 /* MyDirector.cpp in Sources */,
 				14E6D0B91FDE8AA900999ED6 /* MyPointLightComponent.cpp in Sources */,
 				144349051FD103CC006DD6D2 /* MyRenderer.cpp in Sources */,
+				14EBA12B1FDFAFD7007972D0 /* MyDirectionalLight.cpp in Sources */,
 				1401E5F01FCC0EE100D83812 /* MyFileUtil.cpp in Sources */,
 				14E6D0AD1FDE7E4400999ED6 /* MyActorComponent.cpp in Sources */,
+				14EBA1371FDFBBFF007972D0 /* MyMemoryManager.cpp in Sources */,
 				1451AAD51FD8F1FB007D9335 /* MyShadingManager.cpp in Sources */,
 				14E6D0A81FDE759D00999ED6 /* MyDirectoinalLight.cpp in Sources */,
 				14AB95F41FDA78FF00CE8617 /* MyStringUtil.cpp in Sources */,
@@ -352,6 +423,7 @@
 				1443490D1FD12BB3006DD6D2 /* MyRef.cpp in Sources */,
 				14EF00741FD69BEA0048F4D5 /* MyScene.cpp in Sources */,
 				14E6D08F1FDE36E800999ED6 /* MyLight.cpp in Sources */,
+				14EBA11A1FDF8021007972D0 /* MyDirectionalLightComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +566,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1401E5DB1FCC0AE500D83812 /* Build configuration list for PBXProject "MyGLSL" */ = {
+		1401E5DB1FCC0AE500D83812 /* Build configuration list for PBXProject "Mine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1401E5E91FCC0AE500D83812 /* Debug */,
@@ -503,7 +575,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1401E5EB1FCC0AE500D83812 /* Build configuration list for PBXNativeTarget "MyGLSL" */ = {
+		1401E5EB1FCC0AE500D83812 /* Build configuration list for PBXNativeTarget "Mine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1401E5EC1FCC0AE500D83812 /* Debug */,

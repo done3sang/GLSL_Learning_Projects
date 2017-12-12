@@ -8,23 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		144349281FD14B6F006DD6D2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144349271FD14B6F006DD6D2 /* main.cpp */; };
-		1443493B1FD14C03006DD6D2 /* libMyGLSL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 144349391FD14BBC006DD6D2 /* libMyGLSL.a */; };
 		144349461FD14E4F006DD6D2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144349451FD14E4A006DD6D2 /* OpenGL.framework */; };
 		144349471FD14E5A006DD6D2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144349441FD14E44006DD6D2 /* Cocoa.framework */; };
 		144349491FD14E67006DD6D2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144349481FD14E62006DD6D2 /* IOKit.framework */; };
 		1443494B1FD14E74006DD6D2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1443494A1FD14E6E006DD6D2 /* CoreVideo.framework */; };
 		144396DB1FD6A4480068D685 /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396D91FD6A4480068D685 /* BaseScene.cpp */; };
 		144396DF1FD6ADF90068D685 /* UniformScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396DD1FD6ADF90068D685 /* UniformScene.cpp */; };
+		1476A6281FDFC05100820B28 /* libMine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1476A6271FDFC04700820B28 /* libMine.a */; };
 		14F9EFE01FD7CF1C00EAF6E1 /* Shader in Resources */ = {isa = PBXBuildFile; fileRef = 14F9EFCA1FD79C8100EAF6E1 /* Shader */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		144349381FD14BBC006DD6D2 /* PBXContainerItemProxy */ = {
+		1476A6261FDFC04700820B28 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 144349341FD14BBC006DD6D2 /* MyGLSL.xcodeproj */;
+			containerPortal = 1476A6221FDFC04700820B28 /* Mine.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 1401E5E01FCC0AE500D83812;
-			remoteInfo = MyGLSL;
+			remoteInfo = Mine;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -43,7 +43,6 @@
 /* Begin PBXFileReference section */
 		144349241FD14B6F006DD6D2 /* MyGLSLTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MyGLSLTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		144349271FD14B6F006DD6D2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		144349341FD14BBC006DD6D2 /* MyGLSL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MyGLSL.xcodeproj; path = ../MyGLSL/MyGLSL.xcodeproj; sourceTree = "<group>"; };
 		144349441FD14E44006DD6D2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		144349451FD14E4A006DD6D2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		144349481FD14E62006DD6D2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -52,6 +51,7 @@
 		144396DA1FD6A4480068D685 /* BaseScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseScene.hpp; sourceTree = "<group>"; };
 		144396DD1FD6ADF90068D685 /* UniformScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UniformScene.cpp; sourceTree = "<group>"; };
 		144396DE1FD6ADF90068D685 /* UniformScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UniformScene.hpp; sourceTree = "<group>"; };
+		1476A6221FDFC04700820B28 /* Mine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mine.xcodeproj; path = ../Mine/Mine.xcodeproj; sourceTree = "<group>"; };
 		14F9EFCA1FD79C8100EAF6E1 /* Shader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shader; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,11 +60,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1476A6281FDFC05100820B28 /* libMine.a in Frameworks */,
 				1443494B1FD14E74006DD6D2 /* CoreVideo.framework in Frameworks */,
 				144349491FD14E67006DD6D2 /* IOKit.framework in Frameworks */,
 				144349471FD14E5A006DD6D2 /* Cocoa.framework in Frameworks */,
 				144349461FD14E4F006DD6D2 /* OpenGL.framework in Frameworks */,
-				1443493B1FD14C03006DD6D2 /* libMyGLSL.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +74,7 @@
 		1443491B1FD14B6F006DD6D2 = {
 			isa = PBXGroup;
 			children = (
-				144349341FD14BBC006DD6D2 /* MyGLSL.xcodeproj */,
+				1476A6221FDFC04700820B28 /* Mine.xcodeproj */,
 				144349261FD14B6F006DD6D2 /* MyGLSLTest */,
 				14F9EFDF1FD7CEFD00EAF6E1 /* Resources */,
 				144349251FD14B6F006DD6D2 /* Products */,
@@ -102,14 +102,6 @@
 			path = MyGLSLTest;
 			sourceTree = "<group>";
 		};
-		144349351FD14BBC006DD6D2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				144349391FD14BBC006DD6D2 /* libMyGLSL.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		1443493A1FD14C03006DD6D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +111,14 @@
 				144349441FD14E44006DD6D2 /* Cocoa.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1476A6231FDFC04700820B28 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1476A6271FDFC04700820B28 /* libMine.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		14F9EFDF1FD7CEFD00EAF6E1 /* Resources */ = {
@@ -178,8 +178,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 144349351FD14BBC006DD6D2 /* Products */;
-					ProjectRef = 144349341FD14BBC006DD6D2 /* MyGLSL.xcodeproj */;
+					ProductGroup = 1476A6231FDFC04700820B28 /* Products */;
+					ProjectRef = 1476A6221FDFC04700820B28 /* Mine.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -190,11 +190,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		144349391FD14BBC006DD6D2 /* libMyGLSL.a */ = {
+		1476A6271FDFC04700820B28 /* libMine.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libMyGLSL.a;
-			remoteRef = 144349381FD14BBC006DD6D2 /* PBXContainerItemProxy */;
+			path = libMine.a;
+			remoteRef = 1476A6261FDFC04700820B28 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -351,7 +351,7 @@
 				DEVELOPMENT_TEAM = P5QERNN666;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
-					"$(PROJECT_DIR)/../MyGLSL/MyGLSL",
+					"$(PROJECT_DIR)/../Mine/Mine",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -368,7 +368,7 @@
 				DEVELOPMENT_TEAM = P5QERNN666;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
-					"$(PROJECT_DIR)/../MyGLSL/MyGLSL",
+					"$(PROJECT_DIR)/../Mine/Mine",
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;

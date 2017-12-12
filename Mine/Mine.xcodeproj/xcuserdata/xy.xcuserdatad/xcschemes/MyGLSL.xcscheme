@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1401E5DF1FCC0AE500D83812"
-               BuildableName = "libMyGLSL.a"
-               BlueprintName = "MyGLSL"
-               ReferencedContainer = "container:MyGLSL.xcodeproj">
+               BuildableName = "libMine.a"
+               BlueprintName = "Mine"
+               ReferencedContainer = "container:Mine.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,9 +48,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1401E5DF1FCC0AE500D83812"
-            BuildableName = "libMyGLSL.a"
-            BlueprintName = "MyGLSL"
-            ReferencedContainer = "container:MyGLSL.xcodeproj">
+            BuildableName = "libMine.a"
+            BlueprintName = "Mine"
+            ReferencedContainer = "container:Mine.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1401E5DF1FCC0AE500D83812"
-            BuildableName = "libMyGLSL.a"
-            BlueprintName = "MyGLSL"
-            ReferencedContainer = "container:MyGLSL.xcodeproj">
+            BuildableName = "libMine.a"
+            BlueprintName = "Mine"
+            ReferencedContainer = "container:Mine.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

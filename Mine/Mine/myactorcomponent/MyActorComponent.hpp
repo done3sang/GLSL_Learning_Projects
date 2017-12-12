@@ -39,6 +39,9 @@ public:
         return another && another->groupId() == groupId();
     }
     
+    bool componentEnabled(void) const { return _componentEnabled; }
+    void componentEnabled(bool enabled) { _componentEnabled = enabled; }
+    
 protected:
     explicit
     MyActorComponent(int compType,
@@ -46,7 +49,7 @@ protected:
                      int groupid = kComponentGroupNone):
     _componentType(compType),  _componentName(compName),
     _groupId(groupid), _componentEnabled(true) {}
-    ~MyActorComponent(void) {}
+    virtual ~MyActorComponent(void) {}
     
     void componentType(int type) { _componentType = type; }
     void groupId(int id) { _groupId = id; }
