@@ -11,6 +11,7 @@
 #include <vector>
 #include <type_traits>
 #include <stdexcept>
+#include <numeric>
 
 template<typename _T>
 struct has_func {
@@ -36,6 +37,22 @@ struct has_var_str {
     template<typename _U> static int check(...);
     
     static const bool value = sizeof(check<_T>(0)) == sizeof(char);
+};
+
+template<class _T>
+struct has_func_struct {
+    template<typename _U, void(_U::*)()> struct SFINAE {};
+    
+    template<class _U> static char test(SFINAE<_U, &_U::func>*);
+    template<class _U> static int test(...);
+    
+    static const bool value = sizeof(test<_T>(0)) == 1;
+};
+
+template<class _T>
+struct has_func_test:
+public std::integral_constant<bool, has_func_struct<_T>::value> {
+    
 };
 
 #define has_member(memName) \
@@ -116,6 +133,10 @@ decltype(lesslen)* comparefunc(const std::string&) {
 
 void xyf();
 struct xy {
+private:
+    void func(int) {}
+    
+public:
     friend void xyf() {}
     xy() { xyf(); }
     void g();
@@ -132,6 +153,8 @@ class yy {
 public:
     yy(int v = 100): y(v), x(y) {}
     ~yy(void) = default;
+    
+    void func(void) {}
 };
 
 class delegate {
@@ -158,6 +181,49 @@ private:
     bool h;
     bool o;
     bool t;
+};
+
+template<class... Args>
+void variadicFunc(Args &&...params) {
+    std::vector<int> ivec;
+    ivec.emplace_back(100);
+   // std::cout << params;... << std::endl;
+}
+
+template<class _T>
+struct is_pointer_type: public std::false_type {};
+
+template<class _T>
+struct is_pointer_type<_T*>: public std::true_type {};
+
+int int_sum(int a, int b) {
+    return a + b;
+}
+
+class myfoo {
+public:
+    std::string str;
+    myfoo(const std::string &s): str(s) {}
+    myfoo(const char *s): str(s) {}
+    myfoo(std::string &&s): str(s) {}
+    myfoo& operator=(const myfoo &a) & {
+        str = a.str;
+        return *this;
+    }
+    
+    myfoo& retFoo() {
+        return *this;
+    }
+    myfoo retVal() {
+        return *this;
+    }
+    
+    myfoo take() &&;
+    //myfoo take() const;
+    myfoo take() const &;
+    
+    myfoo take(int);
+    myfoo take(int) const;
 };
 
 int main(int argc, const char * argv[]) {
@@ -236,6 +302,8 @@ int main(int argc, const char * argv[]) {
         std::cout << "overflow = " <<  e.what() << std::endl;
     } catch(std::exception &e) {
         std::cout <<  e.what() << std::endl;
+    } catch(...) {
+        std::cout << "the exception catched by default" << std::endl;
     }
     
     // namespace&overload
@@ -243,7 +311,7 @@ int main(int argc, const char * argv[]) {
     nsprint('w');
     
     // constexpr
-    constexpr int myfoo = new_sz();
+    constexpr int myfoox = new_sz();
     
     // precompiled
     std::cout << "func = " << __func__ << "\n";
@@ -258,7 +326,154 @@ int main(int argc, const char * argv[]) {
     
     // constexpr constructor
     constexpr ConstDebug cd(false);
-    cd.seth(true);
+    //cd.seth(true);
     
+    // substitution failuare is not an error
+    std::cout << "SFINAE delegate= " << has_func_test<delegate>::value << std::endl;
+    std::cout << "SFINAE xy= " << has_func_test<xy>::value << std::endl;
+    std::cout << "SFINAE yy= " << has_func_test<yy>::value << std::endl;
+    
+    std::basic_string<char16_t, std::char_traits<char16_t>, std::allocator<char16_t>> what;
+    
+    std::vector<int> vi = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    auto it = vi.begin();
+    while(it != vi.end()) {
+        if(*it % 2) {
+            it = vi.insert(it, *it);
+            it += 2;
+        } else {
+            it = vi.erase(it);
+        }
+    }
+    vi.shrink_to_fit();
+    
+    int value = 100;
+    std::string vvstr(std::to_string(value));
+    
+    std::cout << "is_pointer(&value) = " << is_pointer_type<int>::value << std::endl;
+    std::cout << "is_pointer(&value) = " << is_pointer_type<int*>::value << std::endl;
+    std::cout << "is_pointer(&value) = " << is_pointer_type<decltype((value))>::value << std::endl;
+    
+    std::cout << "sum = " << std::accumulate(vi.begin(), vi.end(), value) << std::endl;
+    
+    auto iter = std::back_inserter(vi);
+    for(auto index = vi.size(); index < 20; ++index) {
+        std::cout << "iter, size = " << std::addressof(iter) << ", " << vi.size() << std::endl;
+        *iter = static_cast<int>(index);
+    }
+    
+    int arr[] = {0, 2, 4, 5};
+    std::begin(arr);
+    
+    // std::algorithm
+    std::vector<std::string> strv = {"the", "quick", "red", "fox", "jump", "over", "the", "red", "turtle"};
+    std::sort(strv.begin(), strv.end());
+    strv.erase(std::unique(strv.begin(), strv.end()), strv.end());
+    
+    auto shorter = [](const std::string &str1, const std::string &str2) -> bool {
+        return str1.length() < str2.length();
+    };
+    
+    // bind
+    auto bindFunc = std::bind(int_sum, std::placeholders::_1, 100);
+    std::cout << "value = " << bindFunc(1) << std::endl;
+    
+    // iterator
+    std::ostream_iterator<int> outer_iter(std::cout, " ");
+    for(auto vv: vi) {
+        //*outer_iter = vv;
+    }
+    std::copy(vi.cbegin(), vi.cend(), outer_iter);
+    std::cout << std::endl;
+    
+    // class
+    class dest {
+    public:
+        std::string mystr;
+        std::string *pstr;
+        dest(void): mystr("2hat"), pstr(&mystr) {}
+        ~dest(void) { std::cout << "dest over" << std::endl; pstr->~basic_string(); /*pstr = nullptr;*/ }
+    };
+        
+    class recur {
+    public:
+        int val;
+        int arr[4];
+        std::string str;
+        dest d;
+        ~recur(void) noexcept { str.~basic_string(); d.~dest(); }
+        
+        void print(void) {
+            std::cout << "val, arr = " << val << ", (" << arr << ", " << arr[0] << ", " << arr[1] << ", " << arr[2]
+            << ", " << arr[3] << std::endl;
+        }
+    };
+    
+    recur rr;
+    rr.val = 10;
+    rr.arr[0] = rr.arr[1] = rr.arr[2] = rr.arr[3] = 100;
+    
+    recur rrr(rr);
+    rr.print();
+    rrr.print();
+    
+    // rvalue
+    int &&rr1 = 42;
+    int &&rr2 = std::move(rr1);
+    int &&rr3 = static_cast<int&&>(rr2);
+    rr2 = static_cast<int&&>(rr2);
+    
+    class rvalue {
+    public:
+        std::string *str;
+        rvalue(void): str(new std::string("what")) {}
+        rvalue(const rvalue& another) {
+            str = new std::string(*another.str);
+            std::cout << "const rvaule&\n";
+        }
+        rvalue(rvalue &&r) {
+            std::cout << "const rvaule&&\n";
+            str = r.str;
+            r.str = nullptr;
+        }
+        ~rvalue(void) {
+            std::cout << str << "\n";
+            if(str) {
+                std::cout << *str << "\n";
+                delete str;
+            }
+        }
+        
+        rvalue& operator=(const rvalue &another) {
+            std::cout << "=(const rvaule&)\n";
+            std::string *p = new std::string(*another.str);
+            delete str;
+            str = p;
+            return *this;
+        }
+        rvalue& operator=(rvalue &&another) {
+            std::cout << "=(const rvaule&&)\n";
+            if(this != &another) {
+                str = another.str;
+                another.str = nullptr;
+            }
+            return *this;
+        }
+    };
+    
+    rvalue r1, r2;
+    rvalue r3(r1);
+    rvalue r4(std::move(r1));
+    
+    r2 = r3;
+    r4 = std::move(r2);
+    
+    myfoo f1("what"), f2("are");
+    f1 = f2;
+    f1.retFoo() = f2;
+    //f1.retVal() = f2;
+    f2 = f1.retVal();
+    
+    std::cout << "Hello World!\n";
     return 0;
 }

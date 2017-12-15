@@ -18,55 +18,64 @@
 MINE_NAMESPACE_BEGIN
 
 class MySingleton {
-protected:
-    MySingleton(void) = default;
-    virtual ~MySingleton(void) = default;
-    
-private:
+public:
     MySingleton(const MySingleton&) = delete;
+    MySingleton(MySingleton&&) = delete;
     MySingleton& operator=(const MySingleton&) = delete;
+    MySingleton& operator=(MySingleton&&) = delete;
+    
+protected:
+    MySingleton(void) {}
+    virtual ~MySingleton(void) {}
 };
 
 class MyUnique {
-protected:
-    MyUnique(void) = default;
-    virtual ~MyUnique(void) = default;
-    
-private:
+public:
     MyUnique(const MyUnique&) = delete;
+    MyUnique(MyUnique&&) = delete;
     MyUnique& operator=(const MyUnique&) = delete;
+    MyUnique& operator=(MyUnique&&) = delete;
+    
+protected:
+    MyUnique(void) {}
+    virtual ~MyUnique(void) {}
 };
 
 class MyStatic {
-private:
+public:
     MyStatic(void) = delete;
     MyStatic(const MyStatic&) = delete;
+    MyStatic(MyStatic&&) = delete;
     ~MyStatic(void) = delete;
     
     MyStatic& operator=(const MyStatic&) = delete;
+    MyStatic& operator=(MyStatic&&) = delete;
 };
 
 class MySingletonRef: public MyRef {
+public:
+    MySingletonRef(const MySingletonRef&) = delete;
+    MySingletonRef(const MySingletonRef&&) = delete;
+    MySingletonRef& operator=(const MySingletonRef&) = delete;
+    MySingletonRef& operator=(MySingletonRef&&) = delete;
+    
 protected:
     MySingletonRef(void) { MyRef::retain(); }
-    virtual ~MySingletonRef(void) = default;
+    virtual ~MySingletonRef(void) {}
     
     void addRef(void) { MyRef::addRef(); }
     void retain(void) { MyRef::retain(); }
-    
-private:
-    MySingletonRef(const MySingleton&) = delete;
-    MySingletonRef& operator=(const MySingleton&) = delete;
 };
 
 class MyUniqueRef: public MyRef {
-protected:
-    MyUniqueRef(void) = default;
-    virtual ~MyUniqueRef(void) = default;
+public:
+    MyUniqueRef(const MyUniqueRef&) = delete;
+    MyUniqueRef(MyUniqueRef&&) = delete;
+    MyUniqueRef& operator=(const MyUniqueRef&) = delete;
     
-private:
-    MyUniqueRef(const MyUnique&) = delete;
-    MyUniqueRef& operator=(const MyUnique&) = delete;
+protected:
+    MyUniqueRef(void) {}
+    virtual ~MyUniqueRef(void) {}
 };
 
 MINE_NAMESPACE_END
