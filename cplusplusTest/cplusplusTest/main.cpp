@@ -12,6 +12,7 @@
 #include <type_traits>
 #include <stdexcept>
 #include <numeric>
+#include <list>
 
 template<typename _T>
 struct has_func {
@@ -225,6 +226,61 @@ public:
     myfoo take(int);
     myfoo take(int) const;
 };
+
+class SmallInt {
+public:
+    SmallInt(int v = 0): val(v) {}
+    operator int() const { return static_cast<int>(val); }
+    
+private:
+    std::size_t val;
+    
+    friend SmallInt operator+(const SmallInt &a, const SmallInt &b) {
+        return SmallInt(static_cast<int>(a.val + b.val));
+    }
+};
+
+template<class _Type> class Bar {
+    friend _Type;
+    int _value = 1;
+    
+public:
+    constexpr int value(void) const { return _value; }
+};
+
+template<class _T>
+class Blob {
+public:
+    template<class _It>
+    Blob(_It b, _It e);
+    
+private:
+    std::shared_ptr<std::vector<_T>> _data;
+};
+
+template<class _T>
+template<class _It>
+Blob<_T>::Blob(_It b, _It e):
+_data(std::make_shared<std::vector<_T>>(b, e)) {}
+
+template<class _Tp>
+void rrfunc(_Tp&&) {}
+
+// reserve type info
+template<class _Func, class _Tp1, class _Tp2>
+void flip1(_Func f, _Tp1 t1, _Tp2 t2) {
+    f(t2, t1);
+}
+
+template<class _Func, class _Tp1, class _Tp2>
+void flip2(_Func f, _Tp1 &&t1, _Tp2 &&t2) {
+    f(t2, t1);
+}
+
+template<class _Callable, class _Tp1, class _Tp2>
+void flip3(_Callable f, _Tp1 &&t1, _Tp2 &&t2) {
+    f(std::forward<_Tp2>(t2), std::forward<_Tp1>(t1));
+}
 
 int main(int argc, const char * argv[]) {
     static_assert(has_func<MyStruct>::value, "true");
@@ -473,6 +529,143 @@ int main(int argc, const char * argv[]) {
     f1.retFoo() = f2;
     //f1.retVal() = f2;
     f2 = f1.retVal();
+    
+    // operator type
+    class ClassB;
+    class ClassA {
+    public:
+        int value = 1;
+        ClassA(void) = default;
+        ClassA(int v): value(v) {}
+        ClassA(const ClassB&) { std::cout << "ClassA::ClassA(const ClassB&)\n"; }
+        
+        // circular pointer
+        // .operator->().value = 100; --> OK
+        ClassA& operator->(void) {
+            return *this;
+        }
+        //ClassA* operator->(void) {
+        //    return this;
+        //}
+        int& operator*(void) {
+            return value;
+        }
+        
+        explicit operator bool(void) const {
+            return value;
+        }
+    };
+    class ClassB {
+    public:
+        ClassB(int) {}
+        ClassB(double) {}
+        ClassB(void) = default;
+        
+        operator ClassA() const {
+            std::cout << "ClassB::operator ClassA()\n";
+            return ClassA();
+        }
+        
+        static ClassA func(const ClassA &a) {
+            return ClassA();
+        }
+        static ClassA func1(const ClassA &b) {
+            return ClassA();
+        }
+        static ClassB func1(const ClassB &b) {
+            return ClassB();
+        }
+
+        static void func(long) {}
+        
+        operator int() const;
+        operator double() const;
+    };
+    ClassA ca;
+    ClassB cb;
+    //ca = cb;
+    //ca = ClassB::func(cb);
+    ca = static_cast<ClassA>(cb); // doubt: not ambiguous ?
+    ca = ClassB::func(static_cast<ClassA>(cb)); // doubt: not ambiguous ?
+    //ca->value = 10;
+    //ca->->->->value = 1;
+    ca.operator->().value = 100;
+    //ca << 1;
+    if(ca) {
+        std::cout << "overn\n";
+    }
+    //ClassB::func(cb);
+    long lg = 1;
+    //ClassB cb1(lg);
+    short s = 10;
+    ClassB cb2(s);
+    int itt = 1;
+    ClassB cb3(itt);
+    //ClassB::func1(10);
+    //ClassB::func1(s):
+    //ClassB::func1(itt);
+    //ClassB::func1(lg);
+    SmallInt s1, s2;
+    SmallInt s3(s1 + s2);
+    // int i = s3 + 1;
+    int i = s3.operator int() + 10;
+    i = s3 + SmallInt(10);
+    
+    // oop
+    // class Base final
+    class Base {
+    public:
+        int size(void) { return 1; }
+        virtual int max_size(void) { return 10; }
+        ~Base(void) { std::cout << "~Base\n"; }
+        
+        virtual int capacity(void) final { return 1; }
+        virtual int length(void) { return 1; }
+    };
+    class Derived final: public Base {
+    public:
+        int size(int) { return 2; }
+        int max_size(void) override { return 20; }
+        ~Derived(void) { std::cout << "~Derived\n"; }
+        //int capacity(void) { return 2; }
+        
+        //int length(void) override { return 2; }
+        int length(int) { return 2;}
+        using Base::length;
+        
+        rvalue rr;
+    };
+    Derived dd;
+    Base &bb = dd;
+    bb.size();
+    //dd.size();
+    dd.Base::size();
+    dd.Base::length();
+    dd.length();
+    std::cout << bb.size() << " " << bb.max_size() << std::endl;
+    
+    // template
+    Bar<int> ib;
+    int ia[] = {0, 1, 2, 3, 4, 5};
+    std::vector<short> vs = {0, 1, 2, 3, 4};
+    std::list<const char*> sl = {"now", "is", "true"};
+    Blob<int> bl1(std::begin(ia), std::end(ia));
+    Blob<long> bl2(vs.cbegin(), vs.cend());
+    Blob<std::string> bl3(sl.cbegin(), sl.cend());
+    std::remove_reference<int&>::type rri;
+    std::remove_reference_t<int&> rrt;
+    rrfunc(ia[0]);
+    rrfunc(itt);
+    int ttx(1), tty(100);
+    auto callable = [](int v1, int &v2) -> void {
+        std::cout << v1 << " " << ++v2 << std::endl;
+    };
+    auto callable2 = [](int &&v1, int v2) ->void {
+        std::cout << v1 << " " << v2 << std::endl;
+    };
+    flip1(callable, ttx, 23);
+    flip2(callable, tty, 23);
+    flip3(callable2, ttx, 2);
     
     std::cout << "Hello World!\n";
     return 0;
