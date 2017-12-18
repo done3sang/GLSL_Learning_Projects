@@ -12,6 +12,9 @@
 #include <type_traits>
 #include <stdexcept>
 #include <numeric>
+#include <tuple>
+#include <regex>
+#include <random>
 
 template<typename _T>
 struct has_func {
@@ -225,6 +228,29 @@ public:
     myfoo take(int);
     myfoo take(int) const;
 };
+
+template<class _Tp>
+int mycompare(const _Tp&, const _Tp&) {
+    std::cout << "mycompare general template\n";
+    return 0;
+}
+
+template<>
+int mycompare(const char* const&, const char* const&) {
+    std::cout << "mycompare template specialization const char*\n";
+    return 1;
+}
+
+template<size_t M, size_t N>
+int mycompare(const char (&)[M], const char (&)[N]) {
+    std::cout << "mycompare template size_t\n";
+    return 1;
+}
+
+int mycompare(const char* const&, const char* const&) {
+    std::cout << "mycompare const char*\n";
+    return 2;
+}
 
 int main(int argc, const char * argv[]) {
     static_assert(has_func<MyStruct>::value, "true");
@@ -473,6 +499,105 @@ int main(int argc, const char * argv[]) {
     f1.retFoo() = f2;
     //f1.retVal() = f2;
     f2 = f1.retVal();
+    
+    const char *pstr1 = "ho";
+    const char *pstr2 = "mon";
+    mycompare("hi", "mon");
+    mycompare(pstr1, pstr2);
+    
+    // tuple
+    std::tuple<size_t, size_t, size_t> threed;
+    std::tuple<size_t, size_t, size_t> threee{1, 2, 3};
+    std::tuple<int, int, int> threef(1, 2, 3);
+    std::tuple<int, int, int> threeg = {1, 2, 3};
+    auto threeh = std::make_tuple("what", 3, 20.0);
+    auto book = std::get<0>(threeh);
+    auto cnt = std::get<1>(threeh);
+    auto price = std::get<2>(threeh);
+    bool bb = threeg == threee;
+    
+    // throw uncaught
+    //throw std::overflow_error("overflow");
+    
+    // bitset
+    std::bitset<16> bits;
+    //std::cin >> bits;
+    std::cout << "bits = " << bits << std::endl;
+    
+    // regex
+    std::string pattern("[^c]ei");
+    pattern = "[[:alpha:]]*" + pattern + "[[:alpha:]]*";
+    std::regex reg(pattern);
+    std::smatch regRet;
+    std::string test_str("receipt freind theif receive");
+    if(std::regex_search(test_str, regRet, reg)) {
+        std::cout << regRet.str() << std::endl;
+    }
+    for(std::sregex_iterator iit(test_str.cbegin(), test_str.cend(), reg), end_iit; iit != end_iit; ++iit) {
+        std::cout << iit->str() << " ";
+    }
+    std::cout << std::endl;
+    reg.assign("[[:alnum:]]+\\.(cpp|cxx|cc)$", std::regex::icase);
+    std::string filename;
+    /*while(std::cin >> filename) {
+        if(std::regex_search(filename, regRet, reg)) {
+            std::cout << regRet.str() << std::endl;
+        }
+    }*/
+    std::regex reg1("([[:alnum:]]+)\\.(cpp|cxx|cc)$", std::regex::icase);
+    std::cmatch regRet1;
+    if(std::regex_search("myfile.cc", regRet1, reg1)) {
+        std::cout << regRet1.str(2) << std::endl;
+    }
+    reg1.assign("(\\d{3})([-. ]?)(\\d{4})([-. ])(\\d{3})");
+    if(std::regex_search("532-3345-345", regRet1, reg1)) {
+        for(auto i = 0; i != regRet1.size(); ++i) {
+            std::cout << regRet1.str(i) << " ";
+        }
+    }
+    std::cout << std::endl;
+    std::string fmt("$1.$3.$5");
+    std::string number("532-3345-345");
+    std::cout << std::regex_replace(number, reg1, fmt) << std::endl;
+    std::string test_str2("morgan (201) 555-2368 862-555-0123\
+                          drew (973)555.0105\
+                          lee (609) 555-0132 2015550175 800.555-0000");
+    std::regex reg2("(\\()?(\\d{3})(\\))?([-. ])?(\\d{3})([-. ])?(\\d{4})");
+    std::string fmt2("$2.$5.$7 ");
+    std::cout << std::regex_replace(test_str2, reg2, fmt2, std::regex_constants::format_no_copy) << std::endl;
+    
+    //random
+    std::default_random_engine re;
+    std::uniform_int_distribution<int> uid(0, 9);
+    std::uniform_real_distribution<float> fid(0, 1);
+    std::cout << "\nmin = " << re.min() << ", max = " << re.max() << std::endl;
+    std::cout << "min = " << uid.min() << ", max = " << uid.max() << std::endl;
+    for(int i = 0; i != 10; ++i) {
+        std::cout << uid(re) << " " << fid(re) << " ";
+    }
+    std::normal_distribution<float> nd(4, 1.5);
+    std::vector<unsigned> vnd(9);
+    re.seed(time(0));
+    for(size_t i = 0; i != 200; ++i) {
+        unsigned v = static_cast<unsigned>(std::lround(nd(re)));
+        if(v < vnd.size()) {
+            ++vnd[v];
+        }
+    }
+    for(size_t j = 0; j != vnd.size(); ++j) {
+        std::cout << j << ": " << std::string(vnd[j], '*') << "\n";
+    }
+    std::bernoulli_distribution bd;
+    
+    // io
+    std::cout << std::showbase;
+    std::cout << "default: " << 20 << " " << 1024 << std::endl;
+    std::cout << "in octal: " << std::oct << 20 << " " << 1024 << std::endl;
+    std::cout << "in hex: " << std::hex << 20 << " " << 1024 << std::endl;
+    std::cout << std::noshowbase;
+    std::cout << "Precision = " << std::cout.precision() << ", Value = " << std::sqrtf(2.0) << std::endl;
+    std::cout.precision(9);
+    std::cout << "Precision = " << std::cout.precision() << ", Value = " << std::sqrtf(2.0) << std::endl;
     
     std::cout << "Hello World!\n";
     return 0;
