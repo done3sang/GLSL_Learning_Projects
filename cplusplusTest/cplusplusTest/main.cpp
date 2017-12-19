@@ -252,6 +252,15 @@ int mycompare(const char* const&, const char* const&) {
     return 2;
 }
 
+namespace nstest {
+    void printVal(int v) { std::cout << "nstest::printVal(int) = " << v << std::endl; }
+    void printVal(double v) { std::cout << "nstest::printVal(double) = " << v << std::endl; }
+}
+
+void printVal(int v) {
+    std::cout << "::printVal(int) = " << v << std::endl;
+}
+
 int main(int argc, const char * argv[]) {
     static_assert(has_func<MyStruct>::value, "true");
     //static_assert(has_func<TestStruct>::value, "false");
@@ -598,6 +607,86 @@ int main(int argc, const char * argv[]) {
     std::cout << "Precision = " << std::cout.precision() << ", Value = " << std::sqrtf(2.0) << std::endl;
     std::cout.precision(9);
     std::cout << "Precision = " << std::cout.precision() << ", Value = " << std::sqrtf(2.0) << std::endl;
+    
+    // namespace
+    using nstest::printVal;
+    //using namespace nstest;
+    printVal(100);
+    
+    // multiple inheritance
+    class animal {
+    public:
+        animal(void) { std::cout << "animal::animal\n"; }
+        virtual ~animal(void) {}
+        virtual void print(void) {
+            std::cout << "animal::print\n";
+        }
+        
+        void take(void) {
+            std::cout << "bear::take\n";
+        }
+    };
+    class danger {
+    public:
+        danger(void) { std::cout << "danger::danger\n"; }
+        virtual ~danger(void) {}
+        virtual void print(void) {
+            std::cout << "danger::print\n";
+        }
+        
+        virtual void highlight(void) {
+            std::cout << "danger::highlight\n";
+        }
+        
+    private:
+        void take() {
+            std::cout << "bear::take\n";
+        }
+    };
+    class bear: public animal {
+    public:
+        bear(void) { std::cout << "bear::bear\n"; }
+        virtual ~bear(void) {}
+        void print(void) override {
+            std::cout << "bear::print\n";
+        }
+        
+        virtual void toe(void) {
+            std::cout << "bear::toe\n";
+        }
+    };
+    class panda final: public danger, public bear {
+    public:
+        panda(void) { std::cout << "panda::panda\n"; }
+        
+        void print(void) override {
+            std::cout << "panda::print\n";
+        }
+        
+        void highlight(void) override {
+            std::cout << "panda::highlight\n";
+        }
+        
+        void toe(void) override {
+            std::cout << "panda::toe\n";
+        }
+        
+        void cuddle(void) {
+            std::cout << "panda::cuddle\n";
+        }
+    };
+    bear *pb = new panda();
+    pb->print();
+    //pb->cuddle();
+    //pb->highlight();
+    delete pb;
+    danger *pe = new panda();
+    pe->print();
+    pe->highlight();
+    //pe->toe();
+    delete pe;
+    panda pd;
+    pd.take();
     
     std::cout << "Hello World!\n";
     return 0;
