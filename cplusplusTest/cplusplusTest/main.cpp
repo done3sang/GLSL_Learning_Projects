@@ -15,6 +15,10 @@
 #include <tuple>
 #include <regex>
 #include <random>
+#include <new>
+#include <memory>
+#include <typeinfo>
+#include <functional>
 
 template<typename _T>
 struct has_func {
@@ -260,6 +264,97 @@ namespace nstest {
 void printVal(int v) {
     std::cout << "::printVal(int) = " << v << std::endl;
 }
+
+class base;
+bool operator==(const base &, const base&);
+
+class base {
+private:
+    friend bool operator==(const base&, const base&);
+    
+public:
+    explicit
+    base(int v = 0): _value(v) {}
+    
+    int value(void) const { return _value; }
+    
+    //virtual bool equal(const base &another) const {
+    //    return value() == another.value();
+    //}
+    virtual bool equal(const base *another) const {
+        return another && value() == another->value();
+    }
+    
+    virtual const base* pointer(void) const {
+        return this;
+    }
+    
+protected:
+    virtual bool equal(const base &another) const {
+        return value() == another.value();
+    }
+    
+private:
+    int _value;
+};
+class derived final: public base {
+public:
+    explicit
+    derived(const std::string &name, int value): base(value), _name(name) {}
+    
+    const std::string& name(void) const { return _name; }
+    
+    //bool equal(const derived &another) const override {
+    //    return name() == another.name() && value() == another.value();
+    //}
+    bool equal(const base *another) const override {
+        if(!another) {
+            return false;
+        }
+        
+        const derived *d = dynamic_cast<const derived*>(another);
+        if(d) {
+            return name() == d->name() && value() == d->value();
+        }
+        
+        return false;
+    }
+    
+    // this tells me: return type can be polymorphic, parameter cannot
+    const derived* pointer(void) const override {
+        return this;
+    }
+    
+private:
+    std::string _name;
+    
+    bool equal(const base &another) const override {
+        const derived &d = dynamic_cast<const derived&>(another);
+        return name() == d.name() && value() == d.value();
+    }
+};
+
+bool operator==(const base& lhs, const base &rhs) {
+    return typeid(lhs) == typeid(rhs) && lhs.equal(rhs);
+}
+
+// enum
+//enum myValue;
+enum class scopeValue: char;
+
+enum intValue: int {
+  wdce
+};
+
+enum class scopeValue: char {
+    swefew
+};
+
+template<class _Tp>
+class func_tem {
+public:
+    int change(int v) { return v + 1; }
+};
 
 int main(int argc, const char * argv[]) {
     static_assert(has_func<MyStruct>::value, "true");
@@ -607,6 +702,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "Precision = " << std::cout.precision() << ", Value = " << std::sqrtf(2.0) << std::endl;
     std::cout.precision(9);
     std::cout << "Precision = " << std::cout.precision() << ", Value = " << std::sqrtf(2.0) << std::endl;
+    std::cout << std::dec;
     
     // namespace
     using nstest::printVal;
@@ -616,8 +712,9 @@ int main(int argc, const char * argv[]) {
     // multiple inheritance
     class animal {
     public:
-        animal(void) { std::cout << "animal::animal\n"; }
-        virtual ~animal(void) {}
+        explicit
+        animal(int id): _id(id), fax(10) { std::cout << "animal::animal\n"; }
+        virtual ~animal(void) { std::cout << "animal::~animal\n"; }
         virtual void print(void) {
             std::cout << "animal::print\n";
         }
@@ -625,11 +722,16 @@ int main(int argc, const char * argv[]) {
         void take(void) {
             std::cout << "bear::take\n";
         }
+        
+        int fax;
+        
+    private:
+        int _id;
     };
     class danger {
     public:
         danger(void) { std::cout << "danger::danger\n"; }
-        virtual ~danger(void) {}
+        virtual ~danger(void) { std::cout << "danger::~danger\n"; }
         virtual void print(void) {
             std::cout << "danger::print\n";
         }
@@ -643,21 +745,41 @@ int main(int argc, const char * argv[]) {
             std::cout << "bear::take\n";
         }
     };
-    class bear: public animal {
+    class bear: public virtual animal {
     public:
-        bear(void) { std::cout << "bear::bear\n"; }
-        virtual ~bear(void) {}
+        bear(void): animal(1), fax(20) { std::cout << "bear::bear\n"; }
+        virtual ~bear(void) { std::cout << "bear::~bear\n"; }
         void print(void) override {
             std::cout << "bear::print\n";
         }
+        
+        int fax;
         
         virtual void toe(void) {
             std::cout << "bear::toe\n";
         }
     };
-    class panda final: public danger, public bear {
+    class rac {
     public:
-        panda(void) { std::cout << "panda::panda\n"; }
+        int fax;
+        
+        rac(void): fax(30) { std::cout << "rac::rac\n"; }
+        ~rac(void) { std::cout << "rac::~rac\n"; }
+    };
+    class raccoon: public virtual animal, public rac {
+    public:
+        raccoon(void): animal(2), fax(40) { std::cout << "raccoon::raccoon\n"; }
+        virtual ~raccoon(void) { std::cout << "raccoon::~raccoon\n";  }
+        void print(void) override {
+            std::cout << "raccoon::print\n";
+        }
+        
+        int fax;
+    };
+    class panda final: public danger, public bear, public raccoon {
+    public:
+        panda(void): animal(3), fax(50) { std::cout << "panda::panda\n"; }
+        ~panda(void) { std::cout << "panda::~panda\n"; }
         
         void print(void) override {
             std::cout << "panda::print\n";
@@ -674,19 +796,131 @@ int main(int argc, const char * argv[]) {
         void cuddle(void) {
             std::cout << "panda::cuddle\n";
         }
+        
+        int fax;
     };
     bear *pb = new panda();
     pb->print();
     //pb->cuddle();
     //pb->highlight();
+    std::cout << "pb->fax = " << pb->fax << std::endl;
     delete pb;
-    danger *pe = new panda();
-    pe->print();
-    pe->highlight();
-    //pe->toe();
-    delete pe;
     panda pd;
-    pd.take();
+    std::cout << "pd->fax = " << pd.fax << std::endl;
+    //danger *pe = new panda();
+    //pe->print();
+    //pe->highlight();
+    //pe->toe();
+    //delete pe;
+    //panda pd;
+    //pd.take();
+    //std::operator new(1);
+    
+    // runtime type identification
+    std::shared_ptr<bear> ptrb = std::make_shared<bear>();
+    if(panda *ptrp = dynamic_cast<panda*>(ptrb.operator->())) {
+        std::cout << "dynamic_ast<bear*> successed\n";
+    } else {
+        std::cout << "dynamic_ast<bear*> failed\n";
+    }
+    try {
+        bear lb;
+        panda &refp = dynamic_cast<panda&>(*ptrb);
+    } catch(std::bad_cast &ebc) {
+        std::cout << "dynamic_cast<panda&> failed = " << ebc.what() << std::endl;
+    } catch(...) {
+        std::cout << "dynamic_cast<panda&> failed, exception not caught \n";
+    }
+    //std::unique_ptr<panda> uptrp = std::make_unique<panda>();
+    //std::shared_ptr<bear> sptrb(uptrp.get());
+    panda *pppp = new panda;
+    bear *pbe = pppp;
+    auto &tid1 = typeid(pppp);
+    auto &tid2 = typeid(pbe);
+    auto &tid3 = typeid(*pppp);
+    auto &tid4 = typeid(*pbe);
+    auto &tid5 = typeid(panda);
+    auto &tid6 = typeid(bear);
+    //delete pppp;
+    try {
+        const std::type_info &ttt = typeid(*pppp);
+        std::cout << "typeid(pppp) successed = " << ttt.name() << ", " << typeid(*pbe).name() << std::endl;
+    } catch(std::bad_typeid btp) {
+        std::cout << "typeid(pbe) failed = " << btp.what() << std::endl;
+    } catch(...) {
+        std::cout << "dynamic_cast<panda&> failed, exception not caught \n";
+    }
+    delete pppp;
+    base *bbb = new derived(std::string("what"), 100);
+    derived *ddd = new derived(std::string("what"), 101);
+    std::cout << std::boolalpha << "tb == td = " << (*bbb == *ddd) << "\n";
+    delete bbb;
+    delete ddd;
+    
+    // scoped enum
+    constexpr int eval = 1;
+    enum unscoped: unsigned char { red, green, blue/* = 256*/ };
+    enum class scoped { red, green, blue = eval };
+    scoped es = scoped::green;
+    if(es == scoped::green) {
+        std::cout << "es = scoped::green\n";
+    }
+    if(es == scoped::blue) {
+        std::cout << "es = scoped::blue\n";
+    }
+    int eni = red;
+    eni = static_cast<int>(scoped::green);
+    
+    // pointer to member
+    class screen {
+    public:
+        screen(const std::string &mstr = "what's your name?"): content(mstr), cursor(0) {}
+        char get() const { return content[cursor]; }
+        
+        std::string name;
+        
+        static const std::string screen::*data() {
+            return &screen::name;
+        }
+        
+    private:
+        std::string content;
+        std::string::size_type cursor;
+    };
+    const std::string screen::*pdata;
+    //pdata = &screen::content;
+    pdata = &screen::name;
+    screen mine;
+    std::string tstr;
+    tstr.empty();
+    tstr = mine.*pdata;
+    char (screen::*pmem)() const = &screen::get;
+    (mine.*pmem)();
+    auto amem = &screen::get;
+    using intType = int;
+    using getType = char (screen::*)() const;
+    getType gtptr = &screen::get;
+    (mine.*gtptr)();
+    // next produces a link error, i don't figure out
+    //auto fps = &std::string::max_size;
+    std::vector<std::string> strvv;
+    std::vector<std::string*> pvec;
+    //std::find_if(strvv.cbegin(), strvv.cend(), fps);
+    //std::function<bool (const std::string&)> fcn = &std::string::empty;
+    //std::function<bool (const std::string*)> pfn = &std::string::empty;
+    //std::find_if(strvv.begin(), strvv.end(), fcn);
+    //std::find_if(pvec.begin(), pvec.end(), pfn);
+    auto memf = std::mem_fn(&screen::get);
+    memf(mine);
+    std::function<char (const screen&)> pfcn(&screen::get);
+    pfcn(mine);
+    auto fb = std::bind(&screen::get, std::placeholders::_1);
+    fb(mine);
+    using funcint = func_tem<int>;
+    auto tff = &funcint::change;
+    funcint fii;
+    //std::function<int (const funcint&, int)> ftf = &funcint::change;
+    //std::cout << ftf(fii, 100) << std::endl;
     
     std::cout << "Hello World!\n";
     return 0;
