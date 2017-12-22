@@ -23,7 +23,7 @@ class MySingletonRef;
 class MyShader;
 class MyProgram;
 
-class MyShadingManager: public MySingletonRef {
+class MyShadingManager final: public MySingletonRef {
 public:
     static MyShadingManager* sharedShadingManager();
     static void closeShadingManager(void);

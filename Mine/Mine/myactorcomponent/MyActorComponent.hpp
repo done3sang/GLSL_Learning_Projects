@@ -21,15 +21,17 @@ class MyUniqueRef;
 
 class MyActorComponent: public MyUniqueRef {
 public:
-    static const int kComponentTypeNone;
-    static const int kComponentTypeMaterial;
-    static const int kComponentTypeDirectionalLight;
-    static const int kComponentTypePointLight;
-    static const int kComponentTypeSpotLight;
+    static constexpr int kComponentTypeNone = 0;
+    static constexpr int kComponentTypeMaterial = 1;
+    static constexpr int kComponentTypeDirectionalLight = 2;
+    static constexpr int kComponentTypePointLight = 3;
+    static constexpr int kComponentTypeSpotLight = 4;
+    static constexpr int kComponentTypeModel = 5;
     
-    static const int kComponentGroupNone;
-    static const int kComponentGroupMaterial;
-    static const int kComponentGroupLight;
+    static constexpr int kComponentGroupNone = 0;
+    static constexpr int kComponentGroupMaterial = 1;
+    static constexpr int kComponentGroupLight = 2;
+    static constexpr int kComponentGroupModel = 3;
     
 public:
     int componentType(void) const { return _componentType; }

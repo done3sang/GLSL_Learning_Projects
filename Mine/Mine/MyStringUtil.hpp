@@ -18,7 +18,7 @@ MINE_NAMESPACE_BEGIN
 
 class MyStatic;
 
-class MyStringUtil: private MyStatic {
+class MyStringUtil final: private MyStatic {
 public:
     static bool space(char c) {
         return ' ' == c;

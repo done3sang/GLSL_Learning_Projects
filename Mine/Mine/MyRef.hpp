@@ -21,8 +21,10 @@ class MyRef {
 public:
     MyRef(void);
     MyRef(const MyRef&);
+    MyRef(const MyRef&&) = delete;
     virtual ~MyRef(void) {}
     
+    MyRef& operator=(const MyRef&&) = delete;
     MyRef& operator=(const MyRef &another) { return *this; }
     
     int refCount(void) const { return _refCount; }

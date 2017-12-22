@@ -18,7 +18,7 @@ MINE_NAMESPACE_BEGIN
 
 class MySingletonRef;
 
-class MyMemoryManager: public MySingletonRef {
+class MyMemoryManager final: public MySingletonRef {
 public:
     
 private:

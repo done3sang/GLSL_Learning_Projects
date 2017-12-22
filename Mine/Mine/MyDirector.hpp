@@ -26,7 +26,7 @@ class MyErrorCallback;
 class MyRenderer;
 class MyScene;
 
-class MyDirector: public MySingleton {
+class MyDirector final: public MySingleton {
 public:
     static MyDirector* sharedDirector(void);
     

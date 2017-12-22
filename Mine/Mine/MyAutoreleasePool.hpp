@@ -20,7 +20,7 @@ MINE_NAMESPACE_BEGIN
 class MyRef;
 class MySingleton;
 
-class MyAutoreleasePool: public MySingleton {
+class MyAutoreleasePool final: public MySingleton {
 public:
     static MyAutoreleasePool* sharedAutoreleasePool(void);
     static void closeAutoreleasePool(void);

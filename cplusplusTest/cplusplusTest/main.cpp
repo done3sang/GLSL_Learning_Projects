@@ -19,6 +19,39 @@
 #include <memory>
 #include <typeinfo>
 #include <functional>
+#include <array>
+
+// exception
+float mydivide(float a, float b) noexcept {
+    if(b <= 0.0f) {
+        throw std::overflow_error("b is zero");
+    }
+    
+    return a/b;
+}
+
+// gcc
+void main_enter(void) __attribute__((constructor));
+void main_enter(void) {
+    std::cout << "main_enter\n";
+}
+void main_exit(void) __attribute__((destructor));
+void main_exit(void) {
+    std::cout << "main_exit\n";
+}
+__attribute__((format(printf, 1, 2))) void myprint(const char *format, ...) {}
+__attribute__((const)) long long myfactor(long long n) {
+    long long sum(1);
+    while(n > 1) {
+        sum *= n;
+        --n;
+    }
+    return sum;
+}
+
+// extern linkage
+extern "C" int clink(int*, int) { return 1; }
+//extern "C" double clink(double*, double) { return 0.0; }
 
 template<typename _T>
 struct has_func {
@@ -349,6 +382,10 @@ enum intValue: int {
 enum class scopeValue: char {
     swefew
 };
+
+//class wafee: public intValue {
+    
+//};
 
 template<class _Tp>
 class func_tem {
@@ -921,6 +958,201 @@ int main(int argc, const char * argv[]) {
     funcint fii;
     //std::function<int (const funcint&, int)> ftf = &funcint::change;
     //std::cout << ftf(fii, 100) << std::endl;
+    
+    // union
+    union token {
+        char cval;
+        int ival;
+        double dval;
+        
+        token(char ch): cval(ch) {}
+    };
+    token ttt('a');
+    ttt.ival = 10;
+    class Token {
+    public:
+        enum {
+            INT, CHAR, DOUBLE, STRING
+        } tok;
+        
+        Token(): tok(INT), ival(0) {}
+        Token(const Token &t): tok(t.tok) { copyUnion(t); }
+        ~Token(void) {
+            if(tok == STRING) {
+                std::cout << "union Token destroy string\n";
+                strval.~basic_string();
+            }
+        }
+        
+        Token& operator=(const Token &other) {
+            if(STRING == tok) {
+                std::cout << "union Token destroy string\n";
+                strval.~basic_string();
+            }
+            tok = other.tok;
+            copyUnion(other);
+            
+            return *this;
+        }
+        
+        Token& operator=(int val) {
+            if(STRING == tok) {
+                std::cout << "union Token destroy string\n";
+                strval.~basic_string();
+            }
+            tok = INT;
+            ival = val;
+            
+            return *this;
+        }
+        
+        Token& operator=(char val) {
+            if(STRING == tok) {
+                std::cout << "union Token destroy string\n";
+                strval.~basic_string();
+            }
+            tok = CHAR;
+            cval = val;
+            
+            return *this;
+        }
+        
+        Token& operator=(double val) {
+            if(STRING == tok) {
+                std::cout << "union Token destroy string\n";
+                strval.~basic_string();
+            }
+            tok = DOUBLE;
+            dval = val;
+            
+            return *this;
+        }
+        
+        Token& operator=(const std::string &val) {
+            if(STRING == tok) {
+                strval = val;
+            } else {
+                new (&strval) std::string(val);
+            }
+            tok = STRING;
+            
+            return *this;
+        }
+        
+        int intValue(void) const {
+            return ival;
+        }
+        char charValue(void) const {
+            return cval;
+        }
+        double doubleValue(void) const {
+            return dval;
+        }
+        const std::string& stringValue(void) const {
+            return strval;
+        }
+        int tokenType(void) const {
+            return tok;
+        }
+        
+    private:
+        union {
+            int ival;
+            char cval;
+            double dval;
+            std::string strval;
+        };
+        
+        void copyUnion(const Token &other) {
+            switch(other.tok) {
+                case INT:
+                    ival = other.ival;
+                    break;
+                    
+                case CHAR:
+                    cval = other.cval;
+                    break;
+                    
+                case DOUBLE:
+                    dval = other.dval;
+                    break;
+                    
+                case STRING:
+                    new (&strval) std::string(other.strval);
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+    };
+    union MyToken/*: public Token*/ {
+        int ival;
+        char cval;
+        std::string strVal;
+    };
+    class wfwef/*:public MyToken*/ {
+        
+    };
+    Token mytok;
+    mytok = 1;
+    mytok = 'c';
+    mytok = 1.0;
+    mytok = "what";
+    mytok = "how";
+    
+    // bit-field
+    class bit_field {
+    public:
+        enum class bit_enum {
+            INT,
+            CHAR
+        };
+        
+        unsigned char cval: 3;
+        unsigned int ival: 4;
+        int iival: 5;
+        bit_enum bit: 4;
+    };
+    bit_field bf;
+    //&bf.cval;
+    
+    // volatile
+    int intVal(0);
+    volatile int disreg(0);
+    volatile Token *tokk;
+    volatile int iax[16];
+    volatile screen bitbuf;
+    int *volatile vip;
+    volatile int *ivp;
+    volatile int *volatile vivp;
+    int *ip;
+    //ip = &disreg;
+    ivp = &disreg;
+    //vip = &disreg;
+    vip = ip;
+    vivp = &disreg;
+    
+    // algorithm
+    std::vector<int> intvec{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    auto liter = std::lower_bound(intvec.cbegin(), intvec.cend(), 6);
+    auto uiter = std::upper_bound(intvec.cbegin(), intvec.cend(), 6);
+    std::array<int, 10> intArr;
+    
+    // gcc
+    int rslt = ({ int a(5); a + 3; });
+    struct ps {
+        int a;
+        char b;
+        short c;
+    } __attribute__((__aligned__(4))) pp;
+    myprint("i = %d\n", 6);
+    myprint("i = %s\n", 6);
+    myprint("i = %s\n", "abc");
+    myprint("%s, %d, %d\n", 1, 2);
+    std::cout << "myfactor(10) = " << myfactor(10) << std::endl;
+    std::cout << "myfactor(20) = " << myfactor(20) << std::endl;
+    float dwwe = mydivide(1.0f, -1.0f);
     
     std::cout << "Hello World!\n";
     return 0;

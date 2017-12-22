@@ -22,7 +22,7 @@ class MySingletonRef;
 class MyUniqueRef;
 class MyErrorCallback;
 
-class MyErrorDesc: public MySingletonRef {
+class MyErrorDesc final: public MySingletonRef {
 public:
     static MyErrorDesc* sharedErrorDesc(void);
     static void closeErrorDesc(void);
