@@ -9,7 +9,7 @@
 #ifndef MyErrorDesc_hpp
 #define MyErrorDesc_hpp
 
-#include <map>
+#include <unordered_map>
 #include <string>
 #include "MyPrecompiled.hpp"
 
@@ -59,7 +59,7 @@ public:
 private:
     static MyErrorDesc *_sharedErrorDesc;
     
-    std::map<int, std::string> _errorDesc;
+    std::unordered_map<int, std::string> _errorDesc;
     MyErrorCallback *_errCallback;
     
     void initialize(void);

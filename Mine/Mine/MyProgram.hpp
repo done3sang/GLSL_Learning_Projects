@@ -11,9 +11,11 @@
 
 #include <string>
 #include <vector>
-#include <map>
+#include <unordered_map>
+
 #define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
+
 #include <glm/fwd.hpp>
 #include "MyPrecompiled.hpp"
 
@@ -80,8 +82,8 @@ private:
     bool _linked;
     std::string _programLog;
     std::vector<MyShader*>  _shaderVec;
-    std::map<std::string, int> _uniformLocation;
-    std::map<int, MyBufferObject*> _uniformBlock;
+    std::unordered_map<std::string, int> _uniformLocation;
+    std::unordered_map<int, MyBufferObject*> _uniformBlock;
     
     static MyProgram *_runningProgram;
     

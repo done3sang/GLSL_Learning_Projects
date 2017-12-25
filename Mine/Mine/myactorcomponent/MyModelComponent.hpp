@@ -19,6 +19,7 @@ MINE_NAMESPACE_BEGIN
 
 class MyActorComponent;
 class MyBufferObject;
+class MyProgram;
 
 class MyModelComponent: public MyActorComponent {
 public:
@@ -39,6 +40,13 @@ public:
     static constexpr int kModelPrimitiveEnd = kModelPrimitiveTriangleFan;
     
 public:
+    struct VertexAttribute {
+        int attrib;
+        int size;
+        int stride;
+        int offset;
+    };
+    
     static MyModelComponent* create(void);
     static MyModelComponent* createWithModelFile(const std::string &path);
     
@@ -57,22 +65,36 @@ public:
     bool modelCompleted(void) const { return _vertexBuffer; }
     bool modelFormat(int fmt) const { return kModelFormatBegin <= fmt && fmt <= kModelFormatEnd; }
     bool modelPrimitive(int prim) const { return kModelPrimitiveBegin <= prim && prim <= kModelPrimitiveEnd; }
-    const MyBufferObject* modelVertexBuffer(void) const { return _vertexBuffer; }
-    const MyBufferObject* modelElementBuffer(void) const { return _elementBuffer; }
+    MyBufferObject* modelVertexBuffer(void) const { return _vertexBuffer; }
+    MyBufferObject* modelElementBuffer(void) const { return _elementBuffer; }
+    MyProgram* modelProgram(void) const { return _program; }
+    const std::vector<VertexAttribute>& vertexAttribute(void) { return _vertexAttribute; }
+    int renderMode(void) const { return _renderMode; }
+    int renderStart(void) const { return _renderStart; }
+    int renderCount(void) const { return _renderCount; }
+    int renderType(void) const { return _renderType; }
     
 private:
     MyModelComponent(void):
     MyActorComponent(MyActorComponent::kComponentTypeModel,
                      "Model", MyActorComponent::kComponentGroupModel),
     _modelFormat(kModelFormatNone), _modelPrimitive(kModelPrimitiveNone),
-    _vertexBuffer(nullptr), _elementBuffer(nullptr) {}
+    _vertexBuffer(nullptr), _elementBuffer(nullptr),
+    _renderMode(0), _renderStart(0), _renderCount(0), _renderType(0) {}
     ~MyModelComponent(void) { destroy(); }
     
     int _modelFormat;
     int _modelPrimitive;
     MyBufferObject *_vertexBuffer;
     MyBufferObject *_elementBuffer;
+    MyProgram *_program;
+    std::vector<VertexAttribute> _vertexAttribute;
+    int _renderMode;
+    int _renderStart;
+    int _renderCount;
+    int _renderType;
     
+    void buildVertexAttribute(size_t vertexBufferSize);
     void destroy(void);
 };
 

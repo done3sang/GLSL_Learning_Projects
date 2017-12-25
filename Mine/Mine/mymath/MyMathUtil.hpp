@@ -19,7 +19,7 @@ MINE_NAMESPACE_BEGIN
 
 class MyStatic;
 
-class MyMathUtil: private MyStatic {
+class MyMathUtil final: private MyStatic {
 public:
     static float sinf(float rad) {
         return ::sin(rad);

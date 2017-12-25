@@ -14,7 +14,7 @@
 
 USING_MINE_NAMESPACE;
 
-class UniformScene: public MyScene  {
+class UniformScene: public MyScenario  {
 public:
     bool initialize(void) override;
     void update(float deltaTime) override;

@@ -51,13 +51,13 @@ void MyBufferObject::bindBuffer(void) {
     glBindBuffer(_bufferType, _bufferId);
 }
 
-void MyBufferObject::bufferData(int bufferSize, const void *data, int usage) {
+void MyBufferObject::bufferData(size_t bufferSize, const void *data, int usage) {
     bindBuffer();
     _bufferUsage = usage;
     glBufferData(_bufferType, bufferSize, data, usage);
 }
 
-void MyBufferObject::bufferSubData(int bufferOffset, int bufferSize, const void *data) {
+void MyBufferObject::bufferSubData(size_t bufferOffset, size_t bufferSize, const void *data) {
     assert(kBufferUsageDynamicDraw == _bufferUsage && "Buffer sub data should be operated on dynamic buffer");
     
     bindBuffer();

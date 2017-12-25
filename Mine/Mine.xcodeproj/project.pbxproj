@@ -35,12 +35,14 @@
 		14BBD65B1FDA5A3A00EFBF0D /* MyXMLDocument.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14BBD6591FDA5A3A00EFBF0D /* MyXMLDocument.hpp */; };
 		14BBD65E1FDA655300EFBF0D /* MyXMLNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14BBD65C1FDA655300EFBF0D /* MyXMLNode.cpp */; };
 		14BBD65F1FDA655300EFBF0D /* MyXMLNode.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14BBD65D1FDA655300EFBF0D /* MyXMLNode.hpp */; };
-		14E6D08F1FDE36E800999ED6 /* MyLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E6D08D1FDE36E800999ED6 /* MyLight.cpp */; };
-		14E6D0901FDE36E800999ED6 /* MyLight.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E6D08E1FDE36E800999ED6 /* MyLight.hpp */; };
+		14E4A66A1FF0A8920090973F /* MyScenario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E4A6681FF0A8920090973F /* MyScenario.cpp */; };
+		14E4A66B1FF0A8920090973F /* MyScenario.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E4A6691FF0A8920090973F /* MyScenario.hpp */; };
+		14E4A66E1FF0D4CB0090973F /* MyTransformComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E4A66C1FF0D4CB0090973F /* MyTransformComponent.cpp */; };
+		14E4A66F1FF0D4CB0090973F /* MyTransformComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E4A66D1FF0D4CB0090973F /* MyTransformComponent.hpp */; };
+		14E4A6731FF0F9D20090973F /* MyVertexAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E4A6711FF0F9D20090973F /* MyVertexAttribute.cpp */; };
+		14E4A6741FF0F9D20090973F /* MyVertexAttribute.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E4A6721FF0F9D20090973F /* MyVertexAttribute.hpp */; };
 		14E6D0A41FDE6F4F00999ED6 /* MyActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E6D0A21FDE6F4F00999ED6 /* MyActor.cpp */; };
 		14E6D0A51FDE6F4F00999ED6 /* MyActor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E6D0A31FDE6F4F00999ED6 /* MyActor.hpp */; };
-		14E6D0A81FDE759D00999ED6 /* MyDirectoinalLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E6D0A61FDE759D00999ED6 /* MyDirectoinalLight.cpp */; };
-		14E6D0A91FDE759D00999ED6 /* MyDirectoinalLight.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E6D0A71FDE759D00999ED6 /* MyDirectoinalLight.hpp */; };
 		14E6D0AD1FDE7E4400999ED6 /* MyActorComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E6D0AB1FDE7E4400999ED6 /* MyActorComponent.cpp */; };
 		14E6D0AE1FDE7E4400999ED6 /* MyActorComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E6D0AC1FDE7E4400999ED6 /* MyActorComponent.hpp */; };
 		14E6D0B11FDE854100999ED6 /* MyMaterialComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E6D0AF1FDE854100999ED6 /* MyMaterialComponent.cpp */; };
@@ -65,8 +67,6 @@
 		14EBA1341FDFB7CC007972D0 /* MyModelComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA1321FDFB7CC007972D0 /* MyModelComponent.hpp */; };
 		14EBA1371FDFBBFF007972D0 /* MyMemoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EBA1351FDFBBFF007972D0 /* MyMemoryManager.cpp */; };
 		14EBA1381FDFBBFF007972D0 /* MyMemoryManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA1361FDFBBFF007972D0 /* MyMemoryManager.hpp */; };
-		14EF00741FD69BEA0048F4D5 /* MyScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EF00721FD69BEA0048F4D5 /* MyScene.cpp */; };
-		14EF00751FD69BEA0048F4D5 /* MyScene.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EF00731FD69BEA0048F4D5 /* MyScene.hpp */; };
 		14EF00781FD69FD70048F4D5 /* MyDirector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EF00761FD69FD70048F4D5 /* MyDirector.cpp */; };
 		14EF00791FD69FD70048F4D5 /* MyDirector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EF00771FD69FD70048F4D5 /* MyDirector.hpp */; };
 		14F9EFC91FD79B9D00EAF6E1 /* Mine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14F9EFC81FD79B7E00EAF6E1 /* Mine.hpp */; };
@@ -105,12 +105,14 @@
 		14BBD6591FDA5A3A00EFBF0D /* MyXMLDocument.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyXMLDocument.hpp; sourceTree = "<group>"; };
 		14BBD65C1FDA655300EFBF0D /* MyXMLNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyXMLNode.cpp; sourceTree = "<group>"; };
 		14BBD65D1FDA655300EFBF0D /* MyXMLNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyXMLNode.hpp; sourceTree = "<group>"; };
-		14E6D08D1FDE36E800999ED6 /* MyLight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyLight.cpp; sourceTree = "<group>"; };
-		14E6D08E1FDE36E800999ED6 /* MyLight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyLight.hpp; sourceTree = "<group>"; };
+		14E4A6681FF0A8920090973F /* MyScenario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyScenario.cpp; sourceTree = "<group>"; };
+		14E4A6691FF0A8920090973F /* MyScenario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyScenario.hpp; sourceTree = "<group>"; };
+		14E4A66C1FF0D4CB0090973F /* MyTransformComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyTransformComponent.cpp; sourceTree = "<group>"; };
+		14E4A66D1FF0D4CB0090973F /* MyTransformComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyTransformComponent.hpp; sourceTree = "<group>"; };
+		14E4A6711FF0F9D20090973F /* MyVertexAttribute.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyVertexAttribute.cpp; sourceTree = "<group>"; };
+		14E4A6721FF0F9D20090973F /* MyVertexAttribute.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyVertexAttribute.hpp; sourceTree = "<group>"; };
 		14E6D0A21FDE6F4F00999ED6 /* MyActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyActor.cpp; sourceTree = "<group>"; };
 		14E6D0A31FDE6F4F00999ED6 /* MyActor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyActor.hpp; sourceTree = "<group>"; };
-		14E6D0A61FDE759D00999ED6 /* MyDirectoinalLight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyDirectoinalLight.cpp; sourceTree = "<group>"; };
-		14E6D0A71FDE759D00999ED6 /* MyDirectoinalLight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyDirectoinalLight.hpp; sourceTree = "<group>"; };
 		14E6D0AB1FDE7E4400999ED6 /* MyActorComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyActorComponent.cpp; sourceTree = "<group>"; };
 		14E6D0AC1FDE7E4400999ED6 /* MyActorComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyActorComponent.hpp; sourceTree = "<group>"; };
 		14E6D0AF1FDE854100999ED6 /* MyMaterialComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyMaterialComponent.cpp; sourceTree = "<group>"; };
@@ -135,8 +137,6 @@
 		14EBA1321FDFB7CC007972D0 /* MyModelComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyModelComponent.hpp; sourceTree = "<group>"; };
 		14EBA1351FDFBBFF007972D0 /* MyMemoryManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyMemoryManager.cpp; sourceTree = "<group>"; };
 		14EBA1361FDFBBFF007972D0 /* MyMemoryManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyMemoryManager.hpp; sourceTree = "<group>"; };
-		14EF00721FD69BEA0048F4D5 /* MyScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyScene.cpp; sourceTree = "<group>"; };
-		14EF00731FD69BEA0048F4D5 /* MyScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyScene.hpp; sourceTree = "<group>"; };
 		14EF00761FD69FD70048F4D5 /* MyDirector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyDirector.cpp; sourceTree = "<group>"; };
 		14EF00771FD69FD70048F4D5 /* MyDirector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyDirector.hpp; sourceTree = "<group>"; };
 		14F9EFC81FD79B7E00EAF6E1 /* Mine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mine.hpp; sourceTree = "<group>"; };
@@ -176,13 +176,15 @@
 		1401E5E21FCC0AE500D83812 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				14E4A6701FF0F9550090973F /* myrender */,
 				14EBA1201FDF8291007972D0 /* mymath */,
 				14E6D0911FDE447000999ED6 /* myactor */,
 				14E6D0AA1FDE7E1800999ED6 /* myactorcomponent */,
-				14E6D08C1FDE31A800999ED6 /* mylight */,
 				14BBD6571FDA59F800EFBF0D /* myxml */,
 				14EF00771FD69FD70048F4D5 /* MyDirector.hpp */,
 				14EF00761FD69FD70048F4D5 /* MyDirector.cpp */,
+				14E4A6691FF0A8920090973F /* MyScenario.hpp */,
+				14E4A6681FF0A8920090973F /* MyScenario.cpp */,
 				144349181FD13B20006DD6D2 /* MyAutoreleasePool.hpp */,
 				144349171FD13B20006DD6D2 /* MyAutoreleasePool.cpp */,
 				14EBA1361FDFBBFF007972D0 /* MyMemoryManager.hpp */,
@@ -211,8 +213,6 @@
 				144349031FD103CC006DD6D2 /* MyRenderer.cpp */,
 				1443490C1FD12BB3006DD6D2 /* MyRef.hpp */,
 				1443490B1FD12BB3006DD6D2 /* MyRef.cpp */,
-				14EF00731FD69BEA0048F4D5 /* MyScene.hpp */,
-				14EF00721FD69BEA0048F4D5 /* MyScene.cpp */,
 				14F9EFC81FD79B7E00EAF6E1 /* Mine.hpp */,
 			);
 			path = Mine;
@@ -237,15 +237,13 @@
 			path = myxml;
 			sourceTree = "<group>";
 		};
-		14E6D08C1FDE31A800999ED6 /* mylight */ = {
+		14E4A6701FF0F9550090973F /* myrender */ = {
 			isa = PBXGroup;
 			children = (
-				14E6D08E1FDE36E800999ED6 /* MyLight.hpp */,
-				14E6D08D1FDE36E800999ED6 /* MyLight.cpp */,
-				14E6D0A71FDE759D00999ED6 /* MyDirectoinalLight.hpp */,
-				14E6D0A61FDE759D00999ED6 /* MyDirectoinalLight.cpp */,
+				14E4A6721FF0F9D20090973F /* MyVertexAttribute.hpp */,
+				14E4A6711FF0F9D20090973F /* MyVertexAttribute.cpp */,
 			);
-			path = mylight;
+			path = myrender;
 			sourceTree = "<group>";
 		};
 		14E6D0911FDE447000999ED6 /* myactor */ = {
@@ -268,6 +266,8 @@
 			children = (
 				14E6D0AC1FDE7E4400999ED6 /* MyActorComponent.hpp */,
 				14E6D0AB1FDE7E4400999ED6 /* MyActorComponent.cpp */,
+				14E4A66D1FF0D4CB0090973F /* MyTransformComponent.hpp */,
+				14E4A66C1FF0D4CB0090973F /* MyTransformComponent.cpp */,
 				14E6D0B01FDE854100999ED6 /* MyMaterialComponent.hpp */,
 				14E6D0AF1FDE854100999ED6 /* MyMaterialComponent.cpp */,
 				14E6D0B41FDE894500999ED6 /* MyLightComponent.hpp */,
@@ -308,7 +308,6 @@
 				1443491A1FD13B20006DD6D2 /* MyAutoreleasePool.hpp in Headers */,
 				14EBA11F1FDF816C007972D0 /* MySpotLightComponent.hpp in Headers */,
 				1401E6011FCD11EA00D83812 /* MyProgram.hpp in Headers */,
-				14E6D0901FDE36E800999ED6 /* MyLight.hpp in Headers */,
 				1401E5F61FCC13BD00D83812 /* MyErrorDesc.hpp in Headers */,
 				1451AAD61FD8F1FB007D9335 /* MyShadingManager.hpp in Headers */,
 				14EBA11B1FDF8021007972D0 /* MyDirectionalLightComponent.hpp in Headers */,
@@ -316,18 +315,19 @@
 				14EBA1301FDFB170007972D0 /* MySpotLight.hpp in Headers */,
 				14B24D911FCEAC4800121A65 /* MyVertexArrayObject.hpp in Headers */,
 				25A889851FDD12E10078F455 /* MyTimerManager.hpp in Headers */,
+				14E4A66F1FF0D4CB0090973F /* MyTransformComponent.hpp in Headers */,
 				14E6D0AE1FDE7E4400999ED6 /* MyActorComponent.hpp in Headers */,
+				14E4A6741FF0F9D20090973F /* MyVertexAttribute.hpp in Headers */,
 				14EBA1381FDFBBFF007972D0 /* MyMemoryManager.hpp in Headers */,
 				14E6D0B61FDE894500999ED6 /* MyLightComponent.hpp in Headers */,
-				14E6D0A91FDE759D00999ED6 /* MyDirectoinalLight.hpp in Headers */,
 				1401E5F11FCC0EE100D83812 /* MyFileUtil.hpp in Headers */,
 				14EBA1341FDFB7CC007972D0 /* MyModelComponent.hpp in Headers */,
 				1401E5FA1FCCFC6600D83812 /* MyShader.hpp in Headers */,
 				14E6D0A51FDE6F4F00999ED6 /* MyActor.hpp in Headers */,
 				14BBD65F1FDA655300EFBF0D /* MyXMLNode.hpp in Headers */,
 				14E6D0B21FDE854100999ED6 /* MyMaterialComponent.hpp in Headers */,
+				14E4A66B1FF0A8920090973F /* MyScenario.hpp in Headers */,
 				14AB95F51FDA78FF00CE8617 /* MyStringUtil.hpp in Headers */,
-				14EF00751FD69BEA0048F4D5 /* MyScene.hpp in Headers */,
 				144349061FD103CC006DD6D2 /* MyRenderer.hpp in Headers */,
 				14BBD65B1FDA5A3A00EFBF0D /* MyXMLDocument.hpp in Headers */,
 				14E6D0BA1FDE8AA900999ED6 /* MyPointLightComponent.hpp in Headers */,
@@ -400,6 +400,7 @@
 				14EBA12F1FDFB170007972D0 /* MySpotLight.cpp in Sources */,
 				14BBD65A1FDA5A3A00EFBF0D /* MyXMLDocument.cpp in Sources */,
 				14EBA11E1FDF816C007972D0 /* MySpotLightComponent.cpp in Sources */,
+				14E4A66E1FF0D4CB0090973F /* MyTransformComponent.cpp in Sources */,
 				144349011FCEBA61006DD6D2 /* MyBufferObject.cpp in Sources */,
 				1401E6001FCD11EA00D83812 /* MyProgram.cpp in Sources */,
 				14EBA1271FDFAAA6007972D0 /* MyPointLight.cpp in Sources */,
@@ -414,15 +415,14 @@
 				1401E5F01FCC0EE100D83812 /* MyFileUtil.cpp in Sources */,
 				14E6D0AD1FDE7E4400999ED6 /* MyActorComponent.cpp in Sources */,
 				14EBA1371FDFBBFF007972D0 /* MyMemoryManager.cpp in Sources */,
+				14E4A6731FF0F9D20090973F /* MyVertexAttribute.cpp in Sources */,
 				1451AAD51FD8F1FB007D9335 /* MyShadingManager.cpp in Sources */,
-				14E6D0A81FDE759D00999ED6 /* MyDirectoinalLight.cpp in Sources */,
 				14AB95F41FDA78FF00CE8617 /* MyStringUtil.cpp in Sources */,
 				14BBD65E1FDA655300EFBF0D /* MyXMLNode.cpp in Sources */,
+				14E4A66A1FF0A8920090973F /* MyScenario.cpp in Sources */,
 				14E6D0B11FDE854100999ED6 /* MyMaterialComponent.cpp in Sources */,
 				1401E5F91FCCFC6600D83812 /* MyShader.cpp in Sources */,
 				1443490D1FD12BB3006DD6D2 /* MyRef.cpp in Sources */,
-				14EF00741FD69BEA0048F4D5 /* MyScene.cpp in Sources */,
-				14E6D08F1FDE36E800999ED6 /* MyLight.cpp in Sources */,
 				14EBA11A1FDF8021007972D0 /* MyDirectionalLightComponent.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

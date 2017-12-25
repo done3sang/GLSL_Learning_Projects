@@ -9,7 +9,7 @@
 #ifndef MyShadingManager_hpp
 #define MyShadingManager_hpp
 
-#include <map>
+#include <unordered_map>
 #include <vector>
 #include <string>
 #include "MyPrecompiled.hpp"
@@ -46,8 +46,8 @@ private:
     
     bool _shaderLoaded;
     
-    std::map<std::string, MyShader*> _shaderMap;
-    std::map<std::string, MyProgram*> _programMap;
+    std::unordered_map<std::string, MyShader*> _shaderMap;
+    std::unordered_map<std::string, MyProgram*> _programMap;
     
     static MyShadingManager *_sharedShadingManager;
     

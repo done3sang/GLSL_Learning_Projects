@@ -10,7 +10,7 @@
 #include "MyErrorDesc.hpp"
 #include "MyRenderer.hpp"
 #include "MyAutoreleasePool.hpp"
-#include "MyScene.hpp"
+#include "MyScenario.hpp"
 #include "MyFileUtil.hpp"
 #include "MyShadingManager.hpp"
 #include "MyTimerManager.hpp"
@@ -57,9 +57,9 @@ void MyDirector::destroy(void) {
         _errorCallback->release();
         _errorCallback = nullptr;
     }
-    if(_runningScene) {
-        _runningScene->release();
-        _runningScene = nullptr;
+    if(_runningScenario) {
+        _runningScenario->release();
+        _runningScenario = nullptr;
     }
     if(_mainRenderer) {
         _mainRenderer->release();
@@ -104,7 +104,7 @@ void MyDirector::errorCallback(MyErrorCallback *errCallback) {
     _errorCallback = errCallback;
 }
 
-void MyDirector::mainRenderer(Mine::MyRenderer *renderer) {
+void MyDirector::mainRenderer(MyRenderer *renderer) {
     if(_mainRenderer) {
         _mainRenderer->release();
     }
@@ -115,15 +115,15 @@ void MyDirector::mainRenderer(Mine::MyRenderer *renderer) {
     _mainRenderer = renderer;
 }
 
-void MyDirector::runningScene(MyScene *scene) {
-    if(_runningScene) {
-        _runningScene->release();
+void MyDirector::runningScenario(MyScenario *scenario) {
+    if(_runningScenario) {
+        _runningScenario->release();
     }
-    if(scene) {
-        scene->addRef();
+    if(scenario) {
+        scenario->addRef();
     }
     
-    _runningScene = scene;
+    _runningScenario = scenario;
 }
 
 void MyDirector::runMainLoop(void) {
@@ -141,9 +141,9 @@ void MyDirector::runMainLoop(void) {
             _mainRenderer->prepareRender();
         }
         
-        if(_runningScene) {
-            _runningScene->update(static_cast<float>(timerMgr->tickTime()));
-            _runningScene->render();
+        if(_runningScenario) {
+            _runningScenario->update(static_cast<float>(timerMgr->tickTime()));
+            _runningScenario->render();
         }
         
         if(_glfwWindow) {

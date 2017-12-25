@@ -10,7 +10,7 @@
 #define MyXMLDocument_hpp
 
 #include <string>
-#include <map>
+#include <unordered_map>
 #include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
@@ -36,7 +36,7 @@ private:
     MyXMLDocument(void): _rootNode(nullptr) {}
     ~MyXMLDocument(void) { destroy(); }
     
-    std::map<std::string, std::string> _attributeMap;
+    std::unordered_map<std::string, std::string> _attributeMap;
     MyXMLNode *_rootNode;
     
     void destroy(void);

@@ -54,8 +54,8 @@ public:
     GLuint bufferId(void) const { return _bufferId; }
     
     void bindBuffer(void);
-    void bufferData(int bufferSize, const void *data, int usage = kBufferUsageStaticDraw);
-    void bufferSubData(int bufferOffset, int bufferSize, const void *data);
+    void bufferData(size_t bufferSize, const void *data, int usage = kBufferUsageStaticDraw);
+    void bufferSubData(size_t bufferOffset, size_t bufferSize, const void *data);
     void deleteBuffer(void);
     
     static MyBufferObject* runningBufferObject(void) { return _runningBufferObject; }

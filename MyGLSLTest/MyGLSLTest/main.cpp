@@ -60,14 +60,14 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    MyScene *myScene = UniformScene::create();
+    MyScenario *myScene = UniformScene::create();
     
     if(!myScene->initialize()) {
         sharedDirector->closeDirector();
         return -1;
     }
     
-    sharedDirector->runningScene(myScene);
+    sharedDirector->runningScenario(myScene);
     sharedDirector->runMainLoop();
     
     sharedDirector->closeDirector();

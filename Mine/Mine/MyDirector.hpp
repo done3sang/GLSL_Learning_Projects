@@ -10,7 +10,7 @@
 #define MyDirector_hpp
 
 #include <string>
-#include <map>
+#include <unordered_map>
 #include "MyPrecompiled.hpp"
 
 #define GLFW_INCLUDE_GLCOREARB
@@ -24,7 +24,7 @@ MINE_NAMESPACE_BEGIN
 class MySingleton;
 class MyErrorCallback;
 class MyRenderer;
-class MyScene;
+class MyScenario;
 
 class MyDirector final: public MySingleton {
 public:
@@ -47,8 +47,8 @@ public:
     bool windowShouldClose(void) const;
     
     // main relative
-    MyScene* runningScene(void) const { return _runningScene; }
-    void runningScene(MyScene *scene);
+    MyScenario* runningScenario(void) const { return _runningScenario; }
+    void runningScenario(MyScenario *scene);
     
     // renderer relative
     MyRenderer* mainRenderer(void) const { return _mainRenderer; }
@@ -65,7 +65,7 @@ public:
     
 private:
     MyDirector(void): _errCode(0),
-        _mainRenderer(nullptr), _runningScene(nullptr),
+        _mainRenderer(nullptr), _runningScenario(nullptr),
         _errorCallback(nullptr), _glfwWindow(nullptr), _framesPerSecond(0.0f) {}
     ~MyDirector(void);
     
@@ -73,9 +73,9 @@ private:
     std::string _errDesc;
     MyErrorCallback *_errorCallback;
     GLFWwindow *_glfwWindow;
-    MyScene *_runningScene;
+    MyScenario *_runningScenario;
     MyRenderer *_mainRenderer;
-    std::map<int, std::string> _glErrorMap;
+    std::unordered_map<int, std::string> _glErrorMap;
     
     // fps
     float _framesPerSecond;

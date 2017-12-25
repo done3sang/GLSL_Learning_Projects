@@ -128,4 +128,3 @@ void BaseScene::render(void) {
     _myVertexArray->bindVertexArray();
     _myRenderer->drawArrays(MyRenderer::kRenderPrimitiveTriangles, 0, 3);
 }
-

@@ -27,11 +27,13 @@ public:
     static constexpr int kComponentTypePointLight = 3;
     static constexpr int kComponentTypeSpotLight = 4;
     static constexpr int kComponentTypeModel = 5;
+    static constexpr int kComponentTypeTransform = 6;
     
     static constexpr int kComponentGroupNone = 0;
     static constexpr int kComponentGroupMaterial = 1;
     static constexpr int kComponentGroupLight = 2;
     static constexpr int kComponentGroupModel = 3;
+    static constexpr int kComponentGroupTransform = 4;
     
 public:
     int componentType(void) const { return _componentType; }

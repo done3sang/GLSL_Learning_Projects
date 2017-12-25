@@ -14,12 +14,11 @@
 
 USING_MINE_NAMESPACE;
 
-class BaseScene: public MyScene  {
+class BaseScene: public MyScenario  {
 public:
-    bool initialize(void);
-    void update(float deltaTime);
-    void render(void);
-    void destroy(void) {}
+    bool initialize(void) override;
+    void update(float deltaTime) override;
+    void render(void) override;
     
     static BaseScene* create(void);
     

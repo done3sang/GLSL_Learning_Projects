@@ -41,7 +41,7 @@ void MyXMLNode::destroy(void) {
     }
 }
 
-void MyXMLNode::siblingNode(Mine::MyXMLNode *node) {
+void MyXMLNode::siblingNode(MyXMLNode *node) {
     if(_siblingNode) {
         _siblingNode->release();
     }
@@ -51,7 +51,7 @@ void MyXMLNode::siblingNode(Mine::MyXMLNode *node) {
     _siblingNode = node;
 }
 
-void MyXMLNode::childNode(Mine::MyXMLNode *node) {
+void MyXMLNode::childNode(MyXMLNode *node) {
     if(_childNode) {
         _childNode->release();
     }

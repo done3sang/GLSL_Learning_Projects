@@ -171,13 +171,13 @@ MyProgram* MyShadingManager::programByName(const std::string &name) const {
     return _programMap.end() == iter ? nullptr: iter->second;
 }
 
-void MyShadingManager::addShader(Mine::MyShader *shader) {
+void MyShadingManager::addShader(MyShader *shader) {
     assert(shader && !containShader(shader->shaderName()) && "MyShadingManager::addShader = shader null or already added");
     _shaderMap[shader->shaderName()] = shader;
     shader->addRef();
 }
 
-void MyShadingManager::addProgram(Mine::MyProgram *prog) {
+void MyShadingManager::addProgram(MyProgram *prog) {
     assert(prog && !containProgram(prog->programName()) && "MyShadingManager::addProgram = program null or already added");
     _programMap[prog->programName()] = prog;
     prog->addRef();

@@ -36,7 +36,7 @@ MyProgram* MyProgram::create(const std::string &programName) {
     return prog;
 }
 
-bool MyProgram::shaderAttached(const Mine::MyShader *shader) const {
+bool MyProgram::shaderAttached(const MyShader *shader) const {
     assert(shader && "MyProgram::shaderAttached = Shader should be non-null");
     
     for(auto iter: _shaderVec) {
@@ -48,7 +48,7 @@ bool MyProgram::shaderAttached(const Mine::MyShader *shader) const {
     return false;
 }
 
-int MyProgram::attachShader(Mine::MyShader *shader) {
+int MyProgram::attachShader(MyShader *shader) {
     assert(shader && "MyProgram::attachShader = Shader should be non-null");
     
     if(linked()) {
@@ -77,7 +77,7 @@ int MyProgram::attachShader(Mine::MyShader *shader) {
     return MyErrorDesc::kErrOk;
 }
 
-int MyProgram::detachShader(Mine::MyShader *shader) {
+int MyProgram::detachShader(MyShader *shader) {
     assert(shader && "MyProgram::detachShader = Shader should be non-null");
     
     for(auto iter = _shaderVec.begin(); iter != _shaderVec.end(); ++iter) {
@@ -296,7 +296,7 @@ int MyProgram::uniformBlockIndex(const std::string &blockName, const std::string
     return MyErrorDesc::kErrOk;
 }
 
-void MyProgram::addUniformBlock(int blockIndex, Mine::MyBufferObject *blockBuffer) {
+void MyProgram::addUniformBlock(int blockIndex, MyBufferObject *blockBuffer) {
     assert(blockBuffer && _uniformBlock.end() == _uniformBlock.find(blockIndex));
     _uniformBlock[blockIndex] = blockBuffer;
     blockBuffer->addRef();

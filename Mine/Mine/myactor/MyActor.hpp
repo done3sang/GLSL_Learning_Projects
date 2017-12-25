@@ -9,8 +9,9 @@
 #ifndef MyActor_hpp
 #define MyActor_hpp
 
-#include <map>
+#include <unordered_map>
 #include <string>
+#include <vector>
 #include <glm/fwd.hpp>
 #include "MyPrecompiled.hpp"
 
@@ -21,16 +22,14 @@ MINE_NAMESPACE_BEGIN
 
 class MyUniqueRef;
 class MyActorComponent;
+class MyTransformComponent;
 
 class MyActor: public MyUniqueRef {
 public:
-    int actorId(void) const { return _actorId; }
+    size_t actorId(void) const { return _actorId; }
     
     void actorName(const std::string &name) { _actorName = name; }
     const std::string& actorName(void) { return _actorName; }
-    
-    void actorPosition(const glm::vec3 &pos) { _actorPosition = pos; }
-    const glm::vec3& actorPosition(void) const { return _actorPosition; }
     
     MyActorComponent* componentByType(int compType) const {
         auto iter = _actorComponents.find(compType);
@@ -41,26 +40,37 @@ public:
     }
     bool containComponent(const MyActorComponent *comp) const;
     
+    MyTransformComponent* transform(void) const { return _transform; }
+    
     bool addComponent(MyActorComponent *comp);
     bool deleteComponent(MyActorComponent *comp);
     bool deleteComponent(int compType);
     
     void clearComponent(void);
     
+    virtual void update(float deltaTime) {}
+    virtual void render(void);
+    
+    static bool componentTypeImplicit(int compType) {
+        return MyActorComponent::kComponentTypeTransform == compType;
+    }
+    
 protected:
-    MyActor(const std::string &name = "Actor"):
-    _actorName(name), _actorId(++_sharedActorCount) {}
+    MyActor(const std::string &name = "Actor");
     ~MyActor(void) { destroy(); }
     
 private:
-    int _actorId;
+    size_t _actorId;
     std::string _actorName;
-    glm::vec3 _actorPosition;
-    std::map<int, MyActorComponent*> _actorComponents;
+    std::unordered_map<int, MyActorComponent*> _actorComponents;
     
-    static int _sharedActorCount;
+    static size_t _sharedActorCount;
+    static std::vector<size_t> _sharedUsedActorId;
+    static std::vector<size_t> _sharedDeletedActorId;
+    static size_t sharedActorId(void);
+    MyTransformComponent *_transform;
     
-    void actorId(int id) { _actorId = id; }
+    void actorId(size_t id) { _actorId = id; }
     void destroy(void);
 };
 
