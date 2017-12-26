@@ -29,12 +29,14 @@ public:
         int offset;
     };
     
-    bool formatLoaded(void) const { return _loaded; }
+    bool loaded(void) const { return _loaded; }
     
+    //! position[3]_normal[3]_texcoord[2]_texcoord1[2]
     bool loadFormat(const std::string &format);
     
 private:
-    MyVertexAttribute(const std::string &format): _attributeName(format) { loadFormat(format); }
+    MyVertexAttribute(void) {}
+    MyVertexAttribute(const std::string &format) { loadFormat(format); }
     ~MyVertexAttribute(void) {}
     
     std::string _attributeName;
