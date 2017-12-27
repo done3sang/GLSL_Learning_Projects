@@ -12,9 +12,12 @@
 #include "MyActorComponent.hpp"
 #include "MyTransformComponent.hpp"
 #include "MyModelComponent.hpp"
+#include "MyVertexAttribute.hpp"
+#include "MyVertexAttributeManager.hpp"
 #include "MyVertexArrayObject.hpp"
 #include "MyProgram.hpp"
 #include "MyScenario.hpp"
+#include "MyRenderer.hpp"
 #include "MyDirector.hpp"
 #include "MyActor.hpp"
 
@@ -23,6 +26,12 @@ MINE_NAMESPACE_BEGIN
 size_t MyActor::_sharedActorCount = 0;
 std::vector<size_t> MyActor::_sharedUsedActorId;
 std::vector<size_t> MyActor::_sharedDeletedActorId;
+
+MyActor* MyActor::createWithName(const std::string &name) {
+    MyActor *act = new MyActor(name);
+    act->refName(name);
+    return act;
+}
 
 size_t MyActor::sharedActorId(void) {
     size_t aid(1);
@@ -51,6 +60,8 @@ void MyActor::destroy(void) {
     std::swap(*iter, *lastIter);
     _sharedUsedActorId.pop_back();
     _sharedDeletedActorId.push_back(_actorId);
+    
+    clearComponent();
 }
 
 bool MyActor::addComponent(MyActorComponent *comp) {
@@ -114,24 +125,27 @@ void MyActor::clearComponent(void) {
 void MyActor::render(void) {
     MyActorComponent *comp = componentByType(MyActorComponent::kComponentTypeModel);
     MyModelComponent *modelComp = dynamic_cast<MyModelComponent*>(comp);
-    MyVertexArrayObject *runningVAO = MyVertexArrayObject::runningVertexArrayObject();
+    MyVertexArrayObject *mainVAO = MyDirector::sharedDirector()->mainVertexArrayObject();
+    MyRenderer *renderer = MyDirector::sharedDirector()->mainRenderer();
     assert(modelComp && "ERROR = MyActor::render, model null");
-    assert(runningVAO && "ERROR = MyActor::render, vao null");
+    assert(mainVAO && "ERROR = MyActor::render, vao null");
     
-    auto &vertexAttrib = modelComp->vertexAttribute();
+    auto vertexAtt = modelComp->modelVertexAttribute();
     MyBufferObject *vertexBuf = modelComp->modelVertexBuffer();
     //MyBufferObject *elemBuf = modelComp->modelElementBuffer();
     MyProgram *prog = modelComp->modelProgram();
     
-    for(auto &iter: vertexAttrib) {
-        runningVAO->vertexAttribPoint(*vertexBuf, iter.attrib, iter.size, iter.stride, iter.offset);
+    prog->useProgram();
+    
+    mainVAO->bindVertexArray();
+    for(auto &iter: vertexAtt->attributeMap()) {
+        mainVAO->vertexAttribPoint(*vertexBuf, iter.attrib, iter.size, vertexAtt->stride(), iter.offset);
     }
     
-    prog->useProgram();
     if(modelComp->modelElemented()) {
         //glDrawElements(modelComp->renderMode(), modelComp->renderCount(), <#GLenum type#>, <#const GLvoid *indices#>)
     } else {
-        glDrawArrays(modelComp->renderMode(), modelComp->renderStart(), modelComp->renderCount());
+        renderer->drawArrays(modelComp->renderMode(), modelComp->renderStart(), modelComp->renderCount());
     }
 }
 

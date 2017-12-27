@@ -10,12 +10,27 @@
 #include <glm/glm.hpp>
 #include "MyRef.hpp"
 #include "MyTemplate.hpp"
-#include "MyActor.hpp"
 #include "MyActorComponent.hpp"
+#include "MyActor.hpp"
 #include "MyModelComponent.hpp"
 #include "MyScenario.hpp"
 
 MINE_NAMESPACE_BEGIN
+
+void MyScenario::destroy(void) {
+    for(auto &iter: _updateActorMap) {
+        detachActorUpdated(iter.second);
+    }
+    for(auto &iter: _renderActorMap) {
+        detachActorRendered(iter.second);
+    }
+    for(auto &iter: _scenarioActorMap) {
+        detachActor(iter.second);
+    }
+    _updateActorMap.clear();
+    _renderActorMap.clear();
+    _scenarioActorMap.clear();
+}
 
 void MyScenario::update(float deltaTime) {
     for(auto &iter: _updateActorMap) {

@@ -25,6 +25,7 @@ class MySingleton;
 class MyErrorCallback;
 class MyRenderer;
 class MyScenario;
+class MyVertexArrayObject;
 
 class MyDirector final: public MySingleton {
 public:
@@ -48,11 +49,15 @@ public:
     
     // main relative
     MyScenario* runningScenario(void) const { return _runningScenario; }
-    void runningScenario(MyScenario *scene);
+    void runScenario(MyScenario *scene);
     
     // renderer relative
     MyRenderer* mainRenderer(void) const { return _mainRenderer; }
     void mainRenderer(MyRenderer *renderer);
+    
+    // vao relative
+    MyVertexArrayObject* mainVertexArrayObject(void) const { return _mainVertexArrayObject; }
+    void mainVertexArrayObject(MyVertexArrayObject *vao);
     
     // main loop
     void runMainLoop(void);
@@ -65,7 +70,7 @@ public:
     
 private:
     MyDirector(void): _errCode(0),
-        _mainRenderer(nullptr), _runningScenario(nullptr),
+        _mainRenderer(nullptr), _runningScenario(nullptr), _mainVertexArrayObject(nullptr),
         _errorCallback(nullptr), _glfwWindow(nullptr), _framesPerSecond(0.0f) {}
     ~MyDirector(void);
     
@@ -75,6 +80,7 @@ private:
     GLFWwindow *_glfwWindow;
     MyScenario *_runningScenario;
     MyRenderer *_mainRenderer;
+    MyVertexArrayObject *_mainVertexArrayObject;
     std::unordered_map<int, std::string> _glErrorMap;
     
     // fps

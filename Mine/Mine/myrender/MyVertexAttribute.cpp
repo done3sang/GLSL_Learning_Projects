@@ -12,16 +12,28 @@
 
 MINE_NAMESPACE_BEGIN
 
+MyVertexAttribute* MyVertexAttribute::create(void) {
+    MyVertexAttribute *att = new MyVertexAttribute();
+    att->refName("MyVertexAttribute");
+    return att;
+}
+
+MyVertexAttribute* MyVertexAttribute::createWithFormat(const std::string &fmt) {
+    MyVertexAttribute *att = new MyVertexAttribute(fmt);
+    att->refName("MyVertexAttribute");
+    return att;
+}
+
 //! position[3]_normal[3]_texcoord0[2]_texcoord1[2]
 bool MyVertexAttribute::loadFormat(const std::string &format) {
-    if(!format.empty()) {
+    if(format.empty()) {
         return false;
     }
     
     bool formated(false), found(false);
     VertexAttribute va;
-    std::string::size_type pos(0);
-    std::string::value_type ch, bracket;
+    std::string::size_type pos(0), bracket(0);
+    std::string::value_type ch;
     int attrib(0), size(0), stride(0);
     
     while(pos < format.size()) {
@@ -36,17 +48,18 @@ bool MyVertexAttribute::loadFormat(const std::string &format) {
             if(0 >= size) {
                 return false;
             }
-            size *= sizeof(float);
             va.attrib = attrib;
             va.size = size;
             va.offset = stride;
-            stride += size;
+            stride += size * sizeof(float);
             
             if(!formated) {
                 _attributeMap.clear();
+                formated = true;
             }
             _attributeMap.push_back(va);
             found = false;
+            pos = bracket + 1;
         } else if('p' == ch && pos == format.find("position")) {
             // position
             pos += 8;
@@ -57,7 +70,7 @@ bool MyVertexAttribute::loadFormat(const std::string &format) {
             pos += 6;
             attrib = MyProgram::kAttribNormal;
             found = true;
-        } else if('n' == ch && pos == format.find("texcoord0")) {
+        } else if('t' == ch && pos == format.find("texcoord0")) {
             // texcoord0
             pos += 9;
             attrib = MyProgram::kAttribTexCoord0;
@@ -72,10 +85,9 @@ bool MyVertexAttribute::loadFormat(const std::string &format) {
         }
     }
     if(formated) {
-        for(auto &iter: _attributeMap) {
-            iter.stride = stride;
-        }
+        _attributeName = format;
         _loaded = true;
+        _stride = stride;
     }
     
     return formated;

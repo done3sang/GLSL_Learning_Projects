@@ -26,8 +26,9 @@ class MyTransformComponent;
 
 class MyActor: public MyUniqueRef {
 public:
-    size_t actorId(void) const { return _actorId; }
+    static MyActor* createWithName(const std::string &name);
     
+    size_t actorId(void) const { return _actorId; }
     void actorName(const std::string &name) { _actorName = name; }
     const std::string& actorName(void) { return _actorName; }
     
@@ -45,8 +46,6 @@ public:
     bool addComponent(MyActorComponent *comp);
     bool deleteComponent(MyActorComponent *comp);
     bool deleteComponent(int compType);
-    
-    void clearComponent(void);
     
     virtual void update(float deltaTime) {}
     virtual void render(void);
@@ -72,6 +71,7 @@ private:
     
     void actorId(size_t id) { _actorId = id; }
     void destroy(void);
+    void clearComponent(void);
 };
 
 MINE_NAMESPACE_END

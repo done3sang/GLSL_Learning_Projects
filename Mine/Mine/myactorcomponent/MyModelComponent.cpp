@@ -11,29 +11,12 @@
 #include "MyFileUtil.hpp"
 #include "MyBufferObject.hpp"
 #include "MyProgram.hpp"
+#include "MyShadingManager.hpp"
+#include "MyVertexAttribute.hpp"
+#include "MyVertexAttributeManager.hpp"
 #include "MyModelComponent.hpp"
 
 MINE_NAMESPACE_BEGIN
-
-MyModelComponent::VertexAttribute MyModelComponent::vertexByFormat(int fmt) {
-    VertexAttribute va;
-    
-    switch(fmt) {
-        case kModelFormatV3N3T2:
-            va.attrib = MyProgram::kAttribPosition;
-            va.size = 3 * sizeof(float);
-            va.stride = 6 * sizeof(float);
-            va.offset = 0;
-            break;
-            
-        case kModelFormatV3C3:
-            va.attrib = MyProgram::kAttribPosition;
-            va.size = 3 * sizeof(float);
-            va.stride = 6 * sizeof(float);
-            va.offset = 0;
-            break;
-    }
-}
 
 MyModelComponent* MyModelComponent::create(void) {
     MyModelComponent *model = new MyModelComponent();
@@ -69,28 +52,55 @@ bool MyModelComponent::loadModelFile(const std::string &path) {
         return false;
     }
     
-    return loadModelSource(filedata);
+    return loadModelSource(filedata, "position[4]_normal[3]");
 }
 
-bool MyModelComponent::loadVertexData(const std::vector<float> &data,
-                                     int format, int primitive) {
-    if(data.empty() || !modelFormat(format) || !modelPrimitive(primitive)) {
+bool MyModelComponent::loadModelSource(const std::string &source,
+                                       const std::string &format,
+                                       bool elemented) {
+    return false;
+}
+
+bool MyModelComponent::loadVertexData(const std::vector<float> &vertexData,
+                                     const std::string &format, int primitive) {
+    if(vertexData.empty() || !modelPrimitive(primitive)) {
+        return false;
+    }
+    const MyVertexAttribute *att = MyVertexAttributeManager::sharedVertexAttributeManager()->attributeByName(format);
+    if(!att) {
         return false;
     }
     
     MyBufferObject *vertexBuf = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
-    vertexBuf->bufferData(static_cast<int>(data.size()), &data[0]);
-    
+    vertexBuf->bufferData(vertexData.size() * sizeof(float), vertexData.data());
+
     if(_vertexBuffer) {
         _vertexBuffer->release();
     }
     vertexBuf->addRef();
     
     _vertexBuffer = vertexBuf;
-    _modelFormat = format;
     _modelPrimitive = primitive;
+    _vertexAttribute = att;
     
-    buildVertexAttribute(data.size());
+    if(kModelPrimitivePoint == _modelPrimitive) {
+        _renderMode = GL_POINTS;
+    } else if(kModelPrimitiveLine == _modelPrimitive) {
+        _renderMode = GL_LINES;
+    } else if(kModelPrimitiveTriangles == _modelPrimitive) {
+        _renderMode = GL_TRIANGLES;
+    } else if(kModelPrimitiveTriangleStrip == _modelPrimitive) {
+        _renderMode = GL_TRIANGLE_STRIP;
+    } else if(kModelPrimitiveTriangleFan == _modelPrimitive) {
+        _renderMode = GL_TRIANGLE_FAN;
+    }
+    
+    _renderStart = 0;
+    _renderCount = static_cast<int>(vertexData.size())/_vertexAttribute->strideSize();
+    
+    if(!_program) {
+        modelProgram("basic");
+    }
     
     return true;
 }
@@ -113,90 +123,19 @@ bool MyModelComponent::loadElementData(const std::vector<int> &data) {
     return true;
 }
 
-void MyModelComponent::buildVertexAttribute(size_t vertexBufferSize) {
-    VertexAttribute va;
-    int stride(32);
+void MyModelComponent::modelProgram(const std::string &progName) {
+    MyProgram *prog = MyShadingManager::sharedShadingManager()->programByName(progName);
     
-    _vertexAttribute.clear();
-    switch(_modelFormat) {
-        case kModelFormatV3N3T2:
-            stride = 8 * sizeof(float);
-            
-            va.attrib = MyProgram::kAttribPosition;
-            va.size = 3 * sizeof(float);
-            va.stride = stride;
-            va.offset = 0;
-            _vertexAttribute.push_back(va);
-            
-            va.attrib = MyProgram::kAttribNormal;
-            va.size = 3 * sizeof(float);
-            va.stride = stride;
-            va.offset = 3 * sizeof(float);
-            _vertexAttribute.push_back(va);
-            
-            va.attrib = MyProgram::kAttribTexCoord0;
-            va.size = 2 * sizeof(float);
-            va.stride = stride;
-            va.offset = 6 * sizeof(float);
-            _vertexAttribute.push_back(va);
-            break;
-            
-        case kModelFormatV3C3:
-            stride = 6 * sizeof(float);
-            
-            va.attrib = MyProgram::kAttribPosition;
-            va.size = 3 * sizeof(float);
-            va.stride = stride;
-            va.offset = 0;
-            _vertexAttribute.push_back(va);
-            
-            va.attrib = MyProgram::kAttribColor;
-            va.size = 3 * sizeof(float);
-            va.stride = stride;
-            va.offset = 3 * sizeof(float);
-            _vertexAttribute.push_back(va);
-            break;
-            
-        case kModelFormatV3N3C3:
-            stride = 9 * sizeof(float);
-            
-            va.attrib = MyProgram::kAttribPosition;
-            va.size = 3 * sizeof(float);
-            va.stride = stride;
-            va.offset = 0;
-            _vertexAttribute.push_back(va);
-            
-            va.attrib = MyProgram::kAttribNormal;
-            va.size = 3 * sizeof(float);
-            va.stride = stride;
-            va.offset = 3 * sizeof(float);
-            _vertexAttribute.push_back(va);
-            
-            va.attrib = MyProgram::kAttribColor;
-            va.size = 3 * sizeof(float);
-            va.stride = stride;
-            va.offset = 6 * sizeof(float);
-            _vertexAttribute.push_back(va);
-            break;
-            
-        default:
-            break;
+    if(!prog) {
+        return;
     }
     
-    if(kModelPrimitivePoint == _modelPrimitive) {
-        _renderMode = GL_POINTS;
-    } else if(kModelPrimitiveLine == _modelPrimitive) {
-        _renderMode = GL_LINES;
-    } else if(kModelPrimitiveTriangles == _modelPrimitive) {
-        _renderMode = GL_TRIANGLES;
-    } else if(kModelPrimitiveTriangleStrip == _modelPrimitive) {
-        _renderMode = GL_TRIANGLE_STRIP;
-    } else if(kModelPrimitiveTriangleFan == _modelPrimitive) {
-        _renderMode = GL_TRIANGLE_FAN;
+    if(_program) {
+        _program->release();
     }
     
-    _renderStart = 0;
-    _renderCount = static_cast<int>(vertexBufferSize)/stride;
+    prog->addRef();
+    _program = prog;
 }
 
 MINE_NAMESPACE_END

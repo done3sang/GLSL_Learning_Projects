@@ -144,17 +144,14 @@ MyProgram* MyProgram::runningProgram(void) {
     return _runningProgram;
 }
 
-int MyProgram::useProgram(void) {
-    if(!linked()) {
-        return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramNotLinked);
-    }
+void MyProgram::useProgram(void) {
+    assert(linked() && "ERROR = MyProgram::useProgram, not linked");
     if(_runningProgram && operator==(*_runningProgram)) {
-        return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrOk);
+        return;
     }
     
     glUseProgram(_programId);
     _runningProgram = this;
-    return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrOk);
 }
 
 void MyProgram::deleteProgram(void) {

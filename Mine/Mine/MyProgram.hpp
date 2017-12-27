@@ -52,7 +52,7 @@ public:
     bool shaderAttached(const MyShader *shader) const;
     
     int linkPorgram(void);
-    int useProgram(void);
+    void useProgram(void);
     void deleteProgram(void);
     
     bool validate(void) const;

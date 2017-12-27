@@ -20,9 +20,9 @@ MINE_NAMESPACE_BEGIN
 
 MyShadingManager* MyShadingManager::_sharedShadingManager = nullptr;
 
-MyShadingManager* MyShadingManager::sharedShadingManager() {
+MyShadingManager* MyShadingManager::sharedShadingManager(void) {
     if(!_sharedShadingManager) {
-        _sharedShadingManager = new MyShadingManager;
+        _sharedShadingManager = new MyShadingManager();
         _sharedShadingManager->refName("MyShadingManager");
     }
     

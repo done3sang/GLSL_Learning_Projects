@@ -19,7 +19,7 @@ public:
     bool initialize(void) override;
     void update(float deltaTime) override;
     void render(void) override;
-    void destroy(void) override;
+    void destroy(void);
     
     static UniformScene* create(void);
     

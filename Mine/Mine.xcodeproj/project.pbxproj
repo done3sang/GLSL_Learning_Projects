@@ -41,6 +41,8 @@
 		14E4A66F1FF0D4CB0090973F /* MyTransformComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E4A66D1FF0D4CB0090973F /* MyTransformComponent.hpp */; };
 		14E4A6731FF0F9D20090973F /* MyVertexAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E4A6711FF0F9D20090973F /* MyVertexAttribute.cpp */; };
 		14E4A6741FF0F9D20090973F /* MyVertexAttribute.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E4A6721FF0F9D20090973F /* MyVertexAttribute.hpp */; };
+		14E4A6771FF3503D0090973F /* MyVertexAttributeManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E4A6751FF3503D0090973F /* MyVertexAttributeManager.cpp */; };
+		14E4A6781FF3503D0090973F /* MyVertexAttributeManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E4A6761FF3503D0090973F /* MyVertexAttributeManager.hpp */; };
 		14E6D0A41FDE6F4F00999ED6 /* MyActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E6D0A21FDE6F4F00999ED6 /* MyActor.cpp */; };
 		14E6D0A51FDE6F4F00999ED6 /* MyActor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E6D0A31FDE6F4F00999ED6 /* MyActor.hpp */; };
 		14E6D0AD1FDE7E4400999ED6 /* MyActorComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E6D0AB1FDE7E4400999ED6 /* MyActorComponent.cpp */; };
@@ -111,6 +113,8 @@
 		14E4A66D1FF0D4CB0090973F /* MyTransformComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyTransformComponent.hpp; sourceTree = "<group>"; };
 		14E4A6711FF0F9D20090973F /* MyVertexAttribute.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyVertexAttribute.cpp; sourceTree = "<group>"; };
 		14E4A6721FF0F9D20090973F /* MyVertexAttribute.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyVertexAttribute.hpp; sourceTree = "<group>"; };
+		14E4A6751FF3503D0090973F /* MyVertexAttributeManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyVertexAttributeManager.cpp; sourceTree = "<group>"; };
+		14E4A6761FF3503D0090973F /* MyVertexAttributeManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyVertexAttributeManager.hpp; sourceTree = "<group>"; };
 		14E6D0A21FDE6F4F00999ED6 /* MyActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyActor.cpp; sourceTree = "<group>"; };
 		14E6D0A31FDE6F4F00999ED6 /* MyActor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyActor.hpp; sourceTree = "<group>"; };
 		14E6D0AB1FDE7E4400999ED6 /* MyActorComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyActorComponent.cpp; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 			children = (
 				14E4A6721FF0F9D20090973F /* MyVertexAttribute.hpp */,
 				14E4A6711FF0F9D20090973F /* MyVertexAttribute.cpp */,
+				14E4A6761FF3503D0090973F /* MyVertexAttributeManager.hpp */,
+				14E4A6751FF3503D0090973F /* MyVertexAttributeManager.cpp */,
 			);
 			path = myrender;
 			sourceTree = "<group>";
@@ -307,6 +313,7 @@
 				1443490E1FD12BB3006DD6D2 /* MyRef.hpp in Headers */,
 				1443491A1FD13B20006DD6D2 /* MyAutoreleasePool.hpp in Headers */,
 				14EBA11F1FDF816C007972D0 /* MySpotLightComponent.hpp in Headers */,
+				14E4A6781FF3503D0090973F /* MyVertexAttributeManager.hpp in Headers */,
 				1401E6011FCD11EA00D83812 /* MyProgram.hpp in Headers */,
 				1401E5F61FCC13BD00D83812 /* MyErrorDesc.hpp in Headers */,
 				1451AAD61FD8F1FB007D9335 /* MyShadingManager.hpp in Headers */,
@@ -393,6 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E4A6771FF3503D0090973F /* MyVertexAttributeManager.cpp in Sources */,
 				14B24D901FCEAC4800121A65 /* MyVertexArrayObject.cpp in Sources */,
 				14E6D0A41FDE6F4F00999ED6 /* MyActor.cpp in Sources */,
 				14E6D0B51FDE894500999ED6 /* MyLightComponent.cpp in Sources */,

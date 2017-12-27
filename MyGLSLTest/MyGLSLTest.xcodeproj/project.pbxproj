@@ -14,6 +14,7 @@
 		1443494B1FD14E74006DD6D2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1443494A1FD14E6E006DD6D2 /* CoreVideo.framework */; };
 		144396DB1FD6A4480068D685 /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396D91FD6A4480068D685 /* BaseScene.cpp */; };
 		144396DF1FD6ADF90068D685 /* UniformScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396DD1FD6ADF90068D685 /* UniformScene.cpp */; };
+		145AE12F1FF382A9005ACE8B /* TestScenario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 145AE12D1FF382A9005ACE8B /* TestScenario.cpp */; };
 		1476A6281FDFC05100820B28 /* libMine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1476A6271FDFC04700820B28 /* libMine.a */; };
 		14F9EFE01FD7CF1C00EAF6E1 /* Shader in Resources */ = {isa = PBXBuildFile; fileRef = 14F9EFCA1FD79C8100EAF6E1 /* Shader */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,8 @@
 		144396DA1FD6A4480068D685 /* BaseScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseScene.hpp; sourceTree = "<group>"; };
 		144396DD1FD6ADF90068D685 /* UniformScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UniformScene.cpp; sourceTree = "<group>"; };
 		144396DE1FD6ADF90068D685 /* UniformScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UniformScene.hpp; sourceTree = "<group>"; };
+		145AE12D1FF382A9005ACE8B /* TestScenario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestScenario.cpp; sourceTree = "<group>"; };
+		145AE12E1FF382A9005ACE8B /* TestScenario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestScenario.hpp; sourceTree = "<group>"; };
 		1476A6221FDFC04700820B28 /* Mine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mine.xcodeproj; path = ../Mine/Mine.xcodeproj; sourceTree = "<group>"; };
 		14F9EFCA1FD79C8100EAF6E1 /* Shader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shader; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				144349271FD14B6F006DD6D2 /* main.cpp */,
+				145AE12E1FF382A9005ACE8B /* TestScenario.hpp */,
+				145AE12D1FF382A9005ACE8B /* TestScenario.cpp */,
 				144396DA1FD6A4480068D685 /* BaseScene.hpp */,
 				144396D91FD6A4480068D685 /* BaseScene.cpp */,
 				144396DE1FD6ADF90068D685 /* UniformScene.hpp */,
@@ -232,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				144396DF1FD6ADF90068D685 /* UniformScene.cpp in Sources */,
+				145AE12F1FF382A9005ACE8B /* TestScenario.cpp in Sources */,
 				144349281FD14B6F006DD6D2 /* main.cpp in Sources */,
 				144396DB1FD6A4480068D685 /* BaseScene.cpp in Sources */,
 			);

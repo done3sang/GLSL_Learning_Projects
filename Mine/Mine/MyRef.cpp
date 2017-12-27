@@ -35,7 +35,7 @@ void MyRef::release(void) {
     assert(_refCount > 0 && "Reference count should be greater than 0");
     if(0 == --_refCount) {
 #ifdef DEBUG
-        std::cout << "MyRef::release = " << --refObjectCount << "\n";
+        std::cout << "MyRef::delete = " << --refObjectCount << ", " << _refName << "\n";
 #endif
         delete this;
     }

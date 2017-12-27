@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <string>
+#include "TestScenario.hpp"
 #include "BaseScene.hpp"
 #include "UniformScene.hpp"
 #include "myxml/MyXMLDocument.hpp"
@@ -34,15 +35,10 @@ void printXMLNode(const MyXMLNode *xmlnode, std::string &desc);
 std::string printXMLDoc(const MyXMLDocument *doc);
 
 int main(int argc, const char * argv[]) {
-    unsigned int val(-1);
-    int test(0);
-    
-    test = static_cast<int>(val);
-    std::cout << "val,  test = " << val << ", " << test << "\n";
-    /*
-    MyDirector::sharedDirector();
+    auto sharedDirector = MyDirector::sharedDirector();
     MyErrorDesc::sharedErrorDesc()->errorCallback(MyErrorDisposer::create());
     
+    /*
     MyXMLDocument *doc = MyXMLDocument::create();
     if(!doc->loadDocument("./Shader/shader.xml")) {
         std::cout << "Failed to load xml\n";
@@ -50,24 +46,20 @@ int main(int argc, const char * argv[]) {
     
     std::cout << "hello world\n" << printXMLDoc(doc);
      */
-    MyDirector *sharedDirector = MyDirector::sharedDirector();
-    MyErrorDisposer *errDisposer = new MyErrorDisposer;
-    
-    sharedDirector->errorCallback(errDisposer);
     
     if(!sharedDirector->createWindow(800, 600, "Hello World")) {
         sharedDirector->closeDirector();
         return -1;
     }
     
-    MyScenario *myScene = UniformScene::create();
+    MyScenario *myScenerio = TestScenario::create();
     
-    if(!myScene->initialize()) {
+    if(!myScenerio->initialize()) {
         sharedDirector->closeDirector();
         return -1;
     }
     
-    sharedDirector->runningScenario(myScene);
+    sharedDirector->runScenario(myScenerio);
     sharedDirector->runMainLoop();
     
     sharedDirector->closeDirector();

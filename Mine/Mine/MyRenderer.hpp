@@ -40,7 +40,8 @@ public:
     void viewport(int, int ,int, int);
     
     void prepareRender(void);
-    void drawArrays(int primType, int first, int count);
+    void drawArrays(int mode, int first, int count);
+    //void drawElements(int mode, int count, int elemType, )
     
 private:
     explicit

@@ -18,7 +18,11 @@
 #include "MyBufferObject.hpp"
 #include "MyVertexArrayObject.hpp"
 #include "MyErrorDesc.hpp"
+#include "myactorcomponent/MyActorComponent.hpp"
+#include "myactorcomponent/MyModelComponent.hpp"
+#include "myactor/MyActor.hpp"
 #include "MyScenario.hpp"
 #include "MyShadingManager.hpp"
+#include "myrender/MyVertexAttribute.hpp"
 
 #endif /* Mine_h */

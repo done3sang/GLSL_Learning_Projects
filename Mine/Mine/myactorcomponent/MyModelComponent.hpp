@@ -20,16 +20,10 @@ MINE_NAMESPACE_BEGIN
 class MyActorComponent;
 class MyBufferObject;
 class MyProgram;
+class MyVertexAttribute;
 
 class MyModelComponent: public MyActorComponent {
 public:
-    static constexpr int kModelFormatNone = 0;
-    static constexpr int kModelFormatV3N3T2 = 1;
-    static constexpr int kModelFormatV3C3 = 2;
-    static constexpr int kModelFormatV3N3C3 = 3;
-    static constexpr int kModelFormatBegin = kModelFormatV3N3T2;
-    static constexpr int kModelFormatEnd = kModelFormatV3N3C3;
-    
     static constexpr int kModelPrimitiveNone = 0;
     static constexpr int kModelPrimitivePoint = 1;
     static constexpr int kModelPrimitiveLine = 2;
@@ -40,22 +34,15 @@ public:
     static constexpr int kModelPrimitiveEnd = kModelPrimitiveTriangleFan;
     
 public:
-    struct VertexAttribute {
-        int attrib;
-        int size;
-        int stride;
-        int offset;
-    };
-    
     static MyModelComponent* create(void);
     static MyModelComponent* createWithModelFile(const std::string &path);
     
     bool loadModelFile(const std::string &path);
     bool loadModelSource(const std::string &source,
-                         int format = kModelFormatV3N3T2,
+                         const std::string &format,
                          bool elemented = false);
     bool loadVertexData(const std::vector<float> &data,
-                       int format = kModelFormatV3N3T2,
+                       const std::string &format,
                        int primitive = kModelPrimitiveTriangles);
     bool loadElementData(const std::vector<int> &data);
     
@@ -63,23 +50,24 @@ public:
     int modelPrimitive(void) const { return _modelPrimitive; }
     bool modelElemented(void) const { return _elementBuffer; }
     bool modelCompleted(void) const { return _vertexBuffer; }
-    bool modelFormat(int fmt) const { return kModelFormatBegin <= fmt && fmt <= kModelFormatEnd; }
     bool modelPrimitive(int prim) const { return kModelPrimitiveBegin <= prim && prim <= kModelPrimitiveEnd; }
+    const MyVertexAttribute* modelVertexAttribute(void) const { return _vertexAttribute; }
     MyBufferObject* modelVertexBuffer(void) const { return _vertexBuffer; }
     MyBufferObject* modelElementBuffer(void) const { return _elementBuffer; }
     MyProgram* modelProgram(void) const { return _program; }
-    const std::vector<VertexAttribute>& vertexAttribute(void) { return _vertexAttribute; }
     int renderMode(void) const { return _renderMode; }
     int renderStart(void) const { return _renderStart; }
     int renderCount(void) const { return _renderCount; }
     int renderType(void) const { return _renderType; }
     
+    void modelProgram(const std::string &progName);
+    
 private:
     MyModelComponent(void):
     MyActorComponent(MyActorComponent::kComponentTypeModel,
                      "Model", MyActorComponent::kComponentGroupModel),
-    _modelFormat(kModelFormatNone), _modelPrimitive(kModelPrimitiveNone),
-    _vertexBuffer(nullptr), _elementBuffer(nullptr),
+    _modelPrimitive(kModelPrimitiveNone), _vertexAttribute(nullptr),
+    _vertexBuffer(nullptr), _elementBuffer(nullptr), _program(nullptr),
     _renderMode(0), _renderStart(0), _renderCount(0), _renderType(0) {}
     ~MyModelComponent(void) { destroy(); }
     
@@ -88,13 +76,12 @@ private:
     MyBufferObject *_vertexBuffer;
     MyBufferObject *_elementBuffer;
     MyProgram *_program;
-    std::vector<VertexAttribute> _vertexAttribute;
     int _renderMode;
     int _renderStart;
     int _renderCount;
     int _renderType;
+    const MyVertexAttribute *_vertexAttribute;
     
-    void buildVertexAttribute(size_t vertexBufferSize);
     void destroy(void);
 };
 

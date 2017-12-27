@@ -6,7 +6,10 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#ifdef DEBUG
 #include <cassert>
+#endif
+
 #include "MyRef.hpp"
 #include "MyTemplate.hpp"
 #include "MyAutoreleasePool.hpp"
@@ -31,7 +34,9 @@ void MyAutoreleasePool::closeAutoreleasePool(void) {
 }
 
 bool MyAutoreleasePool::contains(const MyRef *object) const {
+#ifdef DEBUG
     assert(object && "MyAutoreleasePool::contains should be non-null");
+#endif
     
     for(const auto &ref: _objectArray) {
         if(ref == object) {
@@ -76,7 +81,7 @@ void MyAutoreleasePool::purgePool(void) {
     for(const auto &obj: _objectArray) {
         obj->release();
     }
-    
+
     _objectArray.clear();
 }
 

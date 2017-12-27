@@ -45,8 +45,8 @@ void MyRenderer::prepareRender(void) {
     glClear(_bufferBits);
 }
 
-void MyRenderer::drawArrays(int primType, int first, int count) {
-    glDrawArrays(primType, first, count);
+void MyRenderer::drawArrays(int mode, int first, int count) {
+    glDrawArrays(mode, first, count);
 }
 
 MINE_NAMESPACE_END

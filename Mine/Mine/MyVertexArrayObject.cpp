@@ -45,7 +45,7 @@ void MyVertexArrayObject::deleteVertexArray(void) {
 }
 
 void MyVertexArrayObject::bindVertexArray(void) {
-    if(_runningVertexArrayObject && operator==(*_runningVertexArrayObject)) {
+    if(_runningVertexArrayObject == this) {
         return;
     }
     

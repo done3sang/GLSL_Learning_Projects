@@ -6,14 +6,20 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#ifdef DEBUG
+#include <cassert>
+#endif
+
 #include "MyTemplate.hpp"
 #include "MyErrorDesc.hpp"
+#include "MyVertexArrayObject.hpp"
 #include "MyRenderer.hpp"
 #include "MyAutoreleasePool.hpp"
 #include "MyScenario.hpp"
 #include "MyFileUtil.hpp"
 #include "MyShadingManager.hpp"
 #include "MyTimerManager.hpp"
+#include "MyVertexAttributeManager.hpp"
 #include "MyDirector.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -61,6 +67,10 @@ void MyDirector::destroy(void) {
         _runningScenario->release();
         _runningScenario = nullptr;
     }
+    if(_mainVertexArrayObject) {
+        _mainVertexArrayObject->release();
+        _mainVertexArrayObject = nullptr;
+    }
     if(_mainRenderer) {
         _mainRenderer->release();
         _mainRenderer = nullptr;
@@ -69,7 +79,8 @@ void MyDirector::destroy(void) {
     MyFileUtil::closeFileUtil();
     MyErrorDesc::closeErrorDesc();
     MyTimerManager::closeTimerManager();
-    MyShadingManager::sharedShadingManager()->closeShadingManager();
+    MyShadingManager::closeShadingManager();
+    MyVertexAttributeManager::closeVertexAttributeManager();
     MyAutoreleasePool::closeAutoreleasePool();
     
     if(_glfwWindow) {
@@ -104,6 +115,17 @@ void MyDirector::errorCallback(MyErrorCallback *errCallback) {
     _errorCallback = errCallback;
 }
 
+void MyDirector::mainVertexArrayObject(MyVertexArrayObject *vao) {
+    if(_mainVertexArrayObject) {
+        _mainVertexArrayObject->release();
+    }
+    if(vao) {
+        vao->addRef();
+    }
+    
+    _mainVertexArrayObject = vao;
+}
+
 void MyDirector::mainRenderer(MyRenderer *renderer) {
     if(_mainRenderer) {
         _mainRenderer->release();
@@ -115,7 +137,7 @@ void MyDirector::mainRenderer(MyRenderer *renderer) {
     _mainRenderer = renderer;
 }
 
-void MyDirector::runningScenario(MyScenario *scenario) {
+void MyDirector::runScenario(MyScenario *scenario) {
     if(_runningScenario) {
         _runningScenario->release();
     }
@@ -127,6 +149,11 @@ void MyDirector::runningScenario(MyScenario *scenario) {
 }
 
 void MyDirector::runMainLoop(void) {
+#ifdef DEBUG
+    assert(_mainVertexArrayObject && "ERROR = MyDirector::runMainLoop, VertexArrayObject null");
+    assert(_mainRenderer && "ERROR = MyDirector::runMainLoop, Renderer null");
+#endif
+    
     MyTimerManager *timerMgr = MyTimerManager::sharedTimerManager();
     double fpstime(0.0f);
     double frames(0.0f);

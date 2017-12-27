@@ -23,7 +23,7 @@ class MyActor;
 class MyScenario: public MyUniqueRef {
 public:
     virtual bool initialize(void) = 0;
-    virtual void destroy(void);
+    void destroy(void);
     
     virtual void update(float deltaTime);
     virtual void render(void);
