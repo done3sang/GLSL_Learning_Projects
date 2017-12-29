@@ -30,6 +30,9 @@ public:
     float attenuationDistance(void) const { return _attenuationDistance; }
     void attenuationDistance(float dist) { _attenuationDistance = dist; }
     
+    float attenuationExponent(void) const { return _attenuationExponent; }
+    void attenuationExponent(float exp) { _attenuationExponent = exp; }
+    
     float cutoff(void) const { return _cutoff; }
     void cutoff(float coneCos) { _cutoff = coneCos; }
     
@@ -37,12 +40,12 @@ private:
     explicit
     MySpotLightComponent(void):
     MyLightComponent(MyActorComponent::kComponentTypePointLight, "Point Light"),
-    _cutoff(0.5f),
-    _attenuationDistance(100.0f), _attenuationType(MyLightComponent::kLightAttenuationQuadratic) {}
+    _cutoff(0.5f), _attenuationDistance(100.0f), _attenuationType(MyLightComponent::kLightAttenuationQuadratic) {}
     ~MySpotLightComponent(void) {}
     
     float _cutoff;
     float _attenuationDistance;
+    float _attenuationExponent;
     int _attenuationType;
 };
 

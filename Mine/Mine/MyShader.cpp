@@ -6,6 +6,10 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#ifdef DEBUG
+#include <iostream>
+#endif
+
 #include "MyTemplate.hpp"
 #include "MyShader.hpp"
 #include "MyFileUtil.hpp"
@@ -42,7 +46,7 @@ MyShader* MyShader::createWithShaderTypeAndPath(const std::string &shaderName,
                                                 int shaderType,
                                                 const std::string &filepath) {
     MyShader *shader = new MyShader(shaderName, shaderType);
-    shader->refName("MyShader");
+    shader->refName(shaderName);
     
     return shader->loadFromFile(filepath) ? shader : nullptr;
 }
@@ -100,6 +104,10 @@ bool MyShader::loadFromSource(const std::string &source) {
             
             _shaderLog = log;
             delete[] log;
+            
+#ifdef DEBUG
+            std::cout << "ERROR: Shader compilation failed = " << _shaderLog << "\n";
+#endif
         }
         
         return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrShaderCompilingFailed);
