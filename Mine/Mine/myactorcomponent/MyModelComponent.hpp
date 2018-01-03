@@ -44,7 +44,7 @@ public:
     bool loadVertexData(const std::vector<float> &data,
                        const std::string &format,
                        int primitive = kModelPrimitiveTriangles);
-    bool loadElementData(const std::vector<int> &data);
+    bool loadElementData(const std::vector<unsigned int> &elemData);
     
     int modelFormat(void) const { return _modelFormat; }
     int modelPrimitive(void) const { return _modelPrimitive; }

@@ -23,6 +23,7 @@ bool TestScenario::initialize(void) {
     MyVertexArrayObject *vao = MyVertexArrayObject::create();
     sharedDirector->mainVertexArrayObject(vao);
     
+    /*
     MyActor *actor = MyActor::createWithName("triangle");
     MyModelComponent *model = MyModelComponent::create();
     std::vector<float> modelData{
@@ -35,13 +36,16 @@ bool TestScenario::initialize(void) {
     }
     actor->addComponent(model);
     attachActor(actor);
-    
-    if(!sharedDirector->checkError()) {
-        std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
-        sharedDirector->errDesc() << "\n";
-
+    */
+    MyActor *actor = MyActor::createWithName("torus");
+    if(MyModelComponent *model = MyModelGenerator::generateTorus(.4f, .6f, 8, 8)) {
+        actor->addComponent(model);
+    } else {
         return false;
     }
+    attachActor(actor);
+    MyPointLight *light = MyPointLight::create();
+    attachActor(light);
     
     return true;
 }

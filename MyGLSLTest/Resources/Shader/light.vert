@@ -79,8 +79,6 @@ vec3 gouraudShading(LightDef lightdef, MaterialDef matdef, vec4 pos, vec3 norm) 
     return color;
 }
 
-uniform int loop;
-
 void main() {
     vec3 eyeNorm = normalize(normalMatrix * vertexNormal);
     vec4 homPosition = vec4(vertexPosition, 1.0);

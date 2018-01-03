@@ -16,15 +16,21 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyActor;
+class MyLightActor;
+class MyProgram;
+class MyDirectionalLightComponent;
 
-class MyDirectionalLight: public MyActor {
+class MyDirectionalLight: public MyLightActor {
 public:
     static MyDirectionalLight* create(void);
+    
+    void bindProgram(MyProgram *prog) override;
     
 private:
     MyDirectionalLight(void);
     ~MyDirectionalLight(void) {}
+    
+    MyDirectionalLightComponent *lightComponent;
 };
 
 MINE_NAMESPACE_END

@@ -105,13 +105,13 @@ bool MyModelComponent::loadVertexData(const std::vector<float> &vertexData,
     return true;
 }
 
-bool MyModelComponent::loadElementData(const std::vector<int> &data) {
-    if(data.empty()) {
+bool MyModelComponent::loadElementData(const std::vector<unsigned int> &elemData) {
+    if(elemData.empty()) {
         return false;
     }
     
     MyBufferObject *elemBuf = MyBufferObject::createWithBufferType(MyBufferObject::kBufferElementArray);
-    elemBuf->bufferData(static_cast<int>(data.size()), &data[0]);
+    elemBuf->bufferData(static_cast<int>(elemData.size()) * sizeof(unsigned int), elemData.data());
     
     if(_elementBuffer) {
         _elementBuffer->release();
@@ -119,6 +119,7 @@ bool MyModelComponent::loadElementData(const std::vector<int> &data) {
     
     elemBuf->addRef();
     _elementBuffer = elemBuf;
+    _renderCount = static_cast<int>(elemData.size());
     
     return true;
 }

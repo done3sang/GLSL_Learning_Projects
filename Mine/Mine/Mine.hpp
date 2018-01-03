@@ -18,11 +18,24 @@
 #include "MyBufferObject.hpp"
 #include "MyVertexArrayObject.hpp"
 #include "MyErrorDesc.hpp"
+
+// acotr component
 #include "myactorcomponent/MyActorComponent.hpp"
 #include "myactorcomponent/MyModelComponent.hpp"
+
+// actor
 #include "myactor/MyActor.hpp"
+#include "myactor/MyLightActor.hpp"
+#include "myactor/MyPointLight.hpp"
+#include "myactor/MyDirectionalLight.hpp"
+#include "myactor/MySpotLight.hpp"
+
 #include "MyScenario.hpp"
 #include "MyShadingManager.hpp"
+
+// renderer
 #include "myrender/MyVertexAttribute.hpp"
+
+#include "MyModelGenerator.hpp"
 
 #endif /* Mine_h */

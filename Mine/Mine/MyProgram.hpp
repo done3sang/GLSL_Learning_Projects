@@ -59,6 +59,9 @@ public:
     
     int bindAttribLocation(GLuint location, const std::string &name) const;
     int uniformMatrix4(const std::string &name, const glm::mat4 &mat);
+    bool uniformVector3(const std::string &name, const glm::vec3 &vec);
+    bool uniformVector4(const std::string &name, const glm::vec4 &vec);
+    bool uniformBool(const std::string &name, bool value);
     int uniformFloat(const std::string &name, float value);
     int uniformInteger(const std::string &name, int value);
     int uniformBlockIndex(const std::string &blockName, const std::string &indexName, int valueSize, void *valueptr);

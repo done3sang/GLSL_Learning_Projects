@@ -38,13 +38,13 @@ public:
     void lightColor(const glm::vec3 &color) { _lightColor = color; }
     const glm::vec3& lightColor(void) const { return _lightColor; }
     
-    void ambientEnabled(bool enabled = true) { _ambientEnabled = enabled; }
+    void ambientEnabled(bool enabled) { _ambientEnabled = enabled; }
     bool ambientEnabled(void) const { return _ambientEnabled; }
     
-    void diffuseEnabled(bool enabled = true) { _diffuseEnabled = enabled; }
+    void diffuseEnabled(bool enabled) { _diffuseEnabled = enabled; }
     bool diffuseEnabled(void) const { return _diffuseEnabled; }
     
-    void specularEnabled(bool enabled = true) { _specularEnabled = enabled; }
+    void specularEnabled(bool enabled) { _specularEnabled = enabled; }
     bool specularEnabled(void) const { return _specularEnabled; }
     
 protected:

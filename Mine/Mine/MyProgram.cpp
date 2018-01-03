@@ -215,8 +215,41 @@ int MyProgram::uniformMatrix4(const std::string &name, const glm::mat4 &mat) {
         return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramUniformNotExists);
     }
     
-    glUniformMatrix4fv(_uniformLocation[name], 1, GL_FALSE, glm::value_ptr(mat));
+    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat));
     return MyErrorDesc::kErrOk;
+}
+
+bool MyProgram::uniformVector3(const std::string &name, const glm::vec3 &vec) {
+    int location(uniformLocation(name));
+    
+    if(location < 0) {
+        return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrProgramUniformNotExists);
+    }
+    
+    glUniform3fv(location, 1, glm::value_ptr(vec));
+    return true;
+}
+
+bool MyProgram::uniformVector4(const std::string &name, const glm::vec4 &vec) {
+    int location(uniformLocation(name));
+    
+    if(location < 0) {
+        return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrProgramUniformNotExists);
+    }
+    
+    glUniform4fv(location, 1, glm::value_ptr(vec));
+    return true;
+}
+
+bool MyProgram::uniformBool(const std::string &name, bool value) {
+    int location(uniformLocation(name));
+    
+    if(location < 0) {
+        return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrProgramUniformNotExists);
+    }
+    
+    glUniform1i(location, value);
+    return true;
 }
 
 int MyProgram::uniformFloat(const std::string &name, float value) {

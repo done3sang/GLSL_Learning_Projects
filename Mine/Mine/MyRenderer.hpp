@@ -21,6 +21,7 @@
 MINE_NAMESPACE_BEGIN
 
 class MyUniqueRef;
+class MyModelComponent;
 
 class MyRenderer: public MyUniqueRef {
 public:
@@ -42,6 +43,9 @@ public:
     void prepareRender(void);
     void drawArrays(int mode, int first, int count);
     //void drawElements(int mode, int count, int elemType, )
+    
+    // model
+    void renderModel(const MyModelComponent *model);
     
 private:
     explicit

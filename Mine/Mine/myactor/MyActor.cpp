@@ -20,12 +20,17 @@
 #include "MyRenderer.hpp"
 #include "MyDirector.hpp"
 #include "MyActor.hpp"
+#include "MyLightActor.hpp"
+#include "MyLightActor.hpp"
+#include "MyDirectionalLight.hpp"
+#include "MySpotLight.hpp"
 
 MINE_NAMESPACE_BEGIN
 
 size_t MyActor::_sharedActorCount = 0;
 std::vector<size_t> MyActor::_sharedUsedActorId;
 std::vector<size_t> MyActor::_sharedDeletedActorId;
+std::unordered_map<size_t, MyLightActor*> MyActor::_scenarioLightMap;
 
 MyActor* MyActor::createWithName(const std::string &name) {
     MyActor *act = new MyActor(name);
@@ -45,6 +50,21 @@ size_t MyActor::sharedActorId(void) {
     
     _sharedUsedActorId.push_back(aid);
     return aid;
+}
+
+void MyActor::pushScenarioLight(MyLightActor *light) {
+    _scenarioLightMap[light->actorId()] = light;
+}
+
+void MyActor::popScenarioLight(MyLightActor *light) {
+    auto iter = _scenarioLightMap.find(light->actorId());
+    if(_scenarioLightMap.end() != iter) {
+        _scenarioLightMap.erase(iter);
+    }
+}
+
+const std::unordered_map<size_t, MyLightActor*>& MyActor::scenarioLightMap(void) {
+    return _scenarioLightMap;
 }
 
 MyActor::MyActor(const std::string &name):
@@ -142,11 +162,11 @@ void MyActor::render(void) {
         mainVAO->vertexAttribPoint(*vertexBuf, iter.attrib, iter.size, vertexAtt->stride(), iter.offset);
     }
     
-    if(modelComp->modelElemented()) {
-        //glDrawElements(modelComp->renderMode(), modelComp->renderCount(), <#GLenum type#>, <#const GLvoid *indices#>)
-    } else {
-        renderer->drawArrays(modelComp->renderMode(), modelComp->renderStart(), modelComp->renderCount());
+    for(const auto &lightIter: _scenarioLightMap) {
+        lightIter.second->bindProgram(prog);
     }
+    
+    renderer->renderModel(modelComp);
 }
 
 MINE_NAMESPACE_END

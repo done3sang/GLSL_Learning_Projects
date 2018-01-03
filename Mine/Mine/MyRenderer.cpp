@@ -6,8 +6,12 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#include <cassert>
 #include "MyRef.hpp"
 #include "MyTemplate.hpp"
+#include "MyBufferObject.hpp"
+#include "MyActorComponent.hpp"
+#include "MyModelComponent.hpp"
 #include "MyRenderer.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -47,6 +51,17 @@ void MyRenderer::prepareRender(void) {
 
 void MyRenderer::drawArrays(int mode, int first, int count) {
     glDrawArrays(mode, first, count);
+}
+
+void MyRenderer::renderModel(const Mine::MyModelComponent *model) {
+    assert(model && "ERROR = MyRenderer::renderModel, model null");
+    
+    if(model->modelElemented()) {
+        model->modelElementBuffer()->bindBuffer();
+        glDrawElements(model->renderMode(), model->renderCount(), GL_UNSIGNED_INT, nullptr);
+    } else {
+        glDrawArrays(model->renderMode(), model->renderStart(), model->renderCount());
+    }
 }
 
 MINE_NAMESPACE_END
