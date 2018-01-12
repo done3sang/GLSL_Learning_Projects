@@ -33,15 +33,15 @@ public:
 public:
     bool isActorAttached(MyActor *actor) const;
     void attachActor(MyActor *actor);
-    void detachActor(MyActor *actor);
+    void detachActor(MyActor *actor, bool erased = true);
     
     bool isActorUpdated(MyActor *actor) const;
     void attachActorUpdated(MyActor *actor);
-    void detachActorUpdated(MyActor *actor);
+    void detachActorUpdated(MyActor *actor, bool erased = true);
     
     bool isActorRendered(MyActor *actor) const;
     void attachActorRendered(MyActor *actor);
-    void detachActorRendered(MyActor *actor);
+    void detachActorRendered(MyActor *actor, bool erased = true);
     
 protected:
     MyScenario(void) {}

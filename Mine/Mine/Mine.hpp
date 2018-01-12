@@ -13,11 +13,14 @@
 #include "MyDirector.hpp"
 #include "MyRef.hpp"
 #include "MyRenderer.hpp"
-#include "MyShader.hpp"
-#include "MyProgram.hpp"
-#include "MyBufferObject.hpp"
-#include "MyVertexArrayObject.hpp"
 #include "MyErrorDesc.hpp"
+
+// shading
+#include "myshading/MyShader.hpp"
+#include "myshading/MyProgram.hpp"
+#include "myshading/MyBufferObject.hpp"
+#include "myshading/MyVertexArrayObject.hpp"
+#include "myshading/MyShadingManager.hpp"
 
 // acotr component
 #include "myactorcomponent/MyActorComponent.hpp"
@@ -30,12 +33,12 @@
 #include "myactor/MyDirectionalLight.hpp"
 #include "myactor/MySpotLight.hpp"
 
+// world
 #include "MyScenario.hpp"
-#include "MyShadingManager.hpp"
 
 // renderer
 #include "myrender/MyVertexAttribute.hpp"
 
 #include "MyModelGenerator.hpp"
-
+#include "mymath/MyMatrix.hpp"
 #endif /* Mine_h */

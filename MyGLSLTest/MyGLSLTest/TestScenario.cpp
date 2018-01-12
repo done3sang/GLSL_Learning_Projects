@@ -44,7 +44,7 @@ bool TestScenario::initialize(void) {
         return false;
     }
     attachActor(actor);
-    MyPointLight *light = MyPointLight::create();
+    MyPointLight *light = MyPointLight::createWithName();
     attachActor(light);
     
     return true;

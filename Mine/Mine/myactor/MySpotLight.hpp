@@ -9,6 +9,7 @@
 #ifndef MySpotLight_hpp
 #define MySpotLight_hpp
 
+#include <string>
 #include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
@@ -22,7 +23,7 @@ class MySpotLightComponent;
 
 class MySpotLight: public MyLightActor {
 public:
-    static MySpotLight* create(void);
+    static MySpotLight* createWithName(const std::string &name);
     
     void bindProgram(MyProgram *prog) override;
     

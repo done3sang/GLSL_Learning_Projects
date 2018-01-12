@@ -9,6 +9,7 @@
 #ifndef MyDirectionalLight_hpp
 #define MyDirectionalLight_hpp
 
+#include <string>
 #include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
@@ -22,7 +23,7 @@ class MyDirectionalLightComponent;
 
 class MyDirectionalLight: public MyLightActor {
 public:
-    static MyDirectionalLight* create(void);
+    static MyDirectionalLight* createWithName(const std::string &name = "Directional Light");
     
     void bindProgram(MyProgram *prog) override;
     

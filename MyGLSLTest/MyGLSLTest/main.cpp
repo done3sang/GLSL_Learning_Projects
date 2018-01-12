@@ -35,17 +35,22 @@ void printXMLNode(const MyXMLNode *xmlnode, std::string &desc);
 std::string printXMLDoc(const MyXMLDocument *doc);
 
 int main(int argc, const char * argv[]) {
-    auto sharedDirector = MyDirector::sharedDirector();
-    MyErrorDesc::sharedErrorDesc()->errorCallback(MyErrorDisposer::create());
+    MyMatrix<2, 2> mm1(1.0f);
+    MyMatrix<2, 2, int> mm2(2);
+    MyMatrix<2, 2> mm3(mm1);
+    MyMatrix<3, 2> mm4(2.5f);
+    MyMatrix<2, 3> mm5(1.5f);
+    MyMatrix<3, 3> mm6;
+    
+    mm3 = mm1 + mm2;
+    mm3 = mm1 * mm2;
+    mm6 = mm4 * mm5;
+    //mm3 = mm1 * mm4;
+    mm6 = mm4 * mm5;
     
     /*
-    MyXMLDocument *doc = MyXMLDocument::create();
-    if(!doc->loadDocument("./Shader/shader.xml")) {
-        std::cout << "Failed to load xml\n";
-    }
-    
-    std::cout << "hello world\n" << printXMLDoc(doc);
-     */
+    auto sharedDirector = MyDirector::sharedDirector();
+    MyErrorDesc::sharedErrorDesc()->errorCallback(MyErrorDisposer::create());
     
     if(!sharedDirector->createWindow(800, 600, "Hello World")) {
         sharedDirector->closeDirector();
@@ -63,6 +68,9 @@ int main(int argc, const char * argv[]) {
     sharedDirector->runMainLoop();
     
     sharedDirector->closeDirector();
+     */
+    
+    std::cout << "Hello World\n";
     return 0;
 }
 

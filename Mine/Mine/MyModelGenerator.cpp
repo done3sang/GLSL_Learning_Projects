@@ -35,7 +35,7 @@ MyModelComponent* MyModelGenerator::generateTorus(float innerRadius,
                               MyModelComponent::kModelPrimitiveTriangleStrip)) {
         return nullptr;
     }
-    model->modelProgram("light");
+    model->modelProgram("basic");
     if(!model->loadElementData(elemVec)) {
         return nullptr;
     }

@@ -12,7 +12,7 @@
 #include <string>
 #include "MyPrecompiled.hpp"
 
-/* The c/Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSL/MyGLSLlasses below are exported */
+/* The classes below are exported */
 #pragma GCC visibility push(default)
 
 MINE_NAMESPACE_BEGIN

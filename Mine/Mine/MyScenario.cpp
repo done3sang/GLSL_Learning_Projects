@@ -19,13 +19,13 @@ MINE_NAMESPACE_BEGIN
 
 void MyScenario::destroy(void) {
     for(auto &iter: _updateActorMap) {
-        detachActorUpdated(iter.second);
+        detachActorUpdated(iter.second, false);
     }
     for(auto &iter: _renderActorMap) {
-        detachActorRendered(iter.second);
+        detachActorRendered(iter.second, false);
     }
     for(auto &iter: _scenarioActorMap) {
-        detachActor(iter.second);
+       detachActor(iter.second, false);
     }
     _updateActorMap.clear();
     _renderActorMap.clear();
@@ -60,10 +60,10 @@ void MyScenario::attachActor(MyActor *actor) {
     }
     
     actor->addRef();
-    _scenarioActorMap[actor->actorId()] = actor;
+    _scenarioActorMap[actor->actorId()] =  actor;
 }
 
-void MyScenario::detachActor(MyActor *actor) {
+void MyScenario::detachActor(MyActor *actor, bool erased) {
     assert(actor && "ERROR = MyScenario::detachActor, actor be nullptr");
     if(!isActorAttached(actor)) {
         return;
@@ -76,7 +76,9 @@ void MyScenario::detachActor(MyActor *actor) {
     detachActorUpdated(actor);
     
     actor->release();
-    _scenarioActorMap.erase(actor->actorId());
+    if(erased) {
+        _scenarioActorMap.erase(actor->actorId());
+    }
 }
 
 bool MyScenario::isActorUpdated(MyActor *actor) const {
@@ -92,13 +94,15 @@ void MyScenario::attachActorUpdated(MyActor *actor) {
     _updateActorMap[actor->actorId()] = actor;
 }
 
-void MyScenario::detachActorUpdated(MyActor *actor) {
+void MyScenario::detachActorUpdated(MyActor *actor, bool erased) {
     assert(actor && "ERROR = MyScenario::detachActorUpdated, actor be nullptr");
     if(!isActorUpdated(actor)) {
         return;
     }
     
-    _updateActorMap.erase(actor->actorId());
+    if(erased) {
+        _updateActorMap.erase(actor->actorId());
+    }
 }
 
 bool MyScenario::isActorRendered(MyActor *actor) const {
@@ -114,13 +118,15 @@ void MyScenario::attachActorRendered(MyActor *actor) {
     _renderActorMap[actor->actorId()] = actor;
 }
 
-void MyScenario::detachActorRendered(MyActor *actor) {
+void MyScenario::detachActorRendered(MyActor *actor, bool erased) {
     assert(actor && "ERROR = MyScenario::detachActorRendered, actor be nullptr");
     if(!isActorRendered(actor)) {
         return;
     }
     
-    _renderActorMap.erase(actor->actorId());
+    if(erased) {
+        _renderActorMap.erase(actor->actorId());
+    }
 }
 
 MINE_NAMESPACE_END

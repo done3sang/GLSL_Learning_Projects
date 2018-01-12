@@ -30,6 +30,7 @@
 		1443491A1FD13B20006DD6D2 /* MyAutoreleasePool.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 144349181FD13B20006DD6D2 /* MyAutoreleasePool.hpp */; };
 		1451AAD51FD8F1FB007D9335 /* MyShadingManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1451AAD31FD8F1FB007D9335 /* MyShadingManager.cpp */; };
 		1451AAD61FD8F1FB007D9335 /* MyShadingManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1451AAD41FD8F1FB007D9335 /* MyShadingManager.hpp */; };
+		146140A92004C119008D5247 /* MyMatrix.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 146140A72004C119008D5247 /* MyMatrix.hpp */; };
 		14AB95F41FDA78FF00CE8617 /* MyStringUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14AB95F21FDA78FF00CE8617 /* MyStringUtil.cpp */; };
 		14AB95F51FDA78FF00CE8617 /* MyStringUtil.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14AB95F31FDA78FF00CE8617 /* MyStringUtil.hpp */; };
 		14B24D901FCEAC4800121A65 /* MyVertexArrayObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B24D8E1FCEAC4800121A65 /* MyVertexArrayObject.cpp */; };
@@ -106,6 +107,8 @@
 		144349181FD13B20006DD6D2 /* MyAutoreleasePool.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyAutoreleasePool.hpp; sourceTree = "<group>"; };
 		1451AAD31FD8F1FB007D9335 /* MyShadingManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyShadingManager.cpp; sourceTree = "<group>"; };
 		1451AAD41FD8F1FB007D9335 /* MyShadingManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyShadingManager.hpp; sourceTree = "<group>"; };
+		146140A72004C119008D5247 /* MyMatrix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyMatrix.hpp; sourceTree = "<group>"; };
+		147F2B002006061300FD02EB /* MyMatrix.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyMatrix.inl; sourceTree = "<group>"; };
 		14AB95F21FDA78FF00CE8617 /* MyStringUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyStringUtil.cpp; sourceTree = "<group>"; };
 		14AB95F31FDA78FF00CE8617 /* MyStringUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyStringUtil.hpp; sourceTree = "<group>"; };
 		14B24D8E1FCEAC4800121A65 /* MyVertexArrayObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyVertexArrayObject.cpp; sourceTree = "<group>"; };
@@ -188,6 +191,7 @@
 		1401E5E21FCC0AE500D83812 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				146140A52004ABEE008D5247 /* myshading */,
 				14E4A6701FF0F9550090973F /* myrender */,
 				14EBA1201FDF8291007972D0 /* mymath */,
 				14E6D0911FDE447000999ED6 /* myactor */,
@@ -212,17 +216,7 @@
 				1401E5F21FCC0F0600D83812 /* MyPrecompiled.hpp */,
 				1401E5F41FCC13BD00D83812 /* MyErrorDesc.hpp */,
 				1401E5F31FCC13BC00D83812 /* MyErrorDesc.cpp */,
-				1401E5F81FCCFC6600D83812 /* MyShader.hpp */,
-				1401E5F71FCCFC6600D83812 /* MyShader.cpp */,
-				1401E5FF1FCD11EA00D83812 /* MyProgram.hpp */,
-				1401E5FE1FCD11EA00D83812 /* MyProgram.cpp */,
-				1451AAD41FD8F1FB007D9335 /* MyShadingManager.hpp */,
-				1451AAD31FD8F1FB007D9335 /* MyShadingManager.cpp */,
-				14B24D8F1FCEAC4800121A65 /* MyVertexArrayObject.hpp */,
-				14B24D8E1FCEAC4800121A65 /* MyVertexArrayObject.cpp */,
 				14B24D931FCEAD9900121A65 /* MyTemplate.hpp */,
-				144349001FCEBA61006DD6D2 /* MyBufferObject.hpp */,
-				144348FF1FCEBA61006DD6D2 /* MyBufferObject.cpp */,
 				144349041FD103CC006DD6D2 /* MyRenderer.hpp */,
 				144349031FD103CC006DD6D2 /* MyRenderer.cpp */,
 				1443490C1FD12BB3006DD6D2 /* MyRef.hpp */,
@@ -238,6 +232,23 @@
 				1401E5FC1FCD007300D83812 /* OpenGL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		146140A52004ABEE008D5247 /* myshading */ = {
+			isa = PBXGroup;
+			children = (
+				1401E5F81FCCFC6600D83812 /* MyShader.hpp */,
+				1401E5F71FCCFC6600D83812 /* MyShader.cpp */,
+				1401E5FF1FCD11EA00D83812 /* MyProgram.hpp */,
+				1401E5FE1FCD11EA00D83812 /* MyProgram.cpp */,
+				1451AAD41FD8F1FB007D9335 /* MyShadingManager.hpp */,
+				1451AAD31FD8F1FB007D9335 /* MyShadingManager.cpp */,
+				14B24D8F1FCEAC4800121A65 /* MyVertexArrayObject.hpp */,
+				14B24D8E1FCEAC4800121A65 /* MyVertexArrayObject.cpp */,
+				144349001FCEBA61006DD6D2 /* MyBufferObject.hpp */,
+				144348FF1FCEBA61006DD6D2 /* MyBufferObject.cpp */,
+			);
+			path = myshading;
 			sourceTree = "<group>";
 		};
 		14BBD6571FDA59F800EFBF0D /* myxml */ = {
@@ -307,6 +318,8 @@
 			children = (
 				14EBA1221FDF82A7007972D0 /* MyMathUtil.hpp */,
 				14EBA1211FDF82A7007972D0 /* MyMathUtil.cpp */,
+				146140A72004C119008D5247 /* MyMatrix.hpp */,
+				147F2B002006061300FD02EB /* MyMatrix.inl */,
 			);
 			path = mymath;
 			sourceTree = "<group>";
@@ -319,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14EBA12C1FDFAFD7007972D0 /* MyDirectionalLight.hpp in Headers */,
+				146140A92004C119008D5247 /* MyMatrix.hpp in Headers */,
 				14EBA1281FDFAAA6007972D0 /* MyPointLight.hpp in Headers */,
 				14F9EFC91FD79B9D00EAF6E1 /* Mine.hpp in Headers */,
 				14EF00791FD69FD70048F4D5 /* MyDirector.hpp in Headers */,
@@ -565,6 +579,11 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"ENABLE_TEMPLATE_META=1",
+					"$(inherited)",
+				);
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = "-lglfw3";
@@ -580,6 +599,7 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "ENABLE_TEMPLATE_META=1";
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = "-lglfw3";

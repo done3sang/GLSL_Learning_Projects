@@ -33,6 +33,13 @@ public:
     void actorName(const std::string &name) { _actorName = name; }
     const std::string& actorName(void) { return _actorName; }
     
+    bool operator<(const MyActor &other) {
+        return actorId() < other.actorId();
+    }
+    bool operator==(const MyActor &other) {
+        return actorId() == other.actorId();
+    }
+    
     MyActorComponent* componentByType(int compType) const {
         auto iter = _actorComponents.find(compType);
         return _actorComponents.end() != iter ? iter->second: nullptr;
@@ -57,7 +64,7 @@ public:
     
 protected:
     MyActor(const std::string &name = "Actor");
-    ~MyActor(void) { destroy(); }
+    virtual ~MyActor(void) { destroy(); }
     
     static void pushScenarioLight(MyLightActor *light);
     static void popScenarioLight(MyLightActor *light);

@@ -76,12 +76,12 @@ void MyDirector::destroy(void) {
         _mainRenderer = nullptr;
     }
     
+    MyAutoreleasePool::closeAutoreleasePool();
     MyFileUtil::closeFileUtil();
     MyErrorDesc::closeErrorDesc();
     MyTimerManager::closeTimerManager();
     MyShadingManager::closeShadingManager();
     MyVertexAttributeManager::closeVertexAttributeManager();
-    MyAutoreleasePool::closeAutoreleasePool();
     
     if(_glfwWindow) {
         glfwDestroyWindow(_glfwWindow);

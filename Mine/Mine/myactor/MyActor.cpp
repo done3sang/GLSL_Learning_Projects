@@ -163,7 +163,7 @@ void MyActor::render(void) {
     }
     
     for(const auto &lightIter: _scenarioLightMap) {
-        lightIter.second->bindProgram(prog);
+       // lightIter.second->bindProgram(prog);
     }
     
     renderer->renderModel(modelComp);

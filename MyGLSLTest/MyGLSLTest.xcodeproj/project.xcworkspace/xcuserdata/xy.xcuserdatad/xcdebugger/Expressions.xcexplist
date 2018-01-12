@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Mine::MyMatrix&lt;2, 2, float&gt; Mine::operator*&lt;2, 2, 2, float, int&gt;(Mine::MyMatrix&lt;2, 2, float&gt; const&amp;, Mine::MyMatrix&lt;2, 2, int&gt; const&amp;):MyMatrix.inl">
+         <PersistentStrings>
+            <PersistentString
+               value = "multiNum">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
