@@ -41,10 +41,17 @@ int main(int argc, const char * argv[]) {
     MyMatrix<3, 2> mm4(2.5f);
     MyMatrix<2, 3> mm5(1.5f);
     MyMatrix<3, 3> mm6;
+    MyMatrix<3, 4> mm7;
+    MyMatrix<4, 2> mm8(1.0f);
+    
+    for(MyMatrix<3, 4>::size_type i = 0; i != mm7.size(); ++i) {
+        mm7.valueAt(i/mm7.column(), i%mm7.column()) = static_cast<MyMatrix<3, 4>::value_type>(i);
+    }
     
     mm3 = mm1 + mm2;
     mm3 = mm1 * mm2;
     mm6 = mm4 * mm5;
+    mm4 = mm7 * mm8;
     //mm3 = mm1 * mm4;
     mm6 = mm4 * mm5;
     

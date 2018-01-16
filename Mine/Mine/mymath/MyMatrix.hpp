@@ -9,6 +9,10 @@
 #ifndef MyMatrix_hpp
 #define MyMatrix_hpp
 
+#ifdef DEBUG
+#include <cassert>
+#endif
+
 #include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
@@ -47,9 +51,22 @@ public:
     bool squared(void) const { return false; }
     int row(void) const { return _row; }
     int column(void) const { return _column; }
+    int size(void) const { return _row * _column; }
     
-    ValueType& valueAt(int r, int c) { return _mat[r][c]; }
-    const ValueType& valueAt(int r, int c) const { return _mat[r][c]; }
+    ValueType& valueAt(int r, int c) {
+#ifdef DEBUG
+        assert(r >= 0 && r < _row && "valueAt error, row overflow");
+        assert(c >= 0 && c < _column && "valueAt error, column overflow");
+#endif
+        return _mat[r][c];
+    }
+    const ValueType& valueAt(int r, int c) const {
+#ifdef DEBUG
+        assert(r >= 0 && r < _row && "valueAt error, row overflow");
+        assert(c >= 0 && c < _column && "valueAt error, column overflow");
+#endif
+        return _mat[r][c];
+    }
 
 private:
     int _row;
@@ -87,9 +104,22 @@ public:
     int row(void) const { return _dimension; }
     int column(void) const { return _dimension; }
     int dimension(void) const { return _dimension; }
+    int size(void) const { return _dimension * _dimension; }
     
-    ValueType& valueAt(int r, int c) { return _mat[r][c]; }
-    const ValueType& valueAt(int r, int c) const { return _mat[r][c]; }
+    ValueType& valueAt(int r, int c) {
+#ifdef DEBUG
+        assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
+        assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
+#endif
+        return _mat[r][c];
+    }
+    const ValueType& valueAt(int r, int c) const {
+#ifdef DEBUG
+        assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
+        assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
+#endif
+        return _mat[r][c];
+    }
     
     // square matrix only
     MyMatrix& transpose(void);

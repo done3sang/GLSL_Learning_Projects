@@ -6,6 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
+#include <cstdlib>
 #include "MyTemplate.hpp"
 #include "MyProgram.hpp"
 #include "MyVertexAttribute.hpp"

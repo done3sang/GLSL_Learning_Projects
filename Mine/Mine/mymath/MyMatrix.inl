@@ -35,7 +35,7 @@ namespace {
     
     template<int R, int C, class ValueType, class OtherValueType>
     inline void MatrixAssignValue(MyMatrix<R, C, ValueType> &mat, const OtherValueType & val) {
-        MatrixAssignValueImpl<MyMatrix<R, C, ValueType>, 0, 0, C, R * C + 1, OtherValueType>::value(mat, val);
+        MatrixAssignValueImpl<MyMatrix<R, C, ValueType>, 0, 0, C, R * C - 1, OtherValueType>::value(mat, val);
     }
     
     // matrix assign matrix
