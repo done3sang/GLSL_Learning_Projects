@@ -43,6 +43,7 @@ int main(int argc, const char * argv[]) {
     MyMatrix<3, 3> mm6;
     MyMatrix<3, 4> mm7;
     MyMatrix<4, 2> mm8(1.0f);
+    MyMatrix<8, 8, std::string> mm9;
     
     for(MyMatrix<3, 4>::size_type i = 0; i != mm7.size(); ++i) {
         mm7.valueAt(i/mm7.column(), i%mm7.column()) = static_cast<MyMatrix<3, 4>::value_type>(i);
@@ -54,6 +55,17 @@ int main(int argc, const char * argv[]) {
     mm4 = mm7 * mm8;
     //mm3 = mm1 * mm4;
     mm6 = mm4 * mm5;
+    
+    swapMatrixRow(mm6, 1, 2);
+    multiplyMatrixRow(mm6, 2, 5.0f);
+    subtractMatrixRow(mm6, 2, 1, 5.0f);
+    
+    swapMatrixColumn(mm6, 0, 1);
+    multiplyMatrixColumn(mm6, 1, 2);
+    subtractMatrixColumn(mm6, 1, 0, 'a');
+    
+    transposeMatrix(mm6);
+    identityMatrix(mm6);
     
     /*
     auto sharedDirector = MyDirector::sharedDirector();

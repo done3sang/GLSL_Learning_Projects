@@ -11,7 +11,7 @@ MINE_NAMESPACE_BEGIN
 // matrix template meta
 namespace {
     // matrix assign value
-    template<class MatrixType, int R, int C, int N, int I, class ValueType>
+    template<class MatrixType, class OtherValueType, int R, int C, int N, int I>
     struct MatrixAssignValueImpl {
         enum {
             Continue = I != 0,
@@ -20,22 +20,21 @@ namespace {
             NextI = I - 1
         };
         
-        static inline void value(MatrixType &mat, ValueType val) {
+        static inline void eval(MatrixType &mat, OtherValueType val) {
             mat.valueAt(R, C) = val;
-            MatrixAssignValueImpl<MatrixType, NextR * Continue, NextC * Continue, N * Continue, NextI * Continue, ValueType>::value(mat, val);
+            MatrixAssignValueImpl<MatrixType, OtherValueType,
+            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::eval(mat, val);
         }
     };
     
-    template<class MatrixType, class ValueType>
-    struct MatrixAssignValueImpl<MatrixType, 0, 0, 0, 0, ValueType> {
-        static inline void value(MatrixType &mat, ValueType val) {
-            
-        }
+    template<class MatrixType, class OtherValueType>
+    struct MatrixAssignValueImpl<MatrixType, OtherValueType, 0, 0, 0, 0> {
+        static inline void eval(MatrixType &mat, OtherValueType val) {}
     };
     
     template<int R, int C, class ValueType, class OtherValueType>
     inline void MatrixAssignValue(MyMatrix<R, C, ValueType> &mat, const OtherValueType & val) {
-        MatrixAssignValueImpl<MyMatrix<R, C, ValueType>, 0, 0, C, R * C - 1, OtherValueType>::value(mat, val);
+        MatrixAssignValueImpl<MyMatrix<R, C, ValueType>, OtherValueType, 0, 0, C, R * C - 1>::eval(mat, val);
     }
     
     // matrix assign matrix
@@ -48,23 +47,22 @@ namespace {
             NextI = I - 1
         };
         
-        static inline void value(MatrixType1 &mat, const MatrixTyp2 &other) {
+        static inline void eval(MatrixType1 &mat, const MatrixTyp2 &other) {
             mat.valueAt(R, C) = other.valueAt(R, C);
             MatrixAssignMatrixImpl<MatrixType1, MatrixTyp2,
-            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::value(mat, other);
+            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::eval(mat, other);
         }
     };
     
     template<class MatrixType1, class MatrixTyp2>
     struct MatrixAssignMatrixImpl<MatrixType1, MatrixTyp2, 0, 0, 0, 0> {
-        static inline void value(MatrixType1 &mat, const MatrixTyp2 &other) {
-            
-        }
+        static inline void eval(MatrixType1 &mat, const MatrixTyp2 &other) {}
     };
     
     template<int R, int C, class ValueType, class OtherValueType>
     inline void MatrixAssignMatrix(MyMatrix<R, C, ValueType> &mat, const MyMatrix<R, C, OtherValueType> &other) {
-        MatrixAssignMatrixImpl<MyMatrix<R, C, ValueType>, MyMatrix<R, C, OtherValueType>, 0, 0, C, R * C - 1>::value(mat, other);
+        MatrixAssignMatrixImpl<MyMatrix<R, C, ValueType>, MyMatrix<R, C, OtherValueType>,
+        0, 0, C, R * C - 1>::eval(mat, other);
     }
     
     // matrix add matrix
@@ -77,23 +75,22 @@ namespace {
             NextI = I - 1
         };
         
-        static inline void value(MatrixType1 &mat, const MatrixTyp2 &other) {
+        static inline void eval(MatrixType1 &mat, const MatrixTyp2 &other) {
             mat.valueAt(R, C) += other.valueAt(R, C);
             MatrixAddMatrixImpl<MatrixType1, MatrixTyp2,
-            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::value(mat, other);
+            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::eval(mat, other);
         }
     };
     
     template<class MatrixType1, class MatrixTyp2>
     struct MatrixAddMatrixImpl<MatrixType1, MatrixTyp2, 0, 0, 0, 0> {
-        static inline void value(MatrixType1 &mat, const MatrixTyp2 &other) {
-            
-        }
+        static inline void eval(MatrixType1 &mat, const MatrixTyp2 &other) {}
     };
     
     template<int R, int C, class ValueType, class OtherValueType>
     inline void MatrixAddMatrix(MyMatrix<R, C, ValueType> &mat, const MyMatrix<R, C, OtherValueType> &other) {
-        MatrixAddMatrixImpl<MyMatrix<R, C, ValueType>, MyMatrix<R, C, OtherValueType>, 0, 0, C, R * C - 1>::value(mat, other);
+        MatrixAddMatrixImpl<MyMatrix<R, C, ValueType>, MyMatrix<R, C, OtherValueType>,
+        0, 0, C, R * C - 1>::eval(mat, other);
     }
     
     // matrix mutliple by value
@@ -106,23 +103,22 @@ namespace {
             NextI = I - 1
         };
         
-        static inline void value(MatrixType &mat, const ValueType &val) {
+        static inline void eval(MatrixType &mat, const ValueType &val) {
             mat.valueAt(R, C) *= val;
             MatrixMultiplyValueImpl<MatrixType, ValueType,
-            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::value(mat, val);
+            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::eval(mat, val);
         }
     };
     
     template<class MatrixType, class ValueType>
     struct MatrixMultiplyValueImpl<MatrixType, ValueType, 0, 0, 0, 0> {
-        static inline void value(MatrixType&, const ValueType&) {
-            
-        }
+        static inline void eval(MatrixType&, const ValueType&) {}
     };
     
     template<int R, int C, class ValueType, class OtherValueType>
     inline void MatrixMultiplyValue(MyMatrix<R, C, ValueType> &mat, const OtherValueType &val) {
-        MatrixMultiplyValueImpl<MyMatrix<R, C, ValueType>, OtherValueType, 0, 0, C, R * C - 1>::value(mat, val);
+        MatrixMultiplyValueImpl<MyMatrix<R, C, ValueType>, OtherValueType,
+        0, 0, C, R * C - 1>::eval(mat, val);
     }
     
     // matrix transpose
@@ -135,28 +131,68 @@ namespace {
             NextI = I - 1
         };
         
-        static inline void value(MatrixType1 &retMat, const MatrixTyp2 &mat) {
+        static inline void eval(MatrixType1 &retMat, const MatrixTyp2 &mat) {
             retMat.valueAt(R, C) = mat.valueAt(C, R);
             MatrixTransposeImpl<MatrixType1, MatrixTyp2,
-            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::value(mat, mat);
+            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::eval(mat, mat);
         }
     };
     
     template<class MatrixType1, class MatrixTyp2>
     struct MatrixTransposeImpl<MatrixType1, MatrixTyp2, 0, 0, 0, 0> {
-        static inline void value(MatrixType1 &mat, const MatrixTyp2 &other) {
-            
-        }
+        static inline void eval(MatrixType1 &mat, const MatrixTyp2 &other) {}
     };
     
     template<int R, int C, class ValueType, class OtherValueType>
     inline void MatrixTranspose(MyMatrix<R, C, ValueType> &retMat, const MyMatrix<C, R, OtherValueType> &mat) {
-        MatrixAddMatrixImpl<MyMatrix<R, C, ValueType>, MyMatrix<C, R, OtherValueType>, 0, 0, C, R * C - 1>::value(mat, mat);
+        MatrixAddMatrixImpl<MyMatrix<R, C, ValueType>, MyMatrix<C, R, OtherValueType>,
+        0, 0, C, R * C - 1>::eval(mat, mat);
     }
     
     // square matrix transpose
     template<class MatrixType, int R, int C, int N, int I>
     struct SquareMatrixTransposeImpl {
+        enum {
+            Continue = I != 1,
+            Newline = C == N - 1,
+            NextR = Newline ? R + 1 : R,
+            NextC = Newline ? NextR + 1 : C + 1,
+            NextI = I - 1
+        };
+        
+        static typename MatrixType::value_type temp;
+        
+        static inline void eval(MatrixType &mat) {
+            temp = mat.valueAt(R, C);
+            mat.valueAt(R, C) = mat.valueAt(C, R);
+            mat.valueAt(C, R) = temp;
+            SquareMatrixTransposeImpl<MatrixType,
+            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::eval(mat);
+        }
+    };
+    
+    template<class MatrixType, int R, int C, int N, int I>
+    typename MatrixType::value_type SquareMatrixTransposeImpl<MatrixType, R, C, N, I>::temp;
+    
+    // avoid to deduce 1x1 square matrix
+    template<class MatrixType>
+    struct SquareMatrixTransposeImpl<MatrixType, 0, 1, 1, 0> {
+        static inline void eval(MatrixType&) {}
+    };
+    
+    template<class MatrixType>
+    struct SquareMatrixTransposeImpl<MatrixType, 0, 0, 0, 0> {
+        static inline void eval(MatrixType&) {}
+    };
+    
+    template<int R, class ValueType>
+    inline void SquareMatrixTranspose(MyMatrix<R, R, ValueType> &mat) {
+        SquareMatrixTransposeImpl<MyMatrix<R, R, ValueType>,0, 1, R, ((R * (R - 1)) >> 1)>::eval(mat);
+    }
+    
+    // square matrix identity
+    template<class MatrixType, int R, int C, int N, int I>
+    struct SquareMatrixIdentityImpl {
         enum {
             Continue = I != 0,
             NextR = I/N,
@@ -164,25 +200,27 @@ namespace {
             NextI = I - 1
         };
         
-        static inline void value(MatrixType &mat) {
-            typename MatrixType::value_type tmp(mat.valueAt(R, C));
-            mat.valueAt(R, C) = mat.valueAt(C, R);
-            mat.valueAt(C, R) = tmp;
-            SquareMatrixTransposeImpl<MatrixType,
-            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::value(mat);
+        static inline void eval(MatrixType &mat,
+                                const typename MatrixType::value_type &identityValue,
+                                const typename MatrixType::value_type &zeroValue) {
+            mat.valueAt(R, C) = (R == C) ? identityValue : zeroValue;
+            SquareMatrixIdentityImpl<MatrixType,
+            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::eval(mat, identityValue, zeroValue);
         }
     };
     
     template<class MatrixType>
-    struct SquareMatrixTransposeImpl<MatrixType, 0, 0, 0, 0> {
-        static inline void value(MatrixType&) {
-            
-        }
+    struct SquareMatrixIdentityImpl<MatrixType, 0, 0, 0, 0> {
+        static inline void eval(MatrixType&,
+                                const typename MatrixType::value_type&,
+                                const typename MatrixType::value_type&) {}
     };
     
     template<int R, class ValueType>
-    inline void SquareMatrixTranspose(MyMatrix<R, R, ValueType> &mat) {
-        SquareMatrixTransposeImpl<MyMatrix<R, R, ValueType>, 0, 0, R, R * R - 1>::value(mat);
+    inline void SquareMatrixIdentity(MyMatrix<R, R, ValueType> &mat,
+                                     const ValueType &identityValue,
+                                     const ValueType &zeroValue) {
+        SquareMatrixIdentityImpl<MyMatrix<R, R, ValueType>, 0, 0, R, R * R - 1>::eval(mat, identityValue, zeroValue);
     }
     
     // matrix multiply matrix
@@ -193,19 +231,17 @@ namespace {
             NextM = M + 1
         };
         
-        static inline void value(MatrixType1 &retMat, const MatrixType2 &mat1, const MatrixType3 &mat2) {
+        static inline void eval(MatrixType1 &retMat, const MatrixType2 &mat1, const MatrixType3 &mat2) {
             retMat.valueAt(R, C) += mat1.valueAt(R, M) * mat2.valueAt(M, C);
             MatrixInnerMultiplyMatrixImpl<MatrixType1, MatrixType2, MatrixType3,
             R * Continue, C * Continue, NextM * Continue,
-            K * Continue>::value(retMat, mat1, mat2);
+            K * Continue>::eval(retMat, mat1, mat2);
         }
     };
     
     template<class MatrixType1, class MatrixType2, class MatrixType3>
     struct MatrixInnerMultiplyMatrixImpl<MatrixType1, MatrixType2, MatrixType3, 0, 0, 0, 0> {
-        static inline void value(MatrixType1 &retMat, const MatrixType2 &mat1, const MatrixType3 &mat2) {
-            
-        }
+        static inline void eval(MatrixType1 &retMat, const MatrixType2 &mat1, const MatrixType3 &mat2) {}
     };
     
     template<class MatrixType1, class MatrixType2, class MatrixType3, int R, int C, int N, int K, int I>
@@ -217,20 +253,18 @@ namespace {
             NextI = I - 1
         };
         
-        static inline void value(MatrixType1 &retMat, const MatrixType2 &mat1, const MatrixType3 &mat2) {
-            MatrixInnerMultiplyMatrixImpl<MatrixType1, MatrixType2, MatrixType3, R, C, 0, K>::value(retMat, mat1, mat2);
+        static inline void eval(MatrixType1 &retMat, const MatrixType2 &mat1, const MatrixType3 &mat2) {
+            MatrixInnerMultiplyMatrixImpl<MatrixType1, MatrixType2, MatrixType3, R, C, 0, K>::eval(retMat, mat1, mat2);
             
             MatrixMultiplyMatrixImpl<MatrixType1, MatrixType2, MatrixType3,
             NextR * Continue, NextC * Continue,
-            N * Continue, K * Continue, NextI * Continue>::value(retMat, mat1, mat2);
+            N * Continue, K * Continue, NextI * Continue>::eval(retMat, mat1, mat2);
         }
     };
     
     template<class MatrixType1, class MatrixTyp2, class MatrixTyp3>
     struct MatrixMultiplyMatrixImpl<MatrixType1, MatrixTyp2, MatrixTyp3, 0, 0, 0, 0, 0> {
-        static inline void value(MatrixType1&, const MatrixTyp2&, const MatrixTyp3&) {
-            
-        }
+        static inline void eval(MatrixType1&, const MatrixTyp2&, const MatrixTyp3&) {}
     };
     
     template<int R, int K, int C, class RetValueType, class ValueType1, class ValueType2>
@@ -239,7 +273,181 @@ namespace {
                               const MyMatrix<K, C, ValueType2> &mat2) {
         MatrixAssignValue(retMat, RetValueType());
         MatrixMultiplyMatrixImpl<MyMatrix<R, C, RetValueType>, MyMatrix<R, K, ValueType1>, MyMatrix<K, C, ValueType2>,
-        0, 0, C, K, R * C - 1>::value(retMat, mat1, mat2);
+        0, 0, C, K, R * C - 1>::eval(retMat, mat1, mat2);
+    }
+    
+    /* -------------- elementary transformation ----------- */
+    template<class MatrixType, int C, int N>
+    struct MatrixSwapRowImpl {
+        enum {
+            Continue = C != N - 1,
+            NextC = C + 1
+        };
+        
+        static typename MatrixType::value_type temp;
+        
+        static inline void eval(MatrixType &mat, int a, int b) {
+            temp = mat.valueAt(a, C);
+            mat.valueAt(a, C) = mat.valueAt(b, C);
+            mat.valueAt(b, C) = temp;
+            
+            MatrixSwapRowImpl<MatrixType,
+            NextC * Continue, N * Continue>::eval(mat, a, b);
+        }
+    };
+    
+    template<class MatrixType, int C, int N>
+    typename MatrixType::value_type MatrixSwapRowImpl<MatrixType, C, N>::temp;
+    
+    template<class MatrixType>
+    struct MatrixSwapRowImpl<MatrixType, 0, 0> {
+        static inline void eval(MatrixType&, int, int) {}
+    };
+    
+    template<int R, int C, class ValueType>
+    inline void MatrixSwapRow(MyMatrix<R, C, ValueType> &mat, int a, int b) {
+        MatrixSwapRowImpl<MyMatrix<R, C, ValueType>, 0, C>::eval(mat, a, b);
+    }
+    
+    /* -------------------------------------- */
+    template<class MatrixType, class OtherValueType, int C, int N>
+    struct MatrixMultiplyRowImpl {
+        enum {
+            Continue = C != N - 1,
+            NextC = C + 1
+        };
+        
+        static inline void eval(MatrixType &mat, int a,
+                                const OtherValueType &multiple) {
+            mat.valueAt(a, C) *= multiple;
+            
+            MatrixMultiplyRowImpl<MatrixType, OtherValueType,
+            NextC * Continue, N * Continue>::eval(mat, a, multiple);
+        }
+    };
+    
+    template<class MatrixType, class OtherValueType>
+    struct MatrixMultiplyRowImpl<MatrixType, OtherValueType, 0, 0> {
+        static inline void eval(MatrixType&, int, const OtherValueType &multiple) {}
+    };
+    
+    template<int R, int C, class ValueType, class OtherValueType>
+    inline void MatrixMultiplyRow(MyMatrix<R, C, ValueType> &mat, int a, const OtherValueType &multiple) {
+        MatrixMultiplyRowImpl<MyMatrix<R, C, ValueType>, OtherValueType, 0, C>::eval(mat, a, multiple);
+    }
+    
+    /* -------------------------------------- */
+    template<class MatrixType, class OtherValueType, int C, int N>
+    struct MatrixSubtractRowImpl {
+        enum {
+            Continue = C != N - 1,
+            NextC = C + 1
+        };
+        
+        static inline void eval(MatrixType &mat, int a,
+                                int b, const OtherValueType &multiple) {
+            mat.valueAt(a, C) -= mat.valueAt(b, C) * multiple;
+            
+            MatrixSubtractRowImpl<MatrixType, OtherValueType,
+            NextC * Continue, N * Continue>::eval(mat, a, b, multiple);
+        }
+    };
+    
+    template<class MatrixType, class OtherValueType>
+    struct MatrixSubtractRowImpl<MatrixType, OtherValueType, 0, 0> {
+        static inline void eval(MatrixType&, int, int, const OtherValueType&) {}
+    };
+    
+    template<int R, int C, class ValueType, class OtherValueType>
+    inline void MatrixSubtractRow(MyMatrix<R, C, ValueType> &mat, int a, int b, const OtherValueType &multiple) {
+        MatrixSubtractRowImpl<MyMatrix<R, C, ValueType>, OtherValueType, 0, C>::eval(mat, a, b, multiple);
+    }
+    
+    /* -------------------------------------- */
+    template<class MatrixType, int R, int N>
+    struct MatrixSwapColumnImpl {
+        enum {
+            Continue = R != N - 1,
+            NextR = R + 1
+        };
+        
+        static typename MatrixType::value_type temp;
+        
+        static inline void eval(MatrixType &mat, int a, int b) {
+            temp = mat.valueAt(R, a);
+            mat.valueAt(R, a) = mat.valueAt(R, b);
+            mat.valueAt(R, b) = temp;
+            
+            MatrixSwapColumnImpl<MatrixType,
+            NextR * Continue, N * Continue>::eval(mat, a, b);
+        }
+    };
+    
+    template<class MatrixType, int R, int N>
+    typename MatrixType::value_type MatrixSwapColumnImpl<MatrixType, R, N>::temp;
+    
+    template<class MatrixType>
+    struct MatrixSwapColumnImpl<MatrixType, 0, 0> {
+        static inline void eval(MatrixType&, int, int) {}
+    };
+    
+    template<int R, int C, class ValueType>
+    inline void MatrixSwapColumn(MyMatrix<R, C, ValueType> &mat, int a, int b) {
+        MatrixSwapColumnImpl<MyMatrix<R, C, ValueType>, 0, R>::eval(mat, a, b);
+    }
+    
+    /* -------------------------------------- */
+    template<class MatrixType, class OtherValueType, int R, int N>
+    struct MatrixMultiplyColumnImpl {
+        enum {
+            Continue = R != N - 1,
+            NextR = R + 1
+        };
+        
+        static inline void eval(MatrixType &mat, int a,
+                                const OtherValueType &multiple) {
+            mat.valueAt(R, a) *= multiple;
+            
+            MatrixMultiplyColumnImpl<MatrixType, OtherValueType,
+            NextR * Continue, N * Continue>::eval(mat, a, multiple);
+        }
+    };
+    
+    template<class MatrixType, class OtherValueType>
+    struct MatrixMultiplyColumnImpl<MatrixType, OtherValueType, 0, 0> {
+        static inline void eval(MatrixType&, int, const OtherValueType&) {}
+    };
+    
+    template<int R, int C, class ValueType, class OtherValueType>
+    inline void MatrixMultiplyColumn(MyMatrix<R, C, ValueType> &mat, int a, const OtherValueType &multiple) {
+        MatrixMultiplyColumnImpl<MyMatrix<R, C, ValueType>, OtherValueType, 0, R>::eval(mat, a, multiple);
+    }
+    
+    /* -------------------------------------- */
+    template<class MatrixType, class OtherValueType, int R, int N>
+    struct MatrixSubtractColumnImpl {
+        enum {
+            Continue = R != N - 1,
+            NextR = R + 1
+        };
+        
+        static inline void eval(MatrixType &mat, int a,
+                                int b, const OtherValueType &multiple) {
+            mat.valueAt(R, a) -= mat.valueAt(R, b) * multiple;
+            
+            MatrixSubtractColumnImpl<MatrixType, OtherValueType,
+            NextR * Continue, N * Continue>::eval(mat, a, b, multiple);
+        }
+    };
+    
+    template<class MatrixType, class OtherValueType>
+    struct MatrixSubtractColumnImpl<MatrixType, OtherValueType, 0, 0> {
+        static inline void eval(MatrixType&, int, int, const OtherValueType&) {}
+    };
+    
+    template<int R, int C, class ValueType, class OtherValueType>
+    inline void MatrixSubtractColumn(MyMatrix<R, C, ValueType> &mat, int a, int b, const OtherValueType &multiple) {
+        MatrixSubtractColumnImpl<MyMatrix<R, C, ValueType>, OtherValueType, 0, C>::eval(mat, a, b, multiple);
     }
 }
 
@@ -388,30 +596,6 @@ inline MyMatrix<retRow, retColumn, RetValueType> operator*(
     return retMat;
 }
 
-template<int numRow, int numColumn, class ValueType>
-inline MyMatrix<numColumn, numRow, ValueType> transposeMatrix(
-                                                              const MyMatrix<numRow, numColumn, ValueType> &mat) {
-    MyMatrix<numColumn, numRow, ValueType> retMat;
-#ifdef ENABLE_TEMPLATE_META
-    MatrixTranspose(retMat, mat);
-#else
-    for(int i = 0; i != numColumn; ++i) {
-        for(int j = 0; j != numRow; ++j) {
-            retMat.valueAt(i, j) = mat.valueAt(j, i);
-        }
-    }
-#endif
-    return retMat;
-}
-
-template<int numDim, class ValueType>
-inline MyMatrix<numDim, numDim, ValueType> transposeMatrix(
-                                                              const MyMatrix<numDim, numDim, ValueType> &mat) {
-    MyMatrix<numDim, numDim, ValueType> retMat(mat);
-    retMat.transpose();
-    return retMat;
-}
-
 template<int numDim, class ValueType>
 template<class OtherValueType>
 inline MyMatrix<numDim, numDim, ValueType>::MyMatrix(const OtherValueType &value):
@@ -512,32 +696,165 @@ MyMatrix<numDim, numDim, ValueType>::operator*=(const OtherValueType &value) {
     return *this;
 }
 
-template<int numDim, class ValueType>
-inline MyMatrix<numDim, numDim, ValueType>& MyMatrix<numDim, numDim, ValueType>::transpose(void) {
+// ------------------------------- matrix operation ----------------------------------------- //
+
+template<int numRow, int numColumn, class ValueType>
+inline MyMatrix<numColumn, numRow, ValueType>&
+zeroMatrix(MyMatrix<numRow, numColumn, ValueType> &mat,
+           const ValueType &zeroValue) {
 #ifdef ENABLE_TEMPLATE_META
-    SquareMatrixTranspose(*this);
+    MatrixAssignValue(mat, zeroValue);
 #else
-    ValueType tmp;
-    for(int i = 0; i != dimension(); ++i) {
-        for(int j = 0; j != dimension(); ++j) {
-            if(i != j) {
-                tmp = valueAt(i, j);
-                valueAt(i, j) = valueAt(j, i);
-                valueAt(j, i) = tmp;
-            }
+    for(int i = 0; i != numRow; ++i) {
+        for(int j = 0; j != numColumn; ++j) {
+            retMat.valueAt(i, j) = zeroValue;
         }
     }
 #endif
-    return *this;
+    return mat;
 }
 
-/*
 template<int numDim, class ValueType>
-template<class OtherValueType>
-inline MyMatrix<numDim, numDim, ValueType>& MyMatrix<numDim, numDim, ValueType>::
-operator*=( const MyMatrix<numDim, numDim, OtherValueType> &other) {
-    
+inline MyMatrix<numDim, numDim, ValueType>&
+identityMatrix(MyMatrix<numDim, numDim, ValueType> &mat,
+               const ValueType &identityValue,
+               const ValueType &zeroValue) {
+#ifdef ENABLE_TEMPLATE_META
+    SquareMatrixIdentity(mat, identityValue, zeroValue);
+#else
+    for(int i = 0; i != numDim; ++i) {
+        for(int j = 0; j != numDim; ++j) {
+            retMat.valueAt(i, j) = (i == j) ? identityValue : zeroValue;
+        }
+    }
+#endif
+    return mat;
 }
-*/
+
+template<int numRow, int numColumn, class ValueType>
+inline MyMatrix<numColumn, numRow, ValueType>
+transposeMatrix(const MyMatrix<numRow, numColumn, ValueType> &mat) {
+    MyMatrix<numColumn, numRow, ValueType> retMat;
+#ifdef ENABLE_TEMPLATE_META
+    MatrixTranspose(retMat, mat);
+#else
+    for(int i = 0; i != numColumn; ++i) {
+        for(int j = 0; j != numRow; ++j) {
+            retMat.valueAt(i, j) = mat.valueAt(j, i);
+        }
+    }
+#endif
+    return retMat;
+}
+
+template<int numDim, class ValueType>
+inline MyMatrix<numDim, numDim, ValueType>&
+transposeMatrix(MyMatrix<numDim, numDim, ValueType> &mat) {
+#ifdef ENABLE_TEMPLATE_META
+    SquareMatrixTranspose(mat);
+#else
+    ValueType tmp;
+    for(int i = 0; i != numDim; ++i) {
+        for(int j = i + 1; j != numDim; ++j) {
+            tmp = retMat.valueAt(i, j);
+            retMat.valueAt(i, j) = mat.valueAt(j, i);
+            mat.valueAt(j, i) = tmp;
+        }
+    }
+#endif
+    return mat;
+}
+
+// ------------------------------- matrix operation ----------------------------------------- //
+
+// ------------------------------- elementary transformation  ----------------------------------------- //
+
+template<int numRow, int numColumn, class ValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+swapMatrixRow(MyMatrix<numRow, numColumn, ValueType> &mat, int a, int b) {
+#ifdef ENABLE_TEMPLATE_META
+    MatrixSwapRow(mat, a, b);
+#else
+    ValueType tmp;
+    for(int i = 0; i != numColumn; ++i) {
+            tmp = mat.valueAt(a, i);
+            mat.valueAt(a, i) = mat.valueAt(b, i);
+            mat.valueAt(b, i) = tmp;
+    }
+#endif
+    return mat;
+}
+
+template<int numRow, int numColumn, class ValueType, class OtherValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+multiplyMatrixRow(MyMatrix<numRow, numColumn, ValueType> &mat, int a, const OtherValueType &multiple) {
+#ifdef ENABLE_TEMPLATE_META
+    MatrixMultiplyRow(mat, a, multiple);
+#else
+    for(int i = 0; i != numColumn; ++i) {
+        mat.valueAt(a, i) *= multiple;
+    }
+#endif
+    return mat;
+}
+
+template<int numRow, int numColumn, class ValueType, class OtherValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+subtractMatrixRow(MyMatrix<numRow, numColumn, ValueType> &mat,  int a,
+                  int b, const OtherValueType &multiple) {
+#ifdef ENABLE_TEMPLATE_META
+    MatrixSubtractRow(mat, a, b, multiple);
+#else
+    for(int i = 0; i != numColumn; ++i) {
+        mat.valueAt(a, i) -= mat.valueAt(b, i) * multiple;
+    }
+#endif
+    return mat;
+}
+
+template<int numRow, int numColumn, class ValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+swapMatrixColumn(MyMatrix<numRow, numColumn, ValueType> &mat, int a, int b) {
+#ifdef ENABLE_TEMPLATE_META
+    MatrixSwapColumn(mat, a, b);
+#else
+    ValueType tmp;
+    for(int i = 0; i != numRow; ++i) {
+        tmp = mat.valueAt(i, a);
+        mat.valueAt(i, a) = mat.valueAt(i, b);
+        mat.valueAt(i, b) = tmp;
+    }
+#endif
+    return mat;
+}
+
+template<int numRow, int numColumn, class ValueType, class OtherValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+multiplyMatrixColumn(MyMatrix<numRow, numColumn, ValueType> &mat, int a, const OtherValueType &multiple) {
+#ifdef ENABLE_TEMPLATE_META
+    MatrixMultiplyColumn(mat, a, multiple);
+#else
+    for(int i = 0; i != numRow; ++i) {
+        mat.valueAt(i, a) *= multiple;
+    }
+#endif
+    return mat;
+}
+
+template<int numRow, int numColumn, class ValueType, class OtherValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+subtractMatrixColumn(MyMatrix<numRow, numColumn, ValueType> &mat, int a,
+                     int b, const OtherValueType &multiple) {
+#ifdef ENABLE_TEMPLATE_META
+    MatrixSubtractColumn(mat, a, b, multiple);
+#else
+    for(int i = 0; i != numRow; ++i) {
+        mat.valueAt(i, a) -= mat.valueAt(i, b) * multiple;
+    }
+#endif
+    return mat;
+}
+
+// ------------------------------- elementary transformation  ----------------------------------------- //
 
 MINE_NAMESPACE_END

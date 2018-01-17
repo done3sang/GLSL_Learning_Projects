@@ -67,7 +67,7 @@ public:
 #endif
         return _mat[r][c];
     }
-
+    
 private:
     int _row;
     int _column;
@@ -75,7 +75,7 @@ private:
 };
 
 template<int numDim, class ValueType>
-class MyMatrix<numDim, numDim, ValueType> {
+class MyMatrix<numDim, numDim, ValueType> final {
 public:
     static_assert(numDim > 0, "ERROR: MyMatrix, row or column below 0");
     
@@ -121,15 +121,63 @@ public:
         return _mat[r][c];
     }
     
-    // square matrix only
-    MyMatrix& transpose(void);
-    //template<class OtherValueType>
-    //MyMatrix& operator*=(const MyMatrix<numDim, numDim, OtherValueType> &other);
-    
 private:
     int _dimension;
     ValueType _mat[numDim][numDim];
 };
+
+// ------------------------------- matrix operation ----------------------------------------- //
+
+template<int numRow, int numColumn, class ValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+zeroMatrix(MyMatrix<numRow, numColumn, ValueType> &mat,
+           const ValueType &zeroValue = ValueType(0));
+
+template<int numDim, class ValueType>
+MyMatrix<numDim, numDim, ValueType>&
+identityMatrix(MyMatrix<numDim, numDim, ValueType> &mat,
+               const ValueType &identityValue = ValueType(1),
+               const ValueType &zeroValue = ValueType(0));
+
+template<int numRow, int numColumn, class ValueType>
+MyMatrix<numColumn, numRow, ValueType>
+transposeMatrix(const MyMatrix<numRow, numColumn, ValueType> &mat);
+
+template<int numDim, class ValueType>
+MyMatrix<numDim, numDim, ValueType>&
+transposeMatrix(MyMatrix<numDim, numDim, ValueType> &mat);
+
+// ------------------------------- matrix operation ----------------------------------------- //
+
+// ------------------------------- elementary transformation  ----------------------------------------- //
+
+template<int numRow, int numColumn, class ValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+swapMatrixRow(MyMatrix<numRow, numColumn, ValueType> &mat, int a, int b);
+
+template<int numRow, int numColumn, class ValueType, class OtherValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+multiplyMatrixRow(MyMatrix<numRow, numColumn, ValueType> &mat, int a, const OtherValueType &multiple);
+
+template<int numRow, int numColumn, class ValueType, class OtherValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+subtractMatrixRow(MyMatrix<numRow, numColumn, ValueType> &mat,  int a,
+                  int b, const OtherValueType &multiple);
+
+template<int numRow, int numColumn, class ValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+swapMatrixColumn(MyMatrix<numRow, numColumn, ValueType> &mat, int a, int b);
+
+template<int numRow, int numColumn, class ValueType, class OtherValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+multiplyMatrixColumn(MyMatrix<numRow, numColumn, ValueType> &mat, int a, const OtherValueType &multiple);
+
+template<int numRow, int numColumn, class ValueType, class OtherValueType>
+MyMatrix<numColumn, numRow, ValueType>&
+subtractMatrixColumn(MyMatrix<numRow, numColumn, ValueType> &mat, int a,
+                  int b, const OtherValueType &multiple);
+
+// ------------------------------- elementary transformation  ----------------------------------------- //
 
 MINE_NAMESPACE_END
 
