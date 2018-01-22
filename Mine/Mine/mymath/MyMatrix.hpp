@@ -20,47 +20,45 @@
 
 MINE_NAMESPACE_BEGIN
 
-template<int numRow, int numColumn, class ValueType = float>
+template<int R, int C, class V = float>
 class MyMatrix final {
 public:
-    static_assert(numRow > 0 && numColumn > 0, "ERROR: MyMatrix, row or column below 0");
+    static_assert(R > 0 && C > 0, "ERROR: MyMatrix, row or column below 0");
     
     typedef int size_type;
-    typedef ValueType value_type;
+    typedef V value_type;
     
-    template<class OtherValueType = ValueType>
-    MyMatrix(const OtherValueType &value = OtherValueType());
-    template<class OtherValueType>
-    MyMatrix(const MyMatrix<numRow, numColumn, OtherValueType> &other);
-    template<class OtherValueType>
-    MyMatrix(const MyMatrix<numRow, numColumn, OtherValueType> &&other);
+    template<class T = V>
+    MyMatrix(const T &value = T());
+    template<class T>
+    MyMatrix(const MyMatrix<R, C, T> &other);
+    template<class T>
+    MyMatrix(const MyMatrix<R, C, T> &&other);
     ~MyMatrix(void) {}
     
-    template<class OtherValueType>
-    MyMatrix& operator=(
-                        const MyMatrix<numRow, numColumn, OtherValueType> &other);
-    template<class OtherValueType>
-    MyMatrix& operator=(
-                        const MyMatrix<numRow, numColumn, OtherValueType> &&other);
+    template<class T>
+    MyMatrix& operator=(const MyMatrix<R, C, T> &other);
+    template<class T>
+    MyMatrix& operator=(const MyMatrix<R, C, T> &&other);
     
-    template<class OtherValueType>
-    MyMatrix& operator+= (const MyMatrix<numRow, numColumn, OtherValueType> &other);
-    template<class OtherValueType>
-    MyMatrix& operator*=(const OtherValueType &value);
+    template<class T>
+    MyMatrix& operator+= (const MyMatrix<R, C, T> &other);
+    template<class T>
+    MyMatrix& operator*=(const T &value);
     
     bool squared(void) const { return false; }
     int row(void) const { return _row; }
     int column(void) const { return _column; }
     int size(void) const { return _row * _column; }
     
-    ValueType& valueAt(int r, int c) {
+    V& valueAt(int r, int c) {
 #ifdef DEBUG
         assert(r >= 0 && r < _row && "valueAt error, row overflow");
         assert(c >= 0 && c < _column && "valueAt error, column overflow");
 #endif
         return _mat[r][c];
     }
-    const ValueType& valueAt(int r, int c) const {
+    const V& valueAt(int r, int c) const {
 #ifdef DEBUG
         assert(r >= 0 && r < _row && "valueAt error, row overflow");
         assert(c >= 0 && c < _column && "valueAt error, column overflow");
@@ -71,34 +69,34 @@ public:
 private:
     int _row;
     int _column;
-    ValueType _mat[numRow][numColumn];
+    V _mat[R][C];
 };
 
-template<int numDim, class ValueType>
-class MyMatrix<numDim, numDim, ValueType> final {
+template<int D, class V>
+class MyMatrix<D, D, V> final {
 public:
-    static_assert(numDim > 0, "ERROR: MyMatrix, row or column below 0");
+    static_assert(D > 0, "ERROR: MyMatrix, row or column below 0");
     
     typedef int size_type;
-    typedef ValueType value_type;
+    typedef V value_type;
     
-    template<class OtherValueType = ValueType>
-    MyMatrix(const OtherValueType &value = OtherValueType());
-    template<class OtherValueType>
-    MyMatrix(const MyMatrix<numDim, numDim, OtherValueType> &other);
-    template<class OtherValueType>
-    MyMatrix(const MyMatrix<numDim, numDim, OtherValueType> &&other);
+    template<class T = V>
+    MyMatrix(const T &value = T());
+    template<class T>
+    MyMatrix(const MyMatrix<D, D, T> &other);
+    template<class T>
+    MyMatrix(const MyMatrix<D, D, T> &&other);
     ~MyMatrix(void) {}
     
-    template<class OtherValueType>
-    MyMatrix& operator=(const MyMatrix<numDim, numDim, OtherValueType> &other);
-    template<class OtherValueType>
-    MyMatrix& operator=(const MyMatrix<numDim, numDim, OtherValueType> &&);
+    template<class T>
+    MyMatrix& operator=(const MyMatrix<D, D, T> &other);
+    template<class T>
+    MyMatrix& operator=(const MyMatrix<D, D, T> &&);
     
-    template<class OtherValueType>
-    MyMatrix& operator+= (const MyMatrix<numDim, numDim, OtherValueType> &other);
-    template<class OtherValueType>
-    MyMatrix& operator*=(const OtherValueType &value);
+    template<class T>
+    MyMatrix& operator+= (const MyMatrix<D, D, T> &other);
+    template<class T>
+    MyMatrix& operator*=(const T &value);
     
     bool squared(void) const { return true; }
     int row(void) const { return _dimension; }
@@ -106,14 +104,14 @@ public:
     int dimension(void) const { return _dimension; }
     int size(void) const { return _dimension * _dimension; }
     
-    ValueType& valueAt(int r, int c) {
+    V& valueAt(int r, int c) {
 #ifdef DEBUG
         assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
         assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
 #endif
         return _mat[r][c];
     }
-    const ValueType& valueAt(int r, int c) const {
+    const V& valueAt(int r, int c) const {
 #ifdef DEBUG
         assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
         assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
@@ -121,63 +119,71 @@ public:
         return _mat[r][c];
     }
     
+    V determinant(void) const;
+    bool inversible(void) const;
+    
 private:
     int _dimension;
-    ValueType _mat[numDim][numDim];
+    V _mat[D][D];
 };
 
 // ------------------------------- matrix operation ----------------------------------------- //
 
-template<int numRow, int numColumn, class ValueType>
-MyMatrix<numColumn, numRow, ValueType>&
-zeroMatrix(MyMatrix<numRow, numColumn, ValueType> &mat,
-           const ValueType &zeroValue = ValueType(0));
+template<int R, int C, class V>
+MyMatrix<R, C, V>&
+zeroMatrix(MyMatrix<R, C, V> &mat,
+           const V &zeroValue = V(0));
 
-template<int numDim, class ValueType>
-MyMatrix<numDim, numDim, ValueType>&
-identityMatrix(MyMatrix<numDim, numDim, ValueType> &mat,
-               const ValueType &identityValue = ValueType(1),
-               const ValueType &zeroValue = ValueType(0));
+template<int D, class V>
+MyMatrix<D, D, V>&
+identityMatrix(MyMatrix<D, D, V> &mat,
+               const V &identityValue = V(1),
+               const V &zeroValue = V(0));
 
-template<int numRow, int numColumn, class ValueType>
-MyMatrix<numColumn, numRow, ValueType>
-transposeMatrix(const MyMatrix<numRow, numColumn, ValueType> &mat);
+template<int R, int C, class V>
+MyMatrix<C, R, V>
+transposeMatrix(const MyMatrix<R, C, V> &mat);
 
-template<int numDim, class ValueType>
-MyMatrix<numDim, numDim, ValueType>&
-transposeMatrix(MyMatrix<numDim, numDim, ValueType> &mat);
+template<int D, class V>
+MyMatrix<D, D, V>&
+transposeMatrix(MyMatrix<D, D, V> &mat);
 
 // ------------------------------- matrix operation ----------------------------------------- //
 
 // ------------------------------- elementary transformation  ----------------------------------------- //
 
-template<int numRow, int numColumn, class ValueType>
-MyMatrix<numColumn, numRow, ValueType>&
-swapMatrixRow(MyMatrix<numRow, numColumn, ValueType> &mat, int a, int b);
+template<int R, int C, class V>
+MyMatrix<R, C, V>&
+swapMatrixRow(MyMatrix<R, C, V> &mat, int a, int b);
 
-template<int numRow, int numColumn, class ValueType, class OtherValueType>
-MyMatrix<numColumn, numRow, ValueType>&
-multiplyMatrixRow(MyMatrix<numRow, numColumn, ValueType> &mat, int a, const OtherValueType &multiple);
+template<int R, int C, class V, class T>
+MyMatrix<R, C, V>&
+multiplyMatrixRow(MyMatrix<R, C, V> &mat, int a, const T &multiple);
 
-template<int numRow, int numColumn, class ValueType, class OtherValueType>
-MyMatrix<numColumn, numRow, ValueType>&
-subtractMatrixRow(MyMatrix<numRow, numColumn, ValueType> &mat,  int a,
-                  int b, const OtherValueType &multiple);
+template<int R, int C, class V, class T>
+MyMatrix<R, C, V>&
+subtractMatrixRow(MyMatrix<R, C, V> &mat,  int a, int b, const T &multiple);
 
-template<int numRow, int numColumn, class ValueType>
-MyMatrix<numColumn, numRow, ValueType>&
-swapMatrixColumn(MyMatrix<numRow, numColumn, ValueType> &mat, int a, int b);
+template<int R, int C, class V>
+MyMatrix<R, C, V>&
+swapMatrixColumn(MyMatrix<R, C, V> &mat, int a, int b);
 
-template<int numRow, int numColumn, class ValueType, class OtherValueType>
-MyMatrix<numColumn, numRow, ValueType>&
-multiplyMatrixColumn(MyMatrix<numRow, numColumn, ValueType> &mat, int a, const OtherValueType &multiple);
+template<int R, int C, class V, class T>
+MyMatrix<R, C, V>&
+multiplyMatrixColumn(MyMatrix<R, C, V> &mat, int a, const T &multiple);
 
-template<int numRow, int numColumn, class ValueType, class OtherValueType>
-MyMatrix<numColumn, numRow, ValueType>&
-subtractMatrixColumn(MyMatrix<numRow, numColumn, ValueType> &mat, int a,
-                  int b, const OtherValueType &multiple);
+template<int R, int C, class V, class T>
+MyMatrix<R, C, V>&
+subtractMatrixColumn(MyMatrix<R, C, V> &mat, int a, int b, const T &multiple);
 
 // ------------------------------- elementary transformation  ----------------------------------------- //
+
+// simplified by subtractMatrixRow
+template<int R, int C, class V>
+MyMatrix<R, C, V>& simplifyMatrix(MyMatrix<R, C, V> &mat);
+
+template<int D, class V>
+MyMatrix<D, D, V>& inverseMatrix(MyMatrix<D, D, V> &mat);
 
 MINE_NAMESPACE_END
 
