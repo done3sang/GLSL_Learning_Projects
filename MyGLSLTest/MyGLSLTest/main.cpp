@@ -67,6 +67,17 @@ int main(int argc, const char * argv[]) {
     transposeMatrix(mm6);
     identityMatrix(mm6);
     
+    MyMatrix<3, 3> mq({2, 1, 1, 0, 1, 1, 0, -1, 3});
+    MyMatrix<3, 3> me({2, 1, 1, 0, 1, 1, 0, -1, 3});
+    MyMatrix<3, 1> mp({0, 1, -1});
+    
+    identityMatrix(me);
+    
+    auto mpp2 = 2 * me - mq;
+    auto mpp = (2 * me - mq) * mp;
+    auto mpp1 = 2 * mp - mq * mp;
+    
+    mpp = {1, 2, 3};
     /*
     auto sharedDirector = MyDirector::sharedDirector();
     MyErrorDesc::sharedErrorDesc()->errorCallback(MyErrorDisposer::create());

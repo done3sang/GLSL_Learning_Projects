@@ -13,6 +13,7 @@
 #include <cassert>
 #endif
 
+#include <initializer_list>
 #include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
@@ -28,21 +29,27 @@ public:
     typedef int size_type;
     typedef V value_type;
     
-    template<class T = V>
+    template<class T = value_type>
     MyMatrix(const T &value = T());
     template<class T>
     MyMatrix(const MyMatrix<R, C, T> &other);
     template<class T>
     MyMatrix(const MyMatrix<R, C, T> &&other);
+    template<class T>
+    MyMatrix(const std::initializer_list<T> &il);
     ~MyMatrix(void) {}
     
     template<class T>
     MyMatrix& operator=(const MyMatrix<R, C, T> &other);
     template<class T>
     MyMatrix& operator=(const MyMatrix<R, C, T> &&other);
+    template<class T>
+    MyMatrix& operator=(const std::initializer_list<T> &il);
     
     template<class T>
-    MyMatrix& operator+= (const MyMatrix<R, C, T> &other);
+    MyMatrix& operator+=(const MyMatrix<R, C, T> &other);
+    template<class T>
+    MyMatrix& operator-=(const MyMatrix<R, C, T> &other);
     template<class T>
     MyMatrix& operator*=(const T &value);
     
@@ -51,14 +58,14 @@ public:
     int column(void) const { return _column; }
     int size(void) const { return _row * _column; }
     
-    V& valueAt(int r, int c) {
+    value_type& valueAt(int r, int c) {
 #ifdef DEBUG
         assert(r >= 0 && r < _row && "valueAt error, row overflow");
         assert(c >= 0 && c < _column && "valueAt error, column overflow");
 #endif
         return _mat[r][c];
     }
-    const V& valueAt(int r, int c) const {
+    const value_type& valueAt(int r, int c) const {
 #ifdef DEBUG
         assert(r >= 0 && r < _row && "valueAt error, row overflow");
         assert(c >= 0 && c < _column && "valueAt error, column overflow");
@@ -69,7 +76,7 @@ public:
 private:
     int _row;
     int _column;
-    V _mat[R][C];
+    value_type _mat[R][C];
 };
 
 template<int D, class V>
@@ -80,21 +87,27 @@ public:
     typedef int size_type;
     typedef V value_type;
     
-    template<class T = V>
+    template<class T = value_type>
     MyMatrix(const T &value = T());
     template<class T>
     MyMatrix(const MyMatrix<D, D, T> &other);
     template<class T>
     MyMatrix(const MyMatrix<D, D, T> &&other);
+    template<class T>
+    MyMatrix(const std::initializer_list<T> &il);
     ~MyMatrix(void) {}
     
     template<class T>
     MyMatrix& operator=(const MyMatrix<D, D, T> &other);
     template<class T>
     MyMatrix& operator=(const MyMatrix<D, D, T> &&);
+    template<class T>
+    MyMatrix& operator=(const std::initializer_list<T> &il);
     
     template<class T>
-    MyMatrix& operator+= (const MyMatrix<D, D, T> &other);
+    MyMatrix& operator+=(const MyMatrix<D, D, T> &other);
+    template<class T>
+    MyMatrix& operator-=(const MyMatrix<D, D, T> &other);
     template<class T>
     MyMatrix& operator*=(const T &value);
     
@@ -104,14 +117,14 @@ public:
     int dimension(void) const { return _dimension; }
     int size(void) const { return _dimension * _dimension; }
     
-    V& valueAt(int r, int c) {
+    value_type& valueAt(int r, int c) {
 #ifdef DEBUG
         assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
         assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
 #endif
         return _mat[r][c];
     }
-    const V& valueAt(int r, int c) const {
+    const value_type& valueAt(int r, int c) const {
 #ifdef DEBUG
         assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
         assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
@@ -119,20 +132,37 @@ public:
         return _mat[r][c];
     }
     
-    V determinant(void) const;
+    value_type determinant(void) const;
     bool inversible(void) const;
     
 private:
     int _dimension;
-    V _mat[D][D];
+    value_type _mat[D][D];
 };
 
 // ------------------------------- matrix operation ----------------------------------------- //
 
+template<int R, int C, class V, class T>
+MyMatrix<R, C, V> operator+(const MyMatrix<R, C, V> &mat1,
+                                   const MyMatrix<R, C, T> &mat2);
+
+template<int R, int C, class V, class T>
+MyMatrix<R, C, V> operator-(const MyMatrix<R, C, V> &mat1,
+                            const MyMatrix<R, C, T> &mat2);
+
+template<int R, int C, class V, class T>
+MyMatrix<R, C, V> operator*(const MyMatrix<R, C, V> &mat, const T &val);
+
+template<int R, int C, class V, class T>
+MyMatrix<R, C, V> operator*(const T &val, const MyMatrix<R, C, V> &mat);
+
+template<int R, int C, int N, class V, class T>
+MyMatrix<R, C, V> operator*(const MyMatrix<R, N, V> &mat1,
+                            const MyMatrix<N, C, T> &mat2);
+
 template<int R, int C, class V>
 MyMatrix<R, C, V>&
-zeroMatrix(MyMatrix<R, C, V> &mat,
-           const V &zeroValue = V(0));
+zeroMatrix(MyMatrix<R, C, V> &mat, const V &zeroValue = V(0));
 
 template<int D, class V>
 MyMatrix<D, D, V>&
@@ -141,7 +171,7 @@ identityMatrix(MyMatrix<D, D, V> &mat,
                const V &zeroValue = V(0));
 
 template<int R, int C, class V>
-MyMatrix<C, R, V>
+MyMatrix<R, C, V>
 transposeMatrix(const MyMatrix<R, C, V> &mat);
 
 template<int D, class V>
@@ -177,6 +207,15 @@ MyMatrix<R, C, V>&
 subtractMatrixColumn(MyMatrix<R, C, V> &mat, int a, int b, const T &multiple);
 
 // ------------------------------- elementary transformation  ----------------------------------------- //
+
+template<int R, int C, class V>
+MyMatrix<R - 1, C, V> trimMatrixRow(const MyMatrix<R, C, V> &mat, int r);
+
+template<int R, int C, class V>
+MyMatrix<R, C - 1, V> trimMatrixColumn(const MyMatrix<R, C, V> &mat, int c);
+
+template<int R, int C, class V>
+MyMatrix<R - 1, C - 1, V> trimMatrix(const MyMatrix<R, C, V> &mat, int r, int c);
 
 // simplified by subtractMatrixRow
 template<int R, int C, class V>

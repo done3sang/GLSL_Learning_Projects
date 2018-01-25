@@ -37,6 +37,39 @@ namespace {
         MatrixAssignValueImpl<MyMatrix<R, C, V>, T, 0, 0, C, R * C - 1>::eval(mat, val);
     }
     
+    // matrix assign initializer_list
+    template<class M, class Iterator, int R, int C, int N, int I>
+    struct MatrixAssignInitializerImpl {
+        enum {
+            Continue = I != 0,
+            Newline = C == N - 1,
+            NextR = Newline ? R + 1 : R,
+            NextC = Newline ? 0 : C + 1,
+            NextI = I - 1
+        };
+        
+        static inline void eval(M &mat, Iterator curr, Iterator last) {
+            if(last != curr) {
+                mat.valueAt(R, C) = *curr;
+                ++curr;
+            } else {
+                mat.valueAt(R, C) = typename M::value_type();
+            }
+            MatrixAssignInitializerImpl<M, Iterator,
+            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::eval(mat, curr, last);
+        }
+    };
+    
+    template<class M, class Iterator>
+    struct MatrixAssignInitializerImpl<M, Iterator, 0, 0, 0, 0> {
+        static inline void eval(M &mat, Iterator curr, Iterator last) {}
+    };
+    
+    template<int R, int C, class V, class Iterator>
+    inline void MatrixAssignInitializer(MyMatrix<R, C, V> &mat, Iterator first, Iterator last) {
+        MatrixAssignInitializerImpl<MyMatrix<R, C, V>, Iterator, 0, 0, C, R * C - 1>::eval(mat, first, last);
+    }
+    
     // matrix assign matrix
     template<class M1, class M2, int R, int C, int N, int I>
     struct MatrixAssignMatrixImpl {
@@ -90,6 +123,34 @@ namespace {
     template<int R, int C, class V, class T>
     inline void MatrixAddMatrix(MyMatrix<R, C, V> &mat, const MyMatrix<R, C, T> &other) {
         MatrixAddMatrixImpl<MyMatrix<R, C, V>, MyMatrix<R, C, T>,
+        0, 0, C, R * C - 1>::eval(mat, other);
+    }
+    
+    // matrix add matrix
+    template<class M1, class M2, int R, int C, int N, int I>
+    struct MatrixMinusMatrixImpl {
+        enum {
+            Continue = I != 0,
+            NextR = I/N,
+            NextC = I%N,
+            NextI = I - 1
+        };
+        
+        static inline void eval(M1 &mat, const M2 &other) {
+            mat.valueAt(R, C) -= other.valueAt(R, C);
+            MatrixMinusMatrixImpl<M1, M2,
+            NextR * Continue, NextC * Continue, N * Continue, NextI * Continue>::eval(mat, other);
+        }
+    };
+    
+    template<class M1, class M2>
+    struct MatrixMinusMatrixImpl<M1, M2, 0, 0, 0, 0> {
+        static inline void eval(M1 &mat, const M2 &other) {}
+    };
+    
+    template<int R, int C, class V, class T>
+    inline void MatrixMinusMatrix(MyMatrix<R, C, V> &mat, const MyMatrix<R, C, T> &other) {
+        MatrixMinusMatrixImpl<MyMatrix<R, C, V>, MyMatrix<R, C, T>,
         0, 0, C, R * C - 1>::eval(mat, other);
     }
     
@@ -267,12 +328,12 @@ namespace {
         static inline void eval(M1&, const M2&, const M3&) {}
     };
     
-    template<int R, int K, int C, class RetV, class V1, class V2>
+    template<int R, int K, int C, class RetV, class V, class T>
     inline void MatrixMultiplyMatrix(MyMatrix<R, C, RetV> &retMat,
-                              const MyMatrix<R, K, V1> &mat1,
-                              const MyMatrix<K, C, V2> &mat2) {
+                              const MyMatrix<R, K, V> &mat1,
+                              const MyMatrix<K, C, T> &mat2) {
         MatrixAssignValue(retMat, RetV());
-        MatrixMultiplyMatrixImpl<MyMatrix<R, C, RetV>, MyMatrix<R, K, V1>, MyMatrix<K, C, V2>,
+        MatrixMultiplyMatrixImpl<MyMatrix<R, C, RetV>, MyMatrix<R, K, V>, MyMatrix<K, C, T>,
         0, 0, C, K, R * C - 1>::eval(retMat, mat1, mat2);
     }
     
@@ -447,6 +508,9 @@ namespace {
     inline void MatrixSubtractColumn(MyMatrix<R, C, V> &mat, int a, int b, const T &multiple) {
         MatrixSubtractColumnImpl<MyMatrix<R, C, V>, T, 0, C>::eval(mat, a, b, multiple);
     }
+    
+    /* ------------------- square matrix determinant ------------------- */
+    
 }
 
 template<int R, int C, class V>
@@ -487,6 +551,28 @@ MyMatrix(other) {
 
 template<int R, int C, class V>
 template<class T>
+inline MyMatrix<R, C, V>::MyMatrix(const std::initializer_list<T> &il):
+_row(R), _column(C) {
+#ifdef ENABLE_TEMPLATE_META
+    MatrixAssignInitializer(*this, il.begin(), il.end());
+#else
+    auto initIter(il.begin());
+    auto initEnd(il.end());
+    for(int i = 0; i != _row; ++i) {
+        for(int j = 0; j != _column; ++j) {
+            if(initEnd != initIter) {
+                _mat[i][j] = *initIter;
+                ++initIter;
+            } else {
+                _mat[i][j] = value_type();
+            }
+        }
+    }
+#endif
+}
+
+template<int R, int C, class V>
+template<class T>
 inline MyMatrix<R, C, V>&
 MyMatrix<R, C, V>::operator=(const MyMatrix<R, C, T> &other) {
 #ifdef ENABLE_TEMPLATE_META
@@ -520,6 +606,28 @@ MyMatrix<R, C, V>::operator=(const MyMatrix<R, C, T> &&other) {
 template<int R, int C, class V>
 template<class T>
 inline MyMatrix<R, C, V>&
+MyMatrix<R, C, V>::operator=(const std::initializer_list<T> &il) {
+#ifdef ENABLE_TEMPLATE_META
+    MatrixAssignInitializer(*this, il.begin(), il.end());
+#else
+    auto initIter(il.begin());
+    auto initEnd(il.end());
+    for(int i = 0; i != _row; ++i) {
+        for(int j = 0; j != _column; ++j) {
+            if(initEnd == initIter) {
+                break;
+            }
+            _mat[i][j] = value;
+            ++initIter;
+        }
+    }
+#endif
+    return *this;
+}
+
+template<int R, int C, class V>
+template<class T>
+inline MyMatrix<R, C, V>&
 MyMatrix<R, C, V>::operator+=(const MyMatrix<R, C, T> &other) {
 #ifdef ENABLE_TEMPLATE_META
     MatrixAddMatrix(*this, other);
@@ -527,6 +635,22 @@ MyMatrix<R, C, V>::operator+=(const MyMatrix<R, C, T> &other) {
     for(int i = 0; i != row(); ++i) {
         for(int j = 0; j != column(); ++j) {
             _mat[i][j] += other.valueAt(i, j);
+        }
+    }
+#endif
+    return *this;
+}
+
+template<int R, int C, class V>
+template<class T>
+inline MyMatrix<R, C, V>&
+MyMatrix<R, C, V>::operator-=(const MyMatrix<R, C, T> &other) {
+#ifdef ENABLE_TEMPLATE_META
+    MatrixMinusMatrix(*this, other);
+#else
+    for(int i = 0; i != row(); ++i) {
+        for(int j = 0; j != column(); ++j) {
+            _mat[i][j] -= other.valueAt(i, j);
         }
     }
 #endif
@@ -549,55 +673,10 @@ MyMatrix<R, C, V>::operator*=(const T &value) {
     return *this;
 }
 
-template<int R, int C, class V, class V1>
-inline MyMatrix<R, C, V> operator+(
-                                                        const MyMatrix<R, C, V> &mat1,
-                                                        const MyMatrix<R, C, V1> &mat2) {
-    MyMatrix<R, C, V> retMat(mat1);
-    retMat += mat2;
-    return retMat;
-}
-
-template<int R, int C, class V>
-inline MyMatrix<R, C, V> operator*(
-                                                        const MyMatrix<R, C, V> &mat,
-                                                        const V &val) {
-    MyMatrix<R, C, V> retMat(mat);
-    retMat *= val;
-    return retMat;
-}
-
-template<int R, int C, class V>
-inline MyMatrix<R, C, V> operator*(const V &val,
-                                                        const MyMatrix<R, C, V> &mat) {
-    MyMatrix<R, C, V> retMat(mat);
-    retMat *= val;
-    return retMat;
-}
-
-template<int retRow, int retColumn, int multiNum, class RetV, class SecondV>
-inline MyMatrix<retRow, retColumn, RetV> operator*(
-                                                           const MyMatrix<retRow, multiNum, RetV> &mat1,
-                                                           const MyMatrix<multiNum, retColumn, SecondV> &mat2) {
-    MyMatrix<retRow, retColumn, RetV> retMat;
-#ifdef ENABLE_TEMPLATE_META
-    MatrixMultiplyMatrix(retMat, mat1, mat2);
-#else
-    for(int i = 0; i != retRow; ++i) {
-        for(int j = 0; j != retColumn; ++j) {
-            for(int k = 0; k != multiNum; ++k) {
-                retMat.valueAt(i, j) += mat1.valueAt(i, k) * mat2.valueAt(k, j);
-            }
-        }
-    }
-#endif
-    return retMat;
-}
-
-template<int numDim, class V>
+template<int D, class V>
 template<class T>
-inline MyMatrix<numDim, numDim, V>::MyMatrix(const T &value):
-_dimension(numDim) {
+inline MyMatrix<D, D, V>::MyMatrix(const T &value):
+_dimension(D) {
 #ifdef ENABLE_TEMPLATE_META
     MatrixAssignValue(*this, value);
 #else
@@ -609,10 +688,10 @@ _dimension(numDim) {
 #endif
 }
 
-template<int numDim, class V>
+template<int D, class V>
 template<class T>
-inline MyMatrix<numDim, numDim, V>::MyMatrix(const MyMatrix<numDim, numDim, T> &other):
-_dimension(numDim) {
+inline MyMatrix<D, D, V>::MyMatrix(const MyMatrix<D, D, T> &other):
+_dimension(D) {
 #ifdef ENABLE_TEMPLATE_META
     MatrixAssignMatrix(*this, other);
 #else
@@ -624,16 +703,38 @@ _dimension(numDim) {
 #endif
 }
 
-template<int numDim, class V>
+template<int D, class V>
 template<class T>
-inline MyMatrix<numDim, numDim, V>::MyMatrix(const MyMatrix<numDim, numDim, T> &&other):
+inline MyMatrix<D, D, V>::MyMatrix(const MyMatrix<D, D, T> &&other):
 MyMatrix(other) {
 }
 
-template<int numDim, class V>
+template<int D, class V>
 template<class T>
-inline MyMatrix<numDim, numDim, V>&
-MyMatrix<numDim, numDim, V>::operator=(const MyMatrix<numDim, numDim, T> &other) {
+inline MyMatrix<D, D, V>::MyMatrix(const std::initializer_list<T> &il):
+_dimension(D) {
+#ifdef ENABLE_TEMPLATE_META
+    MatrixAssignInitializer(*this, il.begin(), il.end());
+#else
+    auto initIter(il.begin());
+    auto initEnd(il.end());
+    for(int i = 0; i != _row; ++i) {
+        for(int j = 0; j != _column; ++j) {
+            if(initEnd != initIter) {
+                _mat[i][j] = *initIter;
+                ++initIter;
+            } else {
+                _mat[i][j] = value_type();
+            }
+        }
+    }
+#endif
+}
+
+template<int D, class V>
+template<class T>
+inline MyMatrix<D, D, V>&
+MyMatrix<D, D, V>::operator=(const MyMatrix<D, D, T> &other) {
 #ifdef ENABLE_TEMPLATE_META
     MatrixAssignMatrix(*this, other);
 #else
@@ -646,10 +747,10 @@ MyMatrix<numDim, numDim, V>::operator=(const MyMatrix<numDim, numDim, T> &other)
     return *this;
 }
 
-template<int numDim, class V>
+template<int D, class V>
 template<class T>
-inline MyMatrix<numDim, numDim, V>&
-MyMatrix<numDim, numDim, V>::operator=(const MyMatrix<numDim, numDim, T> &&other) {
+inline MyMatrix<D, D, V>&
+MyMatrix<D, D, V>::operator=(const MyMatrix<D, D, T> &&other) {
 #ifdef ENABLE_TEMPLATE_META
     MatrixAssignMatrix(*this, other);
 #else
@@ -662,10 +763,32 @@ MyMatrix<numDim, numDim, V>::operator=(const MyMatrix<numDim, numDim, T> &&other
     return *this;
 }
 
-template<int numDim, class V>
+template<int D, class V>
 template<class T>
-inline MyMatrix<numDim, numDim, V>&
-MyMatrix<numDim, numDim, V>::operator+=(const MyMatrix<numDim, numDim, T> &other) {
+inline MyMatrix<D, D, V>&
+MyMatrix<D, D, V>::operator=(const std::initializer_list<T> &il) {
+#ifdef ENABLE_TEMPLATE_META
+        MatrixAssignInitializer(*this, il.begin(), il.end());
+#else
+        auto initIter(il.begin());
+        auto initEnd(il.end());
+        for(int i = 0; i != _row; ++i) {
+            for(int j = 0; j != _column; ++j) {
+                if(initEnd == initIter) {
+                    break;
+                }
+                _mat[i][j] = *initIter;
+                ++initIter;
+            }
+        }
+#endif
+        return *this;
+}
+
+template<int D, class V>
+template<class T>
+inline MyMatrix<D, D, V>&
+MyMatrix<D, D, V>::operator+=(const MyMatrix<D, D, T> &other) {
 #ifdef ENABLE_TEMPLATE_META
     MatrixAddMatrix(*this, other);
 #else
@@ -678,10 +801,26 @@ MyMatrix<numDim, numDim, V>::operator+=(const MyMatrix<numDim, numDim, T> &other
     return *this;
 }
 
-template<int numDim, class V>
+template<int D, class V>
 template<class T>
-inline MyMatrix<numDim, numDim, V>&
-MyMatrix<numDim, numDim, V>::operator*=(const T &value) {
+inline MyMatrix<D, D, V>&
+MyMatrix<D, D, V>::operator-=(const MyMatrix<D, D, T> &other) {
+#ifdef ENABLE_TEMPLATE_META
+    MatrixMinusMatrix(*this, other);
+#else
+    for(int i = 0; i != dimension(); ++i) {
+        for(int j = 0; j != dimension(); ++j) {
+            _mat[i][j] -= other.valueAt(i, j);
+        }
+    }
+#endif
+    return *this;
+}
+
+template<int D, class V>
+template<class T>
+inline MyMatrix<D, D, V>&
+MyMatrix<D, D, V>::operator*=(const T &value) {
 #ifdef ENABLE_TEMPLATE_META
     MatrixMultiplyValue(*this, value);
 #else
@@ -694,12 +833,61 @@ MyMatrix<numDim, numDim, V>::operator*=(const T &value) {
     return *this;
 }
 
+// ------------------------------ matrix operator ------------------------------- //
+
+template<int R, int C, class V, class T>
+inline MyMatrix<R, C, V> operator+(const MyMatrix<R, C, V> &mat1,
+                                   const MyMatrix<R, C, T> &mat2) {
+    MyMatrix<R, C, V> retMat(mat1);
+    retMat += mat2;
+    return retMat;
+}
+
+template<int R, int C, class V, class T>
+inline MyMatrix<R, C, V> operator-(const MyMatrix<R, C, V> &mat1,
+                                   const MyMatrix<R, C, T> &mat2) {
+    MyMatrix<R, C, V> retMat(mat1);
+    retMat -= mat2;
+    return retMat;
+}
+
+template<int R, int C, class V, class T>
+inline MyMatrix<R, C, V> operator*(const MyMatrix<R, C, V> &mat, const T &val) {
+    MyMatrix<R, C, V> retMat(mat);
+    retMat *= val;
+    return retMat;
+}
+
+template<int R, int C, class V, class T>
+inline MyMatrix<R, C, V> operator*(const T &val, const MyMatrix<R, C, V> &mat) {
+    MyMatrix<R, C, V> retMat(mat);
+    retMat *= val;
+    return retMat;
+}
+
+template<int R, int C, int N, class V, class T>
+inline MyMatrix<R, C, V> operator*(const MyMatrix<R, N, V> &mat1,
+                                   const MyMatrix<N, C, T> &mat2) {
+    MyMatrix<R, C, V> retMat;
+#ifdef ENABLE_TEMPLATE_META
+    MatrixMultiplyMatrix(retMat, mat1, mat2);
+#else
+    for(int i = 0; i != R; ++i) {
+        for(int j = 0; j != C; ++j) {
+            for(int k = 0; k != N; ++k) {
+                retMat.valueAt(i, j) += mat1.valueAt(i, k) * mat2.valueAt(k, j);
+            }
+        }
+    }
+#endif
+    return retMat;
+}
+
 // ------------------------------- matrix operation ----------------------------------------- //
 
 template<int R, int C, class V>
-inline MyMatrix<C, R, V>&
-zeroMatrix(MyMatrix<R, C, V> &mat,
-           const V &zeroValue) {
+inline MyMatrix<R, C, V>&
+zeroMatrix(MyMatrix<R, C, V> &mat, const V &zeroValue) {
 #ifdef ENABLE_TEMPLATE_META
     MatrixAssignValue(mat, zeroValue);
 #else
@@ -712,16 +900,16 @@ zeroMatrix(MyMatrix<R, C, V> &mat,
     return mat;
 }
 
-template<int numDim, class V>
-inline MyMatrix<numDim, numDim, V>&
-identityMatrix(MyMatrix<numDim, numDim, V> &mat,
+template<int D, class V>
+inline MyMatrix<D, D, V>&
+identityMatrix(MyMatrix<D, D, V> &mat,
                const V &identityValue,
                const V &zeroValue) {
 #ifdef ENABLE_TEMPLATE_META
     SquareMatrixIdentity(mat, identityValue, zeroValue);
 #else
-    for(int i = 0; i != numDim; ++i) {
-        for(int j = 0; j != numDim; ++j) {
+    for(int i = 0; i != D; ++i) {
+        for(int j = 0; j != D; ++j) {
             retMat.valueAt(i, j) = (i == j) ? identityValue : zeroValue;
         }
     }
@@ -730,7 +918,7 @@ identityMatrix(MyMatrix<numDim, numDim, V> &mat,
 }
 
 template<int R, int C, class V>
-inline MyMatrix<C, R, V>
+inline MyMatrix<R, C, V>
 transposeMatrix(const MyMatrix<R, C, V> &mat) {
     MyMatrix<C, R, V> retMat;
 #ifdef ENABLE_TEMPLATE_META
@@ -745,15 +933,15 @@ transposeMatrix(const MyMatrix<R, C, V> &mat) {
     return retMat;
 }
 
-template<int numDim, class V>
-inline MyMatrix<numDim, numDim, V>&
-transposeMatrix(MyMatrix<numDim, numDim, V> &mat) {
+template<int D, class V>
+inline MyMatrix<D, D, V>&
+transposeMatrix(MyMatrix<D, D, V> &mat) {
 #ifdef ENABLE_TEMPLATE_META
     SquareMatrixTranspose(mat);
 #else
     V tmp;
-    for(int i = 0; i != numDim; ++i) {
-        for(int j = i + 1; j != numDim; ++j) {
+    for(int i = 0; i != D; ++i) {
+        for(int j = i + 1; j != D; ++j) {
             tmp = retMat.valueAt(i, j);
             retMat.valueAt(i, j) = mat.valueAt(j, i);
             mat.valueAt(j, i) = tmp;
