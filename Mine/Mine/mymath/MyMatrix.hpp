@@ -133,7 +133,7 @@ public:
     }
     
     value_type determinant(void) const;
-    bool inversible(void) const;
+    bool inversible(void) const { return value_type() != determinant(); }
     
 private:
     int _dimension;
@@ -207,15 +207,6 @@ MyMatrix<R, C, V>&
 subtractMatrixColumn(MyMatrix<R, C, V> &mat, int a, int b, const T &multiple);
 
 // ------------------------------- elementary transformation  ----------------------------------------- //
-
-template<int R, int C, class V>
-MyMatrix<R - 1, C, V> trimMatrixRow(const MyMatrix<R, C, V> &mat, int r);
-
-template<int R, int C, class V>
-MyMatrix<R, C - 1, V> trimMatrixColumn(const MyMatrix<R, C, V> &mat, int c);
-
-template<int R, int C, class V>
-MyMatrix<R - 1, C - 1, V> trimMatrix(const MyMatrix<R, C, V> &mat, int r, int c);
 
 // simplified by subtractMatrixRow
 template<int R, int C, class V>

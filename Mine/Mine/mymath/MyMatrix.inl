@@ -1047,7 +1047,6 @@ template<int R, int C, class V>
 inline MyMatrix<R, C, V>&
 simplifyMatrix(MyMatrix<R, C, V> &mat) {
     
-    
 }
 
 MINE_NAMESPACE_END
