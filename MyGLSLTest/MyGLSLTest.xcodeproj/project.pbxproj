@@ -357,6 +357,12 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P5QERNN666;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"ENABLE_TEMPLATE_META=1",
+					"$(inherited)",
+					"TEMPLATE_INSTANTIATION_DEPTH=1024",
+				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					"$(PROJECT_DIR)/../Mine/Mine",
@@ -378,6 +384,10 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P5QERNN666;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"ENABLE_TEMPLATE_META=1",
+					"TEMPLATE_INSTANTIATION_DEPTH=1024",
+				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					"$(PROJECT_DIR)/../Mine/Mine",

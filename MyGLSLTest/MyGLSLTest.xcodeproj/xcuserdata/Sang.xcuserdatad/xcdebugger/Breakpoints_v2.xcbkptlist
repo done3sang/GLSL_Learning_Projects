@@ -19,5 +19,281 @@
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "539018514.529344"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1175"
+            endingLineNumber = "1175"
+            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::MyMatrix&lt;3, 1, float&gt;&amp; Mine::simplifyMatrix&lt;3, 1, float&gt;(Mine::MyMatrix&lt;3, 1, float&gt;&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539018515.997542"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1175"
+                  endingLineNumber = "1175"
+                  offsetFromSymbolStart = "21">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::MyMatrix&lt;3, 2, float&gt;&amp; Mine::simplifyMatrix&lt;3, 2, float&gt;(Mine::MyMatrix&lt;3, 2, float&gt;&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539018515.999419"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1175"
+                  endingLineNumber = "1175"
+                  offsetFromSymbolStart = "21">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::MyMatrix&lt;2, 3, float&gt;&amp; Mine::simplifyMatrix&lt;2, 3, float&gt;(Mine::MyMatrix&lt;2, 3, float&gt;&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539018516.001693"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1175"
+                  endingLineNumber = "1175"
+                  offsetFromSymbolStart = "21">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::MyMatrix&lt;103, 10, float&gt;&amp; Mine::simplifyMatrix&lt;103, 10, float&gt;(Mine::MyMatrix&lt;103, 10, float&gt;&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539018516.003942"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1175"
+                  endingLineNumber = "1175"
+                  offsetFromSymbolStart = "21">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "539016792.532168"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "593"
+            endingLineNumber = "593">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "539016850.788301"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "527"
+            endingLineNumber = "527"
+            landmarkName = "SimplifyMatrixBySubtractRowInnerImpl"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::SimplifyMatrixBySubtractRowInnerImpl&lt;Mine::MyMatrix&lt;3, 2, float&gt;, 0, 3, 0&gt;::eval(Mine::MyMatrix&lt;3, 2, float&gt;&amp;, int, float const&amp;, bool*)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539016990.776804"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "527"
+                  endingLineNumber = "527"
+                  offsetFromSymbolStart = "83">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::SimplifyMatrixBySubtractRowInnerImpl&lt;Mine::MyMatrix&lt;3, 2, float&gt;, 1, 3, 0&gt;::eval(Mine::MyMatrix&lt;3, 2, float&gt;&amp;, int, float const&amp;, bool*)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539016990.779012"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "527"
+                  endingLineNumber = "527"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::SimplifyMatrixBySubtractRowInnerImpl&lt;Mine::MyMatrix&lt;3, 2, float&gt;, 2, 3, 0&gt;::eval(Mine::MyMatrix&lt;3, 2, float&gt;&amp;, int, float const&amp;, bool*)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539016990.781299"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "527"
+                  endingLineNumber = "527"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::SimplifyMatrixBySubtractRowInnerImpl&lt;Mine::MyMatrix&lt;3, 2, float&gt;, 0, 3, 1&gt;::eval(Mine::MyMatrix&lt;3, 2, float&gt;&amp;, int, float const&amp;, bool*)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539016990.783649"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "527"
+                  endingLineNumber = "527"
+                  offsetFromSymbolStart = "89">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::SimplifyMatrixBySubtractRowInnerImpl&lt;Mine::MyMatrix&lt;3, 2, float&gt;, 1, 3, 1&gt;::eval(Mine::MyMatrix&lt;3, 2, float&gt;&amp;, int, float const&amp;, bool*)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539016990.788736"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "527"
+                  endingLineNumber = "527"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::SimplifyMatrixBySubtractRowInnerImpl&lt;Mine::MyMatrix&lt;3, 2, float&gt;, 2, 3, 1&gt;::eval(Mine::MyMatrix&lt;3, 2, float&gt;&amp;, int, float const&amp;, bool*)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539016990.791612"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "527"
+                  endingLineNumber = "527"
+                  offsetFromSymbolStart = "102">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::SimplifyMatrixBySubtractRowInnerImpl&lt;Mine::MyMatrix&lt;2, 3, float&gt;, 0, 2, 0&gt;::eval(Mine::MyMatrix&lt;2, 3, float&gt;&amp;, int, float const&amp;, bool*)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539016990.793955"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "527"
+                  endingLineNumber = "527"
+                  offsetFromSymbolStart = "83">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::SimplifyMatrixBySubtractRowInnerImpl&lt;Mine::MyMatrix&lt;2, 3, float&gt;, 1, 2, 0&gt;::eval(Mine::MyMatrix&lt;2, 3, float&gt;&amp;, int, float const&amp;, bool*)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539016990.796241"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "527"
+                  endingLineNumber = "527"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::SimplifyMatrixBySubtractRowInnerImpl&lt;Mine::MyMatrix&lt;2, 3, float&gt;, 0, 2, 1&gt;::eval(Mine::MyMatrix&lt;2, 3, float&gt;&amp;, int, float const&amp;, bool*)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539016990.798533"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "527"
+                  endingLineNumber = "527"
+                  offsetFromSymbolStart = "89">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::SimplifyMatrixBySubtractRowInnerImpl&lt;Mine::MyMatrix&lt;2, 3, float&gt;, 1, 2, 1&gt;::eval(Mine::MyMatrix&lt;2, 3, float&gt;&amp;, int, float const&amp;, bool*)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Sang/Documents/GitHub/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "539016990.801108"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "527"
+                  endingLineNumber = "527"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "539019634.475997"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1152"
+            endingLineNumber = "1152"
+            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

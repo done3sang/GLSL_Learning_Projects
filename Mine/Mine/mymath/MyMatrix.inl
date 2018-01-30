@@ -512,58 +512,63 @@ namespace {
     /* ------------------- square matrix determinant ------------------- */
     
     /* ------------------- simply matrix by subtract  ------------------- */
-    template<class M, int I, int N, int C>
+    template<class M, int I, int R, int C>
     struct SimplifyMatrixBySubtractRowInnerImpl {
         enum {
-            Continue = I != N - 1,
+            Continue = I != R - 1,
             NextI = I + 1
         };
         
-        static inline void eval(M &mat, int t, const typename M::value_type &dem) {
-            if(I != t) {
+        static inline void eval(M &mat,
+                                int t,
+                                const typename M::value_type &dem,
+                                bool *gauss) {
+            if(((I < t && gauss[I]) || I > t) && !mat.zeroAt(I, C)) {
                 MatrixSubtractRow(mat, I, t, mat.valueAt(I, C) * dem);
             }
-            SimplifyMatrixBySubtractRowInnerImpl<M, Continue * NextI, Continue * N, Continue * C>::eval(mat, t, dem);
+            SimplifyMatrixBySubtractRowInnerImpl<M, Continue * NextI,
+            Continue * R, Continue * C>::eval(mat, t, dem, gauss);
         }
     };
     
     template<class M>
     struct SimplifyMatrixBySubtractRowInnerImpl<M, 0, 0, 0> {
-        static inline void eval(M &mat, int t,
-                                const typename M::value_type &dem) {}
+        static inline void eval(M&,
+                                int,
+                                const typename M::value_type&,
+                                bool*) {}
     };
     
-    template<class M, int I, int N, int C>
+    template<class M, int I, int R, int C>
     struct SimplifyMatrixBySubtractRowImpl {
         enum {
-            Continue = I != N - 1,
+            Continue = I != R - 1,
             NextI = I + 1
         };
         
         static typename M::value_type dem;
         
         static inline void eval(M &mat, bool *gauss) {
-            if(!gauss[I]) {
-                if(!mat.zeroAt(I, C)) {
-                    dem = M::identityValue()/mat.valueAt(I, C);
-                    SimplifyMatrixBySubtractRowInnerImpl<M, I + 1, N, C>::eval(mat, I, dem);
-                    gauss[I] = true;
-                    return;
-                }
+            if(!gauss[I] && !mat.zeroAt(I, C)) {
+                dem = M::identityValue()/mat.valueAt(I, C);
+                SimplifyMatrixBySubtractRowInnerImpl<M, 0, R, C>::eval(mat, I, dem, gauss);
+                gauss[I] = true;
+                return;
             }
-            SimplifyMatrixBySubtractRowImpl<M, Continue * NextI, Continue * N, Continue * C>::eval(mat, gauss);
+            SimplifyMatrixBySubtractRowImpl<M, Continue * NextI,
+            Continue * R, Continue * C>::eval(mat, gauss);
         }
     };
     
-    template<class M, int I, int N, int C>
-    typename M::value_type SimplifyMatrixBySubtractRowImpl<M, I, N, C>::dem;
+    template<class M, int I, int R, int C>
+    typename M::value_type SimplifyMatrixBySubtractRowImpl<M, I, R, C>::dem;
     
     template<class M>
     struct SimplifyMatrixBySubtractRowImpl<M, 0, 0, 0> {
         static inline void eval(M &mat, bool *gauss) {}
     };
     
-    template<class M, int I, int N, int R>
+    template<class M, int R, int I, int N>
     struct SimplifyMatrixBySubtractImpl {
         enum {
             Continue = I != N - 1,
@@ -572,7 +577,8 @@ namespace {
         
         static inline void eval(M &mat, bool *gauss) {
             SimplifyMatrixBySubtractRowImpl<M, 0, R, I>::eval(mat, gauss);
-            SimplifyMatrixBySubtractImpl<M, Continue * NextI, Continue * N, Continue * R>::eval(mat, gauss);
+            SimplifyMatrixBySubtractImpl<M, Continue * R,
+            Continue * NextI, Continue * N>::eval(mat, gauss);
         }
     };
     
@@ -581,11 +587,19 @@ namespace {
         static inline void eval(M &mat, bool *gauss) {}
     };
     
+    // avoid to deduce vector, wonderful for partial template specialization
+    // thanks to clang&gcc powerful compiler
+    template<class M, int R>
+    struct SimplifyMatrixBySubtractImpl<M, R, 0, 1> {
+        static inline void eval(M &mat, bool *gauss) {}
+    };
+    
+    // depth = R * C
     template<int R, int C, class V>
     inline void SimplifyMatrixBySubtract(MyMatrix<R, C, V> &mat) {
         constexpr int N = R < C ? R : C;
         bool gauss[N] = {false};
-        SimplifyMatrixBySubtractImpl<MyMatrix<R, C, V>, 0, N, R>::eval(mat, gauss);
+        SimplifyMatrixBySubtractImpl<MyMatrix<R, C, V>, R, 0, N>::eval(mat, gauss);
     }
 }
 
@@ -633,6 +647,7 @@ template<class T>
 inline MyMatrix<R, C, V>::MyMatrix(const std::initializer_list<T> &il):
 _row(R), _column(C) {
 #ifdef ENABLE_TEMPLATE_META
+//#if R * C < 1024
     MatrixAssignInitializer(*this, il.begin(), il.end());
 #else
     auto initIter(il.begin());
@@ -1129,7 +1144,9 @@ template<int R, int C, class V>
 inline MyMatrix<R, C, V>&
 simplifyMatrix(MyMatrix<R, C, V> &mat) {
 #ifdef ENABLE_TEMPLATE_META
+//#if R * C < 1024
     SimplifyMatrixBySubtract(mat);
+//#endif
 #else
     constexpr int order = R < C ? R : C;
     

@@ -78,13 +78,15 @@ int main(int argc, const char * argv[]) {
     auto mpp1 = 2 * mp - mq * mp;
     
     mpp = {1, 2, 3};
-    //simplifyMatrix(mpp);
+    simplifyMatrix(mpp);
     
     MyMatrix<3, 2> im1({1, 2, 3, 4, 5, 6});
     MyMatrix<2, 3> im2({1, 2, 3, 4, 5, 6});
+    //MyMatrix<33, 32> im3({1, 2, 3, 4, 5, 6});
     
-    //simplifyMatrix(im1);
+    simplifyMatrix(im1);
     simplifyMatrix(im2);
+    //simplifyMatrix(im3);
     
     /*
     auto sharedDirector = MyDirector::sharedDirector();
