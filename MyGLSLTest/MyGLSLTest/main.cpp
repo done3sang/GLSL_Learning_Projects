@@ -78,6 +78,14 @@ int main(int argc, const char * argv[]) {
     auto mpp1 = 2 * mp - mq * mp;
     
     mpp = {1, 2, 3};
+    //simplifyMatrix(mpp);
+    
+    MyMatrix<3, 2> im1({1, 2, 3, 4, 5, 6});
+    MyMatrix<2, 3> im2({1, 2, 3, 4, 5, 6});
+    
+    //simplifyMatrix(im1);
+    simplifyMatrix(im2);
+    
     /*
     auto sharedDirector = MyDirector::sharedDirector();
     MyErrorDesc::sharedErrorDesc()->errorCallback(MyErrorDisposer::create());

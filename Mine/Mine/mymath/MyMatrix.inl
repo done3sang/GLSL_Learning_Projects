@@ -511,7 +511,86 @@ namespace {
     
     /* ------------------- square matrix determinant ------------------- */
     
+    /* ------------------- simply matrix by subtract  ------------------- */
+    template<class M, int I, int N, int C>
+    struct SimplifyMatrixBySubtractRowInnerImpl {
+        enum {
+            Continue = I != N - 1,
+            NextI = I + 1
+        };
+        
+        static inline void eval(M &mat, int t, const typename M::value_type &dem) {
+            if(I != t) {
+                MatrixSubtractRow(mat, I, t, mat.valueAt(I, C) * dem);
+            }
+            SimplifyMatrixBySubtractRowInnerImpl<M, Continue * NextI, Continue * N, Continue * C>::eval(mat, t, dem);
+        }
+    };
+    
+    template<class M>
+    struct SimplifyMatrixBySubtractRowInnerImpl<M, 0, 0, 0> {
+        static inline void eval(M &mat, int t,
+                                const typename M::value_type &dem) {}
+    };
+    
+    template<class M, int I, int N, int C>
+    struct SimplifyMatrixBySubtractRowImpl {
+        enum {
+            Continue = I != N - 1,
+            NextI = I + 1
+        };
+        
+        static typename M::value_type dem;
+        
+        static inline void eval(M &mat, bool *gauss) {
+            if(!gauss[I]) {
+                if(!mat.zeroAt(I, C)) {
+                    dem = M::identityValue()/mat.valueAt(I, C);
+                    SimplifyMatrixBySubtractRowInnerImpl<M, I + 1, N, C>::eval(mat, I, dem);
+                    gauss[I] = true;
+                    return;
+                }
+            }
+            SimplifyMatrixBySubtractRowImpl<M, Continue * NextI, Continue * N, Continue * C>::eval(mat, gauss);
+        }
+    };
+    
+    template<class M, int I, int N, int C>
+    typename M::value_type SimplifyMatrixBySubtractRowImpl<M, I, N, C>::dem;
+    
+    template<class M>
+    struct SimplifyMatrixBySubtractRowImpl<M, 0, 0, 0> {
+        static inline void eval(M &mat, bool *gauss) {}
+    };
+    
+    template<class M, int I, int N, int R>
+    struct SimplifyMatrixBySubtractImpl {
+        enum {
+            Continue = I != N - 1,
+            NextI = I + 1
+        };
+        
+        static inline void eval(M &mat, bool *gauss) {
+            SimplifyMatrixBySubtractRowImpl<M, 0, R, I>::eval(mat, gauss);
+            SimplifyMatrixBySubtractImpl<M, Continue * NextI, Continue * N, Continue * R>::eval(mat, gauss);
+        }
+    };
+    
+    template<class M>
+    struct SimplifyMatrixBySubtractImpl<M, 0, 0, 0> {
+        static inline void eval(M &mat, bool *gauss) {}
+    };
+    
+    template<int R, int C, class V>
+    inline void SimplifyMatrixBySubtract(MyMatrix<R, C, V> &mat) {
+        constexpr int N = R < C ? R : C;
+        bool gauss[N] = {false};
+        SimplifyMatrixBySubtractImpl<MyMatrix<R, C, V>, 0, N, R>::eval(mat, gauss);
+    }
 }
+
+template<int R, int C, class V> typename MyMatrix<R, C, V>::value_type MyMatrix<R, C, V>::_zeroValue = V(0);
+template<int R, int C, class V> typename MyMatrix<R, C, V>::value_type MyMatrix<R, C, V>::_identityValue = V(1);
 
 template<int R, int C, class V>
 template<class T>
@@ -672,6 +751,9 @@ MyMatrix<R, C, V>::operator*=(const T &value) {
 #endif
     return *this;
 }
+
+template<int D, class V> typename MyMatrix<D, D, V>::value_type MyMatrix<D, D, V>::_zeroValue = V(0);
+template<int D, class V> typename MyMatrix<D, D, V>::value_type MyMatrix<D, D, V>::_identityValue = V(1);
 
 template<int D, class V>
 template<class T>
@@ -1046,7 +1128,37 @@ subtractMatrixColumn(MyMatrix<R, C, V> &mat, int a,
 template<int R, int C, class V>
 inline MyMatrix<R, C, V>&
 simplifyMatrix(MyMatrix<R, C, V> &mat) {
+#ifdef ENABLE_TEMPLATE_META
+    SimplifyMatrixBySubtract(mat);
+#else
+    constexpr int order = R < C ? R : C;
     
+    if(1 == order) {
+        return mat;
+    }
+    
+    bool gua[order] = {false};
+    typename MyMatrix<R, C, V>::value_type det;
+    
+    for(int r = 0; r != order; ++r) {
+        for(int t = 0; t != R; ++t) {
+            if(gua[t]) {
+                continue;
+            }
+            if(!mat.zeroAt(t, r)) {
+                det = MyMatrix<R, C, V>::identityValue()/mat.valueAt(t, r);
+                for(int p = 0; p != R; ++p) {
+                    if(p == t) {
+                        continue;
+                    }
+                    MatrixSubtractRow(mat, p, t, mat.valueAt(p, r) * det);
+                }
+                gua[t] = true;
+            }
+        }
+    }
+#endif
+    return mat;
 }
 
 MINE_NAMESPACE_END

@@ -73,10 +73,34 @@ public:
         return _mat[r][c];
     }
     
+    bool zeroAt(int r, int c) const {
+#ifdef DEBUG
+        assert(r >= 0 && r < _row && "valueAt error, row overflow");
+        assert(c >= 0 && c < _column && "valueAt error, column overflow");
+#endif
+        return zeroValue() == _mat[r][c];
+    }
+    bool identityAt(int r, int c) const {
+#ifdef DEBUG
+        assert(r >= 0 && r < _row && "valueAt error, row overflow");
+        assert(c >= 0 && c < _column && "valueAt error, column overflow");
+#endif
+        return identityValue() == _mat[r][c];
+    }
+    
+    static const value_type& zeroValue(void) { return _zeroValue; }
+    static void zeroValue(const value_type &val) { _zeroValue = val; }
+    
+    static const value_type& identityValue(void) { return _identityValue; }
+    static void identityValue(const value_type &val) { _identityValue = val; }
+    
 private:
     int _row;
     int _column;
     value_type _mat[R][C];
+    
+    static value_type _zeroValue;
+    static value_type _identityValue;
 };
 
 template<int D, class V>
@@ -132,12 +156,37 @@ public:
         return _mat[r][c];
     }
     
+    bool zeroAt(int r, int c) const {
+#ifdef DEBUG
+        assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
+        assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
+#endif
+        return zeroValue() == _mat[r][c];
+    }
+    bool identityAt(int r, int c) const {
+#ifdef DEBUG
+        assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
+        assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
+#endif
+        return identityValue() == _mat[r][c];
+    }
+    
+    static const value_type& zeroValue(void) { return _zeroValue; }
+    static void zeroValue(const value_type &val) { _zeroValue = val; }
+    
+    static const value_type& identityValue(void) { return _identityValue; }
+    static void identityValue(const value_type &val) { _identityValue = val; }
+    
+    // square matrix only
     value_type determinant(void) const;
     bool inversible(void) const { return value_type() != determinant(); }
     
 private:
     int _dimension;
     value_type _mat[D][D];
+    
+    static value_type _zeroValue;
+    static value_type _identityValue;
 };
 
 // ------------------------------- matrix operation ----------------------------------------- //

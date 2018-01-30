@@ -6,572 +6,78 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.469569"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.470157"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.470547"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.47093"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.4712681"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.471526"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.471764"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.472001"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.472236"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.472469"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.472747"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.473008"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
-            timestampString = "538560455.473259"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "840"
-            endingLineNumber = "840"
-            landmarkName = "operator+(const MyMatrix&lt;R, C, V&gt; &amp;mat1, const MyMatrix&lt;R, C, T&gt; &amp;mat2)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
-            timestampString = "538560455.4733191"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "855"
-            endingLineNumber = "855"
-            landmarkName = "operator*(const MyMatrix&lt;R, C, V&gt; &amp;mat, const T &amp;val)"
-            landmarkType = "9">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;2, 2, float&gt; Mine::operator*&lt;2, 2, 2, float, int&gt;(Mine::MyMatrix&lt;2, 2, float&gt; const&amp;, Mine::MyMatrix&lt;2, 2, int&gt; const&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538545063.727897"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "754"
-                  endingLineNumber = "754"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;3, 3, float&gt; Mine::operator*&lt;3, 3, 2, float, float&gt;(Mine::MyMatrix&lt;3, 2, float&gt; const&amp;, Mine::MyMatrix&lt;2, 3, float&gt; const&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538545063.729701"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "754"
-                  endingLineNumber = "754"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;3, 2, float&gt; Mine::operator*&lt;3, 2, 4, float, float&gt;(Mine::MyMatrix&lt;3, 4, float&gt; const&amp;, Mine::MyMatrix&lt;4, 2, float&gt; const&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538545063.7315069"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "754"
-                  endingLineNumber = "754"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
-            timestampString = "538560455.473371"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "862"
-            endingLineNumber = "862"
-            landmarkName = "operator*(const T &amp;val, const MyMatrix&lt;R, C, V&gt; &amp;mat)"
-            landmarkType = "9">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;2, 2, float&gt; Mine::operator*&lt;2, 2, 2, float, int&gt;(Mine::MyMatrix&lt;2, 2, float&gt; const&amp;, Mine::MyMatrix&lt;2, 2, int&gt; const&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538545063.736312"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "754"
-                  endingLineNumber = "754"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;3, 3, float&gt; Mine::operator*&lt;3, 3, 2, float, float&gt;(Mine::MyMatrix&lt;3, 2, float&gt; const&amp;, Mine::MyMatrix&lt;2, 3, float&gt; const&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538545063.738252"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "754"
-                  endingLineNumber = "754"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;3, 2, float&gt; Mine::operator*&lt;3, 2, 4, float, float&gt;(Mine::MyMatrix&lt;3, 4, float&gt; const&amp;, Mine::MyMatrix&lt;4, 2, float&gt; const&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538545063.740063"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "754"
-                  endingLineNumber = "754"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
-            timestampString = "538560455.47342"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "870"
-            endingLineNumber = "870"
-            landmarkName = "operator*(const MyMatrix&lt;R, N, V&gt; &amp;mat1, const MyMatrix&lt;N, C, T&gt; &amp;mat2)"
-            landmarkType = "9">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;2, 2, float&gt; Mine::operator*&lt;2, 2, 2, float, int&gt;(Mine::MyMatrix&lt;2, 2, float&gt; const&amp;, Mine::MyMatrix&lt;2, 2, int&gt; const&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538545063.7448"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "754"
-                  endingLineNumber = "754"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;3, 3, float&gt; Mine::operator*&lt;3, 3, 2, float, float&gt;(Mine::MyMatrix&lt;3, 2, float&gt; const&amp;, Mine::MyMatrix&lt;2, 3, float&gt; const&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538545063.7469341"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "754"
-                  endingLineNumber = "754"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;3, 2, float&gt; Mine::operator*&lt;3, 2, 4, float, float&gt;(Mine::MyMatrix&lt;3, 4, float&gt; const&amp;, Mine::MyMatrix&lt;4, 2, float&gt; const&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538545063.749158"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "754"
-                  endingLineNumber = "754"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyGLSLTest/main.cpp"
-            timestampString = "538560455.473466"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
-            timestampString = "538560455.473701"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "753"
-            endingLineNumber = "753"
-            landmarkName = "operator=(const MyMatrix&lt;D, D, T&gt; &amp;&amp;other)"
-            landmarkType = "9">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;2, 2, float&gt;&amp; Mine::MyMatrix&lt;2, 2, float&gt;::operator=&lt;float&gt;(Mine::MyMatrix&lt;2, 2, float&gt; const&amp;&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538560455.822708"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "753"
-                  endingLineNumber = "753"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;3, 3, float&gt;&amp; Mine::MyMatrix&lt;3, 3, float&gt;::operator=&lt;float&gt;(Mine::MyMatrix&lt;3, 3, float&gt; const&amp;&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538560455.824517"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "753"
-                  endingLineNumber = "753"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
-            timestampString = "538560455.47375"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "755"
-            endingLineNumber = "755"
-            landmarkName = "operator=(const MyMatrix&lt;D, D, T&gt; &amp;&amp;other)"
-            landmarkType = "9">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;2, 2, float&gt;&amp; Mine::MyMatrix&lt;2, 2, float&gt;::operator=&lt;float&gt;(Mine::MyMatrix&lt;2, 2, float&gt; const&amp;&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538560455.828565"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "761"
-                  endingLineNumber = "761"
-                  offsetFromSymbolStart = "47">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;3, 3, float&gt;&amp; Mine::MyMatrix&lt;3, 3, float&gt;::operator=&lt;float&gt;(Mine::MyMatrix&lt;3, 3, float&gt; const&amp;&amp;)"
-                  moduleName = "MyGLSLTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538560455.830376"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "761"
-                  endingLineNumber = "761"
-                  offsetFromSymbolStart = "47">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymath/MyMatrix.inl"
-            timestampString = "538560455.4737951"
+            timestampString = "539002874.430303"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "715"
-            endingLineNumber = "715"
-            landmarkName = "_dimension(D)"
+            startingLineNumber = "1161"
+            endingLineNumber = "1161"
+            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymath/MyMatrix.inl"
-            timestampString = "538560455.473837"
+            timestampString = "539002874.4309371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "718"
-            endingLineNumber = "718"
-            landmarkName = "_dimension(D)"
+            startingLineNumber = "1141"
+            endingLineNumber = "1141"
+            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
             landmarkType = "9">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;3, 3, float&gt;::MyMatrix&lt;int&gt;(std::initializer_list&lt;int&gt; const&amp;)"
+                  symbolName = "Mine::MyMatrix&lt;3, 1, float&gt;&amp; Mine::simplifyMatrix&lt;3, 1, float&gt;(Mine::MyMatrix&lt;3, 1, float&gt;&amp;)"
                   moduleName = "MyGLSLTest"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538560455.837869"
+                  timestampString = "538997109.895413"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "730"
-                  endingLineNumber = "730"
-                  offsetFromSymbolStart = "29">
+                  startingLineNumber = "1063"
+                  endingLineNumber = "1063"
+                  offsetFromSymbolStart = "40">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Mine::MyMatrix&lt;3, 3, float&gt;::MyMatrix&lt;int&gt;(std::initializer_list&lt;int&gt; const&amp;)"
+                  symbolName = "Mine::MyMatrix&lt;3, 2, int&gt;&amp; Mine::simplifyMatrix&lt;3, 2, int&gt;(Mine::MyMatrix&lt;3, 2, int&gt;&amp;)"
                   moduleName = "MyGLSLTest"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
-                  timestampString = "538560455.839691"
+                  timestampString = "538997109.8979059"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "730"
-                  endingLineNumber = "730"
-                  offsetFromSymbolStart = "86">
+                  startingLineNumber = "1063"
+                  endingLineNumber = "1063"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::MyMatrix&lt;2, 3, int&gt;&amp; Mine::simplifyMatrix&lt;2, 3, int&gt;(Mine::MyMatrix&lt;2, 3, int&gt;&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "538997109.901345"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1063"
+                  endingLineNumber = "1063"
+                  offsetFromSymbolStart = "40">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -579,32 +85,96 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymath/MyMatrix.inl"
-            timestampString = "538560504.886215"
+            timestampString = "539002874.431251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "769"
-            endingLineNumber = "769"
-            landmarkName = "operator=(const std::initializer_list&lt;T&gt; &amp;il)"
+            startingLineNumber = "1144"
+            endingLineNumber = "1144"
+            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymath/MyMatrix.inl"
-            timestampString = "538560505.550072"
+            timestampString = "539002874.431528"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "771"
-            endingLineNumber = "771"
-            landmarkName = "operator=(const std::initializer_list&lt;T&gt; &amp;il)"
+            startingLineNumber = "1149"
+            endingLineNumber = "1149"
+            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "539002874.431806"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1156"
+            endingLineNumber = "1156"
+            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "539002874.432083"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1148"
+            endingLineNumber = "1148"
+            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "539002874.432362"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1150"
+            endingLineNumber = "1150"
+            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "539002874.432636"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1154"
+            endingLineNumber = "1154"
+            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
