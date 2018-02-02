@@ -8,8 +8,9 @@
 
 MINE_NAMESPACE_BEGIN
 
+// recursive depth = R * C, may be exceeded to cause compilation error(-ftemplate-depth-N)
 // matrix template meta
-namespace {
+namespace MineTemplateMeta {
     // matrix assign value
     template<class M, class T, int R, int C, int N, int I>
     struct MatrixAssignValueImpl {
@@ -509,8 +510,6 @@ namespace {
         MatrixSubtractColumnImpl<MyMatrix<R, C, V>, T, 0, C>::eval(mat, a, b, multiple);
     }
     
-    /* ------------------- square matrix determinant ------------------- */
-    
     /* ------------------- simply matrix by subtract  ------------------- */
     template<class M, int I, int R, int C>
     struct SimplifyMatrixBySubtractRowInnerImpl {
@@ -601,6 +600,91 @@ namespace {
         bool gauss[N] = {false};
         SimplifyMatrixBySubtractImpl<MyMatrix<R, C, V>, R, 0, N>::eval(mat, gauss);
     }
+    
+    /* ------------------- square matrix determinant ------------------- */
+    template<class M, int I, int C, int D>
+    struct SquareMatrixDeterminantBySubtractRowImpl {
+        enum {
+            Continue = I != D - 1,
+            NextI = I + 1
+        };
+        
+        static typename M::value_type dem;
+        
+        static inline void eval(M &mat,
+                                bool *gauss,
+                                typename M::value_type &det,
+                                int &sign) {
+            if(!gauss[I]) {
+                if(!mat.zeroAt(I, C)) {
+                    dem = M::identityValue()/mat.valueAt(I, C);
+                    SimplifyMatrixBySubtractRowInnerImpl<M, 0, D, C>::eval(mat, I, dem, gauss);
+                    gauss[I] = true;
+                    det *= sign * mat.valueAt(I, C);
+                    return;
+                }
+                sign *= -1;
+            }
+            SquareMatrixDeterminantBySubtractRowImpl<M, Continue * NextI,
+            Continue * C, Continue * D>::eval(mat, gauss, det, sign);
+        }
+    };
+    
+    template<class M, int I, int C, int D>
+    typename M::value_type SquareMatrixDeterminantBySubtractRowImpl<M, I, C, D>::dem;
+    
+    template<class M>
+    struct SquareMatrixDeterminantBySubtractRowImpl<M, 0, 0, 0> {
+        static inline void eval(M &mat,
+                                bool *gauss,
+                                typename M::value_type &det,
+                                int &sign) {
+            det = M::zeroValue();
+        }
+    };
+    
+    template<class M, int I, int D>
+    struct SquareMatrixDeterminantImpl {
+        enum {
+            Continue = I != D - 1,
+            NextI = I + 1
+        };
+        
+        static inline void eval(M &mat, bool *gauss, typename M::value_type &det) {
+            int sign(1);
+            SquareMatrixDeterminantBySubtractRowImpl<M, 0, I, D>::eval(mat, gauss, det, sign);
+            if(!M::isZeroValue(det)) {
+                SquareMatrixDeterminantImpl<M, Continue * NextI,
+                Continue * D>::eval(mat, gauss, det);
+            }
+        }
+    };
+    
+    template<class M>
+    struct SquareMatrixDeterminantImpl<M, 0, 0> {
+        static inline void eval(M &mat, bool *gauss, typename M::value_type &det) {}
+    };
+    
+    template<class M>
+    struct SquareMatrixDeterminantImpl<M, 0, 1> {
+        static inline void eval(M &mat, bool *gauss, typename M::value_type &det) {
+            det = mat.valueAt(0, 0);
+        }
+    };
+    
+    template<class M>
+    struct SquareMatrixDeterminantImpl<M, 0, 2> {
+        static inline void eval(M &mat, bool *gauss, typename M::value_type &det) {
+            det = mat.valueAt(0, 0) * mat.valueAt(1, 1) - mat.valueAt(0, 1) * mat.valueAt(1, 0);
+        }
+    };
+    
+    template<int D, class V, class T>
+    inline void SquareMatrixDeterminant(const MyMatrix<D, D, V> &mat, T &det) {
+        MyMatrix<D, D, V> implMat(mat);
+        bool gauss[D] = {false};
+        SquareMatrixDeterminantImpl<MyMatrix<D, D, V>, 0, D>::eval(implMat, gauss, det);
+    }
 }
 
 template<int R, int C, class V> typename MyMatrix<R, C, V>::value_type MyMatrix<R, C, V>::_zeroValue = V(0);
@@ -611,7 +695,7 @@ template<class T>
 inline MyMatrix<R, C, V>::MyMatrix(const T &value):
 _row(R), _column(C) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAssignValue(*this, value);
+    MineTemplateMeta::MatrixAssignValue(*this, value);
 #else
     for(int i = 0; i != _row; ++i) {
         for(int j = 0; j != _column; ++j) {
@@ -626,7 +710,7 @@ template<class T>
 inline MyMatrix<R, C, V>::MyMatrix(const MyMatrix<R, C, T> &other):
 _row(R), _column(C) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAssignMatrix(*this, other);
+    MineTemplateMeta::MatrixAssignMatrix(*this, other);
 #else
     for(int i = 0; i != _row; ++i) {
         for(int j = 0; j != _column; ++j) {
@@ -646,9 +730,9 @@ template<int R, int C, class V>
 template<class T>
 inline MyMatrix<R, C, V>::MyMatrix(const std::initializer_list<T> &il):
 _row(R), _column(C) {
-#ifdef ENABLE_TEMPLATE_META
-//#if R * C < 1024
-    MatrixAssignInitializer(*this, il.begin(), il.end());
+//#ifdef ENABLE_TEMPLATE_META
+#if (R * C) < 1024
+    MineTemplateMeta::MatrixAssignInitializer(*this, il.begin(), il.end());
 #else
     auto initIter(il.begin());
     auto initEnd(il.end());
@@ -670,7 +754,7 @@ template<class T>
 inline MyMatrix<R, C, V>&
 MyMatrix<R, C, V>::operator=(const MyMatrix<R, C, T> &other) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAssignMatrix(*this, other);
+    MineTemplateMeta::MatrixAssignMatrix(*this, other);
 #else
     for(int i = 0; i != row(); ++i) {
         for(int j = 0; j != column(); ++j) {
@@ -686,7 +770,7 @@ template<class T>
 inline MyMatrix<R, C, V>&
 MyMatrix<R, C, V>::operator=(const MyMatrix<R, C, T> &&other) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAssignMatrix(*this, other);
+    MineTemplateMeta::MatrixAssignMatrix(*this, other);
 #else
     for(int i = 0; i != row(); ++i) {
         for(int j = 0; j != column(); ++j) {
@@ -702,7 +786,7 @@ template<class T>
 inline MyMatrix<R, C, V>&
 MyMatrix<R, C, V>::operator=(const std::initializer_list<T> &il) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAssignInitializer(*this, il.begin(), il.end());
+    MineTemplateMeta::MatrixAssignInitializer(*this, il.begin(), il.end());
 #else
     auto initIter(il.begin());
     auto initEnd(il.end());
@@ -724,7 +808,7 @@ template<class T>
 inline MyMatrix<R, C, V>&
 MyMatrix<R, C, V>::operator+=(const MyMatrix<R, C, T> &other) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAddMatrix(*this, other);
+    MineTemplateMeta::MatrixAddMatrix(*this, other);
 #else
     for(int i = 0; i != row(); ++i) {
         for(int j = 0; j != column(); ++j) {
@@ -740,7 +824,7 @@ template<class T>
 inline MyMatrix<R, C, V>&
 MyMatrix<R, C, V>::operator-=(const MyMatrix<R, C, T> &other) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixMinusMatrix(*this, other);
+    MineTemplateMeta::MatrixMinusMatrix(*this, other);
 #else
     for(int i = 0; i != row(); ++i) {
         for(int j = 0; j != column(); ++j) {
@@ -756,7 +840,7 @@ template<class T>
 inline MyMatrix<R, C, V>&
 MyMatrix<R, C, V>::operator*=(const T &value) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixMultiplyValue(*this, value);
+    MineTemplateMeta::MatrixMultiplyValue(*this, value);
 #else
     for(int i = 0; i != row(); ++i) {
         for(int j = 0; j != column(); ++j) {
@@ -775,7 +859,7 @@ template<class T>
 inline MyMatrix<D, D, V>::MyMatrix(const T &value):
 _dimension(D) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAssignValue(*this, value);
+    MineTemplateMeta::MatrixAssignValue(*this, value);
 #else
     for(int i = 0; i != _dimension; ++i) {
         for(int j = 0; j != _dimension; ++j) {
@@ -790,7 +874,7 @@ template<class T>
 inline MyMatrix<D, D, V>::MyMatrix(const MyMatrix<D, D, T> &other):
 _dimension(D) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAssignMatrix(*this, other);
+    MineTemplateMeta::MatrixAssignMatrix(*this, other);
 #else
     for(int i = 0; i != _dimension; ++i) {
         for(int j = 0; j != _dimension; ++j) {
@@ -811,7 +895,7 @@ template<class T>
 inline MyMatrix<D, D, V>::MyMatrix(const std::initializer_list<T> &il):
 _dimension(D) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAssignInitializer(*this, il.begin(), il.end());
+    MineTemplateMeta::MatrixAssignInitializer(*this, il.begin(), il.end());
 #else
     auto initIter(il.begin());
     auto initEnd(il.end());
@@ -833,7 +917,7 @@ template<class T>
 inline MyMatrix<D, D, V>&
 MyMatrix<D, D, V>::operator=(const MyMatrix<D, D, T> &other) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAssignMatrix(*this, other);
+    MineTemplateMeta::MatrixAssignMatrix(*this, other);
 #else
     for(int i = 0; i != dimension(); ++i) {
         for(int j = 0; j != dimension(); ++j) {
@@ -849,7 +933,7 @@ template<class T>
 inline MyMatrix<D, D, V>&
 MyMatrix<D, D, V>::operator=(const MyMatrix<D, D, T> &&other) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAssignMatrix(*this, other);
+    MineTemplateMeta::MatrixAssignMatrix(*this, other);
 #else
     for(int i = 0; i != dimension(); ++i) {
         for(int j = 0; j != dimension(); ++j) {
@@ -865,7 +949,7 @@ template<class T>
 inline MyMatrix<D, D, V>&
 MyMatrix<D, D, V>::operator=(const std::initializer_list<T> &il) {
 #ifdef ENABLE_TEMPLATE_META
-        MatrixAssignInitializer(*this, il.begin(), il.end());
+    MineTemplateMeta::MatrixAssignInitializer(*this, il.begin(), il.end());
 #else
         auto initIter(il.begin());
         auto initEnd(il.end());
@@ -887,7 +971,7 @@ template<class T>
 inline MyMatrix<D, D, V>&
 MyMatrix<D, D, V>::operator+=(const MyMatrix<D, D, T> &other) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAddMatrix(*this, other);
+    MineTemplateMeta::MatrixAddMatrix(*this, other);
 #else
     for(int i = 0; i != dimension(); ++i) {
         for(int j = 0; j != dimension(); ++j) {
@@ -903,7 +987,7 @@ template<class T>
 inline MyMatrix<D, D, V>&
 MyMatrix<D, D, V>::operator-=(const MyMatrix<D, D, T> &other) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixMinusMatrix(*this, other);
+    MineTemplateMeta::MatrixMinusMatrix(*this, other);
 #else
     for(int i = 0; i != dimension(); ++i) {
         for(int j = 0; j != dimension(); ++j) {
@@ -919,7 +1003,7 @@ template<class T>
 inline MyMatrix<D, D, V>&
 MyMatrix<D, D, V>::operator*=(const T &value) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixMultiplyValue(*this, value);
+    MineTemplateMeta::MatrixMultiplyValue(*this, value);
 #else
     for(int i = 0; i != dimension(); ++i) {
         for(int j = 0; j != dimension(); ++j) {
@@ -928,6 +1012,65 @@ MyMatrix<D, D, V>::operator*=(const T &value) {
     }
 #endif
     return *this;
+}
+
+template<int D, class V>
+inline typename MyMatrix<D, D, V>::value_type MyMatrix<D, D, V>::determinant(void) const {
+    value_type det(identityValue());
+#ifdef ENABLE_TEMPLATE_META
+//#if false
+    MineTemplateMeta::SquareMatrixDeterminant(*this, det);
+#else
+    if(1 == D) {
+        det = valueAt(0, 0);
+    } else if(2 == D) {
+        det = valueAt(0, 0) * valueAt(1, 1) - valueAt(0, 1) * valueAt(1, 0);
+    } else {
+        bool gua[D] = {false};
+        value_type sign;
+        value_type signMult(-identityValue());
+        value_type dem, subval;
+        value_type implMat[D][D];
+        bool empty(true);
+        
+        for(int i = 0; i != D; ++i) {
+            for(int j = 0; j != D; ++j) {
+                implMat[i][j] = valueAt(i, j);
+            }
+        }
+        
+        for(int r = 0; r != D; ++r) {
+            sign = identityValue();
+            for(int t = 0; t != D; ++t) {
+                if(gua[t]) {
+                    continue;
+                }
+                if(empty && !isZeroValue(implMat[t][r])) {
+                    dem = identityValue()/implMat[t][r];
+                    for(int p = 0; p != D; ++p) {
+                        if(p == t) { continue; }
+                        
+                        subval = implMat[p][r] * dem;
+                        for(int n = r + 1; n != D; ++n) {
+                            implMat[p][n] -= subval * implMat[t][n];
+                        }
+                    }
+                    det *= sign * implMat[t][r];
+                    gua[t] = true;
+                    empty = false;
+                    break;
+                }
+                sign *= signMult;
+            }
+            if(empty) {
+                det = zeroValue();
+                break;
+            }
+            empty = true;
+        }
+    }
+#endif
+    return det;
 }
 
 // ------------------------------ matrix operator ------------------------------- //
@@ -967,7 +1110,7 @@ inline MyMatrix<R, C, V> operator*(const MyMatrix<R, N, V> &mat1,
                                    const MyMatrix<N, C, T> &mat2) {
     MyMatrix<R, C, V> retMat;
 #ifdef ENABLE_TEMPLATE_META
-    MatrixMultiplyMatrix(retMat, mat1, mat2);
+    MineTemplateMeta::MatrixMultiplyMatrix(retMat, mat1, mat2);
 #else
     for(int i = 0; i != R; ++i) {
         for(int j = 0; j != C; ++j) {
@@ -986,7 +1129,7 @@ template<int R, int C, class V>
 inline MyMatrix<R, C, V>&
 zeroMatrix(MyMatrix<R, C, V> &mat, const V &zeroValue) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixAssignValue(mat, zeroValue);
+    MineTemplateMeta::MatrixAssignValue(mat, zeroValue);
 #else
     for(int i = 0; i != R; ++i) {
         for(int j = 0; j != C; ++j) {
@@ -1003,7 +1146,7 @@ identityMatrix(MyMatrix<D, D, V> &mat,
                const V &identityValue,
                const V &zeroValue) {
 #ifdef ENABLE_TEMPLATE_META
-    SquareMatrixIdentity(mat, identityValue, zeroValue);
+    MineTemplateMeta::SquareMatrixIdentity(mat, identityValue, zeroValue);
 #else
     for(int i = 0; i != D; ++i) {
         for(int j = 0; j != D; ++j) {
@@ -1019,7 +1162,7 @@ inline MyMatrix<R, C, V>
 transposeMatrix(const MyMatrix<R, C, V> &mat) {
     MyMatrix<C, R, V> retMat;
 #ifdef ENABLE_TEMPLATE_META
-    MatrixTranspose(retMat, mat);
+    MineTemplateMeta::MatrixTranspose(retMat, mat);
 #else
     for(int i = 0; i != C; ++i) {
         for(int j = 0; j != R; ++j) {
@@ -1034,7 +1177,7 @@ template<int D, class V>
 inline MyMatrix<D, D, V>&
 transposeMatrix(MyMatrix<D, D, V> &mat) {
 #ifdef ENABLE_TEMPLATE_META
-    SquareMatrixTranspose(mat);
+    MineTemplateMeta::SquareMatrixTranspose(mat);
 #else
     V tmp;
     for(int i = 0; i != D; ++i) {
@@ -1056,7 +1199,7 @@ template<int R, int C, class V>
 inline MyMatrix<R, C, V>&
 swapMatrixRow(MyMatrix<R, C, V> &mat, int a, int b) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixSwapRow(mat, a, b);
+    MineTemplateMeta::MatrixSwapRow(mat, a, b);
 #else
     V tmp;
     for(int i = 0; i != C; ++i) {
@@ -1072,7 +1215,7 @@ template<int R, int C, class V, class T>
 inline MyMatrix<R, C, V>&
 multiplyMatrixRow(MyMatrix<R, C, V> &mat, int a, const T &multiple) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixMultiplyRow(mat, a, multiple);
+    MineTemplateMeta::MatrixMultiplyRow(mat, a, multiple);
 #else
     for(int i = 0; i != C; ++i) {
         mat.valueAt(a, i) *= multiple;
@@ -1086,7 +1229,7 @@ inline MyMatrix<R, C, V>&
 subtractMatrixRow(MyMatrix<R, C, V> &mat,  int a,
                   int b, const T &multiple) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixSubtractRow(mat, a, b, multiple);
+    MineTemplateMeta::MatrixSubtractRow(mat, a, b, multiple);
 #else
     for(int i = 0; i != C; ++i) {
         mat.valueAt(a, i) -= mat.valueAt(b, i) * multiple;
@@ -1099,7 +1242,7 @@ template<int R, int C, class V>
 inline MyMatrix<R, C, V>&
 swapMatrixColumn(MyMatrix<R, C, V> &mat, int a, int b) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixSwapColumn(mat, a, b);
+    MineTemplateMeta::MatrixSwapColumn(mat, a, b);
 #else
     V tmp;
     for(int i = 0; i != R; ++i) {
@@ -1115,7 +1258,7 @@ template<int R, int C, class V, class T>
 inline MyMatrix<R, C, V>&
 multiplyMatrixColumn(MyMatrix<R, C, V> &mat, int a, const T &multiple) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixMultiplyColumn(mat, a, multiple);
+    MineTemplateMeta::MatrixMultiplyColumn(mat, a, multiple);
 #else
     for(int i = 0; i != R; ++i) {
         mat.valueAt(i, a) *= multiple;
@@ -1129,7 +1272,7 @@ inline MyMatrix<R, C, V>&
 subtractMatrixColumn(MyMatrix<R, C, V> &mat, int a,
                      int b, const T &multiple) {
 #ifdef ENABLE_TEMPLATE_META
-    MatrixSubtractColumn(mat, a, b, multiple);
+    MineTemplateMeta::MatrixSubtractColumn(mat, a, b, multiple);
 #else
     for(int i = 0; i != R; ++i) {
         mat.valueAt(i, a) -= mat.valueAt(i, b) * multiple;
@@ -1145,7 +1288,7 @@ inline MyMatrix<R, C, V>&
 simplifyMatrix(MyMatrix<R, C, V> &mat) {
 #ifdef ENABLE_TEMPLATE_META
 //#if R * C < 1024
-    SimplifyMatrixBySubtract(mat);
+    MineTemplateMeta::SimplifyMatrixBySubtract(mat);
 //#endif
 #else
     constexpr int order = R < C ? R : C;

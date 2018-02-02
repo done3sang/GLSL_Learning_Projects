@@ -88,9 +88,11 @@ public:
         return identityValue() == _mat[r][c];
     }
     
+    static const bool isZeroValue(const value_type &val) { return _zeroValue == val; }
     static const value_type& zeroValue(void) { return _zeroValue; }
     static void zeroValue(const value_type &val) { _zeroValue = val; }
     
+    static const bool isIdentityValue(const value_type &val) { return _identityValue == val; }
     static const value_type& identityValue(void) { return _identityValue; }
     static void identityValue(const value_type &val) { _identityValue = val; }
     
@@ -171,15 +173,17 @@ public:
         return identityValue() == _mat[r][c];
     }
     
+    static const bool isZeroValue(const value_type &val) { return _zeroValue == val; }
     static const value_type& zeroValue(void) { return _zeroValue; }
     static void zeroValue(const value_type &val) { _zeroValue = val; }
     
+    static const bool isIdentityValue(const value_type &val) { return _identityValue == val; }
     static const value_type& identityValue(void) { return _identityValue; }
     static void identityValue(const value_type &val) { _identityValue = val; }
     
     // square matrix only
     value_type determinant(void) const;
-    bool inversible(void) const { return value_type() != determinant(); }
+    bool inversible(void) const { return determinant() != zeroValue(); }
     
 private:
     int _dimension;

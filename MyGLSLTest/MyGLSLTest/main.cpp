@@ -83,10 +83,38 @@ int main(int argc, const char * argv[]) {
     MyMatrix<3, 2> im1({1, 2, 3, 4, 5, 6});
     MyMatrix<2, 3> im2({1, 2, 3, 4, 5, 6});
     //MyMatrix<33, 32> im3({1, 2, 3, 4, 5, 6});
+    MyMatrix<4, 5> im4({1, 2, 0, 3, 11,
+        4, 5, 0, 6, 12,
+        7, 8, 0, 10, 13,
+        14, 15, 0, 16, 17
+    });
     
     simplifyMatrix(im1);
     simplifyMatrix(im2);
     //simplifyMatrix(im3);
+    simplifyMatrix(im4);
+    
+    MyMatrix<1, 1> md1({2});
+    MyMatrix<2, 2> md2({2, 1, 1, 0});
+    MyMatrix<3, 3> md3({1, 2, 3, 4, 5, 6, 7, 8, 9});
+    MyMatrix<3, 3> md4({
+        2, 1, 1,
+        0, 1, 1,
+        0, -1, 3
+    });
+    MyMatrix<4, 4> md5({
+        1, 0, 0, 0,
+        0, 2, 0, 0,
+        0, 0, 0, 4,
+        0, 0, 3, 0
+    });
+    
+    std::cout << std::boolalpha;
+    std::cout << "det(md1), inversible = " << md1.determinant() << ", " << md1.inversible() << "\n";
+    std::cout << "det(md2), inversible = " << md2.determinant() << ", " << md2.inversible() << "\n";
+    std::cout << "det(md3), inversible = " << md3.determinant() << ", " << md3.inversible() << "\n";
+    std::cout << "det(md4), inversible = " << md4.determinant() << ", " << md4.inversible() << "\n";
+    std::cout << "det(md5), inversible = " << md5.determinant() << ", " << md5.inversible() << "\n";
     
     /*
     auto sharedDirector = MyDirector::sharedDirector();
