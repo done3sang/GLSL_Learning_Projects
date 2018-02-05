@@ -418,9 +418,9 @@ namespace MineTemplateMeta {
         static inline void eval(M&, int, int, const T&) {}
     };
     
-    template<int R, int C, class V, class T>
+    template<int R, int C, class V, class T, int I = 0>
     inline void MatrixSubtractRow(MyMatrix<R, C, V> &mat, int a, int b, const T &multiple) {
-        MatrixSubtractRowImpl<MyMatrix<R, C, V>, T, 0, C>::eval(mat, a, b, multiple);
+        MatrixSubtractRowImpl<MyMatrix<R, C, V>, T, I, C>::eval(mat, a, b, multiple);
     }
     
     /* -------------------------------------- */
@@ -549,7 +549,7 @@ namespace MineTemplateMeta {
         
         static inline void eval(M &mat, bool *gauss) {
             if(!gauss[I] && !mat.zeroAt(I, C)) {
-                dem = M::identityValue()/mat.valueAt(I, C);
+                dem = M::inverseValue(mat.valueAt(I, C));
                 SimplifyMatrixBySubtractRowInnerImpl<M, 0, R, C>::eval(mat, I, dem, gauss);
                 gauss[I] = true;
                 return;
@@ -684,6 +684,208 @@ namespace MineTemplateMeta {
         MyMatrix<D, D, V> implMat(mat);
         bool gauss[D] = {false};
         SquareMatrixDeterminantImpl<MyMatrix<D, D, V>, 0, D>::eval(implMat, gauss, det);
+    }
+    
+    /* ------------------- square matrix inverse ------------------- */
+    template<class M, int I, int R, int C>
+    struct InverseMatrixByGaussRowInnerImpl {
+        enum {
+            Continue = I != R - 1,
+            NextI = I + 1
+        };
+        
+        static inline void eval(M &mat,
+                                M &invMat,
+                                int t) {
+            if(I != t && !mat.zeroAt(I, C)) {
+                const typename M::value_type value(mat.valueAt(I, C));
+                MatrixSubtractRow(mat, I, t, value);
+                MatrixSubtractRow(invMat, I, t, value);
+            }
+            InverseMatrixByGaussRowInnerImpl<M, Continue * NextI,
+            Continue * R, Continue * C>::eval(mat, invMat, t);
+        }
+    };
+    
+    template<class M>
+    struct InverseMatrixByGaussRowInnerImpl<M, 0, 0, 0> {
+        static inline void eval(M&,
+                                M&,
+                                int) {}
+    };
+    
+    template<class M, int I, int C, int D>
+    struct InverseMatrixByGaussRowImpl {
+        enum {
+            Continue = I != D - 1,
+            NextI = I + 1
+        };
+        
+        static typename M::value_type dem;
+        
+        static inline void eval(M &mat,
+                                M &invMat,
+                                bool &inversible) {
+            if(!mat.zeroAt(I, C)) {
+                dem = M::inverseValue(mat.valueAt(I, C));
+                if(!M::isIdentityValue(dem)) {
+                    MatrixMultiplyRow(mat, I, dem);
+                    MatrixMultiplyRow(invMat, I, dem);
+                }
+                if(I != C) {
+                    MatrixSwapRow(mat, I, C);
+                    MatrixSwapRow(invMat, I, C);
+                }
+                InverseMatrixByGaussRowInnerImpl<M, 0, D, C>::eval(mat, invMat, C);
+                inversible = true;
+                return;
+            }
+            InverseMatrixByGaussRowImpl<M, Continue * NextI,
+            Continue * C, Continue * D>::eval(mat, invMat, inversible);
+        }
+    };
+    
+    template<class M, int I, int C, int D>
+    typename M::value_type InverseMatrixByGaussRowImpl<M, I, C, D>::dem;
+    
+    template<class M>
+    struct InverseMatrixByGaussRowImpl<M, 0, 0, 0> {
+        static inline void eval(M &mat,
+                                M &invMat,
+                                bool &inversible) {
+            inversible = false;
+        }
+    };
+    
+    template<class M, int I, int D>
+    struct InverseMatrixByGaussImpl {
+        enum {
+            Continue = I != D - 1,
+            NextI = I + 1
+        };
+        
+        static inline void eval(M &mat, M &invMat, bool &inversible) {
+            InverseMatrixByGaussRowImpl<M, I, I, D>::eval(mat, invMat, inversible);
+            if(inversible) {
+                InverseMatrixByGaussImpl<M, Continue * NextI,
+                Continue * D>::eval(mat, invMat, inversible);
+            }
+        }
+    };
+    
+    template<class M>
+    struct InverseMatrixByGaussImpl<M, 0, 0> {
+        static inline void eval(M &mat, M &invMat, bool &inversible) {}
+    };
+    
+    template<class M>
+    struct InverseMatrixByGaussImpl<M, 0, 1> {
+        static inline void eval(M &mat, M &invMat, bool &inversible) {
+            if(!mat.zeroAt(0, 0)) {
+                invMat.valueAt(0, 0) = M::inverseValue(mat.valueAt(0, 0));
+                inversible = true;
+            } else {
+                inversible = false;
+            }
+        }
+    };
+    
+    template<int D, class V>
+    inline void InverseMatrixByGauss(MyMatrix<D, D, V> &implMat,
+                                     MyMatrix<D, D, V> &invMat,
+                                     bool &inversible) {
+        InverseMatrixByGaussImpl<MyMatrix<D, D, V>, 0, D>::eval(implMat, invMat, inversible);
+    }
+    
+    /* ------------------- evaluate the order of matrix  ------------------- */
+    template<class M, int I, int R, int C>
+    struct OrderMatrixByGaussRowInnerImpl {
+        enum {
+            Continue = I != R - 1,
+            NextI = I + 1
+        };
+        
+        static inline void eval(M &mat,
+                                int t,
+                                const typename M::value_type &dem,
+                                bool *gauss) {
+            if(((I < t && gauss[I]) || I > t) && !mat.zeroAt(I, C)) {
+                MatrixSubtractRow(mat, I, t, mat.valueAt(I, C) * dem);
+            }
+            OrderMatrixByGaussRowInnerImpl<M, Continue * NextI,
+            Continue * R, Continue * C>::eval(mat, t, dem, gauss);
+        }
+    };
+    
+    template<class M>
+    struct SimplifyMatrixBySubtractRowInnerImpl<M, 0, 0, 0> {
+        static inline void eval(M&,
+                                int,
+                                const typename M::value_type&,
+                                bool*) {}
+    };
+    
+    template<class M, int I, int R, int C>
+    struct SimplifyMatrixBySubtractRowImpl {
+        enum {
+            Continue = I != R - 1,
+            NextI = I + 1
+        };
+        
+        static typename M::value_type dem;
+        
+        static inline void eval(M &mat, bool *gauss) {
+            if(!gauss[I] && !mat.zeroAt(I, C)) {
+                dem = M::inverseValue(mat.valueAt(I, C));
+                SimplifyMatrixBySubtractRowInnerImpl<M, 0, R, C>::eval(mat, I, dem, gauss);
+                gauss[I] = true;
+                return;
+            }
+            SimplifyMatrixBySubtractRowImpl<M, Continue * NextI,
+            Continue * R, Continue * C>::eval(mat, gauss);
+        }
+    };
+    
+    template<class M, int I, int R, int C>
+    typename M::value_type SimplifyMatrixBySubtractRowImpl<M, I, R, C>::dem;
+    
+    template<class M>
+    struct SimplifyMatrixBySubtractRowImpl<M, 0, 0, 0> {
+        static inline void eval(M &mat, bool *gauss) {}
+    };
+    
+    template<class M, int R, int I, int N>
+    struct SimplifyMatrixBySubtractImpl {
+        enum {
+            Continue = I != N - 1,
+            NextI = I + 1
+        };
+        
+        static inline void eval(M &mat, bool *gauss) {
+            SimplifyMatrixBySubtractRowImpl<M, 0, R, I>::eval(mat, gauss);
+            SimplifyMatrixBySubtractImpl<M, Continue * R,
+            Continue * NextI, Continue * N>::eval(mat, gauss);
+        }
+    };
+    
+    template<class M>
+    struct SimplifyMatrixBySubtractImpl<M, 0, 0, 0> {
+        static inline void eval(M &mat, bool *gauss) {}
+    };
+    
+    // avoid to deduce vector, wonderful for partial template specialization
+    // thanks to clang&gcc powerful compiler
+    template<class M, int R>
+    struct SimplifyMatrixBySubtractImpl<M, R, 0, 1> {
+        static inline void eval(M &mat, bool *gauss) {}
+    };
+    
+    // depth = R * C
+    template<int R, int C, class V>
+    inline void SimplifyMatrixBySubtract(MyMatrix<R, C, V> &mat) {
+        constexpr int N = R < C ? R : C;
+        bool gauss[N] = {false};
+        SimplifyMatrixBySubtractImpl<MyMatrix<R, C, V>, R, 0, N>::eval(mat, gauss);
     }
 }
 
@@ -1319,6 +1521,61 @@ simplifyMatrix(MyMatrix<R, C, V> &mat) {
     }
 #endif
     return mat;
+}
+
+template<int D, class V>
+inline bool
+inverseMatrix(const MyMatrix<D, D, V> &mat, MyMatrix<D, D, V> & invMat) {
+    MyMatrix<D, D, V> implMat(mat);
+    bool inversible(false);
+    
+    identityMatrix(invMat);
+#ifdef ENABLE_TEMPLATE_META
+//#if false
+    MineTemplateMeta::InverseMatrixByGauss(implMat, invMat, inversible);
+#else
+    if(1 == D) {
+        if(!implMat.zeroAt(0, 0)) {
+            invMat.valueAt(0, 0) = MyMatrix<D, D, V>::inverseValue(implMat.valueAt(0, 0));
+            return true;
+        }
+        return false;
+    }
+    
+    bool empty(true);
+    typename MyMatrix<D, D, V>::value_type det;
+    
+    for(int r = 0; r != D; ++r) {
+        empty = true;
+        for(int t = r; t != D; ++t) {
+            if(!implMat.zeroAt(t, r)) {
+                det = MyMatrix<D, D, V>::inverseValue(implMat.valueAt(t, r));
+                if(!MyMatrix<D, D, V>::isIdentityValue(det)) {
+                    multiplyMatrixRow(implMat, t, det);
+                    multiplyMatrixRow(invMat, t, det);
+                }
+                if(t != r) {
+                    swapMatrixRow(implMat, t, r);
+                    swapMatrixRow(invMat, t, r);
+                }
+                for(int p = 0; p != D; ++p) {
+                    if(p == r) {
+                        continue;
+                    }
+                    det = implMat.valueAt(p, r);
+                    subtractMatrixRow(implMat, p, r, det);
+                    subtractMatrixRow(invMat, p, r, det);
+                }
+                empty  = false;
+            }
+        }
+        if(empty) {
+            return false;
+        }
+    }
+    inversible = true;
+#endif
+    return inversible;
 }
 
 MINE_NAMESPACE_END

@@ -58,6 +58,8 @@ public:
     int column(void) const { return _column; }
     int size(void) const { return _row * _column; }
     
+    size_type order(void) const;
+    
     value_type& valueAt(int r, int c) {
 #ifdef DEBUG
         assert(r >= 0 && r < _row && "valueAt error, row overflow");
@@ -95,6 +97,7 @@ public:
     static const bool isIdentityValue(const value_type &val) { return _identityValue == val; }
     static const value_type& identityValue(void) { return _identityValue; }
     static void identityValue(const value_type &val) { _identityValue = val; }
+    static value_type inverseValue(const value_type &val) { return _identityValue/val; }
     
 private:
     int _row;
@@ -143,6 +146,8 @@ public:
     int dimension(void) const { return _dimension; }
     int size(void) const { return _dimension * _dimension; }
     
+    size_type order(void) const;
+    
     value_type& valueAt(int r, int c) {
 #ifdef DEBUG
         assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
@@ -180,6 +185,7 @@ public:
     static const bool isIdentityValue(const value_type &val) { return _identityValue == val; }
     static const value_type& identityValue(void) { return _identityValue; }
     static void identityValue(const value_type &val) { _identityValue = val; }
+    static value_type inverseValue(const value_type &val) { return _identityValue/val; }
     
     // square matrix only
     value_type determinant(void) const;
@@ -266,7 +272,7 @@ template<int R, int C, class V>
 MyMatrix<R, C, V>& simplifyMatrix(MyMatrix<R, C, V> &mat);
 
 template<int D, class V>
-MyMatrix<D, D, V>& inverseMatrix(MyMatrix<D, D, V> &mat);
+bool inverseMatrix(const MyMatrix<D, D, V> &mat, MyMatrix<D, D, V> & invMat);
 
 MINE_NAMESPACE_END
 
