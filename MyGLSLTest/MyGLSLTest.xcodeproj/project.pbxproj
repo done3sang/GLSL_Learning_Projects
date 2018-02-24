@@ -362,6 +362,9 @@
 					"ENABLE_TEMPLATE_META=1",
 					"$(inherited)",
 					"TEMPLATE_INSTANTIATION_DEPTH=1024",
+					"MINE_DEBUG=1",
+					"MINE_ENABLE_TEMPLATE_META=1",
+					"MINE_TEMPLATE_INSTANTIATION_DEPTH=1024",
 				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,

@@ -1,17 +1,13 @@
 //
-//  MyMatrix.hpp
+//  MyMatrix2.hpp
 //  Mine
 //
-//  Created by xy on 09/01/2018.
+//  Created by xy on 23/02/2018.
 //  Copyright © 2018 SangDesu. All rights reserved.
 //
 
 #ifndef MyMatrix_hpp
 #define MyMatrix_hpp
-
-#ifdef DEBUG
-#include <cassert>
-#endif
 
 #include <initializer_list>
 #include "MyPrecompiled.hpp"
@@ -21,258 +17,208 @@
 
 MINE_NAMESPACE_BEGIN
 
-template<int R, int C, class V = float>
-class MyMatrix final {
+// MyFMatrix2 interface
+
+class MyFMatrix2 final {
 public:
-    static_assert(R > 0 && C > 0, "ERROR: MyMatrix, row or column below 0");
+    MyFMatrix2(void);
+    MyFMatrix2(float value);
+    MyFMatrix2(float in00, float in01, float in10, float in11);
+    MyFMatrix2(const std::initializer_list<float> &il);
+    MyFMatrix2(const MyFMatrix2 &other);
+    MyFMatrix2(const MyFMatrix2 &&other);
+    ~MyFMatrix2(void);
     
-    typedef int size_type;
-    typedef V value_type;
+    MyFMatrix2& operator=(const MyFMatrix2 &other);
+    MyFMatrix2& operator=(const MyFMatrix2 &&other);
+    MyFMatrix2& operator=(const std::initializer_list<float> &il);
     
-    template<class T = value_type>
-    MyMatrix(const T &value = T());
-    template<class T>
-    MyMatrix(const MyMatrix<R, C, T> &other);
-    template<class T>
-    MyMatrix(const MyMatrix<R, C, T> &&other);
-    template<class T>
-    MyMatrix(const std::initializer_list<T> &il);
-    ~MyMatrix(void) {}
+    bool operator==(const MyFMatrix2 &other) const;
+    bool operator!=(const MyFMatrix2 &other) const;
     
-    template<class T>
-    MyMatrix& operator=(const MyMatrix<R, C, T> &other);
-    template<class T>
-    MyMatrix& operator=(const MyMatrix<R, C, T> &&other);
-    template<class T>
-    MyMatrix& operator=(const std::initializer_list<T> &il);
+    MyFMatrix2& operator+=(const MyFMatrix2 &other);
+    MyFMatrix2& operator-=(const MyFMatrix2 &other);
     
-    template<class T>
-    MyMatrix& operator+=(const MyMatrix<R, C, T> &other);
-    template<class T>
-    MyMatrix& operator-=(const MyMatrix<R, C, T> &other);
-    template<class T>
-    MyMatrix& operator*=(const T &value);
+    MyFMatrix2& operator*=(float value);
+    MyFMatrix2& operator/=(float value);
     
-    bool squared(void) const { return false; }
-    int row(void) const { return _row; }
-    int column(void) const { return _column; }
-    int size(void) const { return _row * _column; }
+    MyFMatrix2& operator*=(const MyFMatrix2 &other);
     
-    size_type order(void) const;
+    float& valueAt(int x, int y);
+    const float& valueAt(int x, int y) const;
     
-    value_type& valueAt(int r, int c) {
-#ifdef DEBUG
-        assert(r >= 0 && r < _row && "valueAt error, row overflow");
-        assert(c >= 0 && c < _column && "valueAt error, column overflow");
-#endif
-        return _mat[r][c];
-    }
-    const value_type& valueAt(int r, int c) const {
-#ifdef DEBUG
-        assert(r >= 0 && r < _row && "valueAt error, row overflow");
-        assert(c >= 0 && c < _column && "valueAt error, column overflow");
-#endif
-        return _mat[r][c];
-    }
+    //float& valueAt(constexpr int x, constexpr int y);
+    //const float& valueAt(const int x, constexpr int y);
     
-    bool zeroAt(int r, int c) const {
-#ifdef DEBUG
-        assert(r >= 0 && r < _row && "valueAt error, row overflow");
-        assert(c >= 0 && c < _column && "valueAt error, column overflow");
-#endif
-        return zeroValue() == _mat[r][c];
-    }
-    bool identityAt(int r, int c) const {
-#ifdef DEBUG
-        assert(r >= 0 && r < _row && "valueAt error, row overflow");
-        assert(c >= 0 && c < _column && "valueAt error, column overflow");
-#endif
-        return identityValue() == _mat[r][c];
-    }
+    float determinant(void) const;
+    bool inversible(void) const;
     
-    static const bool isZeroValue(const value_type &val) { return _zeroValue == val; }
-    static const value_type& zeroValue(void) { return _zeroValue; }
-    static void zeroValue(const value_type &val) { _zeroValue = val; }
-    
-    static const bool isIdentityValue(const value_type &val) { return _identityValue == val; }
-    static const value_type& identityValue(void) { return _identityValue; }
-    static void identityValue(const value_type &val) { _identityValue = val; }
-    static value_type inverseValue(const value_type &val) { return _identityValue/val; }
+public:
+    static const MyFMatrix2 kIdentity;
+    static const MyFMatrix2 kZero;
     
 private:
-    int _row;
-    int _column;
-    value_type _mat[R][C];
-    
-    static value_type _zeroValue;
-    static value_type _identityValue;
+    float _value[2][2];
 };
 
-template<int D, class V>
-class MyMatrix<D, D, V> final {
+MyFMatrix2 operator-(const MyFMatrix2 &mat);
+
+MyFMatrix2 operator+(const MyFMatrix2 &lhs, const MyFMatrix2 &rhs);
+MyFMatrix2 operator-(const MyFMatrix2 &lhs, const MyFMatrix2 &rhs);
+
+MyFMatrix2 operator*(const MyFMatrix2 &mat, float value);
+MyFMatrix2 operator*(float value, const MyFMatrix2 &mat);
+
+MyFMatrix2 operator/(const MyFMatrix2 &mat, float value);
+
+MyFMatrix2 operator*(const MyFMatrix2 &lhs, const MyFMatrix2 &rhs);
+
+void zeroMatrix(MyFMatrix2 &mat);
+void identityMatrix(MyFMatrix2 &mat);
+MyFMatrix2 transposeMatrix(const MyFMatrix2 &mat);
+MyFMatrix2& transposeMatrixSelf(MyFMatrix2 &mat);
+MyFMatrix2 inverseMatrix(const MyFMatrix2 &mat);
+MyFMatrix2& inverseMatrixSelf(MyFMatrix2 &mat);
+
+float* value_pointer(MyFMatrix2 &mat);
+const float* value_pointer(const MyFMatrix2 &mat);
+
+// MyFMatrix3 interface
+
+class MyFMatrix3 final {
 public:
-    static_assert(D > 0, "ERROR: MyMatrix, row or column below 0");
+    MyFMatrix3(void);
+    MyFMatrix3(float value);
+    MyFMatrix3(float in00, float in01, float in02,
+               float in10, float in11, float in12,
+               float in20, float in21, float in22);
+    MyFMatrix3(const std::initializer_list<float> &il);
+    MyFMatrix3(const MyFMatrix3 &other);
+    MyFMatrix3(const MyFMatrix3 &&other);
+    ~MyFMatrix3(void);
     
-    typedef int size_type;
-    typedef V value_type;
+    MyFMatrix3& operator=(const MyFMatrix3 &other);
+    MyFMatrix3& operator=(const MyFMatrix3 &&other);
+    MyFMatrix3& operator=(const std::initializer_list<float> &il);
     
-    template<class T = value_type>
-    MyMatrix(const T &value = T());
-    template<class T>
-    MyMatrix(const MyMatrix<D, D, T> &other);
-    template<class T>
-    MyMatrix(const MyMatrix<D, D, T> &&other);
-    template<class T>
-    MyMatrix(const std::initializer_list<T> &il);
-    ~MyMatrix(void) {}
+    bool operator==(const MyFMatrix3 &other) const;
+    bool operator!=(const MyFMatrix3 &other) const;
     
-    template<class T>
-    MyMatrix& operator=(const MyMatrix<D, D, T> &other);
-    template<class T>
-    MyMatrix& operator=(const MyMatrix<D, D, T> &&);
-    template<class T>
-    MyMatrix& operator=(const std::initializer_list<T> &il);
+    MyFMatrix3& operator+=(const MyFMatrix3 &other);
+    MyFMatrix3& operator-=(const MyFMatrix3 &other);
     
-    template<class T>
-    MyMatrix& operator+=(const MyMatrix<D, D, T> &other);
-    template<class T>
-    MyMatrix& operator-=(const MyMatrix<D, D, T> &other);
-    template<class T>
-    MyMatrix& operator*=(const T &value);
+    MyFMatrix3& operator*=(float value);
+    MyFMatrix3& operator/=(float value);
     
-    bool squared(void) const { return true; }
-    int row(void) const { return _dimension; }
-    int column(void) const { return _dimension; }
-    int dimension(void) const { return _dimension; }
-    int size(void) const { return _dimension * _dimension; }
+    MyFMatrix3& operator*=(const MyFMatrix3 &other);
     
-    size_type order(void) const;
+    float& valueAt(int x, int y);
+    const float& valueAt(int x, int y) const;
     
-    value_type& valueAt(int r, int c) {
-#ifdef DEBUG
-        assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
-        assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
-#endif
-        return _mat[r][c];
-    }
-    const value_type& valueAt(int r, int c) const {
-#ifdef DEBUG
-        assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
-        assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
-#endif
-        return _mat[r][c];
-    }
+    //float& valueAt(constexpr int x, constexpr int y);
+    //const float& valueAt(const int x, constexpr int y);
     
-    bool zeroAt(int r, int c) const {
-#ifdef DEBUG
-        assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
-        assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
-#endif
-        return zeroValue() == _mat[r][c];
-    }
-    bool identityAt(int r, int c) const {
-#ifdef DEBUG
-        assert(r >= 0 && r < _dimension && "valueAt error, row overflow");
-        assert(c >= 0 && c < _dimension && "valueAt error, column overflow");
-#endif
-        return identityValue() == _mat[r][c];
-    }
+    float determinant(void) const;
+    bool inversible(void) const;
     
-    static const bool isZeroValue(const value_type &val) { return _zeroValue == val; }
-    static const value_type& zeroValue(void) { return _zeroValue; }
-    static void zeroValue(const value_type &val) { _zeroValue = val; }
-    
-    static const bool isIdentityValue(const value_type &val) { return _identityValue == val; }
-    static const value_type& identityValue(void) { return _identityValue; }
-    static void identityValue(const value_type &val) { _identityValue = val; }
-    static value_type inverseValue(const value_type &val) { return _identityValue/val; }
-    
-    // square matrix only
-    value_type determinant(void) const;
-    bool inversible(void) const { return determinant() != zeroValue(); }
+public:
+    static const MyFMatrix3 kIdentity;
+    static const MyFMatrix3 kZero;
     
 private:
-    int _dimension;
-    value_type _mat[D][D];
-    
-    static value_type _zeroValue;
-    static value_type _identityValue;
+    float _value[3][3];
 };
 
-// ------------------------------- matrix operation ----------------------------------------- //
+MyFMatrix3 operator-(const MyFMatrix3 &mat);
 
-template<int R, int C, class V, class T>
-MyMatrix<R, C, V> operator+(const MyMatrix<R, C, V> &mat1,
-                                   const MyMatrix<R, C, T> &mat2);
+MyFMatrix3 operator+(const MyFMatrix3 &lhs, const MyFMatrix3 &rhs);
+MyFMatrix3 operator-(const MyFMatrix3 &lhs, const MyFMatrix3 &rhs);
 
-template<int R, int C, class V, class T>
-MyMatrix<R, C, V> operator-(const MyMatrix<R, C, V> &mat1,
-                            const MyMatrix<R, C, T> &mat2);
+MyFMatrix3 operator*(const MyFMatrix3 &mat, float value);
+MyFMatrix3 operator*(float value, const MyFMatrix3 &mat);
 
-template<int R, int C, class V, class T>
-MyMatrix<R, C, V> operator*(const MyMatrix<R, C, V> &mat, const T &val);
+MyFMatrix3 operator/(const MyFMatrix3 &mat, float value);
 
-template<int R, int C, class V, class T>
-MyMatrix<R, C, V> operator*(const T &val, const MyMatrix<R, C, V> &mat);
+MyFMatrix3 operator*(const MyFMatrix3 &lhs, const MyFMatrix3 &rhs);
 
-template<int R, int C, int N, class V, class T>
-MyMatrix<R, C, V> operator*(const MyMatrix<R, N, V> &mat1,
-                            const MyMatrix<N, C, T> &mat2);
+void zeroMatrix(MyFMatrix3 &mat);
+void identityMatrix(MyFMatrix3 &mat);
+MyFMatrix3 transposeMatrix(const MyFMatrix3 &mat);
+MyFMatrix3& transposeMatrixSelf(MyFMatrix3 &mat);
+MyFMatrix3 inverseMatrix(const MyFMatrix3 &mat);
+MyFMatrix3& inverseMatrixSelf(MyFMatrix3 &mat);
 
-template<int R, int C, class V>
-MyMatrix<R, C, V>&
-zeroMatrix(MyMatrix<R, C, V> &mat, const V &zeroValue = V(0));
+float* value_pointer(MyFMatrix3 &mat);
+const float* value_pointer(const MyFMatrix3 &mat);
 
-template<int D, class V>
-MyMatrix<D, D, V>&
-identityMatrix(MyMatrix<D, D, V> &mat,
-               const V &identityValue = V(1),
-               const V &zeroValue = V(0));
+// MyFMatrix4 interface
 
-template<int R, int C, class V>
-MyMatrix<R, C, V>
-transposeMatrix(const MyMatrix<R, C, V> &mat);
+class MyFMatrix4 final {
+public:
+    MyFMatrix4(void);
+    MyFMatrix4(float value);
+    MyFMatrix4(float in00, float in01, float in02, float in03,
+               float in10, float in11, float in12, float in13,
+               float in20, float in21, float in22, float in23,
+               float in30, float in31, float in32, float in33);
+    MyFMatrix4(const std::initializer_list<float> &il);
+    MyFMatrix4(const MyFMatrix4 &other);
+    MyFMatrix4(const MyFMatrix4 &&other);
+    ~MyFMatrix4(void);
+    
+    MyFMatrix4& operator=(const MyFMatrix4 &other);
+    MyFMatrix4& operator=(const MyFMatrix4 &&other);
+    MyFMatrix4& operator=(const std::initializer_list<float> &il);
+    
+    bool operator==(const MyFMatrix4 &other) const;
+    bool operator!=(const MyFMatrix4 &other) const;
+    
+    MyFMatrix4& operator+=(const MyFMatrix4 &other);
+    MyFMatrix4& operator-=(const MyFMatrix4 &other);
+    
+    MyFMatrix4& operator*=(float value);
+    MyFMatrix4& operator/=(float value);
+    
+    MyFMatrix4& operator*=(const MyFMatrix4 &other);
+    
+    float& valueAt(int x, int y);
+    const float& valueAt(int x, int y) const;
+    
+    //float& valueAt(constexpr int x, constexpr int y);
+    //const float& valueAt(const int x, constexpr int y);
+    
+    float determinant(void) const;
+    bool inversible(void) const;
+    
+public:
+    static const MyFMatrix4 kIdentity;
+    static const MyFMatrix4 kZero;
+    
+private:
+    float _value[4][4];
+};
 
-template<int D, class V>
-MyMatrix<D, D, V>&
-transposeMatrix(MyMatrix<D, D, V> &mat);
+MyFMatrix4 operator-(const MyFMatrix4 &mat);
 
-// ------------------------------- matrix operation ----------------------------------------- //
+MyFMatrix4 operator+(const MyFMatrix4 &lhs, const MyFMatrix4 &rhs);
+MyFMatrix4 operator-(const MyFMatrix4 &lhs, const MyFMatrix4 &rhs);
 
-// ------------------------------- elementary transformation  ----------------------------------------- //
+MyFMatrix4 operator*(const MyFMatrix4 &mat, float value);
+MyFMatrix4 operator*(float value, const MyFMatrix4 &mat);
 
-template<int R, int C, class V>
-MyMatrix<R, C, V>&
-swapMatrixRow(MyMatrix<R, C, V> &mat, int a, int b);
+MyFMatrix4 operator/(const MyFMatrix4 &mat, float value);
 
-template<int R, int C, class V, class T>
-MyMatrix<R, C, V>&
-multiplyMatrixRow(MyMatrix<R, C, V> &mat, int a, const T &multiple);
+MyFMatrix4 operator*(const MyFMatrix4 &lhs, const MyFMatrix4 &rhs);
 
-template<int R, int C, class V, class T>
-MyMatrix<R, C, V>&
-subtractMatrixRow(MyMatrix<R, C, V> &mat,  int a, int b, const T &multiple);
+void zeroMatrix(MyFMatrix4 &mat);
+void identityMatrix(MyFMatrix4 &mat);
+MyFMatrix4 transposeMatrix(const MyFMatrix4 &mat);
+MyFMatrix4& transposeMatrixSelf(MyFMatrix4 &mat);
+//MyFMatrix4 inverseMatrix(const MyFMatrix4 &mat);
+//MyFMatrix4& inverseMatrixSelf(MyFMatrix4 &mat);
 
-template<int R, int C, class V>
-MyMatrix<R, C, V>&
-swapMatrixColumn(MyMatrix<R, C, V> &mat, int a, int b);
-
-template<int R, int C, class V, class T>
-MyMatrix<R, C, V>&
-multiplyMatrixColumn(MyMatrix<R, C, V> &mat, int a, const T &multiple);
-
-template<int R, int C, class V, class T>
-MyMatrix<R, C, V>&
-subtractMatrixColumn(MyMatrix<R, C, V> &mat, int a, int b, const T &multiple);
-
-// ------------------------------- elementary transformation  ----------------------------------------- //
-
-// simplified by subtractMatrixRow
-template<int R, int C, class V>
-MyMatrix<R, C, V>& simplifyMatrix(MyMatrix<R, C, V> &mat);
-
-template<int D, class V>
-bool inverseMatrix(const MyMatrix<D, D, V> &mat, MyMatrix<D, D, V> & invMat);
+float* value_pointer(MyFMatrix4 &mat);
+const float* value_pointer(const MyFMatrix4 &mat);
 
 MINE_NAMESPACE_END
 

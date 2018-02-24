@@ -26,16 +26,32 @@ public:
     static constexpr float kMathPIBy4 = 4.0f * kMathPI;
     static constexpr float kMathPIOver2 = 1.57079632679489661923132169163975144f;
     static constexpr float kMathPIOver4 = 0.785398163397448309615660845819875721;
+    static constexpr float kMathEpsilon = 1.192092896e-07f;
     
 public:
-    static float sin(float rad) {
-        return ::sin(rad);
+    static float sin(float x) {
+        return ::sinf(x);
     }
     
-    static float cos(float rad) {
-        return ::cos(rad);
+    static float cos(float x) {
+        return ::cosf(x);
     }
     
+    static float sqrt(float x) {
+        return ::sqrtf(x);
+    }
+    
+    static float fabsf(float x) {
+        return ::fabsf(x);
+    }
+    
+    static bool equal(float x, float y) {
+        return fabsf(x - y) <= kMathEpsilon;
+    }
+    
+    static bool zero(float x) {
+        return fabsf(x) <= kMathEpsilon;
+    }
 };
 
 MINE_NAMESPACE_END
