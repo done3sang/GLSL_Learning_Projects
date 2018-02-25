@@ -23,8 +23,19 @@ class MyFMatrix4;
 
 class MyLinearTransformation: private MyStatic {
 public:
+    template<class M>
+    void swapMatrixRow(M &mat, int x, int y, int startIndex = 0);
+    template<class M>
+    void multiplyMatrixRow(M &mat, int x, float multiple, int startIndex = 0);
+    template<class M>
+    void substractMatrixRow(M &mat, int x, int y, float multiple, int startIndex = 0);
     
-    
+    template<class M>
+    void swapMatrixColumn(M &mat, int x, int y, int startIndex = 0);
+    template<class M>
+    void multiplyMatrixColumn(M &mat, int x, float multiple, int startIndex = 0);
+    template<class M>
+    void substractMatrixColumn(M &mat, int x, int y, float multiple, int startIndex = 0);
 };
 
 MINE_NAMESPACE_END

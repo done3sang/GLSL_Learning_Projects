@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1175"
             endingLineNumber = "1175"
-            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
+            landmarkName = "operator*(const MyFMatrix4 &amp;lhs, const MyFMatrix4 &amp;rhs)"
             landmarkType = "9">
             <Locations>
                <Location
@@ -108,7 +108,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "593"
-            endingLineNumber = "593">
+            endingLineNumber = "593"
+            landmarkName = "operator*(const MyFMatrix3 &amp;lhs, const MyFMatrix3 &amp;rhs)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -123,8 +125,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "527"
             endingLineNumber = "527"
-            landmarkName = "SimplifyMatrixBySubtractRowInnerImpl"
-            landmarkType = "14">
+            landmarkName = "operator+(const MyFMatrix3 &amp;lhs, const MyFMatrix3 &amp;rhs)"
+            landmarkType = "9">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -291,7 +293,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1152"
             endingLineNumber = "1152"
-            landmarkName = "simplifyMatrix(MyMatrix&lt;R, C, V&gt; &amp;mat)"
+            landmarkName = "operator/(const MyFMatrix4 &amp;mat, float value)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

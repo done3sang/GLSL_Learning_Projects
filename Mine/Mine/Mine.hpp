@@ -40,5 +40,6 @@
 #include "myrender/MyVertexAttribute.hpp"
 
 #include "MyModelGenerator.hpp"
-#include "mymath/MyMatrix.hpp"
+#include "mymath/MyMathMatrix.hpp"
+
 #endif /* Mine_h */

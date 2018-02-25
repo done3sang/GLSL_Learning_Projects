@@ -54,6 +54,7 @@ public:
     bool inversible(void) const;
     
 public:
+    static constexpr kDimension;
     static const MyFMatrix2 kIdentity;
     static const MyFMatrix2 kZero;
     
@@ -122,6 +123,7 @@ public:
     bool inversible(void) const;
     
 public:
+    static constexpr kDimension;
     static const MyFMatrix3 kIdentity;
     static const MyFMatrix3 kZero;
     
@@ -191,6 +193,7 @@ public:
     bool inversible(void) const;
     
 public:
+    static constexpr kDimension;
     static const MyFMatrix4 kIdentity;
     static const MyFMatrix4 kZero;
     

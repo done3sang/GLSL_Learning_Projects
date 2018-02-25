@@ -798,6 +798,7 @@ namespace MineTemplateMeta {
     }
     
     /* ------------------- evaluate the order of matrix  ------------------- */
+    /*
     template<class M, int I, int R, int C>
     struct OrderMatrixByGaussRowInnerImpl {
         enum {
@@ -818,7 +819,7 @@ namespace MineTemplateMeta {
     };
     
     template<class M>
-    struct SimplifyMatrixBySubtractRowInnerImpl<M, 0, 0, 0> {
+    struct OrderMatrixByGaussRowInnerImpl<M, 0, 0, 0> {
         static inline void eval(M&,
                                 int,
                                 const typename M::value_type&,
@@ -887,6 +888,7 @@ namespace MineTemplateMeta {
         bool gauss[N] = {false};
         SimplifyMatrixBySubtractImpl<MyMatrix<R, C, V>, R, 0, N>::eval(mat, gauss);
     }
+     */
 }
 
 template<int R, int C, class V> typename MyMatrix<R, C, V>::value_type MyMatrix<R, C, V>::_zeroValue = V(0);

@@ -12,6 +12,7 @@ MINE_NAMESPACE_BEGIN
 
 // MyFMatrix2 implementation
 
+constexpr int MyFMatrix2::kDimension(2);
 const MyFMatrix2 MyFMatrix2::kIdentity(1.0f, 0.0f, 0.0f, 1.0f);
 const MyFMatrix2 MyFMatrix2::kZero(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -282,6 +283,7 @@ FORCEINLINE const float* value_pointer(const MyFMatrix2 &mat) {
 
 // MyFMatrix3 implementation
 
+constexpr int MyFMatrix2::kDimension(3);
 const MyFMatrix3 MyFMatrix3::kIdentity(1.0f, 0.0f, 0.0f,
                                        0.0f, 1.0f, 0.0f,
                                        0.0f, 0.0f, 1.0f);
@@ -686,6 +688,7 @@ FORCEINLINE const float* value_pointer(const MyFMatrix3 &mat) {
 
 // MyFMatrix4 implementation
 
+constexpr int MyFMatrix2::kDimension(4);
 const MyFMatrix4 MyFMatrix4::kIdentity(1.0f, 0.0f, 0.0f, 0.0f,
                                        0.0f, 1.0f, 0.0f, 0.0f,
                                        0.0f, 0.0f, 1.0f, 0.0f,
