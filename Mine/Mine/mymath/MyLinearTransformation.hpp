@@ -22,6 +22,29 @@ class MyFMatrix3;
 class MyFMatrix4;
 class MyCoordinate;
 
+class MyCoordinateTransition {
+public:
+    MyCoordinateTransition(void);
+    MyCoordinateTransition(const MyCoordinate &coordA, const MyCoordinate &coordB);
+    MyCoordinateTransition(const MyCoordinateTransition &other);
+    MyCoordinateTransition(const MyCoordinateTransition &&other);
+    ~MyCoordinateTransition(void);
+    
+    MyCoordinateTransition& operator=(const MyCoordinateTransition &other);
+    MyCoordinateTransition& operator=(const MyCoordinateTransition &&other);
+    
+    bool operator==(const MyCoordinateTransition &other);
+    bool operator!=(const MyCoordinateTransition &other);
+    
+    void transformVectorForward(const MyFVector3 &vecA, MyFVector3 &vecB);
+    void transformVectorBackward(const MyFVector3 &vecB, MyFVector3 &vecA);
+    
+private:
+    MyCoordinate _coordA;
+    MyCoordinate _coordB;
+    MyFMatrix3 _transitMatrix; // B = P * A
+};
+
 class MyLinearTransformation: private MyStatic {
 public:
     static float magnitudeVector(const MyFVector2 &vec);
@@ -86,35 +109,113 @@ public:
     static MyFMatrix3& rotateMatrixByAxisX(MyFMatrix3 &mat, float radius);
     static MyFMatrix3& rotateMatrixByAxisY(MyFMatrix3 &mat, float radius);
     static MyFMatrix3& rotateMatrixByAxisZ(MyFMatrix3 &mat, float radius);
-    static MyFMatrix3& rotateMatrixByAxis(MyFMatrix3 &mat, const MyFVector3 &vec, float radius);
-    static MyFMatrix3& rotateMatrixByNormalizedAxis(MyFMatrix3 &mat, const MyFVector3 &vec, float radius);
+    static MyFMatrix3& rotateMatrixByAxis(MyFMatrix3 &mat,
+                                          const MyFVector3 &vec,
+                                          float radius);
+    static MyFMatrix3& rotateMatrixByNormalizedAxis(MyFMatrix3 &mat,
+                                                    const MyFVector3 &vec,
+                                                    float radius);
     
+    // coordinate
     static bool validateCoordinate(const MyCoordinate &coord);
     static bool validateCoordinate(const MyFVector3 &inX,
                                    const MyFVector3 &inY,
                                    const MyFVector3 &inZ);
     
+    // B = A * P -> P = A ^ -1 * B
+    static void transformCoordinateMatrix(const MyCoordinate &coordA,
+                                          const MyCoordinate &coordB,
+                                          MyFMatrix3 &mat);
+    
+    // B = A * P, x = A * a = B * b = A * P * b -> a = P * b -> b = P ^ -1 * a
+    static void transformCoordinateVectorForward(const MyFMatrix3 &transitMat,
+                                          const MyFVector3 &vecA,
+                                          MyFVector3 &vecB);
+    static void transformCoordinateVectorBackward(const MyFMatrix3 &transitMat,
+                                                 const MyFVector3 &vecB,
+                                                 MyFVector3 &vecA);
+    
 private:
-    static void swapMatrixRow(MyFMatrix2 &mat, int x, int y, int startIndex = 0);
-    static void multiplyMatrixRow(MyFMatrix2 &mat, int x, float multiple, int startIndex = 0);
-    static void substractMatrixRow(MyFMatrix2 &mat, int x, int y, float multiple, int startIndex = 0);
-    static void swapMatrixColumn(MyFMatrix2 &mat, int x, int y, int startIndex = 0);
-    static void multiplyMatrixColumn(MyFMatrix2 &mat, int x, float multiple, int startIndex = 0);
-    static void substractMatrixColumn(MyFMatrix2 &mat, int x, int y, float multiple, int startIndex = 0);
+    static void swapMatrixRow(MyFMatrix2 &mat,
+                              int x,
+                              int y,
+                              int startIndex = 0);
+    static void multiplyMatrixRow(MyFMatrix2 &mat,
+                                  int x,
+                                  float multiple,
+                                  int startIndex = 0);
+    static void substractMatrixRow(MyFMatrix2 &mat,
+                                   int x,
+                                   int y,
+                                   float multiple,
+                                   int startIndex = 0);
+    static void swapMatrixColumn(MyFMatrix2 &mat,
+                                 int x,
+                                 int y,
+                                 int startIndex = 0);
+    static void multiplyMatrixColumn(MyFMatrix2 &mat,
+                                     int x,
+                                     float multiple,
+                                     int startIndex = 0);
+    static void substractMatrixColumn(MyFMatrix2 &mat,
+                                      int x,
+                                      int y,
+                                      float multiple,
+                                      int startIndex = 0);
     
-    static void swapMatrixRow(MyFMatrix3 &mat, int x, int y, int startIndex = 0);
-    static void multiplyMatrixRow(MyFMatrix3 &mat, int x, float multiple, int startIndex = 0);
-    static void substractMatrixRow(MyFMatrix3 &mat, int x, int y, float multiple, int startIndex = 0);
-    static void swapMatrixColumn(MyFMatrix3 &mat, int x, int y, int startIndex = 0);
-    static void multiplyMatrixColumn(MyFMatrix3 &mat, int x, float multiple, int startIndex = 0);
-    static void substractMatrixColumn(MyFMatrix3 &mat, int x, int y, float multiple, int startIndex = 0);
+    static void swapMatrixRow(MyFMatrix3 &mat,
+                              int x,
+                              int y,
+                              int startIndex = 0);
+    static void multiplyMatrixRow(MyFMatrix3 &mat,
+                                  int x,
+                                  float multiple,
+                                  int startIndex = 0);
+    static void substractMatrixRow(MyFMatrix3 &mat,
+                                   int x,
+                                   int y,
+                                   float multiple,
+                                   int startIndex = 0);
+    static void swapMatrixColumn(MyFMatrix3 &mat,
+                                 int x,
+                                 int y,
+                                 int startIndex = 0);
+    static void multiplyMatrixColumn(MyFMatrix3 &mat,
+                                     int x,
+                                     float multiple,
+                                     int startIndex = 0);
+    static void substractMatrixColumn(MyFMatrix3 &mat,
+                                      int x,
+                                      int y,
+                                      float multiple,
+                                      int startIndex = 0);
     
-    static void swapMatrixRow(MyFMatrix4 &mat, int x, int y, int startIndex = 0);
-    static void multiplyMatrixRow(MyFMatrix4 &mat, int x, float multiple, int startIndex = 0);
-    static void substractMatrixRow(MyFMatrix4 &mat, int x, int y, float multiple, int startIndex = 0);
-    static void swapMatrixColumn(MyFMatrix4 &mat, int x, int y, int startIndex = 0);
-    static void multiplyMatrixColumn(MyFMatrix4 &mat, int x, float multiple, int startIndex = 0);
-    static void substractMatrixColumn(MyFMatrix4 &mat, int x, int y, float multiple, int startIndex = 0);
+    static void swapMatrixRow(MyFMatrix4 &mat,
+                              int x,
+                              int y,
+                              int startIndex = 0);
+    static void multiplyMatrixRow(MyFMatrix4 &mat,
+                                  int x,
+                                  float multiple,
+                                  int startIndex = 0);
+    static void substractMatrixRow(MyFMatrix4 &mat,
+                                   int x,
+                                   int y,
+                                   float multiple,
+                                   int startIndex = 0);
+    static void swapMatrixColumn(MyFMatrix4 &mat,
+                                 int x,
+                                 int y,
+                                 int startIndex = 0);
+    static void multiplyMatrixColumn(MyFMatrix4 &mat,
+                                     int x,
+                                     float multiple,
+                                     int startIndex = 0);
+    static void substractMatrixColumn(MyFMatrix4 &mat,
+                                      int x,
+                                      int y,
+                                      float multiple,
+                                      int startIndex = 0);
     
     template<class M, int D>
     static bool metaInverseMatrix(M &mat, M &invMat);

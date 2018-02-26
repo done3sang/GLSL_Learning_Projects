@@ -56,7 +56,8 @@ namespace {
             mat.valueAt(x, index) *= multiple;
             ++index;
             if(D != index) {
-                LinearMatrixMultiplyRowImpl<M, D * Continue, NextI * Continue>::eval(mat, x, multiple, index);
+                LinearMatrixMultiplyRowImpl<M, D * Continue,
+                NextI * Continue>::eval(mat, x, multiple, index);
             }
         }
     };
@@ -86,7 +87,8 @@ namespace {
             mat.valueAt(x, index) -= mat.valueAt(y, index) * multiple;
             ++index;
             if(D != index) {
-                LinearMatrixSubstractRowImpl<M, D * Continue, NextI * Continue>::eval(mat, x, y, multiple, index);
+                LinearMatrixSubstractRowImpl<M, D * Continue,
+                NextI * Continue>::eval(mat, x, y, multiple, index);
             }
         }
     };
@@ -97,7 +99,11 @@ namespace {
     };
     
     template<class M, int D>
-    FORCEINLINE void linearMatrixSubstractRow(M &mat, int x, int y, float multiple, int startIndex) {
+    FORCEINLINE void linearMatrixSubstractRow(M &mat,
+                                              int x,
+                                              int y,
+                                              float multiple,
+                                              int startIndex) {
         LinearMatrixSubstractRowImpl<M, D, 0>::eval(mat, x, y, multiple, startIndex);
     }
     
@@ -116,7 +122,8 @@ namespace {
             mat.valueAt(index, y) = temp;
             ++index;
             if(D != index) {
-                LinearMatrixSwapColumnImpl<M, D * Continue, NextI * Continue>::eval(mat, x, y, index);
+                LinearMatrixSwapColumnImpl<M, D * Continue,
+                NextI * Continue>::eval(mat, x, y, index);
             }
         }
     };
@@ -144,7 +151,8 @@ namespace {
             mat.valueAt(index, x) *= multiple;
             ++index;
             if(D != index) {
-                LinearMatrixMultiplyColumnImpl<M, D * Continue, NextI * Continue>::eval(mat, x, multiple, index);
+                LinearMatrixMultiplyColumnImpl<M, D * Continue,
+                NextI * Continue>::eval(mat, x, multiple, index);
             }
         }
     };
@@ -172,7 +180,8 @@ namespace {
             mat.valueAt(x, index) -= mat.valueAt(y, index) * multiple;
             ++index;
             if(D != index) {
-                LinearMatrixSubstractColumnImpl<M, D * Continue, NextI * Continue>::eval(mat, x, y, multiple, index);
+                LinearMatrixSubstractColumnImpl<M, D * Continue,
+                NextI * Continue>::eval(mat, x, y, multiple, index);
             }
         }
     };
@@ -183,7 +192,11 @@ namespace {
     };
     
     template<class M, int D>
-    FORCEINLINE void linearMatrixSubstractColumn(M &mat, int x, int y, float multiple, int startIndex) {
+    FORCEINLINE void linearMatrixSubstractColumn(M &mat,
+                                                 int x,
+                                                 int y,
+                                                 float multiple,
+                                                 int startIndex) {
         LinearMatrixSubstractColumnImpl<M, D, 0>::eval(mat, x, y, multiple, startIndex);
     }
     
@@ -259,7 +272,8 @@ namespace {
         static FORCEINLINE void eval(M &mat, M &invMat, bool &inversible) {
             LinearMatrixInverseByGaussRowImpl<M, D, I, I>::eval(mat, invMat, inversible);
             if(inversible) {
-                LinearMatrixInverseByGaussImpl<M, Continue * D, Continue * NextI>::eval(mat, invMat, inversible);
+                LinearMatrixInverseByGaussImpl<M, Continue * D,
+                Continue * NextI>::eval(mat, invMat, inversible);
             }
         }
     };
@@ -340,39 +354,47 @@ FORCEINLINE MyFVector4& MyLinearTransformation::normalizeVectorSelf(MyFVector4 &
     return vec;
 }
 
-FORCEINLINE float MyLinearTransformation::dotProduct(const MyFVector2 &a, const MyFVector2 &b) {
+FORCEINLINE float MyLinearTransformation::dotProduct(const MyFVector2 &a,
+                                                     const MyFVector2 &b) {
     return a.x * b.x + a.y * b.y;
 }
 
-FORCEINLINE float MyLinearTransformation::dotProduct(const MyFVector3 &a, const MyFVector3 &b) {
+FORCEINLINE float MyLinearTransformation::dotProduct(const MyFVector3 &a,
+                                                     const MyFVector3 &b) {
     return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
-FORCEINLINE float MyLinearTransformation::dotProduct(const MyFVector4 &a, const MyFVector4 &b) {
+FORCEINLINE float MyLinearTransformation::dotProduct(const MyFVector4 &a,
+                                                     const MyFVector4 &b) {
     return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
 }
 
-FORCEINLINE float MyLinearTransformation::radiusVector(const MyFVector2 &a, const MyFVector2 &b) {
+FORCEINLINE float MyLinearTransformation::radiusVector(const MyFVector2 &a,
+                                                       const MyFVector2 &b) {
     float ab = magnitudeVector(a) * magnitudeVector(b);
     return MyMathUtil::zero(ab) ? MyMathUtil::acos(dotProduct(a, b)/ab) : MyMathUtil::kMathPIOver2;
 }
 
-FORCEINLINE float MyLinearTransformation::radiusVector(const MyFVector3 &a, const MyFVector3 &b) {
+FORCEINLINE float MyLinearTransformation::radiusVector(const MyFVector3 &a,
+                                                       const MyFVector3 &b) {
     float ab = magnitudeVector(a) * magnitudeVector(b);
     return MyMathUtil::zero(ab) ? MyMathUtil::acos(dotProduct(a, b)/ab) : MyMathUtil::kMathPIOver2;
 }
 
-FORCEINLINE float MyLinearTransformation::radiusVector(const MyFVector4 &a, const MyFVector4 &b) {
+FORCEINLINE float MyLinearTransformation::radiusVector(const MyFVector4 &a,
+                                                       const MyFVector4 &b) {
     float ab = magnitudeVector(a) * magnitudeVector(b);
     return MyMathUtil::zero(ab) ? MyMathUtil::acos(dotProduct(a, b)/ab) : MyMathUtil::kMathPIOver2;
 }
 
-FORCEINLINE MyFVector3 MyLinearTransformation::projectVector(const MyFVector3 &a, const MyFVector3 &b) {
+FORCEINLINE MyFVector3 MyLinearTransformation::projectVector(const MyFVector3 &a,
+                                                             const MyFVector3 &b) {
     float k = dotProduct(a, b)/magnitudeSquareVector(b);
     return MyFVector3(b.x * k, b.y * k, b.z * k);
 }
 
-FORCEINLINE MyFVector3& MyLinearTransformation::projectVectorSelf(MyFVector3 &a, const MyFVector3 &b) {
+FORCEINLINE MyFVector3& MyLinearTransformation::projectVectorSelf(MyFVector3 &a,
+                                                                  const MyFVector3 &b) {
     float k = dotProduct(a, b)/magnitudeSquareVector(b);
     a.x = b.x * k;
     a.y = b.y * k;
@@ -380,12 +402,14 @@ FORCEINLINE MyFVector3& MyLinearTransformation::projectVectorSelf(MyFVector3 &a,
     return a;
 }
 
-FORCEINLINE MyFVector3 MyLinearTransformation::projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b) {
+FORCEINLINE MyFVector3 MyLinearTransformation::projectNormalizedVector(const MyFVector3 &a,
+                                                                       const MyFVector3 &b) {
     float k = dotProduct(a, b);
     return MyFVector3(b.x * k, b.y * k, b.z * k);
 }
 
-FORCEINLINE MyFVector3& MyLinearTransformation::projectNormalizedVectorSelf(MyFVector3 &a, const MyFVector3 &b) {
+FORCEINLINE MyFVector3& MyLinearTransformation::projectNormalizedVectorSelf(MyFVector3 &a,
+                                                                            const MyFVector3 &b) {
     float k = dotProduct(a, b);
     a.x = b.x * k;
     a.y = b.y * k;
@@ -415,7 +439,8 @@ FORCEINLINE MyFMatrix2& MyLinearTransformation::transposeMatrixSelf(MyFMatrix2 &
     return mat;
 }
 
-FORCEINLINE bool MyLinearTransformation::inverseMatrix(MyFMatrix2 &mat, MyFMatrix2 &invMat) {
+FORCEINLINE bool MyLinearTransformation::inverseMatrix(MyFMatrix2 &mat,
+                                                       MyFMatrix2 &invMat) {
     return metaInverseMatrix<MyFMatrix2, 2>(mat, invMat);
 }
 
@@ -454,7 +479,8 @@ FORCEINLINE MyFMatrix3& MyLinearTransformation::transposeMatrixSelf(MyFMatrix3 &
     return mat;
 }
 
-FORCEINLINE bool MyLinearTransformation::inverseMatrix(MyFMatrix3 &mat, MyFMatrix3 &invMat) {
+FORCEINLINE bool MyLinearTransformation::inverseMatrix(MyFMatrix3 &mat,
+                                                       MyFMatrix3 &invMat) {
     return metaInverseMatrix<MyFMatrix3, 3>(mat, invMat);
 }
 
@@ -505,7 +531,8 @@ FORCEINLINE MyFMatrix4& MyLinearTransformation::transposeMatrixSelf(MyFMatrix4 &
     return mat;
 }
 
-FORCEINLINE bool MyLinearTransformation::inverseMatrix(MyFMatrix4 &mat, MyFMatrix4 &invMat) {
+FORCEINLINE bool MyLinearTransformation::inverseMatrix(MyFMatrix4 &mat,
+                                                       MyFMatrix4 &invMat) {
     return metaInverseMatrix<MyFMatrix4, 4>(mat, invMat);
 }
 
@@ -534,103 +561,147 @@ FORCEINLINE bool MyLinearTransformation::metaInverseMatrixSelf(M &mat) {
 }
 
 FORCEINLINE void MyLinearTransformation::swapMatrixRow(MyFMatrix2 &mat,
-                                                       int x, int y, int startIndex) {
+                                                       int x,
+                                                       int y,
+                                                       int startIndex) {
     linearMatrixSwapRow<MyFMatrix2, 2>(mat, x, y, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::multiplyMatrixRow(MyFMatrix2 &mat,
-                                                           int x, float multiple, int startIndex) {
+                                                           int x,
+                                                           float multiple,
+                                                           int startIndex) {
     linearMatrixMultiplyRow<MyFMatrix2, 2>(mat, x, multiple, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::substractMatrixRow(MyFMatrix2 &mat,
-                                                           int x, int y, float multiple, int startIndex) {
+                                                            int x,
+                                                            int y,
+                                                            float multiple,
+                                                            int startIndex) {
     linearMatrixSubstractRow<MyFMatrix2, 2>(mat, x, y, multiple, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::swapMatrixColumn(MyFMatrix2 &mat,
-                                                       int x, int y, int startIndex) {
+                                                          int x,
+                                                          int y,
+                                                          int startIndex) {
     linearMatrixSwapColumn<MyFMatrix2, 2>(mat, x, y, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::multiplyMatrixColumn(MyFMatrix2 &mat,
-                                                           int x, float multiple, int startIndex) {
+                                                              int x,
+                                                              float multiple,
+                                                              int startIndex) {
     linearMatrixMultiplyColumn<MyFMatrix2, 2>(mat, x, multiple, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::substractMatrixColumn(MyFMatrix2 &mat,
-                                                            int x, int y, float multiple, int startIndex) {
+                                                               int x,
+                                                               int y,
+                                                               float multiple,
+                                                               int startIndex) {
     linearMatrixSubstractColumn<MyFMatrix2, 2>(mat, x, y, multiple, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::swapMatrixRow(MyFMatrix3 &mat,
-                                                       int x, int y, int startIndex) {
+                                                       int x,
+                                                       int y,
+                                                       int startIndex) {
     linearMatrixSwapRow<MyFMatrix3, 3>(mat, x, y, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::multiplyMatrixRow(MyFMatrix3 &mat,
-                                                           int x, float multiple, int startIndex) {
+                                                           int x,
+                                                           float multiple,
+                                                           int startIndex) {
     linearMatrixMultiplyRow<MyFMatrix3, 3>(mat, x, multiple, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::substractMatrixRow(MyFMatrix3 &mat,
-                                                            int x, int y, float multiple, int startIndex) {
+                                                            int x,
+                                                            int y,
+                                                            float multiple,
+                                                            int startIndex) {
     linearMatrixSubstractRow<MyFMatrix3, 3>(mat, x, y, multiple, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::swapMatrixColumn(MyFMatrix3 &mat,
-                                                          int x, int y, int startIndex) {
+                                                          int x,
+                                                          int y,
+                                                          int startIndex) {
     linearMatrixSwapColumn<MyFMatrix3, 3>(mat, x, y, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::multiplyMatrixColumn(MyFMatrix3 &mat,
-                                                              int x, float multiple, int startIndex) {
+                                                              int x,
+                                                              float multiple,
+                                                              int startIndex) {
     linearMatrixMultiplyColumn<MyFMatrix3, 3>(mat, x, multiple, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::substractMatrixColumn(MyFMatrix3 &mat,
-                                                               int x, int y, float multiple, int startIndex) {
+                                                               int x,
+                                                               int y,
+                                                               float multiple,
+                                                               int startIndex) {
     linearMatrixSubstractColumn<MyFMatrix3, 3>(mat, x, y, multiple, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::swapMatrixRow(MyFMatrix4 &mat,
-                                                       int x, int y, int startIndex) {
+                                                       int x,
+                                                       int y,
+                                                       int startIndex) {
     linearMatrixSwapRow<MyFMatrix4, 4>(mat, x, y, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::multiplyMatrixRow(MyFMatrix4 &mat,
-                                                           int x, float multiple, int startIndex) {
+                                                           int x,
+                                                           float multiple,
+                                                           int startIndex) {
     linearMatrixMultiplyRow<MyFMatrix4, 4>(mat, x, multiple, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::substractMatrixRow(MyFMatrix4 &mat,
-                                                            int x, int y, float multiple, int startIndex) {
+                                                            int x,
+                                                            int y,
+                                                            float multiple,
+                                                            int startIndex) {
     linearMatrixSubstractRow<MyFMatrix4, 4>(mat, x, y, multiple, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::swapMatrixColumn(MyFMatrix4 &mat,
-                                                          int x, int y, int startIndex) {
+                                                          int x,
+                                                          int y,
+                                                          int startIndex) {
     linearMatrixSwapColumn<MyFMatrix4, 4>(mat, x, y, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::multiplyMatrixColumn(MyFMatrix4 &mat,
-                                                              int x, float multiple, int startIndex) {
+                                                              int x,
+                                                              float multiple,
+                                                              int startIndex) {
     linearMatrixMultiplyColumn<MyFMatrix4, 4>(mat, x, multiple, startIndex);
 }
 
 FORCEINLINE void MyLinearTransformation::substractMatrixColumn(MyFMatrix4 &mat,
-                                                               int x, int y, float multiple, int startIndex) {
+                                                               int x,
+                                                               int y,
+                                                               float multiple,
+                                                               int startIndex) {
     linearMatrixSubstractColumn<MyFMatrix4, 4>(mat, x, y, multiple, startIndex);
 }
 
-FORCEINLINE MyFVector2& MyLinearTransformation::transformVector(const MyFMatrix2 &mat, MyFVector2 &vec) {
+FORCEINLINE MyFVector2& MyLinearTransformation::transformVector(const MyFMatrix2 &mat,
+                                                                MyFVector2 &vec) {
     float y = mat.valueAt(1, 0) * vec.x + mat.valueAt(1, 1) * vec.y;
     vec.x = mat.valueAt(0, 0) * vec.x + mat.valueAt(0, 1) * vec.y;
     vec.y = y;
     return vec;
 }
 
-FORCEINLINE MyFVector3& MyLinearTransformation::transformVector(const MyFMatrix3 &mat, MyFVector3 &vec) {
+FORCEINLINE MyFVector3& MyLinearTransformation::transformVector(const MyFMatrix3 &mat,
+                                                                MyFVector3 &vec) {
     float y = mat.valueAt(1, 0) * vec.x + mat.valueAt(1, 1) * vec.y + mat.valueAt(1, 2) * vec.z;
     float z = mat.valueAt(2, 0) * vec.x + mat.valueAt(2, 1) * vec.y + mat.valueAt(2, 2) * vec.z;
     vec.x = mat.valueAt(0, 0) * vec.x + mat.valueAt(0, 1) * vec.y + mat.valueAt(0, 2) * vec.z;
@@ -639,7 +710,8 @@ FORCEINLINE MyFVector3& MyLinearTransformation::transformVector(const MyFMatrix3
     return vec;
 }
 
-FORCEINLINE MyFVector4& MyLinearTransformation::transformVector(const MyFMatrix4 &mat, MyFVector4 &vec) {
+FORCEINLINE MyFVector4& MyLinearTransformation::transformVector(const MyFMatrix4 &mat,
+                                                                MyFVector4 &vec) {
     float y = mat.valueAt(1, 0) * vec.x + mat.valueAt(1, 1) * vec.y + mat.valueAt(1, 2) * vec.z + mat.valueAt(1, 3) * vec.w;
     float z = mat.valueAt(2, 0) * vec.x + mat.valueAt(2, 1) * vec.y + mat.valueAt(2, 2) * vec.z + mat.valueAt(2, 3) * vec.w;
     float w = mat.valueAt(3, 0) * vec.x + mat.valueAt(3, 1) * vec.y + mat.valueAt(3, 2) * vec.z + mat.valueAt(3, 3) * vec.w;
@@ -654,7 +726,8 @@ FORCEINLINE MyFVector4& MyLinearTransformation::transformVector(const MyFMatrix4
  cose -sine
  sine cose
  */
-FORCEINLINE MyFMatrix2& MyLinearTransformation::rotateMatrix(MyFMatrix2 &mat, float radius) {
+FORCEINLINE MyFMatrix2& MyLinearTransformation::rotateMatrix(MyFMatrix2 &mat,
+                                                             float radius) {
     float sine = MyMathUtil::sin(radius);
     float cose = MyMathUtil::cos(radius);
     float tmp = -sine * mat.valueAt(0, 0) + cose * mat.valueAt(1, 0);
@@ -671,7 +744,8 @@ FORCEINLINE MyFMatrix2& MyLinearTransformation::rotateMatrix(MyFMatrix2 &mat, fl
  0      cose   -sine
  0      sine    cose
  */
-FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByAxisX(MyFMatrix3 &mat, float radius) {
+FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByAxisX(MyFMatrix3 &mat,
+                                                                    float radius) {
     float sine = MyMathUtil::sin(radius);
     float cose = MyMathUtil::cos(radius);
     float tmp1 = cose * mat.valueAt(1, 1) - sine * mat.valueAt(2, 1);
@@ -692,7 +766,8 @@ FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByAxisX(MyFMatrix3 &
  0          1       0
  -sine      0       cose
  */
-FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByAxisY(MyFMatrix3 &mat, float radius) {
+FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByAxisY(MyFMatrix3 &mat,
+                                                                    float radius) {
     float sine = MyMathUtil::sin(radius);
     float cose = MyMathUtil::cos(radius);
     float tmp1 = cose * mat.valueAt(0, 1) + sine * mat.valueAt(2, 1);
@@ -713,7 +788,8 @@ FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByAxisY(MyFMatrix3 &
  0          1           0
  sine       cose       0
  */
-FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByAxisZ(MyFMatrix3 &mat, float radius) {
+FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByAxisZ(MyFMatrix3 &mat,
+                                                                    float radius) {
     float sine = MyMathUtil::sin(radius);
     float cose = MyMathUtil::cos(radius);
     float tmp1 = cose * mat.valueAt(0, 1) - sine * mat.valueAt(1, 1);
@@ -730,14 +806,17 @@ FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByAxisZ(MyFMatrix3 &
 }
 
 FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByAxis(MyFMatrix3 &mat,
-                                                                   const MyFVector3 &vec, float radius) {
+                                                                   const MyFVector3 &vec,
+                                                                   float radius) {
     MyFVector3 normalizedVec(normalizeVector(vec));
     return rotateMatrixByNormalizedAxis(mat, normalizedVec, radius);
 }
 
 // v' = (v - dot(v, n)n)cose + cross(v, n) * sine
-FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByNormalizedAxis(MyFMatrix3 &mat,
-                                                                             const MyFVector3 &vec, float radius) {
+FORCEINLINE MyFMatrix3& MyLinearTransformation::rotateMatrixByNormalizedAxis(
+                                                                             MyFMatrix3 &mat,
+                                                                             const MyFVector3 &vec,
+                                                                             float radius) {
     float sine = MyMathUtil::sin(radius);
     float cose = MyMathUtil::cos(radius);
     float oneMinusCose = 1.0f - cose;

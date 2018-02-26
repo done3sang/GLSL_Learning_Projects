@@ -27,7 +27,7 @@ public:
     MyCoordinate(void);
     MyCoordinate(const MyFVector3 &inX,
                  const MyFVector3 &inY,
-                 const MyFVector &inZ);
+                 const MyFVector3 &inZ);
     MyCoordinate(const MyCoordinate &coord);
     MyCoordinate(const MyCoordinate &&coord);
     ~MyCoordinate(void);
