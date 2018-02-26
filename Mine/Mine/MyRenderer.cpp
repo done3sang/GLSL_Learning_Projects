@@ -53,7 +53,7 @@ void MyRenderer::drawArrays(int mode, int first, int count) {
     glDrawArrays(mode, first, count);
 }
 
-void MyRenderer::renderModel(const Mine::MyModelComponent *model) {
+void MyRenderer::renderModel(const MyModelComponent *model) {
     assert(model && "ERROR = MyRenderer::renderModel, model null");
     
     if(model->modelElemented()) {

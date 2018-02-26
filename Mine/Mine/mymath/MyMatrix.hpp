@@ -47,14 +47,10 @@ public:
     float& valueAt(int x, int y);
     const float& valueAt(int x, int y) const;
     
-    //float& valueAt(constexpr int x, constexpr int y);
-    //const float& valueAt(const int x, constexpr int y);
-    
     float determinant(void) const;
     bool inversible(void) const;
     
 public:
-    static constexpr kDimension;
     static const MyFMatrix2 kIdentity;
     static const MyFMatrix2 kZero;
     
@@ -73,13 +69,6 @@ MyFMatrix2 operator*(float value, const MyFMatrix2 &mat);
 MyFMatrix2 operator/(const MyFMatrix2 &mat, float value);
 
 MyFMatrix2 operator*(const MyFMatrix2 &lhs, const MyFMatrix2 &rhs);
-
-void zeroMatrix(MyFMatrix2 &mat);
-void identityMatrix(MyFMatrix2 &mat);
-MyFMatrix2 transposeMatrix(const MyFMatrix2 &mat);
-MyFMatrix2& transposeMatrixSelf(MyFMatrix2 &mat);
-MyFMatrix2 inverseMatrix(const MyFMatrix2 &mat);
-MyFMatrix2& inverseMatrixSelf(MyFMatrix2 &mat);
 
 float* value_pointer(MyFMatrix2 &mat);
 const float* value_pointer(const MyFMatrix2 &mat);
@@ -116,14 +105,10 @@ public:
     float& valueAt(int x, int y);
     const float& valueAt(int x, int y) const;
     
-    //float& valueAt(constexpr int x, constexpr int y);
-    //const float& valueAt(const int x, constexpr int y);
-    
     float determinant(void) const;
     bool inversible(void) const;
     
 public:
-    static constexpr kDimension;
     static const MyFMatrix3 kIdentity;
     static const MyFMatrix3 kZero;
     
@@ -142,13 +127,6 @@ MyFMatrix3 operator*(float value, const MyFMatrix3 &mat);
 MyFMatrix3 operator/(const MyFMatrix3 &mat, float value);
 
 MyFMatrix3 operator*(const MyFMatrix3 &lhs, const MyFMatrix3 &rhs);
-
-void zeroMatrix(MyFMatrix3 &mat);
-void identityMatrix(MyFMatrix3 &mat);
-MyFMatrix3 transposeMatrix(const MyFMatrix3 &mat);
-MyFMatrix3& transposeMatrixSelf(MyFMatrix3 &mat);
-MyFMatrix3 inverseMatrix(const MyFMatrix3 &mat);
-MyFMatrix3& inverseMatrixSelf(MyFMatrix3 &mat);
 
 float* value_pointer(MyFMatrix3 &mat);
 const float* value_pointer(const MyFMatrix3 &mat);
@@ -186,14 +164,10 @@ public:
     float& valueAt(int x, int y);
     const float& valueAt(int x, int y) const;
     
-    //float& valueAt(constexpr int x, constexpr int y);
-    //const float& valueAt(const int x, constexpr int y);
-    
     float determinant(void) const;
     bool inversible(void) const;
     
 public:
-    static constexpr kDimension;
     static const MyFMatrix4 kIdentity;
     static const MyFMatrix4 kZero;
     
@@ -212,13 +186,6 @@ MyFMatrix4 operator*(float value, const MyFMatrix4 &mat);
 MyFMatrix4 operator/(const MyFMatrix4 &mat, float value);
 
 MyFMatrix4 operator*(const MyFMatrix4 &lhs, const MyFMatrix4 &rhs);
-
-void zeroMatrix(MyFMatrix4 &mat);
-void identityMatrix(MyFMatrix4 &mat);
-MyFMatrix4 transposeMatrix(const MyFMatrix4 &mat);
-MyFMatrix4& transposeMatrixSelf(MyFMatrix4 &mat);
-//MyFMatrix4 inverseMatrix(const MyFMatrix4 &mat);
-//MyFMatrix4& inverseMatrixSelf(MyFMatrix4 &mat);
 
 float* value_pointer(MyFMatrix4 &mat);
 const float* value_pointer(const MyFMatrix4 &mat);

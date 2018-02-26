@@ -31,7 +31,7 @@ MyDirectionalLight::MyDirectionalLight(void) {
     addComponent(lightComponent);
 }
 
-void MyDirectionalLight::bindProgram(Mine::MyProgram *prog) {
+void MyDirectionalLight::bindProgram(MyProgram *prog) {
     prog->uniformVector4("lightInfo.position", glm::vec4(1.0f, 1.0f, -1.0f, 0.0f));
     prog->uniformVector3("lightInfo.color", lightComponent->lightColor());
     prog->uniformFloat("lightInfo.intensity", lightComponent->lightIntensity());

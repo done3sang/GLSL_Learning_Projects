@@ -15,6 +15,17 @@
 #include "MyRenderer.hpp"
 #include "MyErrorDesc.hpp"
 
+// math
+#include "MyModelGenerator.hpp"
+#include "mymath/MyMathMatrix.hpp"
+#include "mymath/MyVector.hpp"
+#include "mymath/MyMatrix.hpp"
+#include "mymath/MyLinearTransformation.hpp"
+
+// xml
+#include "myxml/MyXMLDocument.hpp"
+#include "myxml/MyXMLNode.hpp"
+
 // shading
 #include "myshading/MyShader.hpp"
 #include "myshading/MyProgram.hpp"
@@ -38,8 +49,5 @@
 
 // renderer
 #include "myrender/MyVertexAttribute.hpp"
-
-#include "MyModelGenerator.hpp"
-#include "mymath/MyMathMatrix.hpp"
 
 #endif /* Mine_h */

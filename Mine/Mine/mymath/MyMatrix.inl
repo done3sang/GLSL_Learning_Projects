@@ -12,10 +12,6 @@ MINE_NAMESPACE_BEGIN
 
 // MyFMatrix2 implementation
 
-constexpr int MyFMatrix2::kDimension(2);
-const MyFMatrix2 MyFMatrix2::kIdentity(1.0f, 0.0f, 0.0f, 1.0f);
-const MyFMatrix2 MyFMatrix2::kZero(0.0f, 0.0f, 0.0f, 0.0f);
-
 FORCEINLINE MyFMatrix2::MyFMatrix2(void) {}
 
 FORCEINLINE MyFMatrix2::~MyFMatrix2(void) {}
@@ -149,20 +145,6 @@ FORCEINLINE const float& MyFMatrix2::valueAt(int x, int y) const {
     return _value[x][y];
 }
 
-/*
-FORCEINLINE float& MyFMatrix2::valueAt(constexpr int x, constexpr int y) {
-    MINE_ASSERT2(0 <= x && x <= 1, "MyFMatrix2::valueAt, index(x) out of range");
-    MINE_ASSERT2(0 <= y && y <= 1, "MyFMatrix2::valueAt, index(y) out of range");
-    return _value[x][y];
-}
-
-FORCEINLINE const float& MyFMatrix2::valueAt(constexpr int x, constexpr int y) const {
-    MINE_ASSERT2(0 <= x && x <= 1, "MyFMatrix2::valueAt, index(x) out of range");
-    MINE_ASSERT2(0 <= y && y <= 1, "MyFMatrix2::valueAt, index(y) out of range");
-    return _value[x][y];
-}
-*/
-
 FORCEINLINE float MyFMatrix2::determinant(void) const {
     return _value[0][0] * _value[1][1] - _value[0][1] * _value[1][0];
 }
@@ -222,57 +204,6 @@ FORCEINLINE MyFMatrix2 operator*(const MyFMatrix2 &lhs, const MyFMatrix2 &rhs) {
                       lhs.valueAt(1, 0) * rhs.valueAt(0, 1) + lhs.valueAt(1, 1) * rhs.valueAt(1, 1));
 }
 
-FORCEINLINE void zeroMatrix(MyFMatrix2 &mat) {
-    mat.valueAt(0, 0) = 0.0f; mat.valueAt(0, 1) = 0.0f;
-    mat.valueAt(1, 0) = 0.0f; mat.valueAt(1, 1) = 0.0f;
-}
-
-FORCEINLINE void identityMatrix(MyFMatrix2 &mat) {
-    mat.valueAt(0, 0) = 1.0f; mat.valueAt(0, 1) = 0.0f;
-    mat.valueAt(1, 0) = 0.0f; mat.valueAt(1, 1) = 1.0f;
-}
-
-FORCEINLINE MyFMatrix2 transposeMatrix(const MyFMatrix2 &mat) {
-    return MyFMatrix2(mat.valueAt(0, 0), mat.valueAt(1, 0),
-                      mat.valueAt(0, 1), mat.valueAt(1, 1));
-}
-
-FORCEINLINE MyFMatrix2& transposeMatrixSelf(MyFMatrix2 &mat) {
-    float tmp = mat.valueAt(0, 1);
-    mat.valueAt(0, 1) = mat.valueAt(1, 0);
-    mat.valueAt(1, 0) = tmp;
-    return mat;
-}
-
-FORCEINLINE MyFMatrix2 inverseMatrix(const MyFMatrix2 &mat) {
-    float det = mat.determinant();
-    MyFMatrix2 ret;
-    if(!MyMathUtil::zero(det)) {
-        det = 1.0f/det;
-        ret.valueAt(0, 0) = mat.valueAt(1, 1) * det;
-        ret.valueAt(0, 1) = mat.valueAt(1, 0) * det;
-        ret.valueAt(1, 0) = mat.valueAt(0, 1) * det;
-        ret.valueAt(1, 1) = mat.valueAt(0, 0) * det;
-    } else {
-        zeroMatrix(ret);
-    }
-    return ret;
-}
-
-FORCEINLINE MyFMatrix2& inverseMatrixSelf(MyFMatrix2 &mat) {
-    float det = mat.determinant();
-    if(!MyMathUtil::zero(det)) {
-        det = 1.0f/det;
-        float tmp = mat.valueAt(0, 0);
-        mat.valueAt(0, 0) = mat.valueAt(1, 1) * det;
-        mat.valueAt(1, 1) = tmp * det;
-        tmp = mat.valueAt(0, 1);
-        mat.valueAt(0, 1) = mat.valueAt(1, 0) * det;
-        mat.valueAt(1, 0) = tmp * det;
-    }
-    return mat;
-}
-
 FORCEINLINE float* value_pointer(MyFMatrix2 &mat) {
     return &mat.valueAt(0, 0);
 }
@@ -282,14 +213,6 @@ FORCEINLINE const float* value_pointer(const MyFMatrix2 &mat) {
 }
 
 // MyFMatrix3 implementation
-
-constexpr int MyFMatrix2::kDimension(3);
-const MyFMatrix3 MyFMatrix3::kIdentity(1.0f, 0.0f, 0.0f,
-                                       0.0f, 1.0f, 0.0f,
-                                       0.0f, 0.0f, 1.0f);
-const MyFMatrix3 MyFMatrix3::kZero(0.0f, 0.0f, 0.0f,
-                                       0.0f, 0.0f, 0.0f,
-                                       0.0f, 0.0f, 0.0f);
 
 FORCEINLINE MyFMatrix3::MyFMatrix3(void) {}
 
@@ -494,20 +417,6 @@ FORCEINLINE const float& MyFMatrix3::valueAt(int x, int y) const {
     return _value[x][y];
 }
 
-/*
- FORCEINLINE float& MyFMatrix2::valueAt(constexpr int x, constexpr int y) {
- MINE_ASSERT2(0 <= x && x <= 1, "MyFMatrix2::valueAt, index(x) out of range");
- MINE_ASSERT2(0 <= y && y <= 1, "MyFMatrix2::valueAt, index(y) out of range");
- return _value[x][y];
- }
- 
- FORCEINLINE const float& MyFMatrix2::valueAt(constexpr int x, constexpr int y) const {
- MINE_ASSERT2(0 <= x && x <= 1, "MyFMatrix2::valueAt, index(x) out of range");
- MINE_ASSERT2(0 <= y && y <= 1, "MyFMatrix2::valueAt, index(y) out of range");
- return _value[x][y];
- }
- */
-
 FORCEINLINE float MyFMatrix3::determinant(void) const {
     return _value[0][0] * (_value[1][1] * _value[2][2] - _value[1][2] * _value[2][1]) -
     _value[0][1] * (_value[1][0] * _value[2][2] - _value[1][2] * _value[2][0])
@@ -598,86 +507,6 @@ FORCEINLINE MyFMatrix3 operator*(const MyFMatrix3 &lhs, const MyFMatrix3 &rhs) {
                       lhs.valueAt(2, 0) * rhs.valueAt(0, 2) + lhs.valueAt(2, 1) * rhs.valueAt(1, 2) + lhs.valueAt(2, 2) * rhs.valueAt(2, 2));
 }
 
-FORCEINLINE void zeroMatrix(MyFMatrix3 &mat) {
-    mat.valueAt(0, 0) = 0.0f; mat.valueAt(0, 1) = 0.0f; mat.valueAt(0, 2) = 0.0f;
-    mat.valueAt(1, 0) = 0.0f; mat.valueAt(1, 1) = 0.0f; mat.valueAt(1, 1) = 0.0f;
-    mat.valueAt(2, 0) = 0.0f; mat.valueAt(2, 1) = 0.0f; mat.valueAt(2, 2) = 0.0f;
-}
-
-FORCEINLINE void identityMatrix(MyFMatrix3 &mat) {
-    mat.valueAt(0, 0) = 1.0f; mat.valueAt(0, 1) = 0.0f; mat.valueAt(0, 2) = 0.0f;
-    mat.valueAt(1, 0) = 0.0f; mat.valueAt(1, 1) = 1.0f; mat.valueAt(1, 2) = 0.0f;
-    mat.valueAt(2, 0) = 0.0f; mat.valueAt(2, 1) = 0.0f; mat.valueAt(2, 2) = 1.0f;
-}
-
-FORCEINLINE MyFMatrix3 transposeMatrix(const MyFMatrix3 &mat) {
-    return MyFMatrix3(mat.valueAt(0, 0), mat.valueAt(1, 0), mat.valueAt(2, 0),
-                      mat.valueAt(0, 1), mat.valueAt(1, 1), mat.valueAt(2, 1),
-                      mat.valueAt(0, 2), mat.valueAt(1, 2), mat.valueAt(2, 2));
-}
-
-FORCEINLINE MyFMatrix3& transposeMatrixSelf(MyFMatrix3 &mat) {
-    float tmp = mat.valueAt(0, 1);
-    mat.valueAt(0, 1) = mat.valueAt(1, 0);
-    mat.valueAt(1, 0) = tmp;
-    tmp = mat.valueAt(0, 2);
-    mat.valueAt(0, 2) = mat.valueAt(2, 0);
-    mat.valueAt(2, 0) = tmp;
-    tmp = mat.valueAt(1, 2);
-    mat.valueAt(1, 2) = mat.valueAt(2, 1);
-    mat.valueAt(2, 1) = tmp;
-    return mat;
-}
-
-FORCEINLINE MyFMatrix3 inverseMatrix(const MyFMatrix3 &mat) {
-    float det00 = mat.valueAt(1, 1) * mat.valueAt(2, 2) - mat.valueAt(1, 2) * mat.valueAt(2, 1);
-    float det01 = mat.valueAt(1, 0) * mat.valueAt(2, 2) - mat.valueAt(1, 2) * mat.valueAt(2, 0);
-    float det02 = mat.valueAt(1, 0) * mat.valueAt(2, 1) - mat.valueAt(1, 1) * mat.valueAt(2, 0);
-    float det = mat.valueAt(0, 0) * det00 - mat.valueAt(0, 1) * det01 + mat.valueAt(0, 2) * det02;
-    
-    MyFMatrix3 ret;
-    if(!MyMathUtil::zero(det)) {
-        float det10 = mat.valueAt(0, 1) * mat.valueAt(2, 2) - mat.valueAt(0, 2) * mat.valueAt(2, 1);
-        float det11 = mat.valueAt(0, 0) * mat.valueAt(2, 2) - mat.valueAt(0, 2) * mat.valueAt(2, 0);
-        float det12 = mat.valueAt(0, 0) * mat.valueAt(2, 1) - mat.valueAt(0, 1) * mat.valueAt(2, 0);
-        float det20 = mat.valueAt(0, 1) * mat.valueAt(1, 2) - mat.valueAt(0, 2) * mat.valueAt(1, 1);
-        float det21 = mat.valueAt(0, 0) * mat.valueAt(1, 2) - mat.valueAt(0, 2) * mat.valueAt(1, 0);
-        float det22 = mat.valueAt(0, 0) * mat.valueAt(1, 1) - mat.valueAt(0, 1) * mat.valueAt(1, 0);
-        
-        det = 1.0f/det;
-        ret.valueAt(0, 0) = det00* det; ret.valueAt(0, 1) = -det01 * det; ret.valueAt(0, 2) = det02 * det;
-        ret.valueAt(1, 0) = -det10 * det; ret.valueAt(1, 1) = det11 * det; ret.valueAt(1, 2) = -det12 * det;
-        ret.valueAt(2, 0) = det20 * det; ret.valueAt(2, 1) = -det21 * det; ret.valueAt(2, 2) = det22 * det;
-    } else {
-        zeroMatrix(ret);
-    }
-    
-    return ret;
-}
-
-FORCEINLINE MyFMatrix3& inverseMatrixSelf(MyFMatrix3 &mat) {
-    float det00 = mat.valueAt(1, 1) * mat.valueAt(2, 2) - mat.valueAt(1, 2) * mat.valueAt(2, 1);
-    float det01 = mat.valueAt(1, 0) * mat.valueAt(2, 2) - mat.valueAt(1, 2) * mat.valueAt(2, 0);
-    float det02 = mat.valueAt(1, 0) * mat.valueAt(2, 1) - mat.valueAt(1, 1) * mat.valueAt(2, 0);
-    float det = mat.valueAt(0, 0) * det00 - mat.valueAt(0, 1) * det01 + mat.valueAt(0, 2) * det02;
-
-    if(!MyMathUtil::zero(det)) {
-        float det10 = mat.valueAt(0, 1) * mat.valueAt(2, 2) - mat.valueAt(0, 2) * mat.valueAt(2, 1);
-        float det11 = mat.valueAt(0, 0) * mat.valueAt(2, 2) - mat.valueAt(0, 2) * mat.valueAt(2, 0);
-        float det12 = mat.valueAt(0, 0) * mat.valueAt(2, 1) - mat.valueAt(0, 1) * mat.valueAt(2, 0);
-        float det20 = mat.valueAt(0, 1) * mat.valueAt(1, 2) - mat.valueAt(0, 2) * mat.valueAt(1, 1);
-        float det21 = mat.valueAt(0, 0) * mat.valueAt(1, 2) - mat.valueAt(0, 2) * mat.valueAt(1, 0);
-        float det22 = mat.valueAt(0, 0) * mat.valueAt(1, 1) - mat.valueAt(0, 1) * mat.valueAt(1, 0);
-        
-        det = 1.0f/det;
-        mat.valueAt(0, 0) = det00* det; mat.valueAt(0, 1) = -det01 * det; mat.valueAt(0, 2) = det02 * det;
-        mat.valueAt(1, 0) = -det10 * det; mat.valueAt(1, 1) = det11 * det; mat.valueAt(1, 2) = -det12 * det;
-        mat.valueAt(2, 0) = det20 * det; mat.valueAt(2, 1) = -det21 * det; mat.valueAt(2, 2) = det22 * det;
-    }
-    
-    return mat;
-}
-
 FORCEINLINE float* value_pointer(MyFMatrix3 &mat) {
     return &mat.valueAt(0, 0);
 }
@@ -687,16 +516,6 @@ FORCEINLINE const float* value_pointer(const MyFMatrix3 &mat) {
 }
 
 // MyFMatrix4 implementation
-
-constexpr int MyFMatrix2::kDimension(4);
-const MyFMatrix4 MyFMatrix4::kIdentity(1.0f, 0.0f, 0.0f, 0.0f,
-                                       0.0f, 1.0f, 0.0f, 0.0f,
-                                       0.0f, 0.0f, 1.0f, 0.0f,
-                                       0.0f, 0.0f, 0.0f, 1.0f);
-const MyFMatrix4 MyFMatrix4::kZero(0.0f, 0.0f, 0.0f, 0.0f,
-                                   0.0f, 0.0f, 0.0f, 0.0f,
-                                   0.0f, 0.0f, 0.0f, 0.0f,
-                                   0.0f, 0.0f, 0.0f, 0.0f);
 
 FORCEINLINE MyFMatrix4::MyFMatrix4(void) {}
 
@@ -1012,20 +831,6 @@ FORCEINLINE const float& MyFMatrix4::valueAt(int x, int y) const {
     return _value[x][y];
 }
 
-/*
- FORCEINLINE float& MyFMatrix2::valueAt(constexpr int x, constexpr int y) {
- MINE_ASSERT2(0 <= x && x <= 1, "MyFMatrix2::valueAt, index(x) out of range");
- MINE_ASSERT2(0 <= y && y <= 1, "MyFMatrix2::valueAt, index(y) out of range");
- return _value[x][y];
- }
- 
- FORCEINLINE const float& MyFMatrix2::valueAt(constexpr int x, constexpr int y) const {
- MINE_ASSERT2(0 <= x && x <= 1, "MyFMatrix2::valueAt, index(x) out of range");
- MINE_ASSERT2(0 <= y && y <= 1, "MyFMatrix2::valueAt, index(y) out of range");
- return _value[x][y];
- }
- */
-
 FORCEINLINE float MyFMatrix4::determinant(void) const {
     float det01 = _value[2][2] * _value[3][3] - _value[2][3] * _value[3][2];
     float det23 = _value[2][1] * _value[3][3] - _value[2][3] * _value[3][1];
@@ -1188,139 +993,6 @@ FORCEINLINE MyFMatrix4 operator*(const MyFMatrix4 &lhs, const MyFMatrix4 &rhs) {
                       lhs.valueAt(3, 2) * rhs.valueAt(2, 2) + lhs.valueAt(3, 3) * rhs.valueAt(3, 2),
                       lhs.valueAt(3, 0) * rhs.valueAt(0, 3) + lhs.valueAt(3, 1) * rhs.valueAt(1, 3) +
                       lhs.valueAt(3, 2) * rhs.valueAt(2, 3) + lhs.valueAt(3, 3) * rhs.valueAt(3, 3));
-}
-
-FORCEINLINE void zeroMatrix(MyFMatrix4 &mat) {
-    mat.valueAt(0, 0) = 0.0f; mat.valueAt(0, 1) = 0.0f; mat.valueAt(0, 2) = 0.0f; mat.valueAt(0, 3) = 0.0f;
-    mat.valueAt(1, 0) = 0.0f; mat.valueAt(1, 1) = 0.0f; mat.valueAt(1, 2) = 0.0f; mat.valueAt(1, 3) = 0.0f;
-    mat.valueAt(2, 0) = 0.0f; mat.valueAt(2, 1) = 0.0f; mat.valueAt(2, 2) = 0.0f; mat.valueAt(2, 3) = 0.0f;
-    mat.valueAt(3, 0) = 0.0f; mat.valueAt(3, 1) = 0.0f; mat.valueAt(3, 2) = 0.0f; mat.valueAt(3, 3) = 0.0f;
-}
-
-FORCEINLINE void identityMatrix(MyFMatrix4 &mat) {
-    mat.valueAt(0, 0) = 1.0f; mat.valueAt(0, 1) = 0.0f; mat.valueAt(0, 2) = 0.0f; mat.valueAt(0, 3) = 0.0f;
-    mat.valueAt(1, 0) = 0.0f; mat.valueAt(1, 1) = 1.0f; mat.valueAt(1, 2) = 0.0f; mat.valueAt(1, 3) = 0.0f;
-    mat.valueAt(2, 0) = 0.0f; mat.valueAt(2, 1) = 0.0f; mat.valueAt(2, 2) = 1.0f; mat.valueAt(2, 3) = 0.0f;
-    mat.valueAt(3, 0) = 0.0f; mat.valueAt(3, 1) = 0.0f; mat.valueAt(3, 2) = 0.0f; mat.valueAt(3, 3) = 1.0f;
-}
-
-FORCEINLINE MyFMatrix4 transposeMatrix(const MyFMatrix4 &mat) {
-    return MyFMatrix4(mat.valueAt(0, 0), mat.valueAt(1, 0), mat.valueAt(2, 0), mat.valueAt(3, 0),
-                      mat.valueAt(0, 1), mat.valueAt(1, 1), mat.valueAt(2, 1), mat.valueAt(3, 1),
-                      mat.valueAt(0, 2), mat.valueAt(1, 2), mat.valueAt(2, 2), mat.valueAt(3, 2),
-                      mat.valueAt(0, 3), mat.valueAt(1, 3), mat.valueAt(2, 3), mat.valueAt(3, 3));
-}
-
-FORCEINLINE MyFMatrix4& transposeMatrixSelf(MyFMatrix4 &mat) {
-    float tmp = mat.valueAt(0, 1);
-    mat.valueAt(0, 1) = mat.valueAt(1, 0);
-    mat.valueAt(1, 0) = tmp;
-    tmp = mat.valueAt(0, 2);
-    mat.valueAt(0, 2) = mat.valueAt(2, 0);
-    mat.valueAt(2, 0) = tmp;
-    tmp = mat.valueAt(0, 3);
-    mat.valueAt(0, 3) = mat.valueAt(3, 0);
-    mat.valueAt(3, 0) = tmp;
-    tmp = mat.valueAt(1, 2);
-    mat.valueAt(1, 2) = mat.valueAt(2, 1);
-    mat.valueAt(2, 1) = tmp;
-    tmp = mat.valueAt(1, 3);
-    mat.valueAt(1, 3) = mat.valueAt(3, 1);
-    mat.valueAt(3, 1) = tmp;
-    tmp = mat.valueAt(2, 3);
-    mat.valueAt(2, 3) = mat.valueAt(3, 2);
-    mat.valueAt(3, 2) = tmp;
-    return mat;
-}
-
-// [P , E]P^-1 = [E, P^-1]
-FORCEINLINE MyFMatrix4 inverseMatrix(const MyFMatrix4 &mat) {
-    MyFMatrix4 media(mat), ret(1.0f);
-    float dem, tmp;
-    
-    // first column
-    if(!MyMathUtil::zero(mat.valueAt(0, 0))) {
-        // do nothing
-    } else if(!MyMathUtil::zero(mat.valueAt(1, 0))) {
-        media.valueAt(0, 0) = media.valueAt(1, 0);
-        media.valueAt(1, 0) = 0.0f;
-        tmp = media.valueAt(0, 1);
-        media.valueAt(0, 1) = media.valueAt(1, 1);
-        media.valueAt(1, 1) = tmp;
-        tmp = media.valueAt(0, 2);
-        media.valueAt(0, 2) = media.valueAt(1, 2);
-        media.valueAt(1, 2) = tmp;
-        tmp = media.valueAt(0, 3);
-        media.valueAt(0, 3) = media.valueAt(1, 3);
-        media.valueAt(1, 3) = tmp;
-        
-        ret.valueAt(0, 0) = 0.0f;
-        ret.valueAt(0, 1) = 1.0f;
-        ret.valueAt(1, 0) = 1.0f;
-        ret.valueAt(1, 1) = 0.0f;
-    } else if(!MyMathUtil::zero(mat.valueAt(2, 0))) {
-        media.valueAt(0, 0) = media.valueAt(2, 0);
-        media.valueAt(2, 0) = 0.0f;
-        tmp = media.valueAt(0, 1);
-        media.valueAt(0, 1) = media.valueAt(2, 1);
-        media.valueAt(2, 1) = tmp;
-        tmp = media.valueAt(0, 2);
-        media.valueAt(0, 2) = media.valueAt(2, 2);
-        media.valueAt(2, 2) = tmp;
-        tmp = media.valueAt(0, 3);
-        media.valueAt(0, 3) = media.valueAt(2, 3);
-        media.valueAt(2, 3) = tmp;
-        
-        ret.valueAt(0, 0) = 0.0f;
-        ret.valueAt(0, 2) = 1.0f;
-        ret.valueAt(2, 0) = 1.0f;
-        ret.valueAt(2, 2) = 0.0f;
-    } else if(!MyMathUtil::zero(mat.valueAt(3, 0))) {
-        media.valueAt(0, 0) = media.valueAt(3, 0);
-        media.valueAt(3, 0) = 0.0f;
-        tmp = media.valueAt(0, 1);
-        media.valueAt(0, 1) = media.valueAt(3, 1);
-        media.valueAt(3, 1) = tmp;
-        tmp = media.valueAt(0, 2);
-        media.valueAt(0, 2) = media.valueAt(3, 2);
-        media.valueAt(3, 2) = tmp;
-        tmp = media.valueAt(0, 3);
-        media.valueAt(0, 3) = media.valueAt(3, 3);
-        media.valueAt(3, 3) = tmp;
-        
-        ret.valueAt(0, 0) = 0.0f;
-        ret.valueAt(0, 3) = 1.0f;
-        ret.valueAt(3, 0) = 1.0f;
-        ret.valueAt(3, 3) = 0.0f;
-    } else {
-        return MyFMatrix4::kZero;
-    }
-    dem = 1.0f/media.valueAt(0, 0);
-    
-    return ret;
-}
-
-FORCEINLINE MyFMatrix4& inverseMatrixSelf(MyFMatrix4 &mat) {
-    float det00 = mat.valueAt(1, 1) * mat.valueAt(2, 2) - mat.valueAt(1, 2) * mat.valueAt(2, 1);
-    float det01 = mat.valueAt(1, 0) * mat.valueAt(2, 2) - mat.valueAt(1, 2) * mat.valueAt(2, 0);
-    float det02 = mat.valueAt(1, 0) * mat.valueAt(2, 1) - mat.valueAt(1, 1) * mat.valueAt(2, 0);
-    float det = mat.valueAt(0, 0) * det00 - mat.valueAt(0, 1) * det01 + mat.valueAt(0, 2) * det02;
-    
-    if(!MyMathUtil::zero(det)) {
-        float det10 = mat.valueAt(0, 1) * mat.valueAt(2, 2) - mat.valueAt(0, 2) * mat.valueAt(2, 1);
-        float det11 = mat.valueAt(0, 0) * mat.valueAt(2, 2) - mat.valueAt(0, 2) * mat.valueAt(2, 0);
-        float det12 = mat.valueAt(0, 0) * mat.valueAt(2, 1) - mat.valueAt(0, 1) * mat.valueAt(2, 0);
-        float det20 = mat.valueAt(0, 1) * mat.valueAt(1, 2) - mat.valueAt(0, 2) * mat.valueAt(1, 1);
-        float det21 = mat.valueAt(0, 0) * mat.valueAt(1, 2) - mat.valueAt(0, 2) * mat.valueAt(1, 0);
-        float det22 = mat.valueAt(0, 0) * mat.valueAt(1, 1) - mat.valueAt(0, 1) * mat.valueAt(1, 0);
-        
-        det = 1.0f/det;
-        mat.valueAt(0, 0) = det00* det; mat.valueAt(0, 1) = -det01 * det; mat.valueAt(0, 2) = det02 * det;
-        mat.valueAt(1, 0) = -det10 * det; mat.valueAt(1, 1) = det11 * det; mat.valueAt(1, 2) = -det12 * det;
-        mat.valueAt(2, 0) = det20 * det; mat.valueAt(2, 1) = -det21 * det; mat.valueAt(2, 2) = det22 * det;
-    }
-    
-    return mat;
 }
 
 FORCEINLINE float* value_pointer(MyFMatrix4 &mat) {

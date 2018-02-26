@@ -6,8 +6,8 @@
 //  Copyright © 2018 SangDesu. All rights reserved.
 //
 
-#ifndef MyFVector_hpp
-#define MyFVector_hpp
+#ifndef MyVector_hpp
+#define MyVector_hpp
 
 #include "MyPrecompiled.hpp"
 
@@ -58,16 +58,8 @@ MyFVector2 operator*(float value, const MyFVector2 &v);
 
 MyFVector2 operator/(const MyFVector2 &v, float value);
 
-float magnitudeSquare(const MyFVector2 &v);
-float magnitude(const MyFVector2 &v);
-
-MyFVector2 normalize(const MyFVector2 &v);
-MyFVector2& normalizeSelf(MyFVector2 &v);
-
 float* value_pointer(MyFVector2 &v);
 const float* value_pointer(const MyFVector2 &v);
-
-float dotProduct(const MyFVector2 &lhs, const MyFVector2 &rhs);
 
 // MyFVector3 interface
 
@@ -116,16 +108,8 @@ MyFVector3 operator*(float value, const MyFVector3 &v);
 MyFVector3 operator/(const MyFVector3 &v, float value);
 MyFVector3 operator*(const MyFVector3 &lhs, const MyFVector3 &rhs);
 
-float magnitudeSquare(const MyFVector3 &v);
-float magnitude(const MyFVector3 &v);
-
-MyFVector3 normalize(const MyFVector3 &v);
-MyFVector3& normalizeSelf(MyFVector3 &v);
-
 float* value_pointer(MyFVector3 &v);
 const float* value_pointer(const MyFVector3 &v);
-
-float dotProduct(const MyFVector3 &lhs, const MyFVector3 &rhs);
 
 // MyFVector4 interface
 
@@ -176,21 +160,13 @@ MyFVector4 operator*(float value, const MyFVector4 &v);
 
 MyFVector4 operator/(const MyFVector4 &v, float value);
 
-float magnitudeSquare(const MyFVector4 &v);
-float magnitude(const MyFVector4 &v);
-
-MyFVector4 normalize(const MyFVector4 &v);
-MyFVector4& normalizeSelf(MyFVector4 &v);
-
 float* value_pointer(MyFVector4 &v);
 const float* value_pointer(const MyFVector4 &v);
-
-float dotProduct(const MyFVector4 &lhs, const MyFVector4 &rhs);
 
 MINE_NAMESPACE_END
 
 #pragma GCC visibility pop
 
-#include "MyFVector.inl"
+#include "MyVector.inl"
 
-#endif /* MyFVector_hpp */
+#endif /* MyVector_hpp */

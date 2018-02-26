@@ -37,6 +37,14 @@ public:
         return ::cosf(x);
     }
     
+    static float asin(float x) {
+        return ::asinf(x);
+    }
+    
+    static float acos(float x) {
+        return ::acosf(x);
+    }
+    
     static float sqrt(float x) {
         return ::sqrtf(x);
     }
