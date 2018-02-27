@@ -20,7 +20,7 @@
 #include "mymath/MyMathMatrix.hpp"
 #include "mymath/MyVector.hpp"
 #include "mymath/MyMatrix.hpp"
-#include "mymath/MyLinearTransformation.hpp"
+#include "mymath/MyTransformation.hpp"
 
 // xml
 #include "myxml/MyXMLDocument.hpp"

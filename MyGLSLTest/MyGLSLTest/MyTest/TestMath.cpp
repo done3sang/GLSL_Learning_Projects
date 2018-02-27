@@ -21,10 +21,214 @@ namespace {
             std::cout << '\n';
         }
     }
+    
+    void printMatrix(const MyFMatrix2 &mat) {
+        for(int r = 0; r != 2; ++r) {
+            for(int c = 0; c != 2; ++c) {
+                std::cout << mat.valueAt(r, c) << "\t\t";
+            }
+            std::cout << '\n';
+        }
+    }
+    
+    void printMatrix(const MyFMatrix3 &mat) {
+        for(int r = 0; r != 3; ++r) {
+            for(int c = 0; c != 3; ++c) {
+                std::cout << mat.valueAt(r, c) << "\t\t";
+            }
+            std::cout << '\n';
+        }
+    }
+    
+    void printMatrix(const MyFMatrix4 &mat) {
+        for(int r = 0; r != 4; ++r) {
+            for(int c = 0; c != 4; ++c) {
+                std::cout << mat.valueAt(r, c) << "\t\t";
+            }
+            std::cout << '\n';
+        }
+    }
+    
+    void printMatrix(const MyFVector3 &vec) {
+        std::cout << vec.x << "\t\t" << vec.y << "\t\t" << vec.z << "\n";
+    }
 }
 
 void MathTest::run(void) {
-    testMathMatrix();
+    //testMathMatrix();
+    testTransformation();
+}
+
+void MathTest::testTransformation(void) {
+    MyFMatrix2 mm1(1.0f);
+    MyFMatrix2 mm2(2);
+    MyFMatrix2 mm3(mm1);
+    MyFMatrix3 mm6;
+    
+    mm3 = mm1 + mm2;
+    mm3 = mm1 * mm2;
+    
+    transposeMatrix(mm6);
+    identityMatrix(mm6);
+    
+    MyFMatrix3 mq({2, 1, 1, 0, 1, 1, 0, -1, 3});
+    MyFMatrix3 me({2, 1, 1, 0, 1, 1, 0, -1, 3});
+    
+    MyFMatrix2 md2({2, 1, 1, 0});
+    MyFMatrix3 md3({1, 2, 3, 4, 5, 6, 7, 8, 9});
+    MyFMatrix3 md4({
+        2, 1, 1,
+        0, 1, 1,
+        0, -1, 3
+    });
+    MyFMatrix4 md5({
+        1, 0, 0, 0,
+        0, 2, 0, 0,
+        0, 0, 0, 4,
+        0, 0, 3, 0
+    });
+    
+    std::cout << std::boolalpha;
+    
+    MyFMatrix2 mi2;
+    MyFMatrix3 mi3;
+    MyFMatrix3 mi4;
+    MyFMatrix4 mi5;
+    bool inversible;
+    
+    inversible = inverseMatrix(md2, mi2);
+    std::cout << "det(md2), inversible = " << md2.determinant() << ", " << inversible << "\n";
+    std::cout << "mi2 = \n";
+    printMatrix(mi2);
+    
+    inversible = inverseMatrix(md3, mi3);
+    std::cout << "det(md3), inversible = " << md3.determinant() << ", " << inversible << "\n";
+    std::cout << "mi3 = \n";
+    printMatrix(mi3);
+    
+    inversible = inverseMatrix(md4, mi4);
+    std::cout << "det(md4), inversible = " << md4.determinant() << ", " << inversible << "\n";
+    std::cout << "mi4 = \n";
+    printMatrix(mi4);
+    
+    inversible = inverseMatrix(md5, mi5);
+    std::cout << "det(md5), inversible = " << md5.determinant() << ", " << inversible << "\n";
+    std::cout << "mi5 = \n";
+    printMatrix(mi5);
+    
+    MyFMatrix3 md6({
+        0, 2, -1,
+        1, 1, 2,
+        -1, -1, -1
+    });
+    MyFMatrix3 mi6;
+    
+    inversible = inverseMatrix(md6, mi6);
+    std::cout << "det(md6), inversible = " << md6.determinant() << ", " << inversible << "\n";
+    std::cout << "mi6 = \n";
+    printMatrix(mi6);
+    
+    MyFMatrix3 md7({
+        1, -2, 1,
+        2, 0, 1,
+        0, 4, -1
+    });
+    MyFMatrix3 mi7;
+    
+    inversible = inverseMatrix(md7, mi7);
+    std::cout << "det(md7), inversible = " << md7.determinant() << ", " << inversible << "\n";
+    std::cout << "mi7 = \n";
+    printMatrix(mi7);
+    
+    // evaluation
+    MyFMatrix4 mb({
+        1, 2, -3, -2,
+        0, 1, 2, -3,
+        0, 0, 1, 2,
+        0, 0, 0, 1
+    });
+    MyFMatrix4 mc({
+        1, 2, 0, 1,
+        0, 1, 2, 0,
+        0, 0, 1, 2,
+        0, 0, 0, 1
+    });
+    MyFMatrix4 ma(2.0f * mc - mb);
+    MyFMatrix4 mai;
+    transposeMatrix(ma);
+    inversible = inverseMatrix(ma, mai);
+    std::cout << "det(ma), inversible = " << ma.determinant() << ", " << inversible << "\n";
+    std::cout << "mai = \n";
+    printMatrix(mai);
+    
+    MyFMatrix4 mp1({
+        0, 0, 1, 0,
+        0, 1, 0, 0,
+        1, 0, 0, 0,
+        0, 0, 0, 1
+    });
+    MyFMatrix4 mp2({
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        2, 0, 0, 1
+    });
+    MyFMatrix4 mp3({
+        1, 0, 0, 0,
+        0, 3, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1
+    });
+    MyFMatrix4 mp4(mp1 * mp2 * mp3);
+    MyFMatrix4 mpi;
+    inversible = inverseMatrix(mp4, mpi);
+    std::cout << "det(mp4), inversible = " << mp4.determinant() << ", " << inversible << "\n";
+    std::cout << "mpi = \n";
+    printMatrix(mpi);
+    
+    MyFMatrix3 A({
+        4, 2, 5,
+        3, 2, 5,
+        0, 2, 4
+    });
+    MyFVector3 X, b({550, 475, 222});
+    MyFMatrix3 InvA;
+    inversible = inverseMatrix(A, InvA);
+    if(inversible) {
+        X = InvA * b;
+    }
+    std::cout << "X = \n";
+    printMatrix(X);
+    
+    MyFMatrix2 P({
+        -1, -4,
+        1, 1
+    });
+    MyFMatrix2 B({
+        -1, 0,
+        0, 2
+    });
+    MyFMatrix2 InvP;
+    MyFMatrix2 PA;
+    MyFMatrix2 MPA;
+    inversible = inverseMatrix(P, InvP);
+    if(inversible) {
+        PA = P * B * InvP;
+        identityMatrix(MPA);
+        for(int i = 0; i != 11; ++i) {
+            MPA = MPA * PA;
+        }
+    }
+    std::cout << "MPA = \n";
+    printMatrix(MPA);
+    
+    MyFMatrix4 mdd({
+        5, 2, -6, -3,
+        -4, 7, -2, 4,
+        -2, 3, 4, 1,
+        7, -8, -10, -5
+    });
+    std::cout << "det(mdd), inversible = " << mdd.determinant() << ", " << mdd.inversible() << "\n";
 }
 
 void MathTest::testMathMatrix(void) {

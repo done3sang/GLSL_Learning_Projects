@@ -190,6 +190,31 @@ MyFMatrix4 operator*(const MyFMatrix4 &lhs, const MyFMatrix4 &rhs);
 float* value_pointer(MyFMatrix4 &mat);
 const float* value_pointer(const MyFMatrix4 &mat);
 
+// basic operations of matrix
+void zeroMatrix(MyFMatrix2 &mat);
+void identityMatrix(MyFMatrix2 &mat);
+MyFMatrix2 transposeMatrix(const MyFMatrix2 &mat);
+void transposeMatrix(MyFMatrix2 &mat);
+void transposeMatrix(const MyFMatrix2 &inMat, MyFMatrix2 &outMat);
+bool inverseMatrix(const MyFMatrix2 &mat, MyFMatrix2 &invMat);
+bool inverseMatrix(MyFMatrix2 &mat);
+
+void zeroMatrix(MyFMatrix3 &mat);
+void identityMatrix(MyFMatrix3 &mat);
+MyFMatrix3 transposeMatrix(const MyFMatrix3 &mat);
+void transposeMatrix(MyFMatrix3 &mat);
+void transposeMatrix(const MyFMatrix3 &inMat, MyFMatrix3 &outMat);
+bool inverseMatrix(const MyFMatrix3 &mat, MyFMatrix3 &invMat);
+bool inverseMatrix(MyFMatrix3 &mat);
+
+void zeroMatrix(MyFMatrix4 &mat);
+void identityMatrix(MyFMatrix4 &mat);
+MyFMatrix4 transposeMatrix(const MyFMatrix4 &mat);
+void transposeMatrix(MyFMatrix4 &mat);
+void transposeMatrix(const MyFMatrix4 &inMat, MyFMatrix4 &outMat);
+bool inverseMatrix(const MyFMatrix4 &mat, MyFMatrix4 &invMat);
+bool inverseMatrix(MyFMatrix4 &mat);
+
 MINE_NAMESPACE_END
 
 #pragma GCC visibility pop

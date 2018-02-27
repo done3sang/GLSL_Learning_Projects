@@ -43,11 +43,45 @@ public:
     const MyFVector3& axisZ(void) const;
     const MyFMatrix3& coordinateMatrix(void) const;
     
+    void assignCoordinate(const MyFVector3 &inX,
+                          const MyFVector3 &inY,
+                          const MyFVector3 &inZ);
+    
+    bool validate(void) const;
+    
 private:
     MyFVector3 _axisX;
     MyFVector3 _axisY;
     MyFVector3 _axisZ;
     MyFMatrix3 _coordinateMatrix;
+};
+
+class MyCoordinateTransition {
+public:
+    MyCoordinateTransition(void);
+    MyCoordinateTransition(const MyCoordinate &coordA, const MyCoordinate &coordB);
+    MyCoordinateTransition(const MyCoordinateTransition &other);
+    MyCoordinateTransition(const MyCoordinateTransition &&other);
+    ~MyCoordinateTransition(void);
+    
+    MyCoordinateTransition& operator=(const MyCoordinateTransition &other);
+    MyCoordinateTransition& operator=(const MyCoordinateTransition &&other);
+    
+    bool operator==(const MyCoordinateTransition &other) const;
+    bool operator!=(const MyCoordinateTransition &other) const;
+    
+    const MyFMatrix3& forwardMatrix(void) const;
+    const MyFMatrix3& backwardMatrix(void) const;
+    
+    bool validate(void) const;
+    
+private:
+    const MyCoordinate *_coordinateA;
+    const MyCoordinate *_coordinateB;
+    MyFMatrix3 _forwardMatrix; // B = A * P -> P = A ^ -1 * B
+    MyFMatrix3 _backwardMatrix; // Q = transpose(P)
+    
+    void constructTransition(const MyCoordinate &coordA, const MyCoordinate &coordB);
 };
 
 MINE_NAMESPACE_END

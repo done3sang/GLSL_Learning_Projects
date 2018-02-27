@@ -29,12 +29,14 @@ x(other.x), y(other.y) {}
 FORCEINLINE MyFVector2::~MyFVector2(void) {}
 
 FORCEINLINE MyFVector2& MyFVector2::operator=(const MyFVector2 &other) {
+    MINE_ASSERT2(this != &other, "MyFVector2::operator=, same object");
     x = other.x;
     y = other.y;
     return *this;
 }
 
 FORCEINLINE MyFVector2& MyFVector2::operator=(const MyFVector2 &&other) {
+    MINE_ASSERT2(this != &other, "MyFVector2::operator=, same object");
     x = other.x;
     y = other.y;
     return *this;
@@ -125,6 +127,7 @@ x(other.x), y(other.y), z(other.z) {}
 FORCEINLINE MyFVector3::~MyFVector3(void) {}
 
 FORCEINLINE MyFVector3& MyFVector3::operator=(const MyFVector3 &other) {
+    MINE_ASSERT2(this != &other, "MyFVector3::operator=, same object");
     x = other.x;
     y = other.y;
     z = other.z;
@@ -132,6 +135,7 @@ FORCEINLINE MyFVector3& MyFVector3::operator=(const MyFVector3 &other) {
 }
 
 FORCEINLINE MyFVector3& MyFVector3::operator=(const MyFVector3 &&other) {
+    MINE_ASSERT2(this != &other, "MyFVector3::operator=, same object");
     x = other.x;
     y = other.y;
     z = other.z;
@@ -246,6 +250,7 @@ x(other.x), y(other.y), z(other.z), w(other.w) {}
 FORCEINLINE MyFVector4::~MyFVector4(void) {}
 
 FORCEINLINE MyFVector4& MyFVector4::operator=(const MyFVector4 &other) {
+    MINE_ASSERT2(this != &other, "MyFVector4::operator=, same object");
     x = other.x;
     y = other.y;
     z = other.z;
@@ -254,6 +259,7 @@ FORCEINLINE MyFVector4& MyFVector4::operator=(const MyFVector4 &other) {
 }
 
 FORCEINLINE MyFVector4& MyFVector4::operator=(const MyFVector4 &&other) {
+    MINE_ASSERT2(this != &other, "MyFVector4::operator=, same object");
     x = other.x;
     y = other.y;
     z = other.z;
@@ -333,6 +339,156 @@ FORCEINLINE float* value_pointer(MyFVector4 &v) {
 
 FORCEINLINE const float* value_pointer(const MyFVector4 &v) {
     return &v.x;
+}
+
+// basic operations of vector
+FORCEINLINE float magnitudeVector(const MyFVector2 &vec) {
+    return MyMathUtil::sqrt(magnitudeSquareVector(vec));
+}
+
+FORCEINLINE float magnitudeSquareVector(const MyFVector2 &vec) {
+    return vec.x * vec.x + vec.y * vec.y;
+}
+
+FORCEINLINE float magnitudeVector(const MyFVector3 &vec) {
+    return MyMathUtil::sqrt(magnitudeSquareVector(vec));
+}
+
+FORCEINLINE float magnitudeSquareVector(const MyFVector3 &vec) {
+    return vec.x * vec.x + vec.y * vec.y + vec.z * vec.z;
+}
+
+FORCEINLINE float magnitudeVector(const MyFVector4 &vec) {
+    return MyMathUtil::sqrt(magnitudeSquareVector(vec));
+}
+
+FORCEINLINE float magnitudeSquareVector(const MyFVector4 &vec) {
+    return vec.x * vec.x + vec.y * vec.y + vec.z * vec.z + vec.w * vec.w;
+}
+
+FORCEINLINE MyFVector2 normalizeVector(const MyFVector2 &vec) {
+    return vec/magnitudeVector(vec);
+}
+
+FORCEINLINE void normalizeVector(MyFVector2 &vec) {
+    vec /= magnitudeVector(vec);
+}
+
+FORCEINLINE void normalizeVector(const MyFVector2 &inVec, MyFVector2 &outVec) {
+    float mag = magnitudeVector(inVec);
+    MINE_ASSERT2(!MyMathUtil::zero(mag), "normalizeVector, magnitude 0");
+    mag = 1.0f/mag;
+    outVec.x = inVec.x * mag;
+    outVec.y = inVec.y * mag;
+}
+
+FORCEINLINE MyFVector3 normalizeVector(const MyFVector3 &vec) {
+    return vec/magnitudeVector(vec);
+}
+
+FORCEINLINE void normalizeVector(MyFVector3 &vec) {
+    vec /= magnitudeVector(vec);
+}
+
+FORCEINLINE void normalizeVector(const MyFVector3 &inVec, MyFVector3 &outVec) {
+    float mag = magnitudeVector(inVec);
+    MINE_ASSERT2(!MyMathUtil::zero(mag), "normalizeVector, magnitude 0");
+    mag = 1.0f/mag;
+    outVec.x = inVec.x * mag;
+    outVec.y = inVec.y * mag;
+    outVec.z = inVec.z * mag;
+}
+
+FORCEINLINE MyFVector4 normalizeVector(const MyFVector4 &vec) {
+    return vec/magnitudeVector(vec);
+}
+
+FORCEINLINE void normalizeVector(MyFVector4 &vec) {
+    vec /= magnitudeVector(vec);
+}
+
+FORCEINLINE void normalizeVector(const MyFVector4 &inVec, MyFVector4 &outVec) {
+    float mag = magnitudeVector(inVec);
+    MINE_ASSERT2(!MyMathUtil::zero(mag), "normalizeVector, magnitude 0");
+    mag = 1.0f/mag;
+    outVec.x = inVec.x * mag;
+    outVec.y = inVec.y * mag;
+    outVec.z = inVec.z * mag;
+    outVec.w = inVec.w * mag;
+}
+
+FORCEINLINE float dotProduct(const MyFVector2 &a, const MyFVector2 &b) {
+    return a.x * b.x + a.y * b.y;
+}
+
+FORCEINLINE float dotProduct(const MyFVector3 &a, const MyFVector3 &b) {
+    return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
+FORCEINLINE float dotProduct(const MyFVector4 &a, const MyFVector4 &b) {
+    return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
+}
+
+FORCEINLINE void crossProduct(const MyFVector4 &a, const MyFVector4 &b, MyFVector3 &outVec) {
+    outVec.x = a.y * b.z - a.z * b.y;
+    outVec.y = a.z * b.x - a.x * b.z;
+    outVec.z = a.x * b.y - a.y * b.x;
+}
+
+FORCEINLINE float radiusVector(const MyFVector2 &a, const MyFVector2 &b) {
+    float ab = magnitudeVector(a) * magnitudeVector(b);
+    return MyMathUtil::zero(ab) ? MyMathUtil::kMathPIOver2 : MyMathUtil::acos(dotProduct(a, b)/ab);
+}
+
+FORCEINLINE float radiusVector(const MyFVector3 &a, const MyFVector3 &b) {
+    float ab = magnitudeVector(a) * magnitudeVector(b);
+    return MyMathUtil::zero(ab) ? MyMathUtil::kMathPIOver2 : MyMathUtil::acos(dotProduct(a, b)/ab);
+}
+
+FORCEINLINE float radiusVector(const MyFVector4 &a, const MyFVector4 &b) {
+    float ab = magnitudeVector(a) * magnitudeVector(b);
+    return MyMathUtil::zero(ab) ? MyMathUtil::kMathPIOver2 : MyMathUtil::acos(dotProduct(a, b)/ab);
+}
+
+FORCEINLINE MyFVector3 projectVector(const MyFVector3 &a, const MyFVector3 &b) {
+    MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "projectVector, magnitude 0");
+    float k = dotProduct(a, b)/magnitudeSquareVector(b);
+    return MyFVector3(b.x * k, b.y * k, b.z * k);
+}
+
+FORCEINLINE void projectVector(MyFVector3 &a, const MyFVector3 &b) {
+    MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "projectVector, magnitude 0");
+    float k = dotProduct(a, b)/magnitudeSquareVector(b);
+    a.x = b.x * k;
+    a.y = b.y * k;
+    a.z = b.z * k;
+}
+
+FORCEINLINE void projectVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec) {
+    MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "projectVector, magnitude 0");
+    float k = dotProduct(a, b)/magnitudeSquareVector(b);
+    outVec.x = b.x * k;
+    outVec.y = b.y * k;
+    outVec.z = b.z * k;
+}
+
+FORCEINLINE MyFVector3 projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b) {
+    float k = dotProduct(a, b);
+    return MyFVector3(b.x * k, b.y * k, b.z * k);
+}
+
+FORCEINLINE void projectNormalizedVector(MyFVector3 &a, const MyFVector3 &b) {
+    float k = dotProduct(a, b);
+    a.x = b.x * k;
+    a.y = b.y * k;
+    a.z = b.z * k;
+}
+
+FORCEINLINE void projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec) {
+    float k = dotProduct(a, b);
+    outVec.x = b.x * k;
+    outVec.y = b.y * k;
+    outVec.z = b.z * k;
 }
 
 MINE_NAMESPACE_END

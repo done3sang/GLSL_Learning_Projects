@@ -163,6 +163,49 @@ MyFVector4 operator/(const MyFVector4 &v, float value);
 float* value_pointer(MyFVector4 &v);
 const float* value_pointer(const MyFVector4 &v);
 
+// basic operation of vector
+float magnitudeVector(const MyFVector2 &vec);
+float magnitudeSquareVector(const MyFVector2 &vec);
+
+float magnitudeVector(const MyFVector3 &vec);
+float magnitudeSquareVector(const MyFVector3 &vec);
+
+float magnitudeVector(const MyFVector4 &vec);
+float magnitudeSquareVector(const MyFVector4 &vec);
+
+MyFVector2 normalizeVector(const MyFVector2 &vec);
+void normalizeVector(MyFVector2 &vec);
+void normalizeVector(const MyFVector2 &inVec, MyFVector2 &outVec);
+bool vectorNormalized(const MyFVector2 &vec);
+
+MyFVector3 normalizeVector(const MyFVector3 &vec);
+void normalizeVectorSelf(MyFVector3 &vec);
+void normalizeVector(const MyFVector3 &inVec, MyFVector3 &outVec);
+bool vectorNormalized(const MyFVector3 &vec);
+
+MyFVector4 normalizeVector(const MyFVector4 &vec);
+void normalizeVectorSelf(MyFVector4 &vec);
+void normalizeVector(const MyFVector4 &inVec, MyFVector4 &outVec);
+bool vectorNormalized(const MyFVector4 &vec);
+
+float dotProduct(const MyFVector2 &a, const MyFVector2 &b);
+float dotProduct(const MyFVector3 &a, const MyFVector3 &b);
+float dotProduct(const MyFVector4 &a, const MyFVector4 &b);
+
+void crossProduct(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec);
+
+float radiusVector(const MyFVector2 &a, const MyFVector2 &b);
+float radiusVector(const MyFVector3 &a, const MyFVector3 &b);
+float radiusVector(const MyFVector4 &a, const MyFVector4 &b);
+
+MyFVector3 projectVector(const MyFVector3 &a, const MyFVector3 &b);
+void projectVector(MyFVector3 &a, const MyFVector3 &b);
+void projectVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec);
+
+MyFVector3 projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b);
+void projectNormalizedVector(MyFVector3 &a, const MyFVector3 &b);
+void projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec);
+
 MINE_NAMESPACE_END
 
 #pragma GCC visibility pop

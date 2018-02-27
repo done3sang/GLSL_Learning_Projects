@@ -19,7 +19,7 @@ MINE_NAMESPACE_BEGIN
 
 class MyStatic;
 
-class MyMathUtil final: private MyStatic {
+class MyMathUtil final {
 public:
     static constexpr float kMathPI = 3.14159265358979323846264338327950288f;
     static constexpr float kMathPIBy2 = 2.0f * kMathPI;
@@ -49,17 +49,30 @@ public:
         return ::sqrtf(x);
     }
     
-    static float fabsf(float x) {
+    static float abs(float x) {
         return ::fabsf(x);
     }
     
     static bool equal(float x, float y) {
-        return fabsf(x - y) <= kMathEpsilon;
+        return abs(x - y) <= kMathEpsilon;
     }
     
     static bool zero(float x) {
-        return fabsf(x) <= kMathEpsilon;
+        return abs(x) <= kMathEpsilon;
     }
+    
+    static bool identity(float x) {
+        return abs(x - 1.0f) <= kMathEpsilon;
+    }
+    
+public:
+    MyMathUtil(void) = delete;
+    MyMathUtil(const MyMathUtil&) = delete;
+    MyMathUtil(MyMathUtil&&) = delete;
+    ~MyMathUtil(void) = delete;
+    
+    MyMathUtil& operator=(const MyMathUtil&) = delete;
+    MyMathUtil& operator=(MyMathUtil&&) = delete;
 };
 
 MINE_NAMESPACE_END

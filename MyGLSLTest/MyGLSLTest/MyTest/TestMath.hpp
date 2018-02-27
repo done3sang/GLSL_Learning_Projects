@@ -17,6 +17,7 @@ public:
     
 private:
     void testMathMatrix(void);
+    void testTransformation(void);
 };
 
 #endif /* TestMath_hpp */

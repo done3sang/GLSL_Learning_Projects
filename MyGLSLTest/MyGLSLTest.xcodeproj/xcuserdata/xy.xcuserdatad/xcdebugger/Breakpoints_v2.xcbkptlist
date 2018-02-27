@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymath/MyMatrix.inl"
-            timestampString = "539520054.35903"
+            timestampString = "541413761.2420059"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "788"
-            endingLineNumber = "788"
+            startingLineNumber = "794"
+            endingLineNumber = "794"
             landmarkName = "MyFMatrix4::operator*=(const MyFMatrix4 &amp;other)"
             landmarkType = "7">
          </BreakpointContent>
@@ -33,6 +33,2541 @@
             endingLineNumber = "13"
             landmarkName = "unknown"
             landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "541413761.242113"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1234"
+            endingLineNumber = "1234"
+            landmarkName = "LinearMatrixInverseByGaussRowImpl"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 0&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.4330961"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.435326"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 1, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.437528"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 0&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.439795"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.442302"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.44513"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.447889"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.450587"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 2, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.4537669"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 0&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.456485"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.459689"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.462791"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.465762"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.468027"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.470313"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.472612"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.476374"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.479308"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 3, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.481722"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1238"
+                  endingLineNumber = "1238"
+                  offsetFromSymbolStart = "25">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "541413761.242167"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1259"
+            endingLineNumber = "1259"
+            landmarkName = "eval(M &amp;mat, M &amp;invMat, bool &amp;inversible)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 0, 0, 0&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412915.041312"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1263"
+                  endingLineNumber = "1263"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 0, 0, 0&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412915.044188"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1263"
+                  endingLineNumber = "1263"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 0, 0, 0&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412915.047323"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1263"
+                  endingLineNumber = "1263"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "541413761.242215"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1240"
+            endingLineNumber = "1240"
+            landmarkName = "LinearMatrixInverseByGaussRowImpl"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.5173891"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.520331"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.522543"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.5251009"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "197">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.528277"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.530848"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.533093"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.5356309"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "197">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.537854"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "197">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.540697"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "197">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "541413761.24226"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1235"
+            endingLineNumber = "1235"
+            landmarkName = "LinearMatrixInverseByGaussRowImpl"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 0&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.5109921"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "54">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.514389"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 1, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.518055"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 0&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.520268"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "54">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.5224659"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.524778"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.528056"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.532872"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 2, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.535164"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 0&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.5373991"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "54">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.5396169"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.542254"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.546223"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.5500391"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.552852"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.555063"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.558184"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.560643"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 3, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.5630111"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1237"
+                  endingLineNumber = "1237"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "541413761.242305"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1244"
+            endingLineNumber = "1244"
+            landmarkName = "LinearMatrixInverseByGaussRowImpl"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 0&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.586712"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "170">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.588998"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "218">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 1, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.591256"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 0&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.5936821"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "170">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.59593"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "218">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.599045"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "218">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.6017931"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.604051"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 2, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.6065741"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 0&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.60893"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "170">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.612167"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "218">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.614454"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "218">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.61695"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "218">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.620075"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.622913"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.625602"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.62845"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.631312"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 3, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.634203"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1246"
+                  endingLineNumber = "1246"
+                  offsetFromSymbolStart = "180">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "541413761.242348"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1241"
+            endingLineNumber = "1241"
+            landmarkName = "LinearMatrixInverseByGaussRowImpl"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.7018811"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.705747"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.708033"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.710224"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "197">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.7123899"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.71455"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.717756"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "185">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.719939"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "197">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.722367"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "197">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541412569.725446"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1245"
+                  endingLineNumber = "1245"
+                  offsetFromSymbolStart = "197">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "541413761.2423919"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1238"
+            endingLineNumber = "1238"
+            landmarkName = "LinearMatrixInverseByGaussRowImpl"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 0&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.663342"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "149">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.665598"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 1, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.667869"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "163">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 0&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.670118"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "149">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.6724989"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.674934"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.677503"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "163">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.681042"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "170">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 2, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.683479"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "163">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 0&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.685867"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "149">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.68809"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.691152"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.694218"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.6977839"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "163">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.700713"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "170">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.7038521"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "170">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.707342"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "163">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.710512"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "170">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 3, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.712822"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1240"
+                  endingLineNumber = "1240"
+                  offsetFromSymbolStart = "163">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "541413761.242434"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1242"
+            endingLineNumber = "1242"
+            landmarkName = "LinearMatrixInverseByGaussRowImpl"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.738242"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1244"
+                  endingLineNumber = "1244"
+                  offsetFromSymbolStart = "205">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.740579"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1244"
+                  endingLineNumber = "1244"
+                  offsetFromSymbolStart = "205">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.743301"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1244"
+                  endingLineNumber = "1244"
+                  offsetFromSymbolStart = "205">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.745788"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1244"
+                  endingLineNumber = "1244"
+                  offsetFromSymbolStart = "222">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.7479759"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1244"
+                  endingLineNumber = "1244"
+                  offsetFromSymbolStart = "205">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.751003"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1244"
+                  endingLineNumber = "1244"
+                  offsetFromSymbolStart = "205">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.7534781"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1244"
+                  endingLineNumber = "1244"
+                  offsetFromSymbolStart = "205">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.755988"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1244"
+                  endingLineNumber = "1244"
+                  offsetFromSymbolStart = "222">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.7587661"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1244"
+                  endingLineNumber = "1244"
+                  offsetFromSymbolStart = "222">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.7614779"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1244"
+                  endingLineNumber = "1244"
+                  offsetFromSymbolStart = "222">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "541413761.242476"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1245"
+            endingLineNumber = "1245"
+            landmarkName = "LinearMatrixInverseByGaussRowImpl"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 0&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.775957"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "183">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 0, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.779245"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix2, 2, 1, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.7831711"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "193">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 0&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.785805"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "183">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.7894861"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 0, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.792474"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.794896"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "193">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 1, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.798008"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix3, 3, 2, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.800184"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "193">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 0&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.802667"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "183">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.8065079"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.80966"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 0, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.812284"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "231">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.814502"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "193">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.816728"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 1, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.819008"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.82139"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "193">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 2, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.823736"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowImpl&lt;Mine::MyFMatrix4, 4, 3, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;, bool&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413384.826221"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1247"
+                  endingLineNumber = "1247"
+                  offsetFromSymbolStart = "193">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymath/MyMatrix.inl"
+            timestampString = "541413761.2425179"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1214"
+            endingLineNumber = "1214"
+            landmarkName = "LinearMatrixInverseByGaussRowInnerImpl"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix2, 2, 0, 0&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.792075"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix2, 2, 0, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.795863"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix2, 2, 1, 0&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.7986391"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix2, 2, 1, 1&gt;::eval(Mine::MyFMatrix2&amp;, Mine::MyFMatrix2&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.800983"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix3, 3, 0, 0&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.804798"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix3, 3, 0, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.807431"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix3, 3, 0, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.809653"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix3, 3, 1, 0&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.812331"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix3, 3, 1, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.815006"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix3, 3, 1, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.8174649"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix3, 3, 2, 0&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.819716"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix3, 3, 2, 1&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.822064"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix3, 3, 2, 2&gt;::eval(Mine::MyFMatrix3&amp;, Mine::MyFMatrix3&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.824531"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 0, 0&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.827877"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 0, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.830606"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 0, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.833313"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 0, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.835848"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 1, 0&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.83883"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 1, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.841557"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 1, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.843779"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 1, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.846499"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 2, 0&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.84929"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 2, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.852813"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 2, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.856128"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 2, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.859414"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 3, 0&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.861885"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "161">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 3, 1&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.864823"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 3, 2&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.8677779"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::(anonymous namespace)::LinearMatrixInverseByGaussRowInnerImpl&lt;Mine::MyFMatrix4, 4, 3, 3&gt;::eval(Mine::MyFMatrix4&amp;, Mine::MyFMatrix4&amp;)"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/MyGLSLTest/../Mine/Mine/mymath/MyMatrix.inl"
+                  timestampString = "541413517.870059"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1216"
+                  endingLineNumber = "1216"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

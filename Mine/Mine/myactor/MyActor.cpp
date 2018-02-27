@@ -10,6 +10,9 @@
 #include <glm/glm.hpp>
 #include "MyTemplate.hpp"
 #include "MyActorComponent.hpp"
+#include "MyVector.hpp"
+#include "MyMatrix.hpp"
+#include "MyCoordinate.hpp"
 #include "MyTransformComponent.hpp"
 #include "MyModelComponent.hpp"
 #include "MyVertexAttribute.hpp"
