@@ -254,7 +254,7 @@ FORCEINLINE MyFMatrix3& MyTransformation::scaleMatrix(MyFMatrix3 &mat,
  0      1       0
  0      0       0
  */
-FORCEINLINE MyFMatrix3& MyTransformation::projectionMatrixByPlaneXY(MyFMatrix3 &mat) {
+FORCEINLINE MyFMatrix3& MyTransformation::orthogonalMatrixByPlaneXY(MyFMatrix3 &mat) {
     mat.valueAt(2, 0) = mat.valueAt(2, 1) = mat.valueAt(2, 2) = 0.0f;
     return mat;
 }
@@ -264,7 +264,7 @@ FORCEINLINE MyFMatrix3& MyTransformation::projectionMatrixByPlaneXY(MyFMatrix3 &
  0      1       0
  0      0       1
  */
-FORCEINLINE MyFMatrix3& MyTransformation::projectionMatrixByPlaneYZ(MyFMatrix3 &mat) {
+FORCEINLINE MyFMatrix3& MyTransformation::orthogonalMatrixByPlaneYZ(MyFMatrix3 &mat) {
     mat.valueAt(0, 0) = mat.valueAt(0, 1) = mat.valueAt(0, 2) = 0.0f;
     return mat;
 }
@@ -274,7 +274,7 @@ FORCEINLINE MyFMatrix3& MyTransformation::projectionMatrixByPlaneYZ(MyFMatrix3 &
  0      0       0
  0      0       1
  */
-FORCEINLINE MyFMatrix3& MyTransformation::projectionMatrixByPlaneZX(MyFMatrix3 &mat) {
+FORCEINLINE MyFMatrix3& MyTransformation::orthogonalMatrixByPlaneZX(MyFMatrix3 &mat) {
     mat.valueAt(1, 0) = mat.valueAt(1, 1) = mat.valueAt(1, 2) = 0.0f;
     return mat;
 }
@@ -284,7 +284,7 @@ FORCEINLINE MyFMatrix3& MyTransformation::projectionMatrixByPlaneZX(MyFMatrix3 &
  -nx * ny       1 - ny * ny    -nz * ny
  -nx * nz       -ny * nz       1 - nz * nz
  */
-FORCEINLINE MyFMatrix3& MyTransformation::projectionMatrix(MyFMatrix3 &mat, const MyPlane &plane) {
+FORCEINLINE MyFMatrix3& MyTransformation::orthogonalMatrix(MyFMatrix3 &mat, const MyPlane &plane) {
     const MyFVector3 &axis = plane.normal();
     float mxy = -axis.x * axis.y;
     float myz = -axis.y * axis.z;
@@ -410,6 +410,60 @@ FORCEINLINE void MyTransformation::transformCoordianteVectorForward(const MyCoor
                                                                     const MyFVector3 &vecA,
                                                                     MyFVector3 &vecB) {
     transformVector(coordTransit.backwardMatrix(), vecA, vecB);
+}
+
+/* translation(x, y, z)
+ 1  0   0   x
+ 0  1   0   y
+ 0  0   1   z
+ 0  0   0   1
+*/
+MyFMatrix4& MyTransformation::translateMatrix(MyFMatrix4 &mat, const MyFVector3 &vec) {
+    mat.valueAt(0, 0) += vec.x * mat.valueAt(3, 0);
+    mat.valueAt(0, 1) += vec.x * mat.valueAt(3, 1);
+    mat.valueAt(0, 2) += vec.x * mat.valueAt(3, 2);
+    mat.valueAt(0, 3) += vec.x * mat.valueAt(3, 3);
+    mat.valueAt(1, 0) += vec.y * mat.valueAt(3, 0);
+    mat.valueAt(1, 1) += vec.y * mat.valueAt(3, 1);
+    mat.valueAt(1, 2) += vec.y * mat.valueAt(3, 2);
+    mat.valueAt(1, 3) += vec.y * mat.valueAt(3, 3);
+    mat.valueAt(2, 0) += vec.z * mat.valueAt(3, 0);
+    mat.valueAt(2, 1) += vec.z * mat.valueAt(3, 1);
+    mat.valueAt(2, 2) += vec.z * mat.valueAt(3, 2);
+    mat.valueAt(2, 3) += vec.z * mat.valueAt(3, 3);
+    return mat;
+}
+
+MyFMatrix4& MyTransformation::translateMatrix(MyFMatrix4 &mat, float x, float y, float z) {
+    mat.valueAt(0, 0) += x * mat.valueAt(3, 0);
+    mat.valueAt(0, 1) += x * mat.valueAt(3, 1);
+    mat.valueAt(0, 2) += x * mat.valueAt(3, 2);
+    mat.valueAt(0, 3) += x * mat.valueAt(3, 3);
+    mat.valueAt(1, 0) += y * mat.valueAt(3, 0);
+    mat.valueAt(1, 1) += y * mat.valueAt(3, 1);
+    mat.valueAt(1, 2) += y * mat.valueAt(3, 2);
+    mat.valueAt(1, 3) += y * mat.valueAt(3, 3);
+    mat.valueAt(2, 0) += z * mat.valueAt(3, 0);
+    mat.valueAt(2, 1) += z * mat.valueAt(3, 1);
+    mat.valueAt(2, 2) += z * mat.valueAt(3, 2);
+    mat.valueAt(2, 3) += z * mat.valueAt(3, 3);
+    return mat;
+}
+
+/* since we're in right-hand coordinate, v' = [x y z] * (d/z), d < 0 -> [x y z z/d] (homogeneous)
+ 1      0       0       0
+ 0      1       0       0
+ 0      0       1       0
+ 0      0       1/d     0
+*/
+MyFMatrix4& MyTransformation::perspectiveMatrix(MyFMatrix4 &mat, float zd) {
+    MINE_ASSERT2(zd < 0.0f, "MyTransformation::perspectiveMatrix, d >= 0");
+    float invD = 1.0f/zd;
+    mat.valueAt(3, 0) = mat.valueAt(2, 0) * invD;
+    mat.valueAt(3, 1) = mat.valueAt(2, 1) * invD;
+    mat.valueAt(3, 2) = mat.valueAt(2, 2) * invD;
+    mat.valueAt(3, 3) = mat.valueAt(2, 3) * invD;
+    return mat;
 }
 
 // B = A * P -> P = A ^ -1 * B, a = A * x = B * y = A * P * y -> x = Py

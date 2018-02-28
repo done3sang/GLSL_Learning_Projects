@@ -99,6 +99,11 @@ FORCEINLINE bool MyCoordinate::validate(void) const {
     MyMathUtil::zero(dotProduct(_axisZ, _axisX));
 }
 
+// orthogonalization by Schmidt
+FORCEINLINE void MyCoordinate::correct(void) {
+    schmidtVector(_axisX, _axisY, _axisZ);
+}
+
 // MyCoordinateTransition implementation
 FORCEINLINE MyCoordinateTransition::MyCoordinateTransition(void):
 _coordinateA(nullptr),

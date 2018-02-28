@@ -450,6 +450,7 @@ FORCEINLINE float radiusVector(const MyFVector4 &a, const MyFVector4 &b) {
     return MyMathUtil::zero(ab) ? MyMathUtil::kMathPIOver2 : MyMathUtil::acos(dotProduct(a, b)/ab);
 }
 
+// p = dot(v, n)/dot(n, n) *n
 FORCEINLINE MyFVector3 projectVector(const MyFVector3 &a, const MyFVector3 &b) {
     MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "projectVector, magnitude 0");
     float k = dotProduct(a, b)/magnitudeSquareVector(b);
@@ -473,11 +474,13 @@ FORCEINLINE void projectVector(const MyFVector3 &a, const MyFVector3 &b, MyFVect
 }
 
 FORCEINLINE MyFVector3 projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b) {
+    MINE_ASSERT2(MyMathUtil::identity(magnitudeSquareVector(b)), "projectNormalizedVector, vector not normalized");
     float k = dotProduct(a, b);
     return MyFVector3(b.x * k, b.y * k, b.z * k);
 }
 
 FORCEINLINE void projectNormalizedVector(MyFVector3 &a, const MyFVector3 &b) {
+    MINE_ASSERT2(MyMathUtil::identity(magnitudeSquareVector(b)), "projectNormalizedVector, vector not normalized");
     float k = dotProduct(a, b);
     a.x = b.x * k;
     a.y = b.y * k;
@@ -485,10 +488,101 @@ FORCEINLINE void projectNormalizedVector(MyFVector3 &a, const MyFVector3 &b) {
 }
 
 FORCEINLINE void projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec) {
+    MINE_ASSERT2(MyMathUtil::identity(magnitudeSquareVector(b)), "projectNormalizedVector, vector not normalized");
     float k = dotProduct(a, b);
     outVec.x = b.x * k;
     outVec.y = b.y * k;
     outVec.z = b.z * k;
+}
+
+// p = dot(v, n)/dot(n, n) *n, q = v - p
+FORCEINLINE MyFVector3 perpendicularVector(const MyFVector3 &a, const MyFVector3 &b) {
+    MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "perpendicularVector, magnitude 0");
+    float k = dotProduct(a, b)/magnitudeSquareVector(b);
+    return MyFVector3(a.x - b.x * k, a.y - b.y * k, a.z - b.z * k);
+}
+
+FORCEINLINE void perpendicularVector(MyFVector3 &a, const MyFVector3 &b) {
+    MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "perpendicularVector, magnitude 0");
+    float k = dotProduct(a, b)/magnitudeSquareVector(b);
+    a.x -= b.x * k;
+    a.y -= b.y * k;
+    a.z -= b.z * k;
+}
+
+FORCEINLINE void perpendicularVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec) {
+    MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "perpendicularVector, magnitude 0");
+    float k = dotProduct(a, b)/magnitudeSquareVector(b);
+    outVec.x = a.x - b.x * k;
+    outVec.y = a.y - b.y * k;
+    outVec.z = a.z - b.z * k;
+}
+
+FORCEINLINE MyFVector3 perpendicularNormalizedVector(const MyFVector3 &a, const MyFVector3 &b) {
+    MINE_ASSERT2(MyMathUtil::identity(magnitudeSquareVector(b)), "perpendicularNormalizedVector, vector not normalized");
+    float k = dotProduct(a, b);
+    return MyFVector3(a.x - b.x * k, a.y - b.y * k, a.z - b.z * k);
+}
+
+FORCEINLINE void perpendicularNormalizedVector(MyFVector3 &a, const MyFVector3 &b) {
+    MINE_ASSERT2(MyMathUtil::identity(magnitudeSquareVector(b)), "perpendicularNormalizedVector, vector not normalized");
+    float k = dotProduct(a, b);
+    a.x -= b.x * k;
+    a.y -= b.y * k;
+    a.z -= b.z * k;
+}
+
+FORCEINLINE void perpendicularNormalizedVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec) {
+    MINE_ASSERT2(MyMathUtil::identity(magnitudeSquareVector(b)), "perpendicularNormalizedVector, vector not normalized");
+    float k = dotProduct(a, b);
+    outVec.x = a.x - b.x * k;
+    outVec.y = a.x - b.y * k;
+    outVec.z = a.x - b.z * k;
+}
+
+FORCEINLINE void partitionVector(const MyFVector3 &a,
+                                 const MyFVector3 &b,
+                                 MyFVector3 &projVec,
+                                 MyFVector3 &perpVec) {
+    MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "partitionVector, magnitude 0");
+    float k = dotProduct(a, b)/magnitudeSquareVector(b);
+    projVec.x = b.x * k;
+    projVec.y = b.y * k;
+    projVec.z = b.z * k;
+    perpVec.x = a.x - projVec.x;
+    perpVec.y = a.y - projVec.y;
+    perpVec.z = a.z - projVec.z;
+}
+
+FORCEINLINE void partitionNormalizedVector(const MyFVector3 &a,
+                                           const MyFVector3 &b,
+                                           MyFVector3 &projVec,
+                                           MyFVector3 &perpVec) {
+    MINE_ASSERT2(MyMathUtil::identity(magnitudeSquareVector(b)), "partitionNormalizedVector, vector not normalized");
+    float k = dotProduct(a, b);
+    projVec.x = b.x * k;
+    projVec.y = b.y * k;
+    projVec.z = b.z * k;
+    perpVec.x = a.x - projVec.x;
+    perpVec.y = a.y - projVec.y;
+    perpVec.z = a.z - projVec.z;
+}
+
+FORCEINLINE void schmidtVector(MyFVector3 &a,
+                               MyFVector3 &b,
+                               MyFVector3 &c) {
+    normalizeVector(a);
+    normalizeVector(b);
+    normalizeVector(c);
+    float kab = dotProduct(a, b);
+    float kbc = dotProduct(b, c);
+    float kca = dotProduct(c, a);
+    b.x -= kab * a.x;
+    b.y -= kab * a.y;
+    b.z -= kab * a.z;
+    c.x -= kca * a.x + kbc * b.x;
+    c.y -= kca * a.y + kbc * b.y;
+    c.z -= kca * a.z + kbc * b.z;
 }
 
 MINE_NAMESPACE_END

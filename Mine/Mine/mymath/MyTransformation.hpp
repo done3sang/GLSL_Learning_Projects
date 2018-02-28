@@ -58,11 +58,11 @@ public:
     static MyFMatrix3& scaleMatrix(MyFMatrix3 &mat, float scalar);
     static MyFMatrix3& scaleMatrix(MyFMatrix3 &mat, const MyFVector3 &axis, float scalar);
     
-    // projection
-    static MyFMatrix3& projectionMatrixByPlaneXY(MyFMatrix3 &mat);
-    static MyFMatrix3& projectionMatrixByPlaneYZ(MyFMatrix3 &mat);
-    static MyFMatrix3& projectionMatrixByPlaneZX(MyFMatrix3 &mat);
-    static MyFMatrix3& projectionMatrix(MyFMatrix3 &mat, const MyPlane &plane);
+    // orthogonal
+    static MyFMatrix3& orthogonalMatrixByPlaneXY(MyFMatrix3 &mat);
+    static MyFMatrix3& orthogonalMatrixByPlaneYZ(MyFMatrix3 &mat);
+    static MyFMatrix3& orthogonalMatrixByPlaneZX(MyFMatrix3 &mat);
+    static MyFMatrix3& orthogonalMatrix(MyFMatrix3 &mat, const MyPlane &plane);
     
     // mirror
     static MyFMatrix3& mirrorMatrixByPlaneXY(MyFMatrix3 &mat);
@@ -74,6 +74,13 @@ public:
     static MyFMatrix3& shearMatrixByAxisX(MyFMatrix3 &mat, float s, float t);
     static MyFMatrix3& shearMatrixByAxisY(MyFMatrix3 &mat, float s, float t);
     static MyFMatrix3& shearMatrixByAxisZ(MyFMatrix3 &mat, float s, float t);
+    
+    // translation
+    static MyFMatrix4& translateMatrix(MyFMatrix4 &mat, const MyFVector3 &vec);
+    static MyFMatrix4& translateMatrix(MyFMatrix4 &mat, float x, float y, float z);
+    
+    // perspective
+    static MyFMatrix4& perspectiveMatrix(MyFMatrix4 &mat, float zd);
     
     // coordinate
     void transformCoordianteVectorForward(const MyCoordinateTransition &coordTransit,

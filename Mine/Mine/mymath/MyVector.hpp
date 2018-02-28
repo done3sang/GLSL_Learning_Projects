@@ -206,6 +206,28 @@ MyFVector3 projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b);
 void projectNormalizedVector(MyFVector3 &a, const MyFVector3 &b);
 void projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec);
 
+MyFVector3 perpendicularVector(const MyFVector3 &a, const MyFVector3 &b);
+void perpendicularVector(MyFVector3 &a, const MyFVector3 &b);
+void perpendicularVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec);
+
+MyFVector3 perpendicularNormalizedVector(const MyFVector3 &a, const MyFVector3 &b);
+void perpendicularNormalizedVector(MyFVector3 &a, const MyFVector3 &b);
+void perpendicularNormalizedVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec);
+
+void partitionVector(const MyFVector3 &a,
+                     const MyFVector3 &b,
+                     MyFVector3 &projVec,
+                     MyFVector3 &perpVec);
+
+void partitionNormalizedVector(const MyFVector3 &a,
+                               const MyFVector3 &b,
+                               MyFVector3 &projVec,
+                               MyFVector3 &perpVec);
+
+void schmidtVector(MyFVector3 &a,
+                   MyFVector3 &b,
+                   MyFVector3 &c);
+
 MINE_NAMESPACE_END
 
 #pragma GCC visibility pop

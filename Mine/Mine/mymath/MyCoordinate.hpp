@@ -49,6 +49,8 @@ public:
     
     bool validate(void) const;
     
+    void correct(void);
+    
 private:
     MyFVector3 _axisX;
     MyFVector3 _axisY;
