@@ -17,7 +17,24 @@
 MINE_NAMESPACE_BEGIN
 
 class MyQuaternion final {
+public:
+    MyQuaternion(void);
+    MyQuaternion(float inW, float inX, float inY, float inZ);
+    MyQuaternion(const MyFVector4 &other);
+    MyQuaternion(const MyFVector4 &&other);
+    ~MyQuaternion(void);
     
+    MyQuaternion& operator=(const MyQuaternion &other);
+    MyQuaternion& operator=(const MyQuaternion &&other);
+    
+    bool operator==(const MyQuaternion &other) const;
+    bool operator!=(const MyQuaternion &other) const;
+    
+public:
+    float w;
+    float x;
+    float y;
+    float z;
 };
 
 MINE_NAMESPACE_END
