@@ -159,7 +159,12 @@ FORCEINLINE MyFMatrix3& MyTransformation::rotateMatrixByAxis(MyFMatrix3 &mat,
     return rotateMatrixByNormalizedAxis(mat, normalizedVec, radius);
 }
 
-// v' = (v - dot(v, n)n)cose + cross(v, n) * sine
+// v' = (v - dot(v, n)n)cose + cross(v, n) * sine + dot(v, n)n
+/*
+ xx(1- cose) + cose     (1 - cose)xy - zsine    (1 - cose)xz + ysine
+ (1 - cose)xy + zsine   yy(1 - cose) + cose     (1 - cose)yz - xsine
+ (1- cose)xz - ysine    (1 - cose)yz + xsine    zz(1 - cose) +cose
+*/
 FORCEINLINE MyFMatrix3& MyTransformation::rotateMatrixByNormalizedAxis(
                                                                              MyFMatrix3 &mat,
                                                                              const MyFVector3 &vec,
@@ -176,27 +181,29 @@ FORCEINLINE MyFMatrix3& MyTransformation::rotateMatrixByNormalizedAxis(
     float xsine = vec.x * sine;
     float ysine = vec.y * sine;
     float zsine = vec.z * sine;
+    float onexy = oneMinusCose * xy;
+    float oneyz = oneMinusCose * yz;
+    float onezx = oneMinusCose * zx;
     float mx = oneMinusCose * xx + cose;
-    float my = oneMinusCose * xy + zsine;
-    float mz = oneMinusCose * zx - ysine;
+    float my = onexy - zsine;
+    float mz = onezx + ysine;
     float tmp0 = mx * mat.valueAt(0, 0) + my * mat.valueAt(1, 0) + mz * mat.valueAt(2, 0);
     float tmp1 = mx * mat.valueAt(0, 1) + my * mat.valueAt(1, 1) + mz * mat.valueAt(2, 1);
     float tmp2 = mx * mat.valueAt(0, 2) + my * mat.valueAt(1, 2) + mz * mat.valueAt(2, 2);
-    mx = oneMinusCose * xy - zsine;
+    mx = onexy + zsine;
     my = oneMinusCose * yy + cose;
-    mz = oneMinusCose * yz + xsine;
+    mz = oneyz - xsine;
     float tmp3 = mx * mat.valueAt(0, 0) + my * mat.valueAt(1, 0) + mz * mat.valueAt(2, 0);
     float tmp4 = mx * mat.valueAt(0, 1) + my * mat.valueAt(1, 1) + mz * mat.valueAt(2, 1);
     float tmp5 = mx * mat.valueAt(0, 2) + my * mat.valueAt(1, 2) + mz * mat.valueAt(2, 2);
-    mx = oneMinusCose * zx + ysine;
-    my = oneMinusCose * yz - xsine;
+    mx = onezx - ysine;
+    my = oneyz + xsine;
     mz = oneMinusCose * zz + cose;
-    float tmp6 = mx * mat.valueAt(0, 0) + my * mat.valueAt(1, 0) + mz * mat.valueAt(2, 0);
-    float tmp7 = mx * mat.valueAt(0, 1) + my * mat.valueAt(1, 1) + mz * mat.valueAt(2, 1);
-    float tmp8 = mx * mat.valueAt(0, 2) + my * mat.valueAt(1, 2) + mz * mat.valueAt(2, 2);
+    mat.valueAt(2, 0) = mx * mat.valueAt(0, 0) + my * mat.valueAt(1, 0) + mz * mat.valueAt(2, 0);
+    mat.valueAt(2, 1) = mx * mat.valueAt(0, 1) + my * mat.valueAt(1, 1) + mz * mat.valueAt(2, 1);
+    mat.valueAt(2, 2) = mx * mat.valueAt(0, 2) + my * mat.valueAt(1, 2) + mz * mat.valueAt(2, 2);
     mat.valueAt(0, 0) = tmp0; mat.valueAt(0, 1) = tmp1; mat.valueAt(0, 2) = tmp2;
     mat.valueAt(1, 0) = tmp3; mat.valueAt(1, 1) = tmp4; mat.valueAt(1, 2) = tmp5;
-    mat.valueAt(2, 0) = tmp6; mat.valueAt(2, 1) = tmp7; mat.valueAt(2, 2) = tmp8;
     return mat;
 }
 
@@ -418,7 +425,8 @@ FORCEINLINE void MyTransformation::transformCoordianteVectorForward(const MyCoor
  0  0   1   z
  0  0   0   1
 */
-MyFMatrix4& MyTransformation::translateMatrix(MyFMatrix4 &mat, const MyFVector3 &vec) {
+FORCEINLINE MyFMatrix4& MyTransformation::translateMatrix(MyFMatrix4 &mat,
+                                                          const MyFVector3 &vec) {
     mat.valueAt(0, 0) += vec.x * mat.valueAt(3, 0);
     mat.valueAt(0, 1) += vec.x * mat.valueAt(3, 1);
     mat.valueAt(0, 2) += vec.x * mat.valueAt(3, 2);
@@ -434,7 +442,8 @@ MyFMatrix4& MyTransformation::translateMatrix(MyFMatrix4 &mat, const MyFVector3 
     return mat;
 }
 
-MyFMatrix4& MyTransformation::translateMatrix(MyFMatrix4 &mat, float x, float y, float z) {
+FORCEINLINE MyFMatrix4& MyTransformation::translateMatrix(MyFMatrix4 &mat,
+                                                          float x, float y, float z) {
     mat.valueAt(0, 0) += x * mat.valueAt(3, 0);
     mat.valueAt(0, 1) += x * mat.valueAt(3, 1);
     mat.valueAt(0, 2) += x * mat.valueAt(3, 2);
@@ -456,7 +465,8 @@ MyFMatrix4& MyTransformation::translateMatrix(MyFMatrix4 &mat, float x, float y,
  0      0       1       0
  0      0       1/d     0
 */
-MyFMatrix4& MyTransformation::perspectiveMatrix(MyFMatrix4 &mat, float zd) {
+FORCEINLINE MyFMatrix4& MyTransformation::perspectiveMatrix(MyFMatrix4 &mat,
+                                                            float zd) {
     MINE_ASSERT2(zd < 0.0f, "MyTransformation::perspectiveMatrix, d >= 0");
     float invD = 1.0f/zd;
     mat.valueAt(3, 0) = mat.valueAt(2, 0) * invD;
@@ -467,9 +477,10 @@ MyFMatrix4& MyTransformation::perspectiveMatrix(MyFMatrix4 &mat, float zd) {
 }
 
 // B = A * P -> P = A ^ -1 * B, a = A * x = B * y = A * P * y -> x = Py
-FORCEINLINE void MyTransformation::transformCoordianteVectorBackward(const MyCoordinateTransition &coordTransit,
-                                                                    const MyFVector3 &vecB,
-                                                                    MyFVector3 &vecA) {
+FORCEINLINE void MyTransformation::transformCoordianteVectorBackward(
+                                                                     const MyCoordinateTransition &coordTransit,
+                                                                     const MyFVector3 &vecB,
+                                                                     MyFVector3 &vecA) {
     transformVector(coordTransit.forwardMatrix(), vecB, vecA);
 }
 

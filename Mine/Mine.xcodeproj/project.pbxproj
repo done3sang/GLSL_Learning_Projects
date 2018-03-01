@@ -35,6 +35,8 @@
 		146140A92004C119008D5247 /* MyMathMatrix.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 146140A72004C119008D5247 /* MyMathMatrix.hpp */; };
 		146B9CDB204156BC007A4F59 /* MyTransformation.inl in Sources */ = {isa = PBXBuildFile; fileRef = 146B9CD9204156BC007A4F59 /* MyTransformation.inl */; };
 		146B9CDC204156BC007A4F59 /* MyTransformation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 146B9CDA204156BC007A4F59 /* MyTransformation.hpp */; };
+		146CE1DD204808F400DAF1E1 /* MyQuaternion.inl in Sources */ = {isa = PBXBuildFile; fileRef = 146CE1DB204808F400DAF1E1 /* MyQuaternion.inl */; };
+		146CE1DE204808F400DAF1E1 /* MyQuaternion.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 146CE1DC204808F400DAF1E1 /* MyQuaternion.hpp */; };
 		148A10A2203FC128009895D7 /* MyMatrix.inl in Sources */ = {isa = PBXBuildFile; fileRef = 148A10A0203FC128009895D7 /* MyMatrix.inl */; };
 		148A10A3203FC128009895D7 /* MyMatrix.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 148A10A1203FC128009895D7 /* MyMatrix.hpp */; };
 		148A10A8203FEC45009895D7 /* MyVector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 148A10A6203FEC45009895D7 /* MyVector.hpp */; };
@@ -124,6 +126,8 @@
 		146140A72004C119008D5247 /* MyMathMatrix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyMathMatrix.hpp; sourceTree = "<group>"; };
 		146B9CD9204156BC007A4F59 /* MyTransformation.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyTransformation.inl; sourceTree = "<group>"; };
 		146B9CDA204156BC007A4F59 /* MyTransformation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyTransformation.hpp; sourceTree = "<group>"; };
+		146CE1DB204808F400DAF1E1 /* MyQuaternion.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyQuaternion.inl; sourceTree = "<group>"; };
+		146CE1DC204808F400DAF1E1 /* MyQuaternion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyQuaternion.hpp; sourceTree = "<group>"; };
 		147F2B002006061300FD02EB /* MyMathMatrix.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyMathMatrix.inl; sourceTree = "<group>"; };
 		148A10A0203FC128009895D7 /* MyMatrix.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyMatrix.inl; sourceTree = "<group>"; };
 		148A10A1203FC128009895D7 /* MyMatrix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyMatrix.hpp; sourceTree = "<group>"; };
@@ -356,6 +360,8 @@
 				14ED9B7720451EDE008091F9 /* MyPlane.inl */,
 				144504B520440E8B00ED0319 /* MyCoordinate.hpp */,
 				144504B420440E8B00ED0319 /* MyCoordinate.inl */,
+				146CE1DC204808F400DAF1E1 /* MyQuaternion.hpp */,
+				146CE1DB204808F400DAF1E1 /* MyQuaternion.inl */,
 				146B9CDA204156BC007A4F59 /* MyTransformation.hpp */,
 				146B9CD9204156BC007A4F59 /* MyTransformation.inl */,
 			);
@@ -409,6 +415,7 @@
 				144349061FD103CC006DD6D2 /* MyRenderer.hpp in Headers */,
 				14BBD65B1FDA5A3A00EFBF0D /* MyXMLDocument.hpp in Headers */,
 				14E6D0BA1FDE8AA900999ED6 /* MyPointLightComponent.hpp in Headers */,
+				146CE1DE204808F400DAF1E1 /* MyQuaternion.hpp in Headers */,
 				14B24D951FCEAD9900121A65 /* MyTemplate.hpp in Headers */,
 				144349021FCEBA61006DD6D2 /* MyBufferObject.hpp in Headers */,
 			);
@@ -476,6 +483,7 @@
 				14ED9B7920451EDE008091F9 /* MyPlane.inl in Sources */,
 				14B24D901FCEAC4800121A65 /* MyVertexArrayObject.cpp in Sources */,
 				144504B620440E8B00ED0319 /* MyCoordinate.inl in Sources */,
+				146CE1DD204808F400DAF1E1 /* MyQuaternion.inl in Sources */,
 				14E6D0A41FDE6F4F00999ED6 /* MyActor.cpp in Sources */,
 				14ED9B7C20455FB3008091F9 /* MyTransformComponent.cpp in Sources */,
 				14E6D0B51FDE894500999ED6 /* MyLightComponent.cpp in Sources */,
