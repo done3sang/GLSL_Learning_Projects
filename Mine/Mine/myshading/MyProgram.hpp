@@ -24,11 +24,11 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueRef;
+class MyUniqueObject;
 class MyShader;
 class MyBufferObject;
 
-class MyProgram: public MyUniqueRef {
+class MyProgram: public MyUniqueObject {
 public:
     explicit
     MyProgram(const std::string &programName);

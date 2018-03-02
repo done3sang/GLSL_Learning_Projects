@@ -37,6 +37,10 @@ public:
         return ::cosf(x);
     }
     
+    static float atan2(float sine, float cose) {
+        return ::atan2f(sine, cose);
+    }
+    
     static float asin(float x) {
         return ::asinf(x);
     }
@@ -63,6 +67,14 @@ public:
     
     static bool identity(float x) {
         return abs(x - 1.0f) <= kMathEpsilon;
+    }
+    
+    static FORCEINLINE bool between(float x, float b, float e) {
+        return b <= x && x <= e;
+    }
+    
+    static FORCEINLINE float lerp(float b, float e, float t) {
+        return b + t * (b - e);
     }
     
 public:

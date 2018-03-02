@@ -6,7 +6,6 @@
 //  Copyright © 2018 SangDesu. All rights reserved.
 //
 
-#include "MyTemplate.hpp"
 #include "MyMatrix.hpp"
 
 MINE_NAMESPACE_BEGIN

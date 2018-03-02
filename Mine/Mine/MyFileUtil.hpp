@@ -17,9 +17,9 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MySingletonRef;
+class MySingletonObject;
 
-class MyFileUtil final: public MySingletonRef {
+class MyFileUtil final: public MySingletonObject {
 public:
     static MyFileUtil* sharedFileUtil(void);
     static void closeFileUtil(void);

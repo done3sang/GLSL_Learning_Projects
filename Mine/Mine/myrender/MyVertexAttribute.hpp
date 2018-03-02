@@ -18,9 +18,9 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueRef;
+class MyUniqueObject;
 
-class MyVertexAttribute: public MyUniqueRef {
+class MyVertexAttribute: public MyUniqueObject {
 public:
     static MyVertexAttribute* create(void);
     static MyVertexAttribute* createWithFormat(const std::string &fmt);

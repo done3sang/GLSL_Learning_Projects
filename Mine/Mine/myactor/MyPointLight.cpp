@@ -21,7 +21,7 @@ MINE_NAMESPACE_BEGIN
 MyPointLight* MyPointLight::createWithName(const std::string &name) {
     MyPointLight *light = new MyPointLight();
     light->actorName(name);
-    light->refName(name);
+    light->objectName(name);
     pushScenarioLight(light);
     return light;
 }

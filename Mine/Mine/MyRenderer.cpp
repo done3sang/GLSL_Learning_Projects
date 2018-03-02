@@ -6,8 +6,6 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include <cassert>
-#include "MyRef.hpp"
 #include "MyTemplate.hpp"
 #include "MyBufferObject.hpp"
 #include "MyActorComponent.hpp"
@@ -18,7 +16,7 @@ MINE_NAMESPACE_BEGIN
 
 MyRenderer* MyRenderer::create(const std::string &name) {
     MyRenderer *mr = new MyRenderer(name);
-    mr->refName(name);
+    mr->objectName(name);
     
     return mr;
 }
@@ -54,7 +52,7 @@ void MyRenderer::drawArrays(int mode, int first, int count) {
 }
 
 void MyRenderer::renderModel(const MyModelComponent *model) {
-    assert(model && "ERROR = MyRenderer::renderModel, model null");
+    MINE_ASSERT2(model, "ERROR = MyRenderer::renderModel, model null");
     
     if(model->modelElemented()) {
         model->modelElementBuffer()->bindBuffer();

@@ -11,7 +11,7 @@
 
 UniformScene* UniformScene::create(void) {
     UniformScene *obj = new UniformScene;
-    obj->refName("UniformScene");
+    obj->objectName("UniformScene");
     
     return obj;
 }

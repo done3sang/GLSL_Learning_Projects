@@ -16,7 +16,7 @@ MINE_NAMESPACE_BEGIN
 
 MyDirectionalLightComponent* MyDirectionalLightComponent::create(void) {
     MyDirectionalLightComponent *light = new MyDirectionalLightComponent;
-    light->refName("MyDirectionalLightComponent");
+    light->objectName("MyDirectionalLightComponent");
     return light;
 }
 

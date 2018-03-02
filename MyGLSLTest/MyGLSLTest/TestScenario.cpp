@@ -11,7 +11,7 @@
 
 TestScenario* TestScenario::create(void) {
     TestScenario *scenario = new TestScenario();
-    scenario->refName("TestScenario");
+    scenario->objectName("TestScenario");
     return scenario;
 }
 

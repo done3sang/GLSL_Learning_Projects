@@ -19,41 +19,42 @@ MINE_NAMESPACE_BEGIN
 class MyActorComponent;
 class MyFVector3;
 class MyFMatrix4;
+class MyFQuaternion;
 class MyCoordinate;
 
-class MyTransformComponent: public MyActorComponent {
+class MyTransformComponent final: public MyActorComponent {
 public:
     static MyTransformComponent* create(void);
     static MyTransformComponent* createWithPosition(const MyFVector3 &pos);
     
 public:
-    const MyFVector3& position(void);
-    void position(const MyFVector3 &pos);
+    FORCEINLINE const MyFVector3& position(void) { return _position; }
+    FORCEINLINE void position(const MyFVector3 &pos) { _position = pos; }
     
-    const MyFVector3& scale(void) const;
-    void scale(const MyFVector3 &scale);
+    FORCEINLINE const MyFVector3& scale(void) const { return _scale; }
+    FORCEINLINE void scale(const MyFVector3 &scale) { _scale = scale; }
     
 private:
-    MyTransformComponent(void):
+    FORCEINLINE MyTransformComponent(void):
     MyActorComponent(MyActorComponent::kComponentTypeTransform,
-                     "Transform", MyActorComponent::kComponentGroupTransform),
-    _position(0.0f), _scale(1.0f) {}
-    MyTransformComponent(const MyFVector3 &pos):
+                     MyActorComponent::kComponentGroupTransform),
+    _position(0.0f),
+    _scale(1.0f) {}
+    FORCEINLINE MyTransformComponent(const MyFVector3 &pos):
     MyActorComponent(MyActorComponent::kComponentTypeTransform,
-                     "Transform", MyActorComponent::kComponentGroupTransform),
-    _position(pos), _scale(1.0f) {}
-    ~MyTransformComponent(void) {}
+                     MyActorComponent::kComponentGroupTransform),
+    _position(pos),
+    _scale(1.0f) {}
+    FORCEINLINE ~MyTransformComponent(void) {}
     
     MyFVector3 _position;
     MyFVector3 _scale;
-    MyCoordinate _coordinate;
+    MyFQuaternion _rotation;
     MyFVector3 _forward;
 };
 
 MINE_NAMESPACE_END
 
 #pragma GCC visibility pop
-
-#include "MyTransformComponent.inl"
 
 #endif /* MyTransformComponent_hpp */

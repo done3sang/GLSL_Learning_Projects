@@ -15,13 +15,13 @@ MINE_NAMESPACE_BEGIN
 
 MyVertexAttribute* MyVertexAttribute::create(void) {
     MyVertexAttribute *att = new MyVertexAttribute();
-    att->refName("MyVertexAttribute");
+    att->objectName("MyVertexAttribute");
     return att;
 }
 
 MyVertexAttribute* MyVertexAttribute::createWithFormat(const std::string &fmt) {
     MyVertexAttribute *att = new MyVertexAttribute(fmt);
-    att->refName("MyVertexAttribute");
+    att->objectName("MyVertexAttribute");
     return att;
 }
 

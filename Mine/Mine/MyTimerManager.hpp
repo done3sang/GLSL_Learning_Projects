@@ -16,9 +16,9 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MySingletonRef;
+class MySingletonObject;
 
-class MyTimerManager final: public MySingletonRef {
+class MyTimerManager final: public MySingletonObject {
 public:
     static MyTimerManager* sharedTimerManager(void);
     static void closeTimerManager(void);

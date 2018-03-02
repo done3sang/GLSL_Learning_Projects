@@ -25,9 +25,9 @@ public:
     
 private:
     explicit
-    MyDirectionalLightComponent(void):
-    MyLightComponent(MyActorComponent::kComponentTypeDirectionalLight, "Directional Light") {}
-    ~MyDirectionalLightComponent(void) {}
+    FORCEINLINE MyDirectionalLightComponent(void):
+    MyLightComponent(MyActorComponent::kComponentTypeDirectionalLight) {}
+    FORCEINLINE ~MyDirectionalLightComponent(void) {}
 };
 
 MINE_NAMESPACE_END

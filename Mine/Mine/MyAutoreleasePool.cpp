@@ -6,11 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#ifdef DEBUG
-#include <cassert>
-#endif
-
-#include "MyRef.hpp"
+#include "MyObject.hpp"
 #include "MyTemplate.hpp"
 #include "MyAutoreleasePool.hpp"
 
@@ -33,10 +29,8 @@ void MyAutoreleasePool::closeAutoreleasePool(void) {
     }
 }
 
-bool MyAutoreleasePool::contains(const MyRef *object) const {
-#ifdef DEBUG
-    assert(object && "MyAutoreleasePool::contains should be non-null");
-#endif
+bool MyAutoreleasePool::contains(const MyObject *object) const {
+    MINE_ASSERT2(object, "MyAutoreleasePool::contains should be non-null");
     
     for(const auto &ref: _objectArray) {
         if(ref == object) {
@@ -47,8 +41,8 @@ bool MyAutoreleasePool::contains(const MyRef *object) const {
     return false;
 }
 
-void MyAutoreleasePool::addObject(MyRef *object) {
-    assert(object && "MyAutoreleasePool::addObject should be non-null");
+void MyAutoreleasePool::addObject(MyObject *object) {
+    MINE_ASSERT2(object, "MyAutoreleasePool::addObject should be non-null");
     
     if(!contains(object)) {
         _objectArray.push_back(object);

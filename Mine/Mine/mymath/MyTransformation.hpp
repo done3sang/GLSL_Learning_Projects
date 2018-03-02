@@ -20,9 +20,11 @@ class MyStatic;
 class MyFMatrix2;
 class MyFMatrix3;
 class MyFMatrix4;
+class MyFQuaternion;
 class MyPlane;
 class MyCoordinate;
 class MyCoordinateTransition;
+
 
 class MyTransformation: private MyStatic {
 public:
@@ -83,12 +85,22 @@ public:
     static MyFMatrix4& perspectiveMatrix(MyFMatrix4 &mat, float zd);
     
     // coordinate
-    void transformCoordianteVectorForward(const MyCoordinateTransition &coordTransit,
+    static void transformCoordianteVectorForward(const MyCoordinateTransition &coordTransit,
                                           const MyFVector3 &vecA,
                                           MyFVector3 &vecB);
-    void transformCoordianteVectorBackward(const MyCoordinateTransition &coordTransit,
+    static void transformCoordianteVectorBackward(const MyCoordinateTransition &coordTransit,
                                           const MyFVector3 &vecB,
                                           MyFVector3 &vecA);
+    
+    // quateranion
+    static MyFQuaternion& rotateQuaternion(MyFQuaternion &quat,
+                                           const MyFVector3 &axis,
+                                           float radius);
+    static void quaternionVector(const MyFQuaternion &quat, MyFVector3 &vec);
+    
+    // transition between matrix and quaternion
+    static void quaternionToMatrix(const MyFQuaternion &quat, MyFMatrix3 &mat);
+    static void matrixToQuaternion(const MyFMatrix3 &mat, MyFQuaternion &quat);
 };
 
 MyFVector2 operator*(const MyFMatrix2 &mat, const MyFVector2 &vev);

@@ -6,9 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include <cassert>
 #include <glm/glm.hpp>
-#include "MyRef.hpp"
 #include "MyTemplate.hpp"
 #include "MyActorComponent.hpp"
 #include "MyActor.hpp"
@@ -49,7 +47,7 @@ bool MyScenario::isActorAttached(MyActor *actor) const {
 }
 
 void MyScenario::attachActor(MyActor *actor) {
-    assert(actor && "ERROR = MyScenario::attachActor, actor be nullptr");
+    MINE_ASSERT2(actor, "ERROR = MyScenario::attachActor, actor be nullptr");
     if(isActorAttached(actor)) {
         return;
     }

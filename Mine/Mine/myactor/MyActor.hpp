@@ -20,12 +20,12 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueRef;
+class MyUniqueObject;
 class MyActorComponent;
 class MyTransformComponent;
 class MyLightActor;
 
-class MyActor: public MyUniqueRef {
+class MyActor: public MyUniqueObject {
 public:
     static MyActor* createWithName(const std::string &name);
     

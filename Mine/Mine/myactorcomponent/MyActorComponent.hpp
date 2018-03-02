@@ -17,9 +17,9 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueRef;
+class MyUniqueObject;
 
-class MyActorComponent: public MyUniqueRef {
+class MyActorComponent: public MyUniqueObject {
 public:
     static constexpr int kComponentTypeNone = 0;
     static constexpr int kComponentTypeMaterial = 1;
@@ -36,33 +36,30 @@ public:
     static constexpr int kComponentGroupTransform = 4;
     
 public:
-    int componentType(void) const { return _componentType; }
-    int groupId(void) const { return _groupId; }
-    const std::string& componentName(void) const { return _componentName; }
-    bool sameGroup(const MyActorComponent* another) const {
+    FORCEINLINE int componentType(void) const { return _componentType; }
+    FORCEINLINE int groupId(void) const { return _groupId; }
+    FORCEINLINE bool sameGroup(const MyActorComponent* another) const {
         return another && another->groupId() == groupId();
     }
     
-    bool componentEnabled(void) const { return _componentEnabled; }
-    void componentEnabled(bool enabled) { _componentEnabled = enabled; }
+    FORCEINLINE bool componentEnabled(void) const { return _componentEnabled; }
+    FORCEINLINE void componentEnabled(bool enabled) { _componentEnabled = enabled; }
     
 protected:
     explicit
-    MyActorComponent(int compType,
-                     const std::string &compName = "",
+    FORCEINLINE MyActorComponent(int compType,
                      int groupid = kComponentGroupNone):
-    _componentType(compType),  _componentName(compName),
-    _groupId(groupid), _componentEnabled(true) {}
-    virtual ~MyActorComponent(void) {}
+    _componentType(compType),
+    _groupId(groupid),
+    _componentEnabled(true) {}
+    FORCEINLINE virtual ~MyActorComponent(void) {}
     
-    void componentType(int type) { _componentType = type; }
-    void groupId(int id) { _groupId = id; }
-    void componentName(const std::string &name) { _componentName = name; }
+    FORCEINLINE void componentType(int type) { _componentType = type; }
+    FORCEINLINE void groupId(int id) { _groupId = id; }
     
 private:
     int _componentType;
     int _groupId;
-    std::string _componentName;
     bool _componentEnabled;
 };
 

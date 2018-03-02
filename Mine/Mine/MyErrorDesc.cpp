@@ -32,7 +32,7 @@ const int MyErrorDesc::kErrXMLParseFailed = 14;
 MyErrorDesc* MyErrorDesc::sharedErrorDesc(void) {
     if(!_sharedErrorDesc) {
         _sharedErrorDesc = new MyErrorDesc;
-        _sharedErrorDesc->refName("MyErrorDesc");
+        _sharedErrorDesc->objectName("MyErrorDesc");
     }
     
     return _sharedErrorDesc;

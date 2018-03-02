@@ -1329,11 +1329,6 @@ FORCEINLINE void identityMatrix(MyFMatrix2 &mat) {
     mat.valueAt(1, 0) = 0.0f; mat.valueAt(1, 1) = 1.0f;
 }
 
-FORCEINLINE MyFMatrix2 transposeMatrix(const MyFMatrix2 &mat) {
-    return MyFMatrix2(mat.valueAt(0, 0), mat.valueAt(1, 0),
-                      mat.valueAt(0, 1), mat.valueAt(1, 1));
-}
-
 FORCEINLINE void transposeMatrix(MyFMatrix2 &mat) {
     float tmp = mat.valueAt(0, 1);
     mat.valueAt(0, 1) = mat.valueAt(1, 0);
@@ -1343,6 +1338,12 @@ FORCEINLINE void transposeMatrix(MyFMatrix2 &mat) {
 FORCEINLINE void transposeMatrix(const MyFMatrix2 &inMat, MyFMatrix2 &outMat) {
     outMat.valueAt(0, 0) = inMat.valueAt(0, 0); outMat.valueAt(0, 1) = inMat.valueAt(1, 0);
     outMat.valueAt(1, 0) = inMat.valueAt(0, 1); outMat.valueAt(1, 1) = inMat.valueAt(1, 1);
+}
+
+FORCEINLINE MyFMatrix2 transposeMatrix(const MyFMatrix2 &mat) {
+    MyFMatrix2 ret;
+    transposeMatrix(mat, ret);
+    return ret;
 }
 
 FORCEINLINE bool inverseMatrix(const MyFMatrix2 &mat, MyFMatrix2 &invMat) {
@@ -1363,12 +1364,6 @@ FORCEINLINE void identityMatrix(MyFMatrix3 &mat) {
     mat.valueAt(0, 0) = 1.0f; mat.valueAt(0, 1) = 0.0f; mat.valueAt(0, 2) = 0.0f;
     mat.valueAt(1, 0) = 0.0f; mat.valueAt(1, 1) = 1.0f; mat.valueAt(1, 2) = 0.0f;
     mat.valueAt(2, 0) = 0.0f; mat.valueAt(2, 1) = 0.0f; mat.valueAt(2, 2) = 1.0f;
-}
-
-FORCEINLINE MyFMatrix3 transposeMatrix(const MyFMatrix3 &mat) {
-    return MyFMatrix3(mat.valueAt(0, 0), mat.valueAt(1, 0), mat.valueAt(2, 0),
-                      mat.valueAt(0, 1), mat.valueAt(1, 1), mat.valueAt(2, 1),
-                      mat.valueAt(0, 2), mat.valueAt(1, 2), mat.valueAt(2, 2));
 }
 
 FORCEINLINE void transposeMatrix(MyFMatrix3 &mat) {
@@ -1395,6 +1390,12 @@ FORCEINLINE void transposeMatrix(const MyFMatrix3 &inMat, MyFMatrix3 &outMat) {
     outMat.valueAt(2, 2) = inMat.valueAt(2, 2);
 }
 
+FORCEINLINE MyFMatrix3 transposeMatrix(const MyFMatrix3 &mat) {
+    MyFMatrix3 ret;
+    transposeMatrix(mat, ret);
+    return ret;
+}
+
 FORCEINLINE bool inverseMatrix(MyFMatrix3 &mat, MyFMatrix3 &invMat) {
     return metaInverseMatrix<MyFMatrix3, 3>(mat, invMat);
 }
@@ -1415,13 +1416,6 @@ FORCEINLINE void identityMatrix(MyFMatrix4 &mat) {
     mat.valueAt(1, 0) = 0.0f; mat.valueAt(1, 1) = 1.0f; mat.valueAt(1, 2) = 0.0f; mat.valueAt(1, 3) = 0.0f;
     mat.valueAt(2, 0) = 0.0f; mat.valueAt(2, 1) = 0.0f; mat.valueAt(2, 2) = 1.0f; mat.valueAt(2, 3) = 0.0f;
     mat.valueAt(3, 0) = 0.0f; mat.valueAt(3, 1) = 0.0f; mat.valueAt(3, 2) = 0.0f; mat.valueAt(3, 3) = 1.0f;
-}
-
-FORCEINLINE MyFMatrix4 transposeMatrix(const MyFMatrix4 &mat) {
-    return MyFMatrix4(mat.valueAt(0, 0), mat.valueAt(1, 0), mat.valueAt(2, 0), mat.valueAt(3, 0),
-                      mat.valueAt(0, 1), mat.valueAt(1, 1), mat.valueAt(2, 1), mat.valueAt(3, 1),
-                      mat.valueAt(0, 2), mat.valueAt(1, 2), mat.valueAt(2, 2), mat.valueAt(3, 2),
-                      mat.valueAt(0, 3), mat.valueAt(1, 3), mat.valueAt(2, 3), mat.valueAt(3, 3));
 }
 
 FORCEINLINE void transposeMatrix(MyFMatrix4 &mat) {
@@ -1464,12 +1458,34 @@ FORCEINLINE void transposeMatrix(const MyFMatrix4 &inMat, MyFMatrix4 &outMat) {
     outMat.valueAt(3, 3) = inMat.valueAt(3, 3);
 }
 
+FORCEINLINE MyFMatrix4 transposeMatrix(const MyFMatrix4 &mat) {
+    MyFMatrix4 ret;
+    transposeMatrix(mat, ret);
+    return ret;
+}
+
 FORCEINLINE bool inverseMatrix(const MyFMatrix4 &mat, MyFMatrix4 &invMat) {
     return metaInverseMatrix<MyFMatrix4, 4>(mat, invMat);
 }
 
 FORCEINLINE bool inverseMatrix(MyFMatrix4 &mat) {
     return metaInverseMatrix<MyFMatrix4, 4>(mat);
+}
+
+FORCEINLINE bool matrixOrthogonal(const MyFMatrix3 &mat) {
+    return MyMathUtil::identity(mat.valueAt(0, 0) * mat.valueAt(0, 0) +
+                                mat.valueAt(1, 0) * mat.valueAt(1, 0) + mat.valueAt(2, 0) * mat.valueAt(2, 0)) &&
+    MyMathUtil::identity(mat.valueAt(0, 1) * mat.valueAt(0, 1) +
+                         mat.valueAt(1, 1) * mat.valueAt(1, 1) + mat.valueAt(2, 1) * mat.valueAt(2, 1)) &&
+    MyMathUtil::identity(mat.valueAt(0, 2) * mat.valueAt(0, 2) +
+                         mat.valueAt(1, 2) * mat.valueAt(1, 2) + mat.valueAt(2, 2) * mat.valueAt(2, 2)) &&
+    MyMathUtil::zero(mat.valueAt(0, 0) * mat.valueAt(0, 1) +
+                            mat.valueAt(1, 0) * mat.valueAt(1, 1) + mat.valueAt(2, 0) * mat.valueAt(2, 1)) &&
+    MyMathUtil::zero(mat.valueAt(0, 0) * mat.valueAt(0, 2) +
+                     mat.valueAt(1, 0) * mat.valueAt(1, 2) + mat.valueAt(2, 0) * mat.valueAt(2, 2)) &&
+    MyMathUtil::zero(mat.valueAt(0, 1) * mat.valueAt(0, 2) +
+                     mat.valueAt(1, 1) * mat.valueAt(1, 2) + mat.valueAt(2, 1) * mat.valueAt(2, 2));
+    
 }
 
 MINE_NAMESPACE_END

@@ -11,7 +11,6 @@
 
 #include "MyTemplate.hpp"
 #include "MyDirector.hpp"
-#include "MyRef.hpp"
 #include "MyRenderer.hpp"
 #include "MyErrorDesc.hpp"
 

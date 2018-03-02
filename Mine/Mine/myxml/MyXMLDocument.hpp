@@ -18,10 +18,10 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueRef;
+class MyUniqueObject;
 class MyXMLNode;
 
-class MyXMLDocument final: public MyUniqueRef {
+class MyXMLDocument final: public MyUniqueObject {
 public:
     static MyXMLDocument* create(void);
     static MyXMLDocument* createWithDocument(const std::string &path);

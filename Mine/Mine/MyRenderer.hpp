@@ -20,10 +20,10 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueRef;
+class MyUniqueObject;
 class MyModelComponent;
 
-class MyRenderer: public MyUniqueRef {
+class MyRenderer: public MyUniqueObject {
 public:
     static MyRenderer* create(const std::string &name);
     

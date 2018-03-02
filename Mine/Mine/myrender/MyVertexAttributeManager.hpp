@@ -18,10 +18,10 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MySingletonRef;
+class MySingletonObject;
 class MyVertexAttribute;
 
-class MyVertexAttributeManager final: public MySingletonRef {
+class MyVertexAttributeManager final: public MySingletonObject {
 public:
     static MyVertexAttributeManager* sharedVertexAttributeManager(void);
     static void closeVertexAttributeManager(void);

@@ -18,11 +18,11 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MySingletonRef;
-class MyUniqueRef;
+class MySingletonObject;
+class MyUniqueObject;
 class MyErrorCallback;
 
-class MyErrorDesc final: public MySingletonRef {
+class MyErrorDesc final: public MySingletonObject {
 public:
     static MyErrorDesc* sharedErrorDesc(void);
     static void closeErrorDesc(void);
@@ -72,7 +72,7 @@ private:
     MyErrorDesc& operator=(const MyErrorDesc&);
 };
 
-class MyErrorCallback: public MyUniqueRef {
+class MyErrorCallback: public MyUniqueObject {
 public:
     static MyErrorCallback* create(void) { return nullptr;}
     

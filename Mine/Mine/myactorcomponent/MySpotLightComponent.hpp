@@ -24,24 +24,24 @@ public:
     static MySpotLightComponent* create(void);
     
 public:
-    int attenuationType(void) const { return _attenuationType; }
-    void attenuationType(int type) { _attenuationType = type; }
+    FORCEINLINE int attenuationType(void) const { return _attenuationType; }
+    FORCEINLINE void attenuationType(int type) { _attenuationType = type; }
     
-    float attenuationDistance(void) const { return _attenuationDistance; }
-    void attenuationDistance(float dist) { _attenuationDistance = dist; }
+    FORCEINLINE float attenuationDistance(void) const { return _attenuationDistance; }
+    FORCEINLINE void attenuationDistance(float dist) { _attenuationDistance = dist; }
     
-    float attenuationExponent(void) const { return _attenuationExponent; }
-    void attenuationExponent(float exp) { _attenuationExponent = exp; }
+    FORCEINLINE float attenuationExponent(void) const { return _attenuationExponent; }
+    FORCEINLINE void attenuationExponent(float exp) { _attenuationExponent = exp; }
     
-    float cutoff(void) const { return _cutoff; }
-    void cutoff(float coneCos) { _cutoff = coneCos; }
+    FORCEINLINE float cutoff(void) const { return _cutoff; }
+    FORCEINLINE void cutoff(float coneCos) { _cutoff = coneCos; }
     
 private:
     explicit
-    MySpotLightComponent(void):
-    MyLightComponent(MyActorComponent::kComponentTypePointLight, "Point Light"),
+    FORCEINLINE MySpotLightComponent(void):
+    MyLightComponent(MyActorComponent::kComponentTypePointLight),
     _cutoff(0.5f), _attenuationDistance(100.0f), _attenuationType(MyLightComponent::kLightAttenuationQuadratic) {}
-    ~MySpotLightComponent(void) {}
+    FORCEINLINE ~MySpotLightComponent(void) {}
     
     float _cutoff;
     float _attenuationDistance;

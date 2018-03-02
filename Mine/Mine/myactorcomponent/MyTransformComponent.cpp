@@ -9,6 +9,7 @@
 
 #include "MyVector.hpp"
 #include "MyMatrix.hpp"
+#include "MyQuaternion.hpp"
 #include "MyCoordinate.hpp"
 #include "MyTemplate.hpp"
 #include "MyActorComponent.hpp"
@@ -18,13 +19,13 @@ MINE_NAMESPACE_BEGIN
 
 MyTransformComponent* MyTransformComponent::create(void) {
     MyTransformComponent *transform = new MyTransformComponent();
-    transform->refName("MyTransformComponent");
+    transform->objectName("MyTransformComponent");
     return transform;
 }
 
 MyTransformComponent* MyTransformComponent::createWithPosition(const MyFVector3 &pos) {
     MyTransformComponent *transform = new MyTransformComponent(pos);
-    transform->refName("MyTransformComponent");
+    transform->objectName("MyTransformComponent");
     return transform;
 }
 

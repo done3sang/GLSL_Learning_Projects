@@ -342,15 +342,11 @@ FORCEINLINE const float* value_pointer(const MyFVector4 &v) {
 }
 
 // basic operations of vector
-FORCEINLINE float magnitudeVector(const MyFVector2 &vec) {
-    return MyMathUtil::sqrt(magnitudeSquareVector(vec));
-}
-
 FORCEINLINE float magnitudeSquareVector(const MyFVector2 &vec) {
     return vec.x * vec.x + vec.y * vec.y;
 }
 
-FORCEINLINE float magnitudeVector(const MyFVector3 &vec) {
+FORCEINLINE float magnitudeVector(const MyFVector2 &vec) {
     return MyMathUtil::sqrt(magnitudeSquareVector(vec));
 }
 
@@ -358,7 +354,7 @@ FORCEINLINE float magnitudeSquareVector(const MyFVector3 &vec) {
     return vec.x * vec.x + vec.y * vec.y + vec.z * vec.z;
 }
 
-FORCEINLINE float magnitudeVector(const MyFVector4 &vec) {
+FORCEINLINE float magnitudeVector(const MyFVector3 &vec) {
     return MyMathUtil::sqrt(magnitudeSquareVector(vec));
 }
 
@@ -366,8 +362,8 @@ FORCEINLINE float magnitudeSquareVector(const MyFVector4 &vec) {
     return vec.x * vec.x + vec.y * vec.y + vec.z * vec.z + vec.w * vec.w;
 }
 
-FORCEINLINE MyFVector2 normalizeVector(const MyFVector2 &vec) {
-    return vec/magnitudeVector(vec);
+FORCEINLINE float magnitudeVector(const MyFVector4 &vec) {
+    return MyMathUtil::sqrt(magnitudeSquareVector(vec));
 }
 
 FORCEINLINE void normalizeVector(MyFVector2 &vec) {
@@ -382,8 +378,10 @@ FORCEINLINE void normalizeVector(const MyFVector2 &inVec, MyFVector2 &outVec) {
     outVec.y = inVec.y * mag;
 }
 
-FORCEINLINE MyFVector3 normalizeVector(const MyFVector3 &vec) {
-    return vec/magnitudeVector(vec);
+FORCEINLINE MyFVector2 normalizeVector(const MyFVector2 &vec) {
+    MyFVector2 ret;
+    normalizeVector(vec, ret);
+    return ret;
 }
 
 FORCEINLINE void normalizeVector(MyFVector3 &vec) {
@@ -399,8 +397,10 @@ FORCEINLINE void normalizeVector(const MyFVector3 &inVec, MyFVector3 &outVec) {
     outVec.z = inVec.z * mag;
 }
 
-FORCEINLINE MyFVector4 normalizeVector(const MyFVector4 &vec) {
-    return vec/magnitudeVector(vec);
+FORCEINLINE MyFVector3 normalizeVector(const MyFVector3 &vec) {
+    MyFVector3 ret;
+    normalizeVector(vec, ret);
+    return ret;
 }
 
 FORCEINLINE void normalizeVector(MyFVector4 &vec) {
@@ -415,6 +415,12 @@ FORCEINLINE void normalizeVector(const MyFVector4 &inVec, MyFVector4 &outVec) {
     outVec.y = inVec.y * mag;
     outVec.z = inVec.z * mag;
     outVec.w = inVec.w * mag;
+}
+
+FORCEINLINE MyFVector4 normalizeVector(const MyFVector4 &vec) {
+    MyFVector4 ret;
+    normalizeVector(vec, ret);
+    return ret;
 }
 
 FORCEINLINE float dotProduct(const MyFVector2 &a, const MyFVector2 &b) {
@@ -451,12 +457,6 @@ FORCEINLINE float radiusVector(const MyFVector4 &a, const MyFVector4 &b) {
 }
 
 // p = dot(v, n)/dot(n, n) *n
-FORCEINLINE MyFVector3 projectVector(const MyFVector3 &a, const MyFVector3 &b) {
-    MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "projectVector, magnitude 0");
-    float k = dotProduct(a, b)/magnitudeSquareVector(b);
-    return MyFVector3(b.x * k, b.y * k, b.z * k);
-}
-
 FORCEINLINE void projectVector(MyFVector3 &a, const MyFVector3 &b) {
     MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "projectVector, magnitude 0");
     float k = dotProduct(a, b)/magnitudeSquareVector(b);
@@ -473,10 +473,10 @@ FORCEINLINE void projectVector(const MyFVector3 &a, const MyFVector3 &b, MyFVect
     outVec.z = b.z * k;
 }
 
-FORCEINLINE MyFVector3 projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b) {
-    MINE_ASSERT2(MyMathUtil::identity(magnitudeSquareVector(b)), "projectNormalizedVector, vector not normalized");
-    float k = dotProduct(a, b);
-    return MyFVector3(b.x * k, b.y * k, b.z * k);
+FORCEINLINE MyFVector3 projectVector(const MyFVector3 &a, const MyFVector3 &b) {
+    MyFVector3 ret;
+    projectVector(a, b, ret);
+    return ret;
 }
 
 FORCEINLINE void projectNormalizedVector(MyFVector3 &a, const MyFVector3 &b) {
@@ -495,13 +495,13 @@ FORCEINLINE void projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &
     outVec.z = b.z * k;
 }
 
-// p = dot(v, n)/dot(n, n) *n, q = v - p
-FORCEINLINE MyFVector3 perpendicularVector(const MyFVector3 &a, const MyFVector3 &b) {
-    MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "perpendicularVector, magnitude 0");
-    float k = dotProduct(a, b)/magnitudeSquareVector(b);
-    return MyFVector3(a.x - b.x * k, a.y - b.y * k, a.z - b.z * k);
+FORCEINLINE MyFVector3 projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b) {
+    MyFVector3 ret;
+    projectNormalizedVector(a, b, ret);
+    return ret;
 }
 
+// p = dot(v, n)/dot(n, n) *n, q = v - p
 FORCEINLINE void perpendicularVector(MyFVector3 &a, const MyFVector3 &b) {
     MINE_ASSERT2(!MyMathUtil::zero(magnitudeSquareVector(b)), "perpendicularVector, magnitude 0");
     float k = dotProduct(a, b)/magnitudeSquareVector(b);
@@ -518,10 +518,10 @@ FORCEINLINE void perpendicularVector(const MyFVector3 &a, const MyFVector3 &b, M
     outVec.z = a.z - b.z * k;
 }
 
-FORCEINLINE MyFVector3 perpendicularNormalizedVector(const MyFVector3 &a, const MyFVector3 &b) {
-    MINE_ASSERT2(MyMathUtil::identity(magnitudeSquareVector(b)), "perpendicularNormalizedVector, vector not normalized");
-    float k = dotProduct(a, b);
-    return MyFVector3(a.x - b.x * k, a.y - b.y * k, a.z - b.z * k);
+FORCEINLINE MyFVector3 perpendicularVector(const MyFVector3 &a, const MyFVector3 &b) {
+    MyFVector3 ret;
+    perpendicularVector(a, b, ret);
+    return ret;
 }
 
 FORCEINLINE void perpendicularNormalizedVector(MyFVector3 &a, const MyFVector3 &b) {
@@ -538,6 +538,12 @@ FORCEINLINE void perpendicularNormalizedVector(const MyFVector3 &a, const MyFVec
     outVec.x = a.x - b.x * k;
     outVec.y = a.x - b.y * k;
     outVec.z = a.x - b.z * k;
+}
+
+FORCEINLINE MyFVector3 perpendicularNormalizedVector(const MyFVector3 &a, const MyFVector3 &b) {
+    MyFVector3 ret;
+    perpendicularNormalizedVector(a, b, ret);
+    return ret;
 }
 
 FORCEINLINE void partitionVector(const MyFVector3 &a,

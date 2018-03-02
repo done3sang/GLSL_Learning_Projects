@@ -12,6 +12,7 @@
 #include "MyActorComponent.hpp"
 #include "MyVector.hpp"
 #include "MyMatrix.hpp"
+#include "MyQuaternion.hpp"
 #include "MyCoordinate.hpp"
 #include "MyTransformComponent.hpp"
 #include "MyModelComponent.hpp"
@@ -37,7 +38,7 @@ std::unordered_map<size_t, MyLightActor*> MyActor::_scenarioLightMap;
 
 MyActor* MyActor::createWithName(const std::string &name) {
     MyActor *act = new MyActor(name);
-    act->refName(name);
+    act->objectName(name);
     return act;
 }
 

@@ -17,9 +17,9 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueRef;
+class MyUniqueObject;
 
-class MyXMLNode final: public MyUniqueRef {
+class MyXMLNode final: public MyUniqueObject {
 public:
     static MyXMLNode* createWithType(int nodeType = kXMLNodeTypeElement);
     static MyXMLNode* createWithNameType(const std::string &name,
@@ -64,7 +64,7 @@ private:
     void nodeType(int nt) { _nodeType = nt; }
     void nodeName(const std::string &name) {
         _nodeName = name;
-        refName(name + "_MyXMLNode");
+        objectName(name + "_MyXMLNode");
     }
     void nodeValue(const std::string &value) { _nodeValue = value; }
     

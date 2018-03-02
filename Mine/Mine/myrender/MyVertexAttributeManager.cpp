@@ -17,7 +17,7 @@ MyVertexAttributeManager* MyVertexAttributeManager::_sharedVertexAttributeMgr = 
 MyVertexAttributeManager* MyVertexAttributeManager::sharedVertexAttributeManager(void) {
     if(!_sharedVertexAttributeMgr) {
         _sharedVertexAttributeMgr = new MyVertexAttributeManager();
-        _sharedVertexAttributeMgr->refName("MyVertexAttributeManager");
+        _sharedVertexAttributeMgr->objectName("MyVertexAttributeManager");
     }
     
     return _sharedVertexAttributeMgr;

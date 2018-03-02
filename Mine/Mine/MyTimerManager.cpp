@@ -17,7 +17,7 @@ MyTimerManager* MyTimerManager::_sharedTimerManager = nullptr;
 MyTimerManager* MyTimerManager::sharedTimerManager(void) {
     if(!_sharedTimerManager) {
         _sharedTimerManager = new MyTimerManager;
-        _sharedTimerManager->refName("MyTimerManager");
+        _sharedTimerManager->objectName("MyTimerManager");
     }
     return _sharedTimerManager;
 }

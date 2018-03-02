@@ -15,13 +15,13 @@ MINE_NAMESPACE_BEGIN
 
 MyMaterialComponent* MyMaterialComponent::create(void) {
     MyMaterialComponent *mat = new MyMaterialComponent;
-    mat->refName("MyMaterialComponent");
+    mat->objectName("MyMaterialComponent");
     return mat;
 }
 
 MyMaterialComponent* MyMaterialComponent::createWithColor(const glm::vec4 &color) {
     MyMaterialComponent *mat = new MyMaterialComponent(color);
-    mat->refName("MyMaterialComponent");
+    mat->objectName("MyMaterialComponent");
     return mat;
 }
 

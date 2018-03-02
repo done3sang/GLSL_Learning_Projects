@@ -9,7 +9,6 @@
 #include <cassert>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "MyRef.hpp"
 #include "MyTemplate.hpp"
 #include "MyBufferObject.hpp"
 #include "MyProgram.hpp"
@@ -31,7 +30,7 @@ MyProgram::~MyProgram(void) {
 
 MyProgram* MyProgram::create(const std::string &programName) {
     MyProgram *prog = new MyProgram(programName);
-    prog->refName("MyProgram");
+    prog->objectName("MyProgram");
     
     return prog;
 }

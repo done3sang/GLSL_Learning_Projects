@@ -16,7 +16,7 @@ MINE_NAMESPACE_BEGIN
 
 MyPointLightComponent* MyPointLightComponent::create(void) {
     MyPointLightComponent *light = new MyPointLightComponent;
-    light->refName("MyPointLightComponent");
+    light->objectName("MyPointLightComponent");
     return light;
 }
 

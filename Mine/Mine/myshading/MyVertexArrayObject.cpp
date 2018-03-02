@@ -7,7 +7,7 @@
 //
 
 #include "MyTemplate.hpp"
-#include "MyRef.hpp"
+#include "MyObject.hpp"
 #include "MyBufferObject.hpp"
 #include "MyVertexArrayObject.hpp"
 #include "MyProgram.hpp"
@@ -26,7 +26,7 @@ MyVertexArrayObject::~MyVertexArrayObject(void) {
 
 MyVertexArrayObject* MyVertexArrayObject::create(void) {
     MyVertexArrayObject *obj = new MyVertexArrayObject;
-    obj->refName("MyVertexArrayObject");
+    obj->objectName("MyVertexArrayObject");
     
     return obj;
 }

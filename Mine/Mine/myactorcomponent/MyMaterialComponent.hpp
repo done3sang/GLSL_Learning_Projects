@@ -24,26 +24,26 @@ public:
     static MyMaterialComponent* create(void);
     static MyMaterialComponent* createWithColor(const glm::vec4 &color);
     
-    const glm::vec4& baseColor(void) const { return _baseColor; }
-    void baseColor(const glm::vec4 &color) { _baseColor = color; }
+public:
+    FORCEINLINE const glm::vec4& baseColor(void) const { return _baseColor; }
+    FORCEINLINE void baseColor(const glm::vec4 &color) { _baseColor = color; }
     
-    float shininess(void) const { return _shininess; }
-    void shininess(float shin) { _shininess = shin; }
+    FORCEINLINE float shininess(void) const { return _shininess; }
+    FORCEINLINE void shininess(float shin) { _shininess = shin; }
     
-    float ambientFactor(void) const { return _ambientFactor; }
-    void ambientFactor(float factor) { _ambientFactor = factor; }
+    FORCEINLINE float ambientFactor(void) const { return _ambientFactor; }
+    FORCEINLINE void ambientFactor(float factor) { _ambientFactor = factor; }
     
-    float specularFactor(void) const { return _specularFactor; }
-    void specularFactor(float factor) { _specularFactor = factor; }
+    FORCEINLINE float specularFactor(void) const { return _specularFactor; }
+    FORCEINLINE void specularFactor(float factor) { _specularFactor = factor; }
     
 private:
     explicit
-    MyMaterialComponent(const glm::vec4 &color = glm::vec4(1.0f)):
+    FORCEINLINE MyMaterialComponent(const glm::vec4 &color = glm::vec4(1.0f)):
     MyActorComponent(MyActorComponent::kComponentTypeMaterial,
-                     "Material",
                      MyActorComponent::kComponentGroupMaterial),
     _baseColor(color), _shininess(16.0f), _ambientFactor(0.01f), _specularFactor(16.0f) {}
-    ~MyMaterialComponent(void) {}
+    FORCEINLINE ~MyMaterialComponent(void) {}
     
     glm::vec4 _baseColor;
     float _shininess;

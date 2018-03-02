@@ -29,7 +29,7 @@ static const std::string fragmentShaderSource = "#version 400\n"
 
 BaseScene* BaseScene::create(void) {
     BaseScene *obj =  new BaseScene;
-    obj->refName("BaseScene");
+    obj->objectName("BaseScene");
     
     return obj;
 }

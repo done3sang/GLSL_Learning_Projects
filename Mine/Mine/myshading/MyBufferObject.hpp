@@ -18,10 +18,10 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueRef;
-class MyRef;
+class MyUniqueObject;
+class MyObject;
 
-class MyBufferObject: public MyUniqueRef {
+class MyBufferObject: public MyUniqueObject {
 public:
     static const int kBufferArray = GL_ARRAY_BUFFER;
     static const int kBufferElementArray = GL_ELEMENT_ARRAY_BUFFER;

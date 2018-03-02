@@ -10,12 +10,14 @@
 #define MySingleton_hpp
 
 #include "MyPrecompiled.hpp"
-#include "MyRef.hpp"
+#include "MyObject.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
 MINE_NAMESPACE_BEGIN
+
+class MyObject;
 
 class MySingleton {
 public:
@@ -25,8 +27,8 @@ public:
     MySingleton& operator=(MySingleton&&) = delete;
     
 protected:
-    MySingleton(void) {}
-    virtual ~MySingleton(void) {}
+    FORCEINLINE MySingleton(void) {}
+    FORCEINLINE virtual ~MySingleton(void) {}
 };
 
 class MyUnique {
@@ -37,8 +39,8 @@ public:
     MyUnique& operator=(MyUnique&&) = delete;
     
 protected:
-    MyUnique(void) {}
-    virtual ~MyUnique(void) {}
+    FORCEINLINE MyUnique(void) {}
+    FORCEINLINE virtual ~MyUnique(void) {}
 };
 
 class MyStatic {
@@ -52,30 +54,30 @@ public:
     MyStatic& operator=(MyStatic&&) = delete;
 };
 
-class MySingletonRef: public MyRef {
+class MySingletonObject: public MyObject {
 public:
-    MySingletonRef(const MySingletonRef&) = delete;
-    MySingletonRef(const MySingletonRef&&) = delete;
-    MySingletonRef& operator=(const MySingletonRef&) = delete;
-    MySingletonRef& operator=(MySingletonRef&&) = delete;
+    MySingletonObject(const MySingletonObject&) = delete;
+    MySingletonObject(const MySingletonObject&&) = delete;
+    MySingletonObject& operator=(const MySingletonObject&) = delete;
+    MySingletonObject& operator=(MySingletonObject&&) = delete;
     
 protected:
-    MySingletonRef(void) { MyRef::retain(); }
-    virtual ~MySingletonRef(void) {}
+    FORCEINLINE MySingletonObject(void) { MyObject::retain(); }
+    FORCEINLINE virtual ~MySingletonObject(void) {}
     
-    void addRef(void) { MyRef::addRef(); }
-    void retain(void) { MyRef::retain(); }
+    FORCEINLINE void addRef(void) { MyObject::addRef(); }
+    FORCEINLINE void retain(void) { MyObject::retain(); }
 };
 
-class MyUniqueRef: public MyRef {
+class MyUniqueObject: public MyObject {
 public:
-    MyUniqueRef(const MyUniqueRef&) = delete;
-    MyUniqueRef(MyUniqueRef&&) = delete;
-    MyUniqueRef& operator=(const MyUniqueRef&) = delete;
+    MyUniqueObject(const MyUniqueObject&) = delete;
+    MyUniqueObject(MyUniqueObject&&) = delete;
+    MyUniqueObject& operator=(const MyUniqueObject&) = delete;
     
 protected:
-    MyUniqueRef(void) {}
-    virtual ~MyUniqueRef(void) {}
+    FORCEINLINE MyUniqueObject(void) {}
+    FORCEINLINE virtual ~MyUniqueObject(void) {}
 };
 
 MINE_NAMESPACE_END

@@ -19,11 +19,11 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MySingletonRef;
+class MySingletonObject;
 class MyShader;
 class MyProgram;
 
-class MyShadingManager final: public MySingletonRef {
+class MyShadingManager final: public MySingletonObject {
 public:
     static MyShadingManager* sharedShadingManager();
     static void closeShadingManager(void);

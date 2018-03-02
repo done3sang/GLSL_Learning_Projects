@@ -18,11 +18,11 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueRef;
+class MyUniqueObject;
 class MyBufferObject;
-class MyRef;
+class MyObject;
 
-class MyVertexArrayObject: public MyUniqueRef {
+class MyVertexArrayObject: public MyUniqueObject {
 public:
     MyVertexArrayObject(void):_vertexArrayId(0) {}
     ~MyVertexArrayObject(void);

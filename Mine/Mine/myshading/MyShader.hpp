@@ -18,9 +18,9 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueRef;
+class MyUniqueObject;
 
-class MyShader: public MyUniqueRef {
+class MyShader: public MyUniqueObject {
 public:
     explicit
     MyShader(const std::string &shaderName, int shaderType = kShaderTypeVertex);

@@ -8,6 +8,7 @@
 
 #include "MyVector.hpp"
 #include "MyMatrix.hpp"
+#include "MyQuaternion.hpp"
 #include "MyCoordinate.hpp"
 #include "MyPlane.hpp"
 
@@ -412,13 +413,6 @@ FORCEINLINE MyFMatrix3& MyTransformation::shearMatrixByAxisZ(MyFMatrix3 &mat, fl
     return mat;
 }
 
-// B = A * P -> P = A ^ -1 * B, a = A * x = B * y = A * P * y -> x = Py ->y = P ^ -1 * x
-FORCEINLINE void MyTransformation::transformCoordianteVectorForward(const MyCoordinateTransition &coordTransit,
-                                                                    const MyFVector3 &vecA,
-                                                                    MyFVector3 &vecB) {
-    transformVector(coordTransit.backwardMatrix(), vecA, vecB);
-}
-
 /* translation(x, y, z)
  1  0   0   x
  0  1   0   y
@@ -476,12 +470,153 @@ FORCEINLINE MyFMatrix4& MyTransformation::perspectiveMatrix(MyFMatrix4 &mat,
     return mat;
 }
 
+// B = A * P -> P = A ^ -1 * B, a = A * x = B * y = A * P * y -> x = Py ->y = P ^ -1 * x
+FORCEINLINE void MyTransformation::transformCoordianteVectorForward(const MyCoordinateTransition &coordTransit,
+                                                                    const MyFVector3 &vecA,
+                                                                    MyFVector3 &vecB) {
+    transformVector(coordTransit.backwardMatrix(), vecA, vecB);
+}
+
 // B = A * P -> P = A ^ -1 * B, a = A * x = B * y = A * P * y -> x = Py
 FORCEINLINE void MyTransformation::transformCoordianteVectorBackward(
                                                                      const MyCoordinateTransition &coordTransit,
                                                                      const MyFVector3 &vecB,
                                                                      MyFVector3 &vecA) {
     transformVector(coordTransit.forwardMatrix(), vecB, vecA);
+}
+
+// [cose nsine] * quat
+FORCEINLINE MyFQuaternion& MyTransformation::rotateQuaternion(MyFQuaternion &quat,
+                                                              const MyFVector3 &axis,
+                                                              float radius) {
+    MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::rotateQuaternion, quaternion not normalized");
+    MINE_ASSERT2(vectorNormalized(axis), "MyTransformation::rotateQuaternion, axis not normalized");
+    float w = MyMathUtil::cos(radius);
+    float sine = MyMathUtil::sin(radius);
+    float x = axis.x * sine;
+    float y = axis.y * sine;
+    float z = axis.z * sine;
+    float tw = w * quat.w - x * quat.x - y * quat.y - z * quat.z;
+    float tx = w * quat.x + quat.w * x + y * quat.z - z * quat.y;
+    float ty = w * quat.y + quat.w * y + z * quat.x - x * quat.z;
+    quat.z = w * quat.z + quat.w * z + x * quat.y - y * quat.x;
+    quat.w = tw;
+    quat.x = tx;
+    quat.y = ty;
+    return quat;
+}
+
+// q * v * q-1, v = [0 x y z]
+FORCEINLINE void MyTransformation::quaternionVector(const MyFQuaternion &quat, MyFVector3 &vec) {
+    MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::rotateQuaternion, quaternion not normalized");
+    float tw = -quat.x * vec.x - quat.y * vec.y - quat.z * vec.z;
+    float tx = quat.w * vec.x + quat.y * vec.z - quat.z * vec.y;
+    float ty = quat.w * vec.y + quat.z * vec.x - quat.x * vec.z;
+    float tz = quat.w * vec.z + quat.x * vec.y - quat.y * vec.x;
+    tw = tw * quat.w + tx * quat.x + ty * quat.y + tz * quat.z;
+    vec.x = quat.w * tx  - tw * quat.x - ty * quat.z + tz * quat.y;
+    vec.y = quat.w * ty - tw * quat.y - tz * quat.x + tx * quat.z;
+    vec.z = quat.w * tz - tw * quat.z - tx * quat.y + ty * quat.x;
+}
+
+// v' = (v - dot(v, n)n)cose + cross(v, n) * sine + dot(v, n)n, [cosa nsina] a = e/2
+/*
+ xx(1- cose) + cose     (1 - cose)xy - zsine    (1 - cose)xz + ysine
+ (1 - cose)xy + zsine   yy(1 - cose) + cose     (1 - cose)yz - xsine
+ (1- cose)xz - ysine    (1 - cose)yz + xsine    zz(1 - cose) +cose
+ 
+ ww + xx + yy + zz = 1
+ cose = cos(a + a) = cosa * cosa - sina * sina = 1 - 2sina*sina = 2cosa * cosa - 1
+ sine = 2sina * cosa
+ -> m00 = xx(1 - cose) + cose = 2xx * sina * sina + 2cosa * cosa - 1 = 2nx * nx + 2ww - 1
+ -> m01 = (1 - cose)xy - zsine = 2sina * sina * xy - 2zsina * cosa = 2nx * ny - 2nz * w
+ -> m02 = (1 - cose)xz + ysine = 2nx * nz + 2ny * w
+ -> m10 = (1 - cose)xy + zsine = 2nx * ny + 2nz * w
+ -> m11 = yy(1 - cose) + cose = 2ny * ny + 2ww - 1
+ -> m12 = (1 - cose)yz - xsine = 2ny * nz - 2nx * w
+ -> m20 = (1- cose)xz - ysine = 2nx * nz - 2ny * w
+ -> m21 = (1 - cose)yz + xsine = 2ny * nz + 2nx * w
+ -> m22 = zz(1 - cose) +cose = 2nz * nz + 2ww - 1
+ */
+FORCEINLINE void MyTransformation::quaternionToMatrix(const MyFQuaternion &quat, MyFMatrix3 &mat) {
+    MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::quaternionToMatrix, quaternion not normalized");
+    float ww = quat.w * quat.w;
+    float wx = quat.w * quat.x;
+    float wy = quat.w * quat.y;
+    float wz = quat.w * quat.z;
+    float xy = quat.x * quat.y;
+    float yz = quat.y * quat.z;
+    float zx = quat.z * quat.x;
+    mat.valueAt(0, 0) = 2.0f * (quat.x * quat.x + ww) - 1.0f;
+    mat.valueAt(0, 1) = 2.0f * (xy - wz);
+    mat.valueAt(0, 2) = 2.0f * (zx + wy);
+    mat.valueAt(1, 0) = 2.0f * (xy + wz);
+    mat.valueAt(1, 1) = 2.0f * (quat.y * quat.y + ww) - 1.0f;
+    mat.valueAt(1, 2) = 2.0f * (yz - wy);
+    mat.valueAt(2, 0) = 2.0f * (zx - wy);
+    mat.valueAt(2, 1) = 2.0f * (yz + wx);
+    mat.valueAt(2, 2) = 2.0f * (quat.z * quat.z + ww) - 1.0f;
+}
+
+// v' = (v - dot(v, n)n)cose + cross(v, n) * sine + dot(v, n)n, [cosa nsina] a = e/2
+/*
+ xx(1- cose) + cose     (1 - cose)xy - zsine    (1 - cose)xz + ysine
+ (1 - cose)xy + zsine   yy(1 - cose) + cose     (1 - cose)yz - xsine
+ (1- cose)xz - ysine    (1 - cose)yz + xsine    zz(1 - cose) +cose
+ 
+ ww + xx + yy + zz = 1
+ cose = cos(a + a) = cosa * cosa - sina * sina = 1 - 2sina*sina = 2cosa * cosa - 1
+ sine = 2sina * cosa
+ -> m00 = xx(1 - cose) + cose = 2xx * sina * sina + 2cosa * cosa - 1 = 2nx * nx + 2ww - 1
+ -> m11 = yy(1 - cose) + cose = 2ny * ny + 2ww - 1
+ -> m22 = zz(1 - cose) +cose = 2nz * nz + 2ww - 1
+ -> m00 + m11 + m22 = 2(xx + yy ++ zz + 3ww) - 3 = 2(1 + 2ww) - 3 = 4ww - 1
+ -> m00 - m11 - m22 = 2(xx + ww - yy - ww - zz - ww) + 1 = 2(xx - ww - yy - zz) + 1 = 2(xx - 1 + xx) + 1 = 4xx - 1
+ -> m11 - m00 - m22 = 4yy - 1
+ -> m22 - m00 - m11 = 4zz - 1
+ -> m01 + m10 = 4xy, m10 - m01 = 4wz
+ -> m02 + m20 = 4xz, m02 - m20 = 4wy
+ -> m12 + m21 = 4yz, m21 - m12 = 4wx
+ */
+FORCEINLINE void MyTransformation::matrixToQuaternion(const MyFMatrix3 &mat, MyFQuaternion &quat) {
+    MINE_ASSERT2(matrixOrthogonal(mat), "MyTransformation::quaternionToMatrix, quaternion not normalized");
+    float ww = mat.valueAt(0, 0) + mat.valueAt(1, 1) + mat.valueAt(2, 2);
+    float xx = mat.valueAt(0, 0) - mat.valueAt(1, 1) - mat.valueAt(2, 2);
+    float yy = mat.valueAt(1, 1) - mat.valueAt(0, 0) - mat.valueAt(2, 2);
+    float biggestVal = mat.valueAt(2, 2) - mat.valueAt(0, 0) - mat.valueAt(1, 1);
+    if(ww > xx && ww > yy && ww > biggestVal) {
+        biggestVal = MyMathUtil::sqrt(ww + 1.0f) * 0.5f;
+        quat.w = biggestVal;
+        biggestVal = 0.25f/biggestVal;
+        quat.x = (mat.valueAt(2, 1) - mat.valueAt(1, 2)) * biggestVal;
+        quat.y = (mat.valueAt(0, 2) - mat.valueAt(2, 0)) * biggestVal;
+        quat.z = (mat.valueAt(1, 0) - mat.valueAt(0, 1)) * biggestVal;
+    } else if(xx > yy && xx > biggestVal) {
+        // since ww not the biggest, the biggest should be in {xx, yy, zz}
+        // so we only need to compare xx, yy, zz
+        biggestVal = MyMathUtil::sqrt(xx + 1.0f) * 0.5f;
+        quat.x = biggestVal;
+        biggestVal = 0.25f/biggestVal;
+        quat.w = (mat.valueAt(2, 1) - mat.valueAt(1, 2)) * biggestVal;
+        quat.y = (mat.valueAt(0, 1) + mat.valueAt(1, 0)) * biggestVal;
+        quat.z = (mat.valueAt(0, 2) - mat.valueAt(2, 0)) * biggestVal;
+    } else if(yy > biggestVal) {
+        // since ww, xx not the biggest, the biggest should be in {yy, zz}
+        // so we only need to compare yy, zz
+        biggestVal = MyMathUtil::sqrt(yy + 1.0f) * 0.5f;
+        quat.y = biggestVal;
+        biggestVal = 0.25f/biggestVal;
+        quat.w = (mat.valueAt(0, 2) - mat.valueAt(2, 0)) * biggestVal;
+        quat.x = (mat.valueAt(0, 1) + mat.valueAt(1, 0)) * biggestVal;
+        quat.z = (mat.valueAt(1, 2) - mat.valueAt(2, 1)) * biggestVal;
+    } else {
+        biggestVal = MyMathUtil::sqrt(biggestVal + 1.0f) * 0.5f;
+        quat.z = biggestVal;
+        biggestVal = 0.25f/biggestVal;
+        quat.w = (mat.valueAt(1, 0) - mat.valueAt(0, 1)) * biggestVal;
+        quat.x = (mat.valueAt(0, 2) + mat.valueAt(2, 0)) * biggestVal;
+        quat.y = (mat.valueAt(1, 2) + mat.valueAt(2, 1)) * biggestVal;
+    }
 }
 
 FORCEINLINE MyFVector2 operator*(const MyFMatrix2 &mat, const MyFVector2 &vec) {

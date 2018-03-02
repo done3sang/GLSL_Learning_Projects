@@ -17,7 +17,7 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyRef;
+class MyObject;
 class MySingleton;
 
 class MyAutoreleasePool final: public MySingleton {
@@ -25,8 +25,8 @@ public:
     static MyAutoreleasePool* sharedAutoreleasePool(void);
     static void closeAutoreleasePool(void);
     
-    void addObject(MyRef *object);
-    bool contains(const MyRef *object) const;
+    void addObject(MyObject *object);
+    bool contains(const MyObject *object) const;
     
     void clearPool(void);
     void purgePool(void);
@@ -34,7 +34,7 @@ public:
 private:
     ~MyAutoreleasePool(void) { purgePool(); }
     
-    std::vector<MyRef*> _objectArray;
+    std::vector<MyObject*> _objectArray;
     
     static MyAutoreleasePool *_sharedAutorelasePool;
 };

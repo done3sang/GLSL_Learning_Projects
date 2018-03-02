@@ -38,7 +38,7 @@ MyShader::~MyShader(void) {
 MyShader* MyShader::createWithShaderType(const std::string &shaderName,
                                          int shaderType) {
     MyShader *shader = new MyShader(shaderName, shaderType);
-    shader->refName("MyShader");
+    shader->objectName("MyShader");
     return shader;
 }
 
@@ -46,7 +46,7 @@ MyShader* MyShader::createWithShaderTypeAndPath(const std::string &shaderName,
                                                 int shaderType,
                                                 const std::string &filepath) {
     MyShader *shader = new MyShader(shaderName, shaderType);
-    shader->refName(shaderName);
+    shader->objectName(shaderName);
     
     return shader->loadFromFile(filepath) ? shader : nullptr;
 }

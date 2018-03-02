@@ -8,7 +8,6 @@
 
 #include <cassert>
 #include "MyTemplate.hpp"
-#include "MyRef.hpp"
 #include "MyBufferObject.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -21,7 +20,7 @@ MyBufferObject::~MyBufferObject(void) {
 
 MyBufferObject* MyBufferObject::createWithBufferType(int bufferType) {
     MyBufferObject *obj = new MyBufferObject(bufferType);
-    obj->refName("MyBufferObject");
+    obj->objectName("MyBufferObject");
     
     return obj;
 }

@@ -24,18 +24,18 @@ public:
     static MyPointLightComponent* create(void);
     
 public:
-    int attenuationType(void) const { return _attenuationType; }
-    void attenuationType(int type) { _attenuationType = type; }
+    FORCEINLINE int attenuationType(void) const { return _attenuationType; }
+    FORCEINLINE void attenuationType(int type) { _attenuationType = type; }
     
-    float attenuationDistance(void) const { return _attenuationDistance; }
-    void attenuationDistance(float dist) { _attenuationDistance = dist; }
+    FORCEINLINE float attenuationDistance(void) const { return _attenuationDistance; }
+    FORCEINLINE void attenuationDistance(float dist) { _attenuationDistance = dist; }
     
 private:
     explicit
-    MyPointLightComponent(void):
-    MyLightComponent(MyActorComponent::kComponentTypePointLight, "Point Light"),
+    FORCEINLINE MyPointLightComponent(void):
+    MyLightComponent(MyActorComponent::kComponentTypePointLight),
     _attenuationDistance(100.0f), _attenuationType(MyLightComponent::kLightAttenuationQuadratic) {}
-    ~MyPointLightComponent(void) {}
+    FORCEINLINE ~MyPointLightComponent(void) {}
     
     float _attenuationDistance;
     int _attenuationType;

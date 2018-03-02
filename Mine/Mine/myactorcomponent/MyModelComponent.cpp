@@ -20,13 +20,13 @@ MINE_NAMESPACE_BEGIN
 
 MyModelComponent* MyModelComponent::create(void) {
     MyModelComponent *model = new MyModelComponent();
-    model->refName("MyModelComponent");
+    model->objectName("MyModelComponent");
     return model;
 }
 
 MyModelComponent* MyModelComponent::createWithModelFile(const std::string &path) {
     MyModelComponent *model = new MyModelComponent();
-    model->refName("MyModelComponent");
+    model->objectName("MyModelComponent");
     model->loadModelFile(path);
     return model;
 }

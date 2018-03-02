@@ -23,7 +23,7 @@ MyShadingManager* MyShadingManager::_sharedShadingManager = nullptr;
 MyShadingManager* MyShadingManager::sharedShadingManager(void) {
     if(!_sharedShadingManager) {
         _sharedShadingManager = new MyShadingManager();
-        _sharedShadingManager->refName("MyShadingManager");
+        _sharedShadingManager->objectName("MyShadingManager");
     }
     
     return _sharedShadingManager;

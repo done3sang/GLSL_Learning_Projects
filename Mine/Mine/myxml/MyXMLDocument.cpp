@@ -19,7 +19,7 @@ MINE_NAMESPACE_BEGIN
 
 MyXMLDocument* MyXMLDocument::create(void) {
     MyXMLDocument *doc = new MyXMLDocument;
-    doc->refName("MyXMLDocument");
+    doc->objectName("MyXMLDocument");
     return doc;
 }
 
@@ -32,7 +32,7 @@ void MyXMLDocument::destroy(void) {
 
 MyXMLDocument* MyXMLDocument::createWithDocument(const std::string &path) {
     MyXMLDocument *doc = new MyXMLDocument;
-    doc->refName("MyXMLDocument");
+    doc->objectName("MyXMLDocument");
     
     return doc->loadDocument(path) ? doc : nullptr;
 }

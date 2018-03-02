@@ -28,7 +28,7 @@ public:
 
 MyErrorDisposer* MyErrorDisposer::create(void) {
     MyErrorDisposer *disposer = new MyErrorDisposer;
-    disposer->refName("MyErrorDisposer");
+    disposer->objectName("MyErrorDisposer");
     return disposer;
 }
 

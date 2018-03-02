@@ -37,6 +37,7 @@ public:
     static MyModelComponent* create(void);
     static MyModelComponent* createWithModelFile(const std::string &path);
     
+public:
     bool loadModelFile(const std::string &path);
     bool loadModelSource(const std::string &source,
                          const std::string &format,
@@ -46,26 +47,26 @@ public:
                        int primitive = kModelPrimitiveTriangles);
     bool loadElementData(const std::vector<unsigned int> &elemData);
     
-    int modelFormat(void) const { return _modelFormat; }
-    int modelPrimitive(void) const { return _modelPrimitive; }
-    bool modelElemented(void) const { return _elementBuffer; }
-    bool modelCompleted(void) const { return _vertexBuffer; }
-    bool modelPrimitive(int prim) const { return kModelPrimitiveBegin <= prim && prim <= kModelPrimitiveEnd; }
-    const MyVertexAttribute* modelVertexAttribute(void) const { return _vertexAttribute; }
-    MyBufferObject* modelVertexBuffer(void) const { return _vertexBuffer; }
-    MyBufferObject* modelElementBuffer(void) const { return _elementBuffer; }
-    MyProgram* modelProgram(void) const { return _program; }
-    int renderMode(void) const { return _renderMode; }
-    int renderStart(void) const { return _renderStart; }
-    int renderCount(void) const { return _renderCount; }
-    int renderType(void) const { return _renderType; }
+    FORCEINLINE int modelFormat(void) const { return _modelFormat; }
+    FORCEINLINE int modelPrimitive(void) const { return _modelPrimitive; }
+    FORCEINLINE bool modelElemented(void) const { return _elementBuffer; }
+    FORCEINLINE bool modelCompleted(void) const { return _vertexBuffer; }
+    FORCEINLINE bool modelPrimitive(int prim) const { return kModelPrimitiveBegin <= prim && prim <= kModelPrimitiveEnd; }
+    FORCEINLINE const MyVertexAttribute* modelVertexAttribute(void) const { return _vertexAttribute; }
+    FORCEINLINE MyBufferObject* modelVertexBuffer(void) const { return _vertexBuffer; }
+    FORCEINLINE MyBufferObject* modelElementBuffer(void) const { return _elementBuffer; }
+    FORCEINLINE MyProgram* modelProgram(void) const { return _program; }
+    FORCEINLINE int renderMode(void) const { return _renderMode; }
+    FORCEINLINE int renderStart(void) const { return _renderStart; }
+    FORCEINLINE int renderCount(void) const { return _renderCount; }
+    FORCEINLINE int renderType(void) const { return _renderType; }
     
     void modelProgram(const std::string &progName);
     
 private:
-    MyModelComponent(void):
+    FORCEINLINE MyModelComponent(void):
     MyActorComponent(MyActorComponent::kComponentTypeModel,
-                     "Model", MyActorComponent::kComponentGroupModel),
+                     MyActorComponent::kComponentGroupModel),
     _modelPrimitive(kModelPrimitiveNone), _vertexAttribute(nullptr),
     _vertexBuffer(nullptr), _elementBuffer(nullptr), _program(nullptr),
     _renderMode(0), _renderStart(0), _renderCount(0), _renderType(0) {}

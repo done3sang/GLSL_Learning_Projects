@@ -17,10 +17,10 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueRef;
+class MyUniqueObject;
 class MyActor;
 
-class MyScenario: public MyUniqueRef {
+class MyScenario: public MyUniqueObject {
 public:
     virtual bool initialize(void) = 0;
     void destroy(void);
