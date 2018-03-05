@@ -228,6 +228,10 @@ void schmidtVector(MyFVector3 &a,
                    MyFVector3 &b,
                    MyFVector3 &c);
 
+bool vectorOrthogonal(const MyFVector2 &vec1, const MyFVector2 &vec2);
+bool vectorOrthogonal(const MyFVector3 &vec1, const MyFVector3 &vec2);
+bool vectorOrthogonal(const MyFVector4 &vec1, const MyFVector4 &vec2);
+
 MINE_NAMESPACE_END
 
 #pragma GCC visibility pop

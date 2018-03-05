@@ -130,11 +130,11 @@ FORCEINLINE void zeroQuaternion(MyFQuaternion &quat) {
     quat.w = quat.x = quat.y = quat.z = 0.0f;
 }
 
-FORCEINLINE float magnitudeSquareQuaternion(MyFQuaternion &quat) {
+FORCEINLINE float magnitudeSquareQuaternion(const MyFQuaternion &quat) {
     return quat.w * quat.w + quat.x * quat.x + quat.y * quat.y + quat.z * quat.z;
 }
 
-FORCEINLINE float magnitudeQuaternion(MyFQuaternion &quat) {
+FORCEINLINE float magnitudeQuaternion(const MyFQuaternion &quat) {
     return MyMathUtil::sqrt(magnitudeSquareQuaternion(quat));
 }
 

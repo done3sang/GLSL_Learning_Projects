@@ -1485,7 +1485,33 @@ FORCEINLINE bool matrixOrthogonal(const MyFMatrix3 &mat) {
                      mat.valueAt(1, 0) * mat.valueAt(1, 2) + mat.valueAt(2, 0) * mat.valueAt(2, 2)) &&
     MyMathUtil::zero(mat.valueAt(0, 1) * mat.valueAt(0, 2) +
                      mat.valueAt(1, 1) * mat.valueAt(1, 2) + mat.valueAt(2, 1) * mat.valueAt(2, 2));
-    
+}
+
+FORCEINLINE bool matrixOrthogonal(const MyFMatrix4 &mat) {
+    return MyMathUtil::identity(mat.valueAt(0, 0) * mat.valueAt(0, 0) +
+                                mat.valueAt(1, 0) * mat.valueAt(1, 0) +
+                                mat.valueAt(2, 0) * mat.valueAt(2, 0) +
+                                mat.valueAt(3, 0) * mat.valueAt(3, 0)) &&
+    MyMathUtil::identity(mat.valueAt(0, 1) * mat.valueAt(0, 1) +
+                         mat.valueAt(1, 1) * mat.valueAt(1, 1) +
+                         mat.valueAt(2, 1) * mat.valueAt(2, 1) +
+                         mat.valueAt(3, 1) * mat.valueAt(3, 1)) &&
+    MyMathUtil::identity(mat.valueAt(0, 2) * mat.valueAt(0, 2) +
+                         mat.valueAt(1, 2) * mat.valueAt(1, 2) +
+                         mat.valueAt(2, 2) * mat.valueAt(2, 2) +
+                         mat.valueAt(3, 2) * mat.valueAt(3, 2)) &&
+    MyMathUtil::zero(mat.valueAt(0, 0) * mat.valueAt(0, 1) +
+                     mat.valueAt(1, 0) * mat.valueAt(1, 1) +
+                     mat.valueAt(2, 0) * mat.valueAt(2, 1) +
+                     mat.valueAt(3, 0) * mat.valueAt(3, 1)) &&
+    MyMathUtil::zero(mat.valueAt(0, 0) * mat.valueAt(0, 2) +
+                     mat.valueAt(1, 0) * mat.valueAt(1, 2) +
+                     mat.valueAt(2, 0) * mat.valueAt(2, 2) +
+                     mat.valueAt(3, 0) * mat.valueAt(3, 2)) &&
+    MyMathUtil::zero(mat.valueAt(0, 1) * mat.valueAt(0, 2) +
+                     mat.valueAt(1, 1) * mat.valueAt(1, 2) +
+                     mat.valueAt(2, 1) * mat.valueAt(2, 2) +
+                     mat.valueAt(3, 1) * mat.valueAt(3, 2));
 }
 
 MINE_NAMESPACE_END

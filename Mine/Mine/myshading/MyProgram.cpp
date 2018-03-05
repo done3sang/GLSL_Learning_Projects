@@ -7,13 +7,13 @@
 //
 
 #include <cassert>
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include "MyTemplate.hpp"
 #include "MyBufferObject.hpp"
 #include "MyProgram.hpp"
 #include "MyShader.hpp"
 #include "MyErrorDesc.hpp"
+#include "MyVector.hpp"
+#include "MyMatrix.hpp"
 
 MINE_NAMESPACE_BEGIN
 
@@ -218,25 +218,36 @@ int MyProgram::uniformMatrix4(const std::string &name, const glm::mat4 &mat) {
     return MyErrorDesc::kErrOk;
 }
 
-bool MyProgram::uniformVector3(const std::string &name, const glm::vec3 &vec) {
+int MyProgram::uniformMatrix4(const std::string &name, const MyFMatrix4 &mat) {
+    int location(uniformLocation(name));
+    
+    if(location < 0) {
+        return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramUniformNotExists);
+    }
+    
+    glUniformMatrix4fv(location, 1, GL_FALSE, value_pointer(mat));
+    return MyErrorDesc::kErrOk;
+}
+
+bool MyProgram::uniformVector3(const std::string &name, const MyFVector3 &vec) {
     int location(uniformLocation(name));
     
     if(location < 0) {
         return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrProgramUniformNotExists);
     }
     
-    glUniform3fv(location, 1, glm::value_ptr(vec));
+    glUniform3fv(location, 1, value_pointer(vec));
     return true;
 }
 
-bool MyProgram::uniformVector4(const std::string &name, const glm::vec4 &vec) {
+bool MyProgram::uniformVector4(const std::string &name, const MyFVector4 &vec) {
     int location(uniformLocation(name));
     
     if(location < 0) {
         return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrProgramUniformNotExists);
     }
     
-    glUniform4fv(location, 1, glm::value_ptr(vec));
+    glUniform4fv(location, 1, value_pointer(vec));
     return true;
 }
 

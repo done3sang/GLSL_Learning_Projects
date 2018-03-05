@@ -5,12 +5,12 @@
         <vertex>
             <basic_vert>./Shader/basic.vert</basic_vert>
             <uniformblock_vert>./Shader/uniformblock.vert</uniformblock_vert>
-            <light_vert>./Shader/light.vert</light_vert>
+            <!--<light_vert>./Shader/light.vert</light_vert>-->
         </vertex>
         <fragment>
             <basic_frag>./Shader/basic.frag</basic_frag>
             <uniformblock_frag>./Shader/uniformblock.frag</uniformblock_frag>
-            <light_frag>./Shader/light.frag</light_frag>
+            <!--<light_frag>./Shader/light.frag</light_frag>-->
         </fragment>
     </shader>
     <program>
@@ -22,9 +22,9 @@
             <vertex>uniformblock_vert</vertex>
             <fragment>uniformblock_frag</fragment>
         </uniformblock>
-        <light>
+        <!--<light>
             <vertex>light_vert</vertex>
             <fragment>light_frag</fragment>
-        </light>
+        </light>-->
     </program>
 </root>

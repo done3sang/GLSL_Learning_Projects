@@ -216,6 +216,7 @@ bool inverseMatrix(const MyFMatrix4 &mat, MyFMatrix4 &invMat);
 bool inverseMatrix(MyFMatrix4 &mat);
 
 bool matrixOrthogonal(const MyFMatrix3 &mat);
+bool matrixOrthogonal(const MyFMatrix4 &mat);
 
 MINE_NAMESPACE_END
 

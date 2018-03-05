@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <iomanip>
 #include "TestMath.hpp"
 
 USING_MINE_NAMESPACE;
@@ -229,6 +230,50 @@ void MathTest::testTransformation(void) {
         7, -8, -10, -5
     });
     std::cout << "det(mdd), inversible = " << mdd.determinant() << ", " << mdd.inversible() << "\n";
+    
+    MyFVector3 vec(1.0f, 2.0f, 3.0f), vec1(1.0, 2.0f, 3.0f);
+    MyFQuaternion quat(1.0f);
+    MyFMatrix3 rmat(1.0f);
+    float radius = MyMathUtil::degreeToRadius(30.0f);
+    MyFVector3 axis(1.0f, 0.0f, 0.0f);
+    
+    MyTransformation::rotateMatrixByAxisX(rmat, radius);
+    MyTransformation::rotateQuaternionByAxisX(quat, radius);
+    
+    //identityMatrix(rmat);
+    //identityQuaternion(quat);
+    //MyTransformation::rotateMatrixByAxis(rmat, axis, radius);
+    //MyTransformation::rotateQuaternionByAxis(quat, axis, radius);
+    
+    std::cout << std::fixed << std::setprecision(10);
+    std::cout << "----------X-Axis---------\n";
+    MyTransformation::quaternionVectorForward(quat, vec);
+    printMatrix(vec);
+    MyTransformation::transformVector(rmat, vec1);
+    printMatrix(vec1);
+    std::cout << std::boolalpha << "vec == vec1 = " << (vec == vec1) << "\n";
+    
+    std::cout << "----------Y-Axis---------\n";
+    vec = {2.0f, 3.0f, 4.0f};
+    MyTransformation::quaternionVectorForward(quat, vec);
+    printMatrix(vec);
+    vec1 = {2.0f, 3.0f, 4.0f};
+    MyTransformation::transformVector(rmat, vec1);
+    printMatrix(vec1);
+    std::cout << std::boolalpha << "vec == vec1 = " << (vec == vec1) << "\n";
+    
+    std::cout << "----------Z-Axis---------\n";
+    vec = {3.0f, 4.0f, 5.0f};
+    MyTransformation::quaternionVectorForward(quat, vec);
+    printMatrix(vec);
+    vec1 = {3.0f, 4.0f, 5.0f};
+    MyTransformation::transformVector(rmat, vec1);
+    printMatrix(vec1);
+    std::cout << std::boolalpha << "vec == vec1 = " << (vec == vec1) << "\n";
+    
+    float x = 154.134545f;
+    std::cout << "abs(" << -x << ") = " << MyMathUtil::abs(-x) << std::endl;
+    std::cout << "abs(" << x << ") = " << MyMathUtil::abs(x) << std::endl;
 }
 
 void MathTest::testMathMatrix(void) {

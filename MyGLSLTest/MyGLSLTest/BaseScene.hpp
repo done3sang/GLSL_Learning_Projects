@@ -9,7 +9,6 @@
 #ifndef BaseScene_hpp
 #define BaseScene_hpp
 
-#include <glm/glm.hpp>
 #include "Mine.hpp"
 
 USING_MINE_NAMESPACE;
@@ -27,7 +26,7 @@ private:
     MyProgram *_myProgram;
     MyVertexArrayObject *_myVertexArray;
     
-    glm::mat4 _rotationMatrix;
+    MyFMatrix4 _rotationMatrix;
     float _rotationAngle;
 };
 

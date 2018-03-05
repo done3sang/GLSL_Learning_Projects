@@ -26,9 +26,21 @@ public:
     static constexpr float kMathPIBy4 = 4.0f * kMathPI;
     static constexpr float kMathPIOver2 = 1.57079632679489661923132169163975144f;
     static constexpr float kMathPIOver4 = 0.785398163397448309615660845819875721;
-    static constexpr float kMathEpsilon = 1.192092896e-07f;
+    static constexpr float kMathEpsilon = 2.392092896e-07f; // 1.192092896e-07f in c99
+    static constexpr float kMathDegreeToRadius = kMathPI/180.0f;
+    static constexpr float kMathRadiusToDegree = 180.0f/kMathPI;
+    static constexpr int kMathIntMax = 0x7FFFFFFF;
+    static constexpr unsigned int kMathUIntmax = 0xFFFFFFFF;
     
 public:
+    static FORCEINLINE float degreeToRadius(float deg) {
+        return deg * kMathDegreeToRadius;
+    }
+    
+    static FORCEINLINE float radiusToDegree(float rad) {
+        return rad * kMathRadiusToDegree;
+    }
+    
     static float sin(float x) {
         return ::sinf(x);
     }
@@ -53,15 +65,22 @@ public:
         return ::sqrtf(x);
     }
     
-    static float abs(float x) {
-        return ::fabsf(x);
+    static FORCEINLINE float abs(float x) {
+        int ix = *(int*)&x;
+        ix &= kMathIntMax;
+        x = *(float*)&ix;
+        return x;
     }
     
-    static bool equal(float x, float y) {
+    static FORCEINLINE bool equal(float x, float y) {
         return abs(x - y) <= kMathEpsilon;
     }
     
-    static bool zero(float x) {
+    static FORCEINLINE bool not_equal(float x, float y) {
+        return abs(x - y) > kMathEpsilon;
+    }
+    
+    static FORCEINLINE bool zero(float x) {
         return abs(x) <= kMathEpsilon;
     }
     

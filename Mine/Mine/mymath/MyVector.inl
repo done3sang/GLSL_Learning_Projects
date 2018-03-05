@@ -143,7 +143,8 @@ FORCEINLINE MyFVector3& MyFVector3::operator=(const MyFVector3 &&other) {
 }
 
 FORCEINLINE bool MyFVector3::operator==(const MyFVector3 &other) const {
-    return x == other.x && y == other.y && z == other.z;
+    return MyMathUtil::equal(x, other.x) && MyMathUtil::equal(y, other.y) && MyMathUtil::equal(z, other.z);
+    //return x == other.x && y == other.y && z == other.z;
 }
 
 FORCEINLINE bool MyFVector3::operator!=(const MyFVector3 &other) const {
@@ -378,6 +379,10 @@ FORCEINLINE void normalizeVector(const MyFVector2 &inVec, MyFVector2 &outVec) {
     outVec.y = inVec.y * mag;
 }
 
+FORCEINLINE bool vectorNormalized(const MyFVector2 &vec) {
+    return MyMathUtil::identity(magnitudeSquareVector(vec));
+}
+
 FORCEINLINE MyFVector2 normalizeVector(const MyFVector2 &vec) {
     MyFVector2 ret;
     normalizeVector(vec, ret);
@@ -395,6 +400,10 @@ FORCEINLINE void normalizeVector(const MyFVector3 &inVec, MyFVector3 &outVec) {
     outVec.x = inVec.x * mag;
     outVec.y = inVec.y * mag;
     outVec.z = inVec.z * mag;
+}
+
+FORCEINLINE bool vectorNormalized(const MyFVector3 &vec) {
+    return MyMathUtil::identity(magnitudeSquareVector(vec));
 }
 
 FORCEINLINE MyFVector3 normalizeVector(const MyFVector3 &vec) {
@@ -415,6 +424,10 @@ FORCEINLINE void normalizeVector(const MyFVector4 &inVec, MyFVector4 &outVec) {
     outVec.y = inVec.y * mag;
     outVec.z = inVec.z * mag;
     outVec.w = inVec.w * mag;
+}
+
+FORCEINLINE bool vectorNormalized(const MyFVector4 &vec) {
+    return MyMathUtil::identity(magnitudeSquareVector(vec));
 }
 
 FORCEINLINE MyFVector4 normalizeVector(const MyFVector4 &vec) {
@@ -589,6 +602,18 @@ FORCEINLINE void schmidtVector(MyFVector3 &a,
     c.x -= kca * a.x + kbc * b.x;
     c.y -= kca * a.y + kbc * b.y;
     c.z -= kca * a.z + kbc * b.z;
+}
+
+FORCEINLINE bool vectorOrthogonal(const MyFVector2 &vec1, const MyFVector2 &vec2) {
+    return MyMathUtil::zero(dotProduct(vec1, vec2));
+}
+
+FORCEINLINE bool vectorOrthogonal(const MyFVector3 &vec1, const MyFVector3 &vec2) {
+    return MyMathUtil::zero(dotProduct(vec1, vec2));
+}
+
+FORCEINLINE bool vectorOrthogonal(const MyFVector4 &vec1, const MyFVector4 &vec2) {
+    return MyMathUtil::zero(dotProduct(vec1, vec2));
 }
 
 MINE_NAMESPACE_END

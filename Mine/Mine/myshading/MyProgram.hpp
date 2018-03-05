@@ -16,7 +16,6 @@
 #define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
 
-#include <glm/fwd.hpp>
 #include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
@@ -27,6 +26,9 @@ MINE_NAMESPACE_BEGIN
 class MyUniqueObject;
 class MyShader;
 class MyBufferObject;
+class MyFVector3;
+class MyFVector4;
+class MyFMatrix4;
 
 class MyProgram: public MyUniqueObject {
 public:
@@ -58,9 +60,9 @@ public:
     bool validate(void) const;
     
     int bindAttribLocation(GLuint location, const std::string &name) const;
-    int uniformMatrix4(const std::string &name, const glm::mat4 &mat);
-    bool uniformVector3(const std::string &name, const glm::vec3 &vec);
-    bool uniformVector4(const std::string &name, const glm::vec4 &vec);
+    int uniformMatrix4(const std::string &name, const MyFMatrix4 &mat);
+    bool uniformVector3(const std::string &name, const MyFVector3 &vec);
+    bool uniformVector4(const std::string &name, const MyFVector4 &vec);
     bool uniformBool(const std::string &name, bool value);
     int uniformFloat(const std::string &name, float value);
     int uniformInteger(const std::string &name, int value);

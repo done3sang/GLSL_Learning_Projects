@@ -9,9 +9,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-//#include "Mine.hpp"
 //#include "TestScenario.hpp"
-//#include "BaseScene.hpp"
+#include "BaseScene.hpp"
 //#include "UniformScene.hpp"
 #include "MyTest/TestMath.hpp"
 
@@ -33,10 +32,9 @@ MyErrorDisposer* MyErrorDisposer::create(void) {
 }
 
 int main(int argc, const char * argv[]) {
-    MathTest test;
-    test.run();
+    //MathTest test;
+    //test.run();
     
-    /*
     auto sharedDirector = MyDirector::sharedDirector();
     MyErrorDesc::sharedErrorDesc()->errorCallback(MyErrorDisposer::create());
     
@@ -45,7 +43,7 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    MyScenario *myScenerio = TestScenario::create();
+    MyScenario *myScenerio = BaseScene::create();
     
     if(!myScenerio->initialize()) {
         sharedDirector->closeDirector();
@@ -56,7 +54,6 @@ int main(int argc, const char * argv[]) {
     sharedDirector->runMainLoop();
     
     sharedDirector->closeDirector();
-     */
     
     std::cout << "Hello World\n";
     return 0;

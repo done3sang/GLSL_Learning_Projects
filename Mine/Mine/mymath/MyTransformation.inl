@@ -77,12 +77,12 @@ FORCEINLINE MyFMatrix2& MyTransformation::rotateMatrix(MyFMatrix2 &mat,
                                                              float radius) {
     float sine = MyMathUtil::sin(radius);
     float cose = MyMathUtil::cos(radius);
-    float tmp = -sine * mat.valueAt(0, 0) + cose * mat.valueAt(1, 0);
-    mat.valueAt(0, 0) = cose * mat.valueAt(0, 0) - sine * mat.valueAt(1, 0);
-    mat.valueAt(1, 0) = tmp;
-    tmp = -sine * mat.valueAt(0, 1) + cose * mat.valueAt(1, 1);
-    mat.valueAt(0, 1) = cose * mat.valueAt(0, 1) - sine * mat.valueAt(1, 1);
-    mat.valueAt(1, 1) = tmp;
+    float tmp1 = cose * mat.valueAt(0, 0) - sine * mat.valueAt(1, 0);
+    float tmp2 = cose * mat.valueAt(0, 1) - sine * mat.valueAt(1, 1);
+    mat.valueAt(1, 0) = sine * mat.valueAt(0, 0) + cose * mat.valueAt(1, 0);
+    mat.valueAt(1, 1) = sine * mat.valueAt(0, 1) + cose * mat.valueAt(1, 1);
+    mat.valueAt(0, 0) = tmp1;
+    mat.valueAt(1, 0) = tmp2;
     return mat;
 }
 
@@ -95,16 +95,15 @@ FORCEINLINE MyFMatrix3& MyTransformation::rotateMatrixByAxisX(MyFMatrix3 &mat,
                                                                     float radius) {
     float sine = MyMathUtil::sin(radius);
     float cose = MyMathUtil::cos(radius);
-    float tmp1 = cose * mat.valueAt(1, 1) - sine * mat.valueAt(2, 1);
-    float tmp2 = cose * mat.valueAt(1, 2) - sine * mat.valueAt(2, 2);
-    mat.valueAt(1, 0) = cose * mat.valueAt(1, 0) - sine * mat.valueAt(2, 0);
-    mat.valueAt(1, 1) = tmp1;
-    mat.valueAt(1, 2) = tmp2;
-    tmp1 = sine * mat.valueAt(1, 1) + cose * mat.valueAt(2, 1);
-    tmp2 = sine * mat.valueAt(1, 2) + cose * mat.valueAt(2, 2);
+    float tmp1 = cose * mat.valueAt(1, 0) - sine * mat.valueAt(2, 0);
+    float tmp2 = cose * mat.valueAt(1, 1) - sine * mat.valueAt(2, 1);
+    float tmp3 = cose * mat.valueAt(1, 2) - sine * mat.valueAt(2, 2);
     mat.valueAt(2, 0) = sine * mat.valueAt(1, 0) + cose * mat.valueAt(2, 0);
-    mat.valueAt(2, 1) = tmp1;
-    mat.valueAt(2, 2) = tmp2;
+    mat.valueAt(2, 1) = sine * mat.valueAt(1, 1) + cose * mat.valueAt(2, 1);
+    mat.valueAt(2, 2) = sine * mat.valueAt(1, 2) + cose * mat.valueAt(2, 2);
+    mat.valueAt(1, 0) = tmp1;
+    mat.valueAt(1, 1) = tmp2;
+    mat.valueAt(1, 2) = tmp3;
     return mat;
 }
 
@@ -117,38 +116,61 @@ FORCEINLINE MyFMatrix3& MyTransformation::rotateMatrixByAxisY(MyFMatrix3 &mat,
                                                                     float radius) {
     float sine = MyMathUtil::sin(radius);
     float cose = MyMathUtil::cos(radius);
-    float tmp1 = cose * mat.valueAt(0, 1) + sine * mat.valueAt(2, 1);
-    float tmp2 = cose * mat.valueAt(0, 2) + sine * mat.valueAt(2, 2);
-    mat.valueAt(0, 0) = cose * mat.valueAt(0, 0) + sine * mat.valueAt(2, 0);
-    mat.valueAt(0, 1) = tmp1;
-    mat.valueAt(0, 2) = tmp2;
-    tmp1 = -sine * mat.valueAt(0, 1) + cose * mat.valueAt(2, 1);
-    tmp2 = -sine * mat.valueAt(0, 2) + cose * mat.valueAt(2, 2);
-    mat.valueAt(2, 0) = -sine * mat.valueAt(0, 0) + cose * mat.valueAt(2, 0);
-    mat.valueAt(2, 1) = tmp1;
-    mat.valueAt(2, 2) = tmp2;
+    float tmp1 = cose * mat.valueAt(0, 0) + sine * mat.valueAt(2, 0);
+    float tmp2 = cose * mat.valueAt(0, 1) + sine * mat.valueAt(2, 1);
+    float tmp3 = cose * mat.valueAt(0, 2) + sine * mat.valueAt(2, 2);
+    mat.valueAt(2, 0) = cose * mat.valueAt(2, 0) - sine * mat.valueAt(0, 0);
+    mat.valueAt(2, 1) = cose * mat.valueAt(2, 1) - sine * mat.valueAt(0, 1);
+    mat.valueAt(2, 2) = cose * mat.valueAt(2, 2) - sine * mat.valueAt(0, 2);
+    mat.valueAt(0, 0) = tmp1;
+    mat.valueAt(0, 1) = tmp2;
+    mat.valueAt(0, 2) = tmp3;
     return mat;
 }
 
 /*
- cose      -sine      0
- 0          1           0
- sine       cose       0
+ cose      -sine    0
+ sine       cose    0
+ 0          0        1
  */
 FORCEINLINE MyFMatrix3& MyTransformation::rotateMatrixByAxisZ(MyFMatrix3 &mat,
                                                                     float radius) {
     float sine = MyMathUtil::sin(radius);
     float cose = MyMathUtil::cos(radius);
-    float tmp1 = cose * mat.valueAt(0, 1) - sine * mat.valueAt(1, 1);
-    float tmp2 = cose * mat.valueAt(0, 2) - sine * mat.valueAt(1, 2);
-    mat.valueAt(0, 0) = cose * mat.valueAt(0, 0) - sine * mat.valueAt(1, 0);
-    mat.valueAt(0, 1) = tmp1;
-    mat.valueAt(0, 2) = tmp2;
-    tmp1 = sine * mat.valueAt(0, 1) + cose * mat.valueAt(1, 1);
-    tmp2 = sine * mat.valueAt(0, 2) + cose * mat.valueAt(1, 2);
-    mat.valueAt(2, 0) = sine * mat.valueAt(0, 0) + cose * mat.valueAt(1, 0);
-    mat.valueAt(2, 1) = tmp1;
-    mat.valueAt(2, 2) = tmp2;
+    float tmp1 = cose * mat.valueAt(0, 0) - sine * mat.valueAt(1, 0);
+    float tmp2 = cose * mat.valueAt(0, 1) - sine * mat.valueAt(1, 1);
+    float tmp3 = cose * mat.valueAt(0, 2) - sine * mat.valueAt(1, 2);
+    mat.valueAt(1, 0) = cose * mat.valueAt(1, 0) + sine * mat.valueAt(0, 0);
+    mat.valueAt(1, 1) = cose * mat.valueAt(1, 1) + sine * mat.valueAt(0, 1) ;
+    mat.valueAt(1, 2) = cose * mat.valueAt(1, 2) + sine * mat.valueAt(0, 2);
+    mat.valueAt(0, 0) = tmp1;
+    mat.valueAt(0, 1) = tmp2;
+    mat.valueAt(0, 2) = tmp3;
+    return mat;
+}
+
+/*
+ cose      -sine    0   0
+ sine       cose    0   0
+ 0          0        1   0
+ 0          0        0   1
+ */
+FORCEINLINE MyFMatrix4& MyTransformation::rotateMatrixByAxisZ(MyFMatrix4 &mat,
+                                                              float radius) {
+    float sine = MyMathUtil::sin(radius);
+    float cose = MyMathUtil::cos(radius);
+    float tmp1 = cose * mat.valueAt(0, 0) - sine * mat.valueAt(1, 0);
+    float tmp2 = cose * mat.valueAt(0, 1) - sine * mat.valueAt(1, 1);
+    float tmp3 = cose * mat.valueAt(0, 2) - sine * mat.valueAt(1, 2);
+    mat.valueAt(1, 0) = cose * mat.valueAt(1, 0) + sine * mat.valueAt(0, 0);
+    mat.valueAt(1, 1) = cose * mat.valueAt(1, 1) + sine * mat.valueAt(0, 1) ;
+    mat.valueAt(1, 2) = cose * mat.valueAt(1, 2) + sine * mat.valueAt(0, 2);
+    mat.valueAt(0, 0) = tmp1;
+    mat.valueAt(0, 1) = tmp2;
+    mat.valueAt(0, 2) = tmp3;
+    mat.valueAt(0, 3) = mat.valueAt(1, 3) = mat.valueAt(2, 3) = 0.0f;
+    mat.valueAt(3, 0) = mat.valueAt(3, 1) = mat.valueAt(3, 2) = 0.0f;
+    mat.valueAt(3, 3) = 1.0f;
     return mat;
 }
 
@@ -224,6 +246,25 @@ FORCEINLINE MyFMatrix2& MyTransformation::scaleMatrix(MyFMatrix2 &mat, float sca
 */
 FORCEINLINE MyFMatrix3& MyTransformation::scaleMatrix(MyFMatrix3 &mat, float scalar) {
     mat *= scalar;
+    return mat;
+}
+
+/*
+ x  0   0
+ 0  y   0
+ 0  0   z
+ */
+FORCEINLINE MyFMatrix3& MyTransformation::scaleMatrix(MyFMatrix3 &mat, const MyFVector3 &axis) {
+    mat.valueAt(0, 0) *= axis.x; mat.valueAt(0, 1) *= axis.x; mat.valueAt(0, 2) *= axis.x;
+    mat.valueAt(1, 0) *= axis.y; mat.valueAt(1, 1) *= axis.y; mat.valueAt(1, 2) *= axis.y;
+    mat.valueAt(2, 0) *= axis.z; mat.valueAt(2, 1) *= axis.z; mat.valueAt(2, 2) *= axis.z;
+    return mat;
+}
+
+FORCEINLINE MyFMatrix4& MyTransformation::scaleMatrix(MyFMatrix4 &mat, const MyFVector3 &axis) {
+    mat.valueAt(0, 0) *= axis.x; mat.valueAt(0, 1) *= axis.x; mat.valueAt(0, 2) *= axis.x;
+    mat.valueAt(1, 0) *= axis.y; mat.valueAt(1, 1) *= axis.y; mat.valueAt(1, 2) *= axis.y;
+    mat.valueAt(2, 0) *= axis.z; mat.valueAt(2, 1) *= axis.z; mat.valueAt(2, 2) *= axis.z;
     return mat;
 }
 
@@ -485,12 +526,61 @@ FORCEINLINE void MyTransformation::transformCoordianteVectorBackward(
     transformVector(coordTransit.forwardMatrix(), vecB, vecA);
 }
 
+// [cose (1 0 0)sine]
+FORCEINLINE MyFQuaternion& MyTransformation::rotateQuaternionByAxisX(MyFQuaternion &quat, float radius) {
+    MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::rotateQuaternion, quaternion not normalized");
+    radius *= 0.5f;
+    float w = MyMathUtil::cos(radius);
+    float sine = MyMathUtil::sin(radius);
+    float tw = w * quat.w - sine * quat.x;
+    float tx = w * quat.x + quat.w * sine;
+    float ty = w * quat.y - sine * quat.z;
+    quat.z = w * quat.z + sine * quat.y;
+    quat.w = tw;
+    quat.x = tx;
+    quat.y = ty;
+    return quat;
+}
+
+// [cose (0 1 0)sine]
+FORCEINLINE MyFQuaternion& MyTransformation::rotateQuaternionByAxisY(MyFQuaternion &quat, float radius) {
+    MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::rotateQuaternion, quaternion not normalized");
+    radius *= 0.5f;
+    float w = MyMathUtil::cos(radius);
+    float sine = MyMathUtil::sin(radius);
+    float tw = w * quat.w - sine * quat.y;
+    float tx = w * quat.x + sine * quat.z;
+    float ty = w * quat.y + quat.w * sine;
+    quat.z = w * quat.z - sine * quat.x;
+    quat.w = tw;
+    quat.x = tx;
+    quat.y = ty;
+    return quat;
+}
+
+// [cose (0 0 1)sine]
+FORCEINLINE MyFQuaternion& MyTransformation::rotateQuaternionByAxisZ(MyFQuaternion &quat, float radius) {
+    MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::rotateQuaternion, quaternion not normalized");
+    radius *= 0.5f;
+    float w = MyMathUtil::cos(radius);
+    float sine = MyMathUtil::sin(radius);
+    float tw = w * quat.w - sine * quat.z;
+    float tx = w * quat.x - sine * quat.y;
+    float ty = w * quat.y + sine * quat.x;
+    quat.z = w * quat.z + sine * quat.w;
+    quat.w = tw;
+    quat.x = tx;
+    quat.y = ty;
+    return quat;
+}
+
 // [cose nsine] * quat
-FORCEINLINE MyFQuaternion& MyTransformation::rotateQuaternion(MyFQuaternion &quat,
-                                                              const MyFVector3 &axis,
-                                                              float radius) {
+FORCEINLINE MyFQuaternion& MyTransformation::rotateQuaternionByAxis(MyFQuaternion &quat,
+                                                                    const MyFVector3 &axis,
+                                                                    float radius) {
     MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::rotateQuaternion, quaternion not normalized");
     MINE_ASSERT2(vectorNormalized(axis), "MyTransformation::rotateQuaternion, axis not normalized");
+    radius *= 0.5f;
     float w = MyMathUtil::cos(radius);
     float sine = MyMathUtil::sin(radius);
     float x = axis.x * sine;
@@ -506,17 +596,60 @@ FORCEINLINE MyFQuaternion& MyTransformation::rotateQuaternion(MyFQuaternion &qua
     return quat;
 }
 
-// q * v * q-1, v = [0 x y z]
-FORCEINLINE void MyTransformation::quaternionVector(const MyFQuaternion &quat, MyFVector3 &vec) {
+// v' = q * v * q-1, v = [0 x y z]
+FORCEINLINE void MyTransformation::quaternionVectorForward(const MyFQuaternion &quat, MyFVector3 &vec) {
     MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::rotateQuaternion, quaternion not normalized");
     float tw = -quat.x * vec.x - quat.y * vec.y - quat.z * vec.z;
     float tx = quat.w * vec.x + quat.y * vec.z - quat.z * vec.y;
     float ty = quat.w * vec.y + quat.z * vec.x - quat.x * vec.z;
     float tz = quat.w * vec.z + quat.x * vec.y - quat.y * vec.x;
-    tw = tw * quat.w + tx * quat.x + ty * quat.y + tz * quat.z;
+    //tw = tw * quat.w + tx * quat.x + ty * quat.y + tz * quat.z;
     vec.x = quat.w * tx  - tw * quat.x - ty * quat.z + tz * quat.y;
     vec.y = quat.w * ty - tw * quat.y - tz * quat.x + tx * quat.z;
     vec.z = quat.w * tz - tw * quat.z - tx * quat.y + ty * quat.x;
+}
+
+// v' = q * v * q-1, v' = [0 x y z] -> v = q-1 * v' * q
+FORCEINLINE void MyTransformation::quaternionVectorBackward(const MyFQuaternion &quat, MyFVector3 &vec) {
+    MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::rotateQuaternion, quaternion not normalized");
+    float tw = quat.x * vec.x + quat.y * vec.y + quat.z * vec.z;
+    float tx = quat.w * vec.x - quat.y * vec.z + quat.z * vec.y;
+    float ty = quat.w * vec.y - quat.z * vec.x + quat.x * vec.z;
+    float tz = quat.w * vec.z - quat.x * vec.y + quat.y * vec.x;
+    //float ttw = tw * quat.w - tx * quat.x - ty * quat.y - tz * quat.z;
+    vec.x = quat.w * tx  + tw * quat.x + ty * quat.z - tz * quat.y;
+    vec.y = quat.w * ty + tw * quat.y + tz * quat.x - tx * quat.z;
+    vec.z = quat.w * tz + tw * quat.z + tx * quat.y - ty * quat.x;
+}
+
+// v' = q * v * q-1, v = [0 x y z]
+FORCEINLINE void MyTransformation::quaternionVectorForward(const MyFQuaternion &quat,
+                                                           const MyFVector3 &inVec,
+                                                           MyFVector3 &outVec) {
+    MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::rotateQuaternion, quaternion not normalized");
+    float tw = -quat.x * inVec.x - quat.y * inVec.y - quat.z * inVec.z;
+    float tx = quat.w * inVec.x + quat.y * inVec.z - quat.z * inVec.y;
+    float ty = quat.w * inVec.y + quat.z * inVec.x - quat.x * inVec.z;
+    float tz = quat.w * inVec.z + quat.x * inVec.y - quat.y * inVec.x;
+    //tw = tw * quat.w + tx * quat.x + ty * quat.y + tz * quat.z;
+    outVec.x = quat.w * tx  - tw * quat.x - ty * quat.z + tz * quat.y;
+    outVec.y = quat.w * ty - tw * quat.y - tz * quat.x + tx * quat.z;
+    outVec.z = quat.w * tz - tw * quat.z - tx * quat.y + ty * quat.x;
+}
+
+// v' = q * v * q-1, v' = [0 x y z] -> v = q-1 * v' * q
+FORCEINLINE void MyTransformation::quaternionVectorBackward(const MyFQuaternion &quat,
+                                                            const MyFVector3 &inVec,
+                                                            MyFVector3 &outVec) {
+    MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::rotateQuaternion, quaternion not normalized");
+    float tw = quat.x * inVec.x + quat.y * inVec.y + quat.z * inVec.z;
+    float tx = quat.w * inVec.x - quat.y * inVec.z + quat.z * inVec.y;
+    float ty = quat.w * inVec.y - quat.z * inVec.x + quat.x * inVec.z;
+    float tz = quat.w * inVec.z - quat.x * inVec.y + quat.y * inVec.x;
+    //float ttw = tw * quat.w - tx * quat.x - ty * quat.y - tz * quat.z;
+    outVec.x = quat.w * tx  + tw * quat.x + ty * quat.z - tz * quat.y;
+    outVec.y = quat.w * ty + tw * quat.y + tz * quat.x - tx * quat.z;
+    outVec.z = quat.w * tz + tw * quat.z + tx * quat.y - ty * quat.x;
 }
 
 // v' = (v - dot(v, n)n)cose + cross(v, n) * sine + dot(v, n)n, [cosa nsina] a = e/2
@@ -579,6 +712,70 @@ FORCEINLINE void MyTransformation::quaternionToMatrix(const MyFQuaternion &quat,
  -> m12 + m21 = 4yz, m21 - m12 = 4wx
  */
 FORCEINLINE void MyTransformation::matrixToQuaternion(const MyFMatrix3 &mat, MyFQuaternion &quat) {
+    MINE_ASSERT2(matrixOrthogonal(mat), "MyTransformation::quaternionToMatrix, quaternion not normalized");
+    float ww = mat.valueAt(0, 0) + mat.valueAt(1, 1) + mat.valueAt(2, 2);
+    float xx = mat.valueAt(0, 0) - mat.valueAt(1, 1) - mat.valueAt(2, 2);
+    float yy = mat.valueAt(1, 1) - mat.valueAt(0, 0) - mat.valueAt(2, 2);
+    float biggestVal = mat.valueAt(2, 2) - mat.valueAt(0, 0) - mat.valueAt(1, 1);
+    if(ww > xx && ww > yy && ww > biggestVal) {
+        biggestVal = MyMathUtil::sqrt(ww + 1.0f) * 0.5f;
+        quat.w = biggestVal;
+        biggestVal = 0.25f/biggestVal;
+        quat.x = (mat.valueAt(2, 1) - mat.valueAt(1, 2)) * biggestVal;
+        quat.y = (mat.valueAt(0, 2) - mat.valueAt(2, 0)) * biggestVal;
+        quat.z = (mat.valueAt(1, 0) - mat.valueAt(0, 1)) * biggestVal;
+    } else if(xx > yy && xx > biggestVal) {
+        // since ww not the biggest, the biggest should be in {xx, yy, zz}
+        // so we only need to compare xx, yy, zz
+        biggestVal = MyMathUtil::sqrt(xx + 1.0f) * 0.5f;
+        quat.x = biggestVal;
+        biggestVal = 0.25f/biggestVal;
+        quat.w = (mat.valueAt(2, 1) - mat.valueAt(1, 2)) * biggestVal;
+        quat.y = (mat.valueAt(0, 1) + mat.valueAt(1, 0)) * biggestVal;
+        quat.z = (mat.valueAt(0, 2) - mat.valueAt(2, 0)) * biggestVal;
+    } else if(yy > biggestVal) {
+        // since ww, xx not the biggest, the biggest should be in {yy, zz}
+        // so we only need to compare yy, zz
+        biggestVal = MyMathUtil::sqrt(yy + 1.0f) * 0.5f;
+        quat.y = biggestVal;
+        biggestVal = 0.25f/biggestVal;
+        quat.w = (mat.valueAt(0, 2) - mat.valueAt(2, 0)) * biggestVal;
+        quat.x = (mat.valueAt(0, 1) + mat.valueAt(1, 0)) * biggestVal;
+        quat.z = (mat.valueAt(1, 2) - mat.valueAt(2, 1)) * biggestVal;
+    } else {
+        biggestVal = MyMathUtil::sqrt(biggestVal + 1.0f) * 0.5f;
+        quat.z = biggestVal;
+        biggestVal = 0.25f/biggestVal;
+        quat.w = (mat.valueAt(1, 0) - mat.valueAt(0, 1)) * biggestVal;
+        quat.x = (mat.valueAt(0, 2) + mat.valueAt(2, 0)) * biggestVal;
+        quat.y = (mat.valueAt(1, 2) + mat.valueAt(2, 1)) * biggestVal;
+    }
+}
+
+FORCEINLINE void MyTransformation::quaternionToMatrix(const MyFQuaternion &quat, MyFMatrix4 &mat) {
+    MINE_ASSERT2(quaternionNormalized(quat), "MyTransformation::quaternionToMatrix, quaternion not normalized");
+    float ww = quat.w * quat.w;
+    float wx = quat.w * quat.x;
+    float wy = quat.w * quat.y;
+    float wz = quat.w * quat.z;
+    float xy = quat.x * quat.y;
+    float yz = quat.y * quat.z;
+    float zx = quat.z * quat.x;
+    mat.valueAt(0, 0) = 2.0f * (quat.x * quat.x + ww) - 1.0f;
+    mat.valueAt(0, 1) = 2.0f * (xy - wz);
+    mat.valueAt(0, 2) = 2.0f * (zx + wy);
+    mat.valueAt(1, 0) = 2.0f * (xy + wz);
+    mat.valueAt(1, 1) = 2.0f * (quat.y * quat.y + ww) - 1.0f;
+    mat.valueAt(1, 2) = 2.0f * (yz - wy);
+    mat.valueAt(2, 0) = 2.0f * (zx - wy);
+    mat.valueAt(2, 1) = 2.0f * (yz + wx);
+    mat.valueAt(2, 2) = 2.0f * (quat.z * quat.z + ww) - 1.0f;
+    mat.valueAt(0, 3) = mat.valueAt(1, 3) = mat.valueAt(2, 3) = 0.0f;
+    mat.valueAt(3, 0) = mat.valueAt(3, 1) = mat.valueAt(3, 2) = 0.0f;
+    mat.valueAt(3, 3) = 1.0f;
+}
+
+FORCEINLINE void MyTransformation::matrixToQuaternion(const MyFMatrix4 &mat, MyFQuaternion &quat) {
     MINE_ASSERT2(matrixOrthogonal(mat), "MyTransformation::quaternionToMatrix, quaternion not normalized");
     float ww = mat.valueAt(0, 0) + mat.valueAt(1, 1) + mat.valueAt(2, 2);
     float xx = mat.valueAt(0, 0) - mat.valueAt(1, 1) - mat.valueAt(2, 2);

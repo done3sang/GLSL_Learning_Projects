@@ -6,11 +6,6 @@
 //  Copyright © 2018 SangDesu. All rights reserved.
 //
 
-
-#include "MyVector.hpp"
-#include "MyMatrix.hpp"
-#include "MyQuaternion.hpp"
-#include "MyCoordinate.hpp"
 #include "MyTemplate.hpp"
 #include "MyActorComponent.hpp"
 #include "MyTransformComponent.hpp"

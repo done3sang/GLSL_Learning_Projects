@@ -16,7 +16,6 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyStatic;
 class MyFMatrix2;
 class MyFMatrix3;
 class MyFMatrix4;
@@ -25,8 +24,7 @@ class MyPlane;
 class MyCoordinate;
 class MyCoordinateTransition;
 
-
-class MyTransformation: private MyStatic {
+class MyTransformation {
 public:
     // transformation of matrix and vector
     static void transformVector(const MyFMatrix2 &mat, MyFVector2 &vec);
@@ -48,6 +46,7 @@ public:
     static MyFMatrix3& rotateMatrixByAxisX(MyFMatrix3 &mat, float radius);
     static MyFMatrix3& rotateMatrixByAxisY(MyFMatrix3 &mat, float radius);
     static MyFMatrix3& rotateMatrixByAxisZ(MyFMatrix3 &mat, float radius);
+    static MyFMatrix4& rotateMatrixByAxisZ(MyFMatrix4 &mat, float radius);
     static MyFMatrix3& rotateMatrixByAxis(MyFMatrix3 &mat,
                                           const MyFVector3 &vec,
                                           float radius);
@@ -58,6 +57,8 @@ public:
     // scale
     static MyFMatrix2& scaleMatrix(MyFMatrix2 &mat, float scalar);
     static MyFMatrix3& scaleMatrix(MyFMatrix3 &mat, float scalar);
+    static MyFMatrix3& scaleMatrix(MyFMatrix3 &mat, const MyFVector3 &axis);
+    static MyFMatrix4& scaleMatrix(MyFMatrix4 &mat, const MyFVector3 &axis);
     static MyFMatrix3& scaleMatrix(MyFMatrix3 &mat, const MyFVector3 &axis, float scalar);
     
     // orthogonal
@@ -93,14 +94,36 @@ public:
                                           MyFVector3 &vecA);
     
     // quateranion
-    static MyFQuaternion& rotateQuaternion(MyFQuaternion &quat,
+    static MyFQuaternion& rotateQuaternionByAxisX(MyFQuaternion &quat, float radius);
+    static MyFQuaternion& rotateQuaternionByAxisY(MyFQuaternion &quat, float radius);
+    static MyFQuaternion& rotateQuaternionByAxisZ(MyFQuaternion &quat, float radius);
+    static MyFQuaternion& rotateQuaternionByAxis(MyFQuaternion &quat,
                                            const MyFVector3 &axis,
                                            float radius);
-    static void quaternionVector(const MyFQuaternion &quat, MyFVector3 &vec);
+    static void quaternionVectorForward(const MyFQuaternion &quat, MyFVector3 &vec);
+    static void quaternionVectorBackward(const MyFQuaternion &quat, MyFVector3 &vec);
+    static void quaternionVectorForward(const MyFQuaternion &quat,
+                                        const MyFVector3 &inVec,
+                                        MyFVector3 &outVec);
+    static void quaternionVectorBackward(const MyFQuaternion &quat,
+                                         const MyFVector3 &inVec,
+                                         MyFVector3 &outVec);
     
     // transition between matrix and quaternion
     static void quaternionToMatrix(const MyFQuaternion &quat, MyFMatrix3 &mat);
     static void matrixToQuaternion(const MyFMatrix3 &mat, MyFQuaternion &quat);
+    
+    static void quaternionToMatrix(const MyFQuaternion &quat, MyFMatrix4 &mat);
+    static void matrixToQuaternion(const MyFMatrix4 &mat, MyFQuaternion &quat);
+    
+public:
+    MyTransformation(void) = delete;
+    MyTransformation(const MyTransformation&) = delete;
+    MyTransformation(MyTransformation&&) = delete;
+    ~MyTransformation(void) = delete;
+    
+    MyTransformation& operator=(const MyTransformation&) = delete;
+    MyTransformation& operator=(MyTransformation&&) = delete;
 };
 
 MyFVector2 operator*(const MyFMatrix2 &mat, const MyFVector2 &vev);
