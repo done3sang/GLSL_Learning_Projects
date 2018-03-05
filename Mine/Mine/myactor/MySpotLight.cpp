@@ -6,7 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include <glm/glm.hpp>
+#include "MyVector.hpp"
 #include "MyTemplate.hpp"
 #include "MyActorComponent.hpp"
 #include "MyActor.hpp"
@@ -32,16 +32,16 @@ MySpotLight::MySpotLight(void) {
 }
 
 void MySpotLight::bindProgram(MyProgram *prog) {
-    prog->uniformVector4("lightInfo.position", glm::vec4(0.0f, 10.0f, 0.0f, 1.0f));
-    prog->uniformVector3("lightInfo.color", _lightComponent->lightColor());
-    prog->uniformFloat("lightInfo.intensity", _lightComponent->lightIntensity());
+    //prog->uniformVector4("lightInfo.position", glm::vec4(0.0f, 10.0f, 0.0f, 1.0f));
+    //prog->uniformVector3("lightInfo.color", _lightComponent->lightColor());
+    //prog->uniformFloat("lightInfo.intensity", _lightComponent->lightIntensity());
     prog->uniformFloat("lightInfo.ambientFactor", 0.01);
-    prog->uniformBool("lightInfo.ambientEnabled", _lightComponent->ambientEnabled());
-    prog->uniformBool("lightInfo.diffuseEnabled", _lightComponent->diffuseEnabled());
-    prog->uniformBool("lightInfo.specularEnabled", _lightComponent->specularEnabled());
+    //prog->uniformBool("lightInfo.ambientEnabled", _lightComponent->ambientEnabled());
+    //prog->uniformBool("lightInfo.diffuseEnabled", _lightComponent->diffuseEnabled());
+    //prog->uniformBool("lightInfo.specularEnabled", _lightComponent->specularEnabled());
     prog->uniformFloat("lightInfo.attenuationDistance", _lightComponent->attenuationDistance());
     prog->uniformBool("lightInfo.spotlight", true);
-    prog->uniformVector3("lightInfo.direction", glm::vec3(0.0f, -1.0f, 0.0f));
+    //prog->uniformVector3("lightInfo.direction", glm::vec3(0.0f, -1.0f, 0.0f));
     prog->uniformFloat("lightInfo.attenuationExponent", _lightComponent->attenuationExponent());
     prog->uniformFloat("lightInfo.cutoff", _lightComponent->cutoff());
 }

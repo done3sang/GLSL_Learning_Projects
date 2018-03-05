@@ -6,7 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include <glm/glm.hpp>
+#include "MyVector.hpp"
 #include "MyTemplate.hpp"
 #include "MyActorComponent.hpp"
 #include "MyActor.hpp"
@@ -32,7 +32,7 @@ MyPointLight::MyPointLight(void) {
 }
 
 void MyPointLight::bindProgram(MyProgram *prog) {
-    prog->uniformVector4("lightInfo.position", glm::vec4(0.0f, 10.0f, 0.0f, 1.0f));
+    //prog->uniformVector4("lightInfo.position", glm::vec4(0.0f, 10.0f, 0.0f, 1.0f));
     prog->uniformVector3("lightInfo.color", lightComponent->lightColor());
     prog->uniformFloat("lightInfo.intensity", lightComponent->lightIntensity());
     prog->uniformFloat("lightInfo.ambientFactor", 0.01);

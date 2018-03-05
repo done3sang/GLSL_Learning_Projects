@@ -6,7 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include <glm/glm.hpp>
+#include "MyVector.hpp"
 #include "MyTemplate.hpp"
 #include "MyActorComponent.hpp"
 #include "MyLightComponent.hpp"

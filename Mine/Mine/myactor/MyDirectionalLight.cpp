@@ -6,7 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include <glm/glm.hpp>
+#include "MyVector.hpp"
 #include "MyTemplate.hpp"
 #include "MyActorComponent.hpp"
 #include "MyLightComponent.hpp"
@@ -32,13 +32,13 @@ MyDirectionalLight::MyDirectionalLight(void) {
 }
 
 void MyDirectionalLight::bindProgram(MyProgram *prog) {
-    prog->uniformVector4("lightInfo.position", glm::vec4(1.0f, 1.0f, -1.0f, 0.0f));
-    prog->uniformVector3("lightInfo.color", lightComponent->lightColor());
-    prog->uniformFloat("lightInfo.intensity", lightComponent->lightIntensity());
+    //prog->uniformVector4("lightInfo.position", glm::vec4(1.0f, 1.0f, -1.0f, 0.0f));
+    //prog->uniformVector3("lightInfo.color", lightComponent->lightColor());
+    //prog->uniformFloat("lightInfo.intensity", lightComponent->lightIntensity());
     prog->uniformFloat("lightInfo.ambientFactor", 0.01);
-    prog->uniformBool("lightInfo.ambientEnabled", lightComponent->ambientEnabled());
-    prog->uniformBool("lightInfo.diffuseEnabled", lightComponent->diffuseEnabled());
-    prog->uniformBool("lightInfo.specularEnabled", lightComponent->specularEnabled());
+    //prog->uniformBool("lightInfo.ambientEnabled", lightComponent->ambientEnabled());
+    //prog->uniformBool("lightInfo.diffuseEnabled", lightComponent->diffuseEnabled());
+    //prog->uniformBool("lightInfo.specularEnabled", lightComponent->specularEnabled());
 }
 
 MINE_NAMESPACE_END

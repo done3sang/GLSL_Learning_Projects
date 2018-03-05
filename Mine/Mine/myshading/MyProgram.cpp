@@ -207,17 +207,6 @@ int MyProgram::uniformLocation(const std::string &name) {
     return location;
 }
 
-int MyProgram::uniformMatrix4(const std::string &name, const glm::mat4 &mat) {
-    int location(uniformLocation(name));
-    
-    if(location < 0) {
-        return MyErrorDesc::invokeErrorCode(MyErrorDesc::kErrProgramUniformNotExists);
-    }
-    
-    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat));
-    return MyErrorDesc::kErrOk;
-}
-
 int MyProgram::uniformMatrix4(const std::string &name, const MyFMatrix4 &mat) {
     int location(uniformLocation(name));
     

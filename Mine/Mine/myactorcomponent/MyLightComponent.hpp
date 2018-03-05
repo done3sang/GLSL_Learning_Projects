@@ -10,7 +10,6 @@
 #define MyLightComponent_hpp
 
 #include <string>
-#include <glm/fwd.hpp>
 #include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
@@ -19,6 +18,7 @@
 MINE_NAMESPACE_BEGIN
 
 class MyActorComponent;
+class MyFVector3;
 
 class MyLightComponent: public MyActorComponent {
 public:
@@ -35,8 +35,8 @@ public:
     //void ambientFactor(float factor) { _ambientFactor = factor; }
     //float ambientFactor(void) const { return _ambientFactor; }
     
-    FORCEINLINE void lightColor(const glm::vec3 &color) { _lightColor = color; }
-    FORCEINLINE const glm::vec3& lightColor(void) const { return _lightColor; }
+    FORCEINLINE void lightColor(const MyFVector3 &color) { _lightColor = color; }
+    FORCEINLINE const MyFVector3& lightColor(void) const { return _lightColor; }
     
     FORCEINLINE void ambientEnabled(bool enabled) { _ambientEnabled = enabled; }
     FORCEINLINE bool ambientEnabled(void) const { return _ambientEnabled; }
@@ -57,7 +57,7 @@ protected:
     
 private:
     float _lightIntensity;
-    glm::vec3 _lightColor;
+    MyFVector3 _lightColor;
     
     bool _ambientEnabled;
     bool _diffuseEnabled;
