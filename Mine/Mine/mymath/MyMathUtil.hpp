@@ -17,8 +17,6 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyStatic;
-
 class MyMathUtil final {
 public:
     static constexpr float kMathPI = 3.14159265358979323846264338327950288f;
@@ -70,6 +68,14 @@ public:
         ix &= kMathIntMax;
         x = *(float*)&ix;
         return x;
+    }
+    
+    static FORCEINLINE float min(float x, float y) {
+        return (x + y - abs(x - y)) * 0.5f;
+    }
+    
+    static FORCEINLINE float max(float x, float y) {
+        return (x + y + abs(x - y)) * 0.5f;
     }
     
     static FORCEINLINE bool equal(float x, float y) {
