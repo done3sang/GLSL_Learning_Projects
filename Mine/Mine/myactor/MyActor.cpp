@@ -7,7 +7,6 @@
 //
 
 #include <cassert>
-#include <glm/glm.hpp>
 #include "MyTemplate.hpp"
 #include "MyActorComponent.hpp"
 #include "MyVector.hpp"
@@ -151,8 +150,8 @@ void MyActor::render(void) {
     MyModelComponent *modelComp = dynamic_cast<MyModelComponent*>(comp);
     MyVertexArrayObject *mainVAO = MyDirector::sharedDirector()->mainVertexArrayObject();
     MyRenderer *renderer = MyDirector::sharedDirector()->mainRenderer();
-    assert(modelComp && "ERROR = MyActor::render, model null");
-    assert(mainVAO && "ERROR = MyActor::render, vao null");
+    MINE_ASSERT2(modelComp, "ERROR = MyActor::render, model null");
+    MINE_ASSERT2(mainVAO, "ERROR = MyActor::render, vao null");
     
     auto vertexAtt = modelComp->modelVertexAttribute();
     MyBufferObject *vertexBuf = modelComp->modelVertexBuffer();

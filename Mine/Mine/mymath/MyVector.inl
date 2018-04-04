@@ -616,4 +616,37 @@ FORCEINLINE bool vectorOrthogonal(const MyFVector4 &vec1, const MyFVector4 &vec2
     return MyMathUtil::zero(dotProduct(vec1, vec2));
 }
 
+FORCEINLINE float distanceSquareVector(const MyFVector2 &a, const MyFVector2 &b) {
+    float dx = a.x - b.x;
+    float dy = a.y - b.y;
+    return dx * dx + dy * dy;
+}
+
+FORCEINLINE float distanceSquareVector(const MyFVector3 &a, const MyFVector3 &b) {
+    float dx = a.x - b.x;
+    float dy = a.y - b.y;
+    float dz = a.z - b.z;
+    return dx * dx + dy * dy + dz * dz;
+}
+
+FORCEINLINE float distanceSquareVector(const MyFVector4 &a, const MyFVector4 &b) {
+    float dx = a.x - b.x;
+    float dy = a.y - b.y;
+    float dz = a.z - b.z;
+    float dw = a.w - b.w;
+    return dx * dx + dy * dy + dz * dz + dw * dw;
+}
+
+FORCEINLINE float distanceVector(const MyFVector2 &a, const MyFVector2 &b) {
+    return MyMathUtil::sqrt(distanceSquareVector(a, b));
+}
+
+FORCEINLINE float distanceVector(const MyFVector3 &a, const MyFVector3 &b) {
+    return MyMathUtil::sqrt(distanceSquareVector(a, b));
+}
+
+FORCEINLINE float distanceVector(const MyFVector4 &a, const MyFVector4 &b) {
+    return MyMathUtil::sqrt(distanceSquareVector(a, b));
+}
+
 MINE_NAMESPACE_END

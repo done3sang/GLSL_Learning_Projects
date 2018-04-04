@@ -12,7 +12,6 @@
 #include <unordered_map>
 #include <string>
 #include <vector>
-#include <glm/fwd.hpp>
 #include "MyPrecompiled.hpp"
 
 /* The classes below are exported */

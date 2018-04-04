@@ -203,16 +203,23 @@ void projectVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec)
 MyFVector3 projectVector(const MyFVector3 &a, const MyFVector3 &b);
 
 void projectNormalizedVector(MyFVector3 &a, const MyFVector3 &b);
-void projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec);
+void projectNormalizedVector(const MyFVector3 &a,
+                             const MyFVector3 &b,
+                             MyFVector3 &outVec);
 MyFVector3 projectNormalizedVector(const MyFVector3 &a, const MyFVector3 &b);
 
 void perpendicularVector(MyFVector3 &a, const MyFVector3 &b);
-void perpendicularVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec);
+void perpendicularVector(const MyFVector3 &a,
+                         const MyFVector3 &b,
+                         MyFVector3 &outVec);
 MyFVector3 perpendicularVector(const MyFVector3 &a, const MyFVector3 &b);
 
 void perpendicularNormalizedVector(MyFVector3 &a, const MyFVector3 &b);
-void perpendicularNormalizedVector(const MyFVector3 &a, const MyFVector3 &b, MyFVector3 &outVec);
-MyFVector3 perpendicularNormalizedVector(const MyFVector3 &a, const MyFVector3 &b);
+void perpendicularNormalizedVector(const MyFVector3 &a,
+                                   const MyFVector3 &b,
+                                   MyFVector3 &outVec);
+MyFVector3 perpendicularNormalizedVector(const MyFVector3 &a,
+                                         const MyFVector3 &b);
 
 void partitionVector(const MyFVector3 &a,
                      const MyFVector3 &b,
@@ -231,6 +238,14 @@ void schmidtVector(MyFVector3 &a,
 bool vectorOrthogonal(const MyFVector2 &vec1, const MyFVector2 &vec2);
 bool vectorOrthogonal(const MyFVector3 &vec1, const MyFVector3 &vec2);
 bool vectorOrthogonal(const MyFVector4 &vec1, const MyFVector4 &vec2);
+
+float distanceSquareVector(const MyFVector2 &a, const MyFVector2 &b);
+float distanceSquareVector(const MyFVector3 &a, const MyFVector3 &b);
+float distanceSquareVector(const MyFVector4 &a, const MyFVector4 &b);
+
+float distanceVector(const MyFVector2 &a, const MyFVector2 &b);
+float distanceVector(const MyFVector3 &a, const MyFVector3 &b);
+float distanceVector(const MyFVector4 &a, const MyFVector4 &b);
 
 MINE_NAMESPACE_END
 

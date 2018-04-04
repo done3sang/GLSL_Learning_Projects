@@ -6,7 +6,7 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include <glm/glm.hpp>
+#include "MyVector.hpp"
 #include "MyTemplate.hpp"
 #include "MyActorComponent.hpp"
 #include "MyMaterialComponent.hpp"
@@ -19,7 +19,7 @@ MyMaterialComponent* MyMaterialComponent::create(void) {
     return mat;
 }
 
-MyMaterialComponent* MyMaterialComponent::createWithColor(const glm::vec4 &color) {
+MyMaterialComponent* MyMaterialComponent::createWithColor(const MyFVector4 &color) {
     MyMaterialComponent *mat = new MyMaterialComponent(color);
     mat->objectName("MyMaterialComponent");
     return mat;

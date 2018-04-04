@@ -18,15 +18,16 @@
 MINE_NAMESPACE_BEGIN
 
 class MyActorComponent;
+class MyFVector4;
 
 class MyMaterialComponent: public MyActorComponent {
 public:
     static MyMaterialComponent* create(void);
-    static MyMaterialComponent* createWithColor(const glm::vec4 &color);
+    static MyMaterialComponent* createWithColor(const MyFVector4 &color);
     
 public:
-    FORCEINLINE const glm::vec4& baseColor(void) const { return _baseColor; }
-    FORCEINLINE void baseColor(const glm::vec4 &color) { _baseColor = color; }
+    FORCEINLINE const MyFVector4& baseColor(void) const { return _baseColor; }
+    FORCEINLINE void baseColor(const MyFVector4 &color) { _baseColor = color; }
     
     FORCEINLINE float shininess(void) const { return _shininess; }
     FORCEINLINE void shininess(float shin) { _shininess = shin; }
@@ -39,13 +40,13 @@ public:
     
 private:
     explicit
-    FORCEINLINE MyMaterialComponent(const glm::vec4 &color = glm::vec4(1.0f)):
+    FORCEINLINE MyMaterialComponent(const MyFVector4 &color = MyFVector4(1.0f)):
     MyActorComponent(MyActorComponent::kComponentTypeMaterial,
                      MyActorComponent::kComponentGroupMaterial),
     _baseColor(color), _shininess(16.0f), _ambientFactor(0.01f), _specularFactor(16.0f) {}
     FORCEINLINE ~MyMaterialComponent(void) {}
     
-    glm::vec4 _baseColor;
+    MyFVector4 _baseColor;
     float _shininess;
     float _ambientFactor;
     float _specularFactor;
