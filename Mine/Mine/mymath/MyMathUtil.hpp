@@ -70,6 +70,11 @@ public:
         return x;
     }
     
+    static FORCEINLINE int abs(int x) {
+        int s = x > 31;
+        return (x + s) ^ s;
+    }
+    
     static FORCEINLINE float min(float x, float y) {
         return (x + y - abs(x - y)) * 0.5f;
     }
@@ -100,6 +105,16 @@ public:
     
     static FORCEINLINE float lerp(float b, float e, float t) {
         return b + t * (b - e);
+    }
+    
+    static FORCEINLINE int mod(int x, int m) {
+        int y = abs(x);
+        
+        while(y >= m) {
+            y -= m;
+        }
+        
+        return x > 0 ? y: m - y;
     }
     
 public:
