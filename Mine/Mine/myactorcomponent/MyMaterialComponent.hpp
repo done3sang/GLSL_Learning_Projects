@@ -9,7 +9,6 @@
 #ifndef MyMaterialComponent_hpp
 #define MyMaterialComponent_hpp
 
-#include <glm/fwd.hpp>
 #include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
