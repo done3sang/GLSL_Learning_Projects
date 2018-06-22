@@ -18,37 +18,46 @@ MINE_NAMESPACE_BEGIN
 
 class MyUniqueObject;
 class MyTexture;
+class MyFVector3;
 
 class MyMaterial: public MyUniqueObject {
 public:
     static MyMaterial* create(void);
-    static MyMaterial* createWithColor(const MyFVector4 &color);
     
 public:
-    FORCEINLINE const MyFVector4& baseColor(void) const { return _baseColor; }
-    FORCEINLINE void baseColor(const MyFVector4 &color) { _baseColor = color; }
+    FORCEINLINE const MyFVector3& baseColor(void) const { return _baseColor; }
+    FORCEINLINE void baseColor(const MyFVector3 &color) { _baseColor = color; _baseUniform = true; }
     
-    FORCEINLINE float shininess(void) const { return _shininess; }
-    FORCEINLINE void shininess(float shin) { _shininess = shin; }
+    FORCEINLINE bool baseUniform(void) const { return _baseUniform; }
     
-    FORCEINLINE float ambientFactor(void) const { return _ambientFactor; }
-    FORCEINLINE void ambientFactor(float factor) { _ambientFactor = factor; }
+    FORCEINLINE MyTexture* baseTexture() const { return _baseTexture; }
     
-    FORCEINLINE float specularFactor(void) const { return _specularFactor; }
-    FORCEINLINE void specularFactor(float factor) { _specularFactor = factor; }
+    FORCEINLINE void baseTexture(const MyTexture *baseTex) {
+        if(_baseTexture) {
+            _baseTexture->release();
+            _baseUniform = true;
+        }
+        _baseTexture = baseTex;
+        if(baseTex) {
+            baseTex->addRef();
+            _baseUniform = false;
+        }
+    }
+    
+    
     
 private:
     explicit
-    FORCEINLINE MyMaterialComponent(const MyFVector4 &color = MyFVector4(1.0f)):
-    MyActorComponent(MyActorComponent::kComponentTypeMaterial,
-                     MyActorComponent::kComponentGroupMaterial),
-    _baseColor(color), _shininess(16.0f), _ambientFactor(0.01f), _specularFactor(16.0f) {}
-    FORCEINLINE ~MyMaterialComponent(void) {}
+    FORCEINLINE MyMaterial(void): _baseColor(1.0f, 1.0f, 1.0f),
+    _baseTexture(nullptr), _normalTexture(nullptr), _metallic(16.0f), _opacity(1.0f), _baseUniform(true);
+    FORCEINLINE ~MyMaterial(void) {}
     
-    MyFVector4 _baseColor;
-    float _shininess;
-    float _ambientFactor;
-    float _specularFactor;
+    MyFVector3 _baseColor;
+    MyTexture *_baseTexture;
+    MyTexture *_normalTexture;
+    float _metallic;
+    float _opacity;
+    bool _baseUniform;
 };
 
 MINE_NAMESPACE_END
