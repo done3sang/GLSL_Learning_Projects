@@ -7,6 +7,7 @@
 //
 
 #include <cassert>
+#include "MyObject.hpp"
 #include "MyTemplate.hpp"
 #include "MyActorComponent.hpp"
 #include "MyVector.hpp"

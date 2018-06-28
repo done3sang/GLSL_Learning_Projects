@@ -8,6 +8,7 @@
 
 #include <cassert>
 #include <stack>
+#include "MyObject.hpp"
 #include "MyTemplate.hpp"
 #include "MyFileUtil.hpp"
 #include "MyErrorDesc.hpp"

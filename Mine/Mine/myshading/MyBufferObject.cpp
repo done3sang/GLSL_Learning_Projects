@@ -7,7 +7,7 @@
 //
 
 #include <cassert>
-#include "MyTemplate.hpp"
+#include "MyObject.hpp"
 #include "MyBufferObject.hpp"
 
 MINE_NAMESPACE_BEGIN

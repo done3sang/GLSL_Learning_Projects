@@ -22,8 +22,12 @@ public:
     static BaseScene* create(void);
     
 private:
+    virtual ~BaseScene(void);
+    
     MyRenderer *_myRenderer;
     MyProgram *_myProgram;
+    MyBufferObject *_positionBuffer;
+    MyBufferObject *_colorBuffer;
     MyVertexArrayObject *_myVertexArray;
     
     MyFMatrix4 _rotationMatrix;

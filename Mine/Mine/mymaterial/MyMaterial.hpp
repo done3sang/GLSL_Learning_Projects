@@ -30,9 +30,9 @@ public:
     
     FORCEINLINE bool baseUniform(void) const { return _baseUniform; }
     
-    FORCEINLINE MyTexture* baseTexture() const { return _baseTexture; }
+    FORCEINLINE const MyTexture* baseTexture() const { return _baseTexture; }
     
-    FORCEINLINE void baseTexture(const MyTexture *baseTex) {
+    FORCEINLINE void baseTexture(MyTexture *baseTex) {
         if(_baseTexture) {
             _baseTexture->release();
             _baseUniform = true;
@@ -44,12 +44,10 @@ public:
         }
     }
     
-    
-    
 private:
     explicit
     FORCEINLINE MyMaterial(void): _baseColor(1.0f, 1.0f, 1.0f),
-    _baseTexture(nullptr), _normalTexture(nullptr), _metallic(16.0f), _opacity(1.0f), _baseUniform(true);
+    _baseTexture(nullptr), _normalTexture(nullptr), _metallic(16.0f), _opacity(1.0f), _baseUniform(true) {}
     FORCEINLINE ~MyMaterial(void) {}
     
     MyFVector3 _baseColor;

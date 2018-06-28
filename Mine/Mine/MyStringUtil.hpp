@@ -9,6 +9,7 @@
 #ifndef MyStringUtil_hpp
 #define MyStringUtil_hpp
 
+#include <string.h>
 #include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
@@ -20,40 +21,44 @@ class MyStatic;
 
 class MyStringUtil final: private MyStatic {
 public:
-    static bool space(char c) {
+    static FORCEINLINE bool space(char c) {
         return ' ' == c;
     }
     
-    static bool newline(char c) {
+    static FORCEINLINE bool newline(char c) {
         return '\r' == c or '\n' == c;
     }
     
-    static bool whitespace(char c) {
+    static FORCEINLINE bool whitespace(char c) {
         return space(c) or newline(c);
     }
     
-    static bool digit(char c) {
+    static FORCEINLINE bool digit(char c) {
         return '0' <= c && c <= '9';
     }
     
-    static bool uppercase(char c) {
+    static FORCEINLINE bool uppercase(char c) {
         return 'A' <= c && c <= 'Z';
     }
     
-    static bool lowercase(char c) {
+    static FORCEINLINE bool lowercase(char c) {
         return 'a' <= c && c <= 'z';
     }
     
-    static bool alpha(char c) {
+    static FORCEINLINE bool alpha(char c) {
         return uppercase(c) || lowercase(c);
     }
     
-    static bool digit_alpha(char c) {
+    static FORCEINLINE bool digit_alpha(char c) {
         return digit(c) || alpha(c);
     }
     
-    static bool variable(char c) {
+    static FORCEINLINE bool variable(char c) {
         return digit_alpha(c) || '_' == c;
+    }
+    
+    static FORCEINLINE bool equal_string(const char* str1, const char* str2) {
+        return strcmp(str1, str2) == 0;
     }
 };
 

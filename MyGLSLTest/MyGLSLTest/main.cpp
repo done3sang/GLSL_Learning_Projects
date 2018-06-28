@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <memory>
 #include <string>
 #include <sstream>
 //#include "TestScenario.hpp"
@@ -29,6 +30,20 @@ MyErrorDisposer* MyErrorDisposer::create(void) {
     MyErrorDisposer *disposer = new MyErrorDisposer;
     disposer->objectName("MyErrorDisposer");
     return disposer;
+}
+
+void* operator new(size_t sz) {
+    std::cout << "come up with global new\n";
+    return malloc(sz);
+}
+
+void operator delete(void* p) {
+    std::cout << "come up with global delete\n";
+    MyObject *obj = (MyObject*)p;
+    if(obj) {
+        std::cout << "delete object = " << obj->objectName() << "\n";
+    }
+    free(p);
 }
 
 int main(int argc, const char * argv[]) {

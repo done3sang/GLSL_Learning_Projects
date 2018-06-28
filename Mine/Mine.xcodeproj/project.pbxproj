@@ -39,6 +39,12 @@
 		1451AAD51FD8F1FB007D9335 /* MyShadingManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1451AAD31FD8F1FB007D9335 /* MyShadingManager.cpp */; };
 		1451AAD61FD8F1FB007D9335 /* MyShadingManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1451AAD41FD8F1FB007D9335 /* MyShadingManager.hpp */; };
 		146140A92004C119008D5247 /* MyMathMatrix.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 146140A72004C119008D5247 /* MyMathMatrix.hpp */; };
+		1464073920E4C14E008F17B5 /* MyFileManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1464073720E4C14E008F17B5 /* MyFileManager.cpp */; };
+		1464073A20E4C14E008F17B5 /* MyFileManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1464073820E4C14E008F17B5 /* MyFileManager.hpp */; };
+		1464073E20E4C50D008F17B5 /* MyArray.inl in Sources */ = {isa = PBXBuildFile; fileRef = 1464073C20E4C50D008F17B5 /* MyArray.inl */; };
+		1464073F20E4C50D008F17B5 /* MyArray.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1464073D20E4C50D008F17B5 /* MyArray.hpp */; };
+		1464074220E4E42C008F17B5 /* MyFileStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1464074020E4E42C008F17B5 /* MyFileStream.cpp */; };
+		1464074320E4E42C008F17B5 /* MyFileStream.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1464074120E4E42C008F17B5 /* MyFileStream.hpp */; };
 		146B9CDB204156BC007A4F59 /* MyTransformation.inl in Sources */ = {isa = PBXBuildFile; fileRef = 146B9CD9204156BC007A4F59 /* MyTransformation.inl */; };
 		146B9CDC204156BC007A4F59 /* MyTransformation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 146B9CDA204156BC007A4F59 /* MyTransformation.hpp */; };
 		146CE1DD204808F400DAF1E1 /* MyQuaternion.inl in Sources */ = {isa = PBXBuildFile; fileRef = 146CE1DB204808F400DAF1E1 /* MyQuaternion.inl */; };
@@ -57,6 +63,12 @@
 		14BBD65B1FDA5A3A00EFBF0D /* MyXMLDocument.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14BBD6591FDA5A3A00EFBF0D /* MyXMLDocument.hpp */; };
 		14BBD65E1FDA655300EFBF0D /* MyXMLNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14BBD65C1FDA655300EFBF0D /* MyXMLNode.cpp */; };
 		14BBD65F1FDA655300EFBF0D /* MyXMLNode.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14BBD65D1FDA655300EFBF0D /* MyXMLNode.hpp */; };
+		14C4978020E20EEE00BA13C1 /* MyMemoryBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14C4977E20E20EEE00BA13C1 /* MyMemoryBlock.cpp */; };
+		14C4978120E20EEE00BA13C1 /* MyMemoryBlock.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14C4977F20E20EEE00BA13C1 /* MyMemoryBlock.hpp */; };
+		14C4978420E2155800BA13C1 /* MyMemoryObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14C4978220E2155800BA13C1 /* MyMemoryObject.cpp */; };
+		14C4978520E2155800BA13C1 /* MyMemoryObject.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14C4978320E2155800BA13C1 /* MyMemoryObject.hpp */; };
+		14C4978820E32AB800BA13C1 /* MyMemoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14C4978620E32AB800BA13C1 /* MyMemoryManager.cpp */; };
+		14C4978920E32AB800BA13C1 /* MyMemoryManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14C4978720E32AB800BA13C1 /* MyMemoryManager.hpp */; };
 		14E4A66A1FF0A8920090973F /* MyScenario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14E4A6681FF0A8920090973F /* MyScenario.cpp */; };
 		14E4A66B1FF0A8920090973F /* MyScenario.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E4A6691FF0A8920090973F /* MyScenario.hpp */; };
 		14E4A66F1FF0D4CB0090973F /* MyTransformComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14E4A66D1FF0D4CB0090973F /* MyTransformComponent.hpp */; };
@@ -88,8 +100,6 @@
 		14EBA1301FDFB170007972D0 /* MySpotLight.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA12E1FDFB170007972D0 /* MySpotLight.hpp */; };
 		14EBA1331FDFB7CC007972D0 /* MyModelComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EBA1311FDFB7CC007972D0 /* MyModelComponent.cpp */; };
 		14EBA1341FDFB7CC007972D0 /* MyModelComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA1321FDFB7CC007972D0 /* MyModelComponent.hpp */; };
-		14EBA1371FDFBBFF007972D0 /* MyMemoryManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14EBA1351FDFBBFF007972D0 /* MyMemoryManager.cpp */; };
-		14EBA1381FDFBBFF007972D0 /* MyMemoryManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14EBA1361FDFBBFF007972D0 /* MyMemoryManager.hpp */; };
 		14ED9B7920451EDE008091F9 /* MyPlane.inl in Sources */ = {isa = PBXBuildFile; fileRef = 14ED9B7720451EDE008091F9 /* MyPlane.inl */; };
 		14ED9B7A20451EDE008091F9 /* MyPlane.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 14ED9B7820451EDE008091F9 /* MyPlane.hpp */; };
 		14ED9B7C20455FB3008091F9 /* MyTransformComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14ED9B7B20455FB3008091F9 /* MyTransformComponent.cpp */; };
@@ -135,6 +145,12 @@
 		1451AAD31FD8F1FB007D9335 /* MyShadingManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyShadingManager.cpp; sourceTree = "<group>"; };
 		1451AAD41FD8F1FB007D9335 /* MyShadingManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyShadingManager.hpp; sourceTree = "<group>"; };
 		146140A72004C119008D5247 /* MyMathMatrix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyMathMatrix.hpp; sourceTree = "<group>"; };
+		1464073720E4C14E008F17B5 /* MyFileManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyFileManager.cpp; sourceTree = "<group>"; };
+		1464073820E4C14E008F17B5 /* MyFileManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyFileManager.hpp; sourceTree = "<group>"; };
+		1464073C20E4C50D008F17B5 /* MyArray.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyArray.inl; sourceTree = "<group>"; };
+		1464073D20E4C50D008F17B5 /* MyArray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyArray.hpp; sourceTree = "<group>"; };
+		1464074020E4E42C008F17B5 /* MyFileStream.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyFileStream.cpp; sourceTree = "<group>"; };
+		1464074120E4E42C008F17B5 /* MyFileStream.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyFileStream.hpp; sourceTree = "<group>"; };
 		146B9CD9204156BC007A4F59 /* MyTransformation.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyTransformation.inl; sourceTree = "<group>"; };
 		146B9CDA204156BC007A4F59 /* MyTransformation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyTransformation.hpp; sourceTree = "<group>"; };
 		146CE1DB204808F400DAF1E1 /* MyQuaternion.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyQuaternion.inl; sourceTree = "<group>"; };
@@ -155,6 +171,12 @@
 		14BBD6591FDA5A3A00EFBF0D /* MyXMLDocument.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyXMLDocument.hpp; sourceTree = "<group>"; };
 		14BBD65C1FDA655300EFBF0D /* MyXMLNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyXMLNode.cpp; sourceTree = "<group>"; };
 		14BBD65D1FDA655300EFBF0D /* MyXMLNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyXMLNode.hpp; sourceTree = "<group>"; };
+		14C4977E20E20EEE00BA13C1 /* MyMemoryBlock.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyMemoryBlock.cpp; sourceTree = "<group>"; };
+		14C4977F20E20EEE00BA13C1 /* MyMemoryBlock.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyMemoryBlock.hpp; sourceTree = "<group>"; };
+		14C4978220E2155800BA13C1 /* MyMemoryObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyMemoryObject.cpp; sourceTree = "<group>"; };
+		14C4978320E2155800BA13C1 /* MyMemoryObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyMemoryObject.hpp; sourceTree = "<group>"; };
+		14C4978620E32AB800BA13C1 /* MyMemoryManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyMemoryManager.cpp; sourceTree = "<group>"; };
+		14C4978720E32AB800BA13C1 /* MyMemoryManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyMemoryManager.hpp; sourceTree = "<group>"; };
 		14E4A6681FF0A8920090973F /* MyScenario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyScenario.cpp; sourceTree = "<group>"; };
 		14E4A6691FF0A8920090973F /* MyScenario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyScenario.hpp; sourceTree = "<group>"; };
 		14E4A66D1FF0D4CB0090973F /* MyTransformComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyTransformComponent.hpp; sourceTree = "<group>"; };
@@ -186,8 +208,6 @@
 		14EBA12E1FDFB170007972D0 /* MySpotLight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MySpotLight.hpp; sourceTree = "<group>"; };
 		14EBA1311FDFB7CC007972D0 /* MyModelComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyModelComponent.cpp; sourceTree = "<group>"; };
 		14EBA1321FDFB7CC007972D0 /* MyModelComponent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyModelComponent.hpp; sourceTree = "<group>"; };
-		14EBA1351FDFBBFF007972D0 /* MyMemoryManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyMemoryManager.cpp; sourceTree = "<group>"; };
-		14EBA1361FDFBBFF007972D0 /* MyMemoryManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyMemoryManager.hpp; sourceTree = "<group>"; };
 		14ED9B7720451EDE008091F9 /* MyPlane.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyPlane.inl; sourceTree = "<group>"; };
 		14ED9B7820451EDE008091F9 /* MyPlane.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyPlane.hpp; sourceTree = "<group>"; };
 		14ED9B7B20455FB3008091F9 /* MyTransformComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyTransformComponent.cpp; sourceTree = "<group>"; };
@@ -230,6 +250,9 @@
 		1401E5E21FCC0AE500D83812 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				1464073B20E4C464008F17B5 /* mystructure */,
+				1464073620E4C124008F17B5 /* myfile */,
+				14C4977D20E20ECB00BA13C1 /* mymemory */,
 				143B02BD20DCE7FA006CDD08 /* mymaterial */,
 				1403C3B520D8FD2A000BD8E7 /* mydata */,
 				146140A52004ABEE008D5247 /* myshading */,
@@ -244,8 +267,6 @@
 				14E4A6681FF0A8920090973F /* MyScenario.cpp */,
 				144349181FD13B20006DD6D2 /* MyAutoreleasePool.hpp */,
 				144349171FD13B20006DD6D2 /* MyAutoreleasePool.cpp */,
-				14EBA1361FDFBBFF007972D0 /* MyMemoryManager.hpp */,
-				14EBA1351FDFBBFF007972D0 /* MyMemoryManager.cpp */,
 				25A889831FDD12E10078F455 /* MyTimerManager.hpp */,
 				25A889821FDD12E10078F455 /* MyTimerManager.cpp */,
 				1401E5EF1FCC0EE100D83812 /* MyFileUtil.hpp */,
@@ -312,6 +333,26 @@
 			path = myshading;
 			sourceTree = "<group>";
 		};
+		1464073620E4C124008F17B5 /* myfile */ = {
+			isa = PBXGroup;
+			children = (
+				1464073820E4C14E008F17B5 /* MyFileManager.hpp */,
+				1464073720E4C14E008F17B5 /* MyFileManager.cpp */,
+				1464074120E4E42C008F17B5 /* MyFileStream.hpp */,
+				1464074020E4E42C008F17B5 /* MyFileStream.cpp */,
+			);
+			path = myfile;
+			sourceTree = "<group>";
+		};
+		1464073B20E4C464008F17B5 /* mystructure */ = {
+			isa = PBXGroup;
+			children = (
+				1464073D20E4C50D008F17B5 /* MyArray.hpp */,
+				1464073C20E4C50D008F17B5 /* MyArray.inl */,
+			);
+			path = mystructure;
+			sourceTree = "<group>";
+		};
 		14BBD6571FDA59F800EFBF0D /* myxml */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +362,19 @@
 				14BBD65C1FDA655300EFBF0D /* MyXMLNode.cpp */,
 			);
 			path = myxml;
+			sourceTree = "<group>";
+		};
+		14C4977D20E20ECB00BA13C1 /* mymemory */ = {
+			isa = PBXGroup;
+			children = (
+				14C4977F20E20EEE00BA13C1 /* MyMemoryBlock.hpp */,
+				14C4977E20E20EEE00BA13C1 /* MyMemoryBlock.cpp */,
+				14C4978320E2155800BA13C1 /* MyMemoryObject.hpp */,
+				14C4978220E2155800BA13C1 /* MyMemoryObject.cpp */,
+				14C4978720E32AB800BA13C1 /* MyMemoryManager.hpp */,
+				14C4978620E32AB800BA13C1 /* MyMemoryManager.cpp */,
+			);
+			path = mymemory;
 			sourceTree = "<group>";
 		};
 		14E4A6701FF0F9550090973F /* myrender */ = {
@@ -412,6 +466,7 @@
 				14EBA1281FDFAAA6007972D0 /* MyPointLight.hpp in Headers */,
 				14F9EFC91FD79B9D00EAF6E1 /* Mine.hpp in Headers */,
 				14EF00791FD69FD70048F4D5 /* MyDirector.hpp in Headers */,
+				14C4978520E2155800BA13C1 /* MyMemoryObject.hpp in Headers */,
 				1443490E1FD12BB3006DD6D2 /* MyObject.hpp in Headers */,
 				1443491A1FD13B20006DD6D2 /* MyAutoreleasePool.hpp in Headers */,
 				148A10A8203FEC45009895D7 /* MyVector.hpp in Headers */,
@@ -423,15 +478,16 @@
 				1451AAD61FD8F1FB007D9335 /* MyShadingManager.hpp in Headers */,
 				14EBA11B1FDF8021007972D0 /* MyDirectionalLightComponent.hpp in Headers */,
 				14EBA1241FDF82A7007972D0 /* MyMathUtil.hpp in Headers */,
+				14C4978920E32AB800BA13C1 /* MyMemoryManager.hpp in Headers */,
 				14EBA1301FDFB170007972D0 /* MySpotLight.hpp in Headers */,
 				14B24D911FCEAC4800121A65 /* MyVertexArrayObject.hpp in Headers */,
 				25A889851FDD12E10078F455 /* MyTimerManager.hpp in Headers */,
+				1464073A20E4C14E008F17B5 /* MyFileManager.hpp in Headers */,
 				148A10A3203FC128009895D7 /* MyMatrix.hpp in Headers */,
 				14E4A66F1FF0D4CB0090973F /* MyTransformComponent.hpp in Headers */,
 				14E6D0AE1FDE7E4400999ED6 /* MyActorComponent.hpp in Headers */,
 				14E4A6741FF0F9D20090973F /* MyVertexAttribute.hpp in Headers */,
 				14ED9B7A20451EDE008091F9 /* MyPlane.hpp in Headers */,
-				14EBA1381FDFBBFF007972D0 /* MyMemoryManager.hpp in Headers */,
 				146B9CDC204156BC007A4F59 /* MyTransformation.hpp in Headers */,
 				141A541A1FFCE58C00D64180 /* MyLightActor.hpp in Headers */,
 				14E6D0B61FDE894500999ED6 /* MyLightComponent.hpp in Headers */,
@@ -439,14 +495,17 @@
 				14EBA1341FDFB7CC007972D0 /* MyModelComponent.hpp in Headers */,
 				1401E5FA1FCCFC6600D83812 /* MyShader.hpp in Headers */,
 				144504B720440E8B00ED0319 /* MyCoordinate.hpp in Headers */,
+				14C4978120E20EEE00BA13C1 /* MyMemoryBlock.hpp in Headers */,
 				143B02C120DCE83B006CDD08 /* MyMaterial.hpp in Headers */,
 				14E6D0A51FDE6F4F00999ED6 /* MyActor.hpp in Headers */,
 				14BBD65F1FDA655300EFBF0D /* MyXMLNode.hpp in Headers */,
 				14E6D0B21FDE854100999ED6 /* MyMaterialComponent.hpp in Headers */,
 				14E4A66B1FF0A8920090973F /* MyScenario.hpp in Headers */,
+				1464074320E4E42C008F17B5 /* MyFileStream.hpp in Headers */,
 				14AB95F51FDA78FF00CE8617 /* MyStringUtil.hpp in Headers */,
 				144349061FD103CC006DD6D2 /* MyRenderer.hpp in Headers */,
 				14BBD65B1FDA5A3A00EFBF0D /* MyXMLDocument.hpp in Headers */,
+				1464073F20E4C50D008F17B5 /* MyArray.hpp in Headers */,
 				14E6D0BA1FDE8AA900999ED6 /* MyPointLightComponent.hpp in Headers */,
 				146CE1DE204808F400DAF1E1 /* MyQuaternion.hpp in Headers */,
 				14B24D951FCEAD9900121A65 /* MyTemplate.hpp in Headers */,
@@ -517,10 +576,12 @@
 				14ED9B7920451EDE008091F9 /* MyPlane.inl in Sources */,
 				14B24D901FCEAC4800121A65 /* MyVertexArrayObject.cpp in Sources */,
 				144504B620440E8B00ED0319 /* MyCoordinate.inl in Sources */,
+				1464074220E4E42C008F17B5 /* MyFileStream.cpp in Sources */,
 				146CE1DD204808F400DAF1E1 /* MyQuaternion.inl in Sources */,
 				14E6D0A41FDE6F4F00999ED6 /* MyActor.cpp in Sources */,
 				14ED9B7C20455FB3008091F9 /* MyTransformComponent.cpp in Sources */,
 				14E6D0B51FDE894500999ED6 /* MyLightComponent.cpp in Sources */,
+				1464073920E4C14E008F17B5 /* MyFileManager.cpp in Sources */,
 				14EBA1231FDF82A7007972D0 /* MyMathUtil.cpp in Sources */,
 				14EBA12F1FDFB170007972D0 /* MySpotLight.cpp in Sources */,
 				141A54191FFCE58C00D64180 /* MyLightActor.cpp in Sources */,
@@ -528,6 +589,7 @@
 				14EBA11E1FDF816C007972D0 /* MySpotLightComponent.cpp in Sources */,
 				144349011FCEBA61006DD6D2 /* MyBufferObject.cpp in Sources */,
 				1401E6001FCD11EA00D83812 /* MyProgram.cpp in Sources */,
+				1464073E20E4C50D008F17B5 /* MyArray.inl in Sources */,
 				14EBA1271FDFAAA6007972D0 /* MyPointLight.cpp in Sources */,
 				1401E5F51FCC13BD00D83812 /* MyErrorDesc.cpp in Sources */,
 				25A889841FDD12E10078F455 /* MyTimerManager.cpp in Sources */,
@@ -539,14 +601,15 @@
 				14E6D0B91FDE8AA900999ED6 /* MyPointLightComponent.cpp in Sources */,
 				144349051FD103CC006DD6D2 /* MyRenderer.cpp in Sources */,
 				14EBA12B1FDFAFD7007972D0 /* MyDirectionalLight.cpp in Sources */,
+				14C4978420E2155800BA13C1 /* MyMemoryObject.cpp in Sources */,
 				1401E5F01FCC0EE100D83812 /* MyFileUtil.cpp in Sources */,
 				1403C3B820D8FD63000BD8E7 /* MyData.cpp in Sources */,
 				14E6D0AD1FDE7E4400999ED6 /* MyActorComponent.cpp in Sources */,
-				14EBA1371FDFBBFF007972D0 /* MyMemoryManager.cpp in Sources */,
 				14E4A6731FF0F9D20090973F /* MyVertexAttribute.cpp in Sources */,
 				1451AAD51FD8F1FB007D9335 /* MyShadingManager.cpp in Sources */,
 				14AB95F41FDA78FF00CE8617 /* MyStringUtil.cpp in Sources */,
 				14BBD65E1FDA655300EFBF0D /* MyXMLNode.cpp in Sources */,
+				14C4978020E20EEE00BA13C1 /* MyMemoryBlock.cpp in Sources */,
 				143B02C020DCE83B006CDD08 /* MyMaterial.cpp in Sources */,
 				14E4A66A1FF0A8920090973F /* MyScenario.cpp in Sources */,
 				14E6D0B11FDE854100999ED6 /* MyMaterialComponent.cpp in Sources */,
@@ -556,6 +619,7 @@
 				143B02C420DCEB4D006CDD08 /* MyTexture.cpp in Sources */,
 				141A540D1FFB743C00D64180 /* MyModelGenerator.cpp in Sources */,
 				14EBA11A1FDF8021007972D0 /* MyDirectionalLightComponent.cpp in Sources */,
+				14C4978820E32AB800BA13C1 /* MyMemoryManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +741,7 @@
 					"DEBUG=1",
 					"ENABLE_TEMPLATE_META=1",
 					"$(inherited)",
+					MINE_DEBUG,
 				);
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;

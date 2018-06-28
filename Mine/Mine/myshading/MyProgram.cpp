@@ -7,7 +7,7 @@
 //
 
 #include <cassert>
-#include "MyTemplate.hpp"
+#include "MyObject.hpp"
 #include "MyBufferObject.hpp"
 #include "MyProgram.hpp"
 #include "MyShader.hpp"

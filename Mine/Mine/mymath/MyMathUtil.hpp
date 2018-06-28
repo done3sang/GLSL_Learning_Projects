@@ -117,6 +117,32 @@ public:
         return x > 0 ? y: m - y;
     }
     
+    // byte alignment
+    template<int B = 4, typename T>
+    static FORCEINLINE T align(T x) {
+        return (x + B) & ~B;
+    }
+    
+    template<typename T>
+    static FORCEINLINE T align2(T x) {
+        return align<2>(x);
+    }
+    
+    template<typename T>
+    static FORCEINLINE T align4(T x) {
+        return align<4>(x);
+    }
+    
+    template<typename T>
+    static FORCEINLINE T align8(T x) {
+        return align<8>(x);
+    }
+    
+    template<typename T>
+    static FORCEINLINE T align16(T x) {
+        return align<16>(x);
+    }
+    
 public:
     MyMathUtil(void) = delete;
     MyMathUtil(const MyMathUtil&) = delete;

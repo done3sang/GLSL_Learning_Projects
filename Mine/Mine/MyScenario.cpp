@@ -7,7 +7,7 @@
 //
 
 #include <glm/glm.hpp>
-#include "MyTemplate.hpp"
+#include "MyObject.hpp"
 #include "MyActorComponent.hpp"
 #include "MyActor.hpp"
 #include "MyModelComponent.hpp"

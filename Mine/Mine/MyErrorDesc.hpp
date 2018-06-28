@@ -48,6 +48,11 @@ public:
     static const int kErrProgramUniformBlockIndexNotExists;
     static const int kErrXMLParseFailed;
     
+    // memory relative
+    static const int kErrMemoryBlockReallocate;
+    static const int kErrMemoryObjectInUse;
+    static const int kErrMemoryNotEnough;
+    
 public:
     std::string& errorString(int errCode);
     

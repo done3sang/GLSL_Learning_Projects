@@ -6,9 +6,10 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include "MyObject.hpp"
 #include "MyTemplate.hpp"
 #include "MyAutoreleasePool.hpp"
+#include "MyMemoryManager.hpp"
+#include "MyObject.hpp"
 
 #ifdef MINE_DEUBG
 #include <iostream>
@@ -45,6 +46,18 @@ void MyObject::release(void) {
 
 void MyObject::autorelease(void) {
     MyAutoreleasePool::sharedAutoreleasePool()->addObject(this);
+}
+
+void* MyObject::operator new(size_t sz) {
+    return MyMemoryManager::sharedMemoryManager()->allocate(sz);
+}
+
+void MyObject::operator delete(void* p) {
+    MyMemoryManager::sharedMemoryManager()->deallocate(p);
+}
+
+void* MySingletonObject::operator new(size_t sz) {
+    return MyMemoryManager::sharedMemoryManager()->allocate(sz, true);
 }
 
 MINE_NAMESPACE_END

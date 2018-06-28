@@ -10,14 +10,11 @@
 #define MySingleton_hpp
 
 #include "MyPrecompiled.hpp"
-#include "MyObject.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 
 MINE_NAMESPACE_BEGIN
-
-class MyObject;
 
 class MySingleton {
 public:
@@ -52,32 +49,6 @@ public:
     
     MyStatic& operator=(const MyStatic&) = delete;
     MyStatic& operator=(MyStatic&&) = delete;
-};
-
-class MySingletonObject: public MyObject {
-public:
-    MySingletonObject(const MySingletonObject&) = delete;
-    MySingletonObject(const MySingletonObject&&) = delete;
-    MySingletonObject& operator=(const MySingletonObject&) = delete;
-    MySingletonObject& operator=(MySingletonObject&&) = delete;
-    
-protected:
-    FORCEINLINE MySingletonObject(void) { MyObject::retain(); }
-    FORCEINLINE virtual ~MySingletonObject(void) {}
-    
-    FORCEINLINE void addRef(void) { MyObject::addRef(); }
-    FORCEINLINE void retain(void) { MyObject::retain(); }
-};
-
-class MyUniqueObject: public MyObject {
-public:
-    MyUniqueObject(const MyUniqueObject&) = delete;
-    MyUniqueObject(MyUniqueObject&&) = delete;
-    MyUniqueObject& operator=(const MyUniqueObject&) = delete;
-    
-protected:
-    FORCEINLINE MyUniqueObject(void) {}
-    FORCEINLINE virtual ~MyUniqueObject(void) {}
 };
 
 MINE_NAMESPACE_END

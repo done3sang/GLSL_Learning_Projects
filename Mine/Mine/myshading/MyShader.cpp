@@ -10,7 +10,7 @@
 #include <iostream>
 #endif
 
-#include "MyTemplate.hpp"
+#include "MyObject.hpp"
 #include "MyShader.hpp"
 #include "MyFileUtil.hpp"
 #include "MyErrorDesc.hpp"

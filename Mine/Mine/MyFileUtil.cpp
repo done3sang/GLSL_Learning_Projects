@@ -8,7 +8,7 @@
 
 #include <fstream>
 #include <sstream>
-#include "MyTemplate.hpp"
+#include "MyObject.hpp"
 #include "MyFileUtil.hpp"
 #include "MyErrorDesc.hpp"
 

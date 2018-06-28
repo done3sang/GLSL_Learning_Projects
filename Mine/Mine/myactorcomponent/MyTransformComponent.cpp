@@ -6,7 +6,7 @@
 //  Copyright © 2018 SangDesu. All rights reserved.
 //
 
-#include "MyTemplate.hpp"
+#include "MyObject.hpp"
 #include "MyActorComponent.hpp"
 #include "MyTransformComponent.hpp"
 

@@ -10,6 +10,7 @@
 #include <cassert>
 #endif
 
+#include "MyObject.hpp"
 #include "MyTemplate.hpp"
 #include "MyErrorDesc.hpp"
 #include "MyVertexArrayObject.hpp"

@@ -17,8 +17,8 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyObject;
 class MySingleton;
+class MyObject;
 
 class MyAutoreleasePool final: public MySingleton {
 public:

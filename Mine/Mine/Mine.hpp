@@ -9,6 +9,7 @@
 #ifndef Mine_hpp
 #define Mine_hpp
 
+#include "MyObject.hpp"
 #include "MyTemplate.hpp"
 #include "MyDirector.hpp"
 #include "MyRenderer.hpp"

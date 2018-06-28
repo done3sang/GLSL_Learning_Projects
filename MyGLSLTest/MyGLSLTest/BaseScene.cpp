@@ -16,6 +16,28 @@ BaseScene* BaseScene::create(void) {
     return obj;
 }
 
+BaseScene::~BaseScene(void) {
+    if(_positionBuffer) {
+        _positionBuffer->release();
+    }
+    
+    if(_colorBuffer) {
+        _colorBuffer->release();
+    }
+    
+    if(_myProgram) {
+        _myProgram->release();
+    }
+    
+    if(_myVertexArray) {
+        _myVertexArray->release();
+    }
+    
+    if(_myRenderer) {
+        _myRenderer->release();
+    }
+}
+
 bool BaseScene::initialize(void) {
     MyDirector *sharedDirector = MyDirector::sharedDirector();
     
@@ -38,13 +60,13 @@ bool BaseScene::initialize(void) {
         0.0f, 0.0f, 1.0f
     };
     
-    MyBufferObject *positionBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
-    positionBuffer->addRef();
-    positionBuffer->bufferData(9 * sizeof(float), positionData);
+    _positionBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
+    _positionBuffer->addRef();
+    _positionBuffer->bufferData(9 * sizeof(float), positionData);
     
-    MyBufferObject *colorBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
-    colorBuffer->addRef();
-    colorBuffer->bufferData(9 * sizeof(float), colorData);
+    _colorBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
+    _colorBuffer->addRef();
+    _colorBuffer->bufferData(9 * sizeof(float), colorData);
     
     if(!sharedDirector->checkError()) {
         std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
@@ -55,8 +77,9 @@ bool BaseScene::initialize(void) {
     }
     
     _myVertexArray = MyVertexArrayObject::create();
-    _myVertexArray->vertexAttribPoint(*positionBuffer, MyProgram::kAttribPosition, 3, 0);
-    _myVertexArray->vertexAttribPoint(*colorBuffer, MyProgram::kAttribColor, 3, 0);
+    _myVertexArray->vertexAttribPoint(*_positionBuffer, MyProgram::kAttribPosition, 3, 0);
+    _myVertexArray->vertexAttribPoint(*_colorBuffer, MyProgram::kAttribColor, 3, 0);
+    _myVertexArray->addRef();
     sharedDirector->mainVertexArrayObject(_myVertexArray);
     
     if(!sharedDirector->checkError()) {

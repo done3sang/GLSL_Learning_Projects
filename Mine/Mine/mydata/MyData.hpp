@@ -17,17 +17,41 @@
 MINE_NAMESPACE_BEGIN
 
 class MyUniqueObject;
+template<typename T>
+class MyArray;
 
 class MyData: public MyUniqueObject {
 public:
     static MyData* create(void);
-    static MyData* createFromFile(const char* filepath);
+    static MyData* createWithLength(size_t length);
+    static MyData* createWithData(char* data, size_t length);
     
-    MyData(void);
-    MyData(const char* filepath);
+    FORCEINLINE size_t length(void) const {
+        return _data != nullptr ? _data->length(): 0;
+    }
+    FORCEINLINE size_t offset(void) const {
+        return _data != nullptr ? _manipulator - _data->begin(): 0;
+    }
+    FORCEINLINE char* raw(void) { return _data != nullptr ? nullptr: _data->raw(); }
+    FORCEINLINE char* rawEnd(void) { return _data != nullptr ? nullptr: _data->end(); }
     
+    MyData& operator=(MyArray<char> *arr);
     
-    void loadFromFile(const char* filepath);
+    void purge(void);
+    
+    void pop_front(size_t num);
+    void pop_back(size_t num);
+    
+private:
+    FORCEINLINE MyData(void):
+    _data(nullptr),
+    _manipulator(nullptr) {}
+    MyData(size_t length);
+    MyData(char* data, size_t length);
+    virtual ~MyData(void);
+    
+    MyArray<char>* _data;
+    char* _manipulator;
 };
 
 MINE_NAMESPACE_END

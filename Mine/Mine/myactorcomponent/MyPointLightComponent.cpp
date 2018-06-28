@@ -7,7 +7,7 @@
 //
 
 #include "MyVector.hpp"
-#include "MyTemplate.hpp"
+#include "MyObject.hpp"
 #include "MyActorComponent.hpp"
 #include "MyLightComponent.hpp"
 #include "MyPointLightComponent.hpp"

@@ -7,7 +7,7 @@
 //
 
 #include <sys/time.h>
-#include "MyTemplate.hpp"
+#include "MyObject.hpp"
 #include "MyTimerManager.hpp"
 
 MINE_NAMESPACE_BEGIN

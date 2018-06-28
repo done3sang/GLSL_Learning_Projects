@@ -7,7 +7,7 @@
 //
 
 #include <cstdlib>
-#include "MyTemplate.hpp"
+#include "MyObject.hpp"
 #include "MyProgram.hpp"
 #include "MyVertexAttribute.hpp"
 

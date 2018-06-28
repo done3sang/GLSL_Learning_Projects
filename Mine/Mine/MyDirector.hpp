@@ -21,13 +21,13 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MySingleton;
+class MySingletonObject;
 class MyErrorCallback;
 class MyRenderer;
 class MyScenario;
 class MyVertexArrayObject;
 
-class MyDirector final: public MySingleton {
+class MyDirector final: public MySingletonObject {
 public:
     static MyDirector* sharedDirector(void);
     

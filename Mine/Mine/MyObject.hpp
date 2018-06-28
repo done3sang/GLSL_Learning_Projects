@@ -37,11 +37,45 @@ public:
     void release(void);
     void autorelease(void);
     
+    // memory allocation
+    void* operator new(size_t sz);
+    void operator delete(void*);
+    
 private:
     int _refCount;
     std::string _objectName;
     
     friend class MyAutoreleasePool;
+    friend class MyMemoryBlock;
+    friend class MyMemoryManager;
+};
+
+class MySingletonObject: public MyObject {
+public:
+    MySingletonObject(const MySingletonObject&) = delete;
+    MySingletonObject(const MySingletonObject&&) = delete;
+    MySingletonObject& operator=(const MySingletonObject&) = delete;
+    MySingletonObject& operator=(MySingletonObject&&) = delete;
+    
+    void* operator new(size_t sz);
+    
+protected:
+    FORCEINLINE MySingletonObject(void) { MyObject::retain(); }
+    FORCEINLINE virtual ~MySingletonObject(void) {}
+    
+    FORCEINLINE void addRef(void) { MyObject::addRef(); }
+    FORCEINLINE void retain(void) { MyObject::retain(); }
+};
+
+class MyUniqueObject: public MyObject {
+public:
+    MyUniqueObject(const MyUniqueObject&) = delete;
+    MyUniqueObject(MyUniqueObject&&) = delete;
+    MyUniqueObject& operator=(const MyUniqueObject&) = delete;
+    
+protected:
+    FORCEINLINE MyUniqueObject(void) {}
+    FORCEINLINE virtual ~MyUniqueObject(void) {}
 };
 
 MINE_NAMESPACE_END

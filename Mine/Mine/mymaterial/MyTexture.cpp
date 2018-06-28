@@ -6,4 +6,6 @@
 //  Copyright © 2018 SangDesu. All rights reserved.
 //
 
+#include "MyObject.hpp"
+#include "MyVector.hpp"
 #include "MyTexture.hpp"

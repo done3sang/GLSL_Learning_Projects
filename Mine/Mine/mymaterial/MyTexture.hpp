@@ -17,10 +17,13 @@
 MINE_NAMESPACE_BEGIN
 
 class MyUniqueObject;
+class MyFVector3;
+class MyFVector4;
 
 class MyTexture: public MyUniqueObject {
 public:
     static MyTexture* create(void);
+    static MyTexture* createWithColor(const MyFVector3 &color);
     static MyTexture* createWithColor(const MyFVector4 &color);
     
 public:
@@ -36,14 +39,7 @@ public:
     FORCEINLINE float specularFactor(void) const { return _specularFactor; }
     FORCEINLINE void specularFactor(float factor) { _specularFactor = factor; }
     
-private:
-    explicit
-    FORCEINLINE MyMaterialComponent(const MyFVector4 &color = MyFVector4(1.0f)):
-    MyActorComponent(MyActorComponent::kComponentTypeMaterial,
-                     MyActorComponent::kComponentGroupMaterial),
-    _baseColor(color), _shininess(16.0f), _ambientFactor(0.01f), _specularFactor(16.0f) {}
-    FORCEINLINE ~MyMaterialComponent(void) {}
-    
+private:    
     MyFVector4 _baseColor;
     float _shininess;
     float _ambientFactor;

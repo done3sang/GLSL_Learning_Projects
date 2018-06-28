@@ -7,7 +7,10 @@
 //
 
 #include <cassert>
+#include "MyObject.hpp"
 #include "MyTemplate.hpp"
+#include "MyVector.hpp"
+#include "MyTexture.hpp"
 #include "MyMathUtil.hpp"
 #include "MyActorComponent.hpp"
 #include "MyModelComponent.hpp"
