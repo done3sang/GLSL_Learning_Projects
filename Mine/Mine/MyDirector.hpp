@@ -21,13 +21,13 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MySingletonObject;
+class MySingleton;
 class MyErrorCallback;
 class MyRenderer;
 class MyScenario;
 class MyVertexArrayObject;
 
-class MyDirector final: public MySingletonObject {
+class MyDirector final: public MySingleton {
 public:
     static MyDirector* sharedDirector(void);
     
@@ -69,9 +69,14 @@ public:
     float framesPerSecond(void) const { return _framesPerSecond; }
     
 private:
-    MyDirector(void): _errCode(0),
-        _mainRenderer(nullptr), _runningScenario(nullptr), _mainVertexArrayObject(nullptr),
-        _errorCallback(nullptr), _glfwWindow(nullptr), _framesPerSecond(0.0f) {}
+    MyDirector(void):
+    _errCode(0),
+    _mainRenderer(nullptr),
+    _runningScenario(nullptr),
+    _mainVertexArrayObject(nullptr),
+    _errorCallback(nullptr),
+    _glfwWindow(nullptr),
+    _framesPerSecond(0.0f) { initialize(); }
     ~MyDirector(void);
     
     int _errCode;
@@ -85,8 +90,6 @@ private:
     
     // fps
     float _framesPerSecond;
-    
-    static MyDirector* _sharedDirector;
     
     void initialize(void);
     void destroy(void);

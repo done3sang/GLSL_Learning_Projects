@@ -25,18 +25,18 @@ MyData* MyData::createWithData(char* data, size_t length) {
 }
 
 MyData::MyData(size_t length) {
-    operator=(new MyArray<char>(length));
+    operator=(new MyArray<char, false>(length));
 }
 
 MyData::MyData(char* data, size_t length) {
-    operator=(new MyArray<char>(data, length));
+    operator=(new MyArray<char, false>(data, length));
 }
 
 MyData::~MyData(void) {
     purge();
 }
 
-MyData& MyData::operator=(MyArray<char>* arr) {
+MyData& MyData::operator=(MyArray<char, false>* arr) {
     MINE_ASSERT(arr);
     
     arr->addRef();

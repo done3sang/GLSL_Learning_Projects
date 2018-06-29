@@ -30,11 +30,11 @@ public:
     MyMemoryBlock* memoryBlockByName(const char* blockName);
     
     template<typename T, typename... Args>
-    T* createGameObject(Args&&... args, bool resident = false);
-    void destroyGameObject(MyObject* gameObject);
+    T* createObject(Args&&... args, bool resident = false);
+    void destroyObject(void* tObj);
     
     void* allocate(size_t sz, bool resident = false);
-    void deallocate(void* p);
+    void deallocate(void* p, bool guilty = true);
     
     FORCEINLINE bool isRaw(void) const { return nullptr == _memoryBlockHead; }
     
@@ -51,7 +51,7 @@ private:
 
 // template has to be done in header file for complier to know the full definition to instantiate
 template<typename T, typename... Args>
-T* MyMemoryManager::createGameObject(Args&&... args, bool resident) {
+T* MyMemoryManager::createObject(Args&&... args, bool resident) {
     if(isRaw()) {
         return new T(args...);
     }
@@ -72,7 +72,7 @@ T* MyMemoryManager::createGameObject(Args&&... args, bool resident) {
         prevBlock->nextMemoryBlock(memoryBlock);
         blockIter = memoryBlock;
     }
-    return blockIter->createGameObject<T>(args...);
+    return blockIter->createObject<T>(args...);
 }
 
 MINE_NAMESPACE_END

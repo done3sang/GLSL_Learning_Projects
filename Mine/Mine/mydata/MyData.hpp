@@ -17,7 +17,7 @@
 MINE_NAMESPACE_BEGIN
 
 class MyUniqueObject;
-template<typename T>
+template<typename T, bool O>
 class MyArray;
 
 class MyData: public MyUniqueObject {
@@ -32,10 +32,19 @@ public:
     FORCEINLINE size_t offset(void) const {
         return _data != nullptr ? _manipulator - _data->begin(): 0;
     }
-    FORCEINLINE char* raw(void) { return _data != nullptr ? nullptr: _data->raw(); }
-    FORCEINLINE char* rawEnd(void) { return _data != nullptr ? nullptr: _data->end(); }
+    FORCEINLINE char* raw(void) { return _data != nullptr ?  _data->raw(): nullptr; }
+    FORCEINLINE const char* raw(void) const { return _data != nullptr ? _data->raw(): nullptr; }
+    FORCEINLINE char* rawEnd(void) { return _data != nullptr ? _data->end(): nullptr; }
+    FORCEINLINE const char* rawEnd(void) const { return _data != nullptr ? _data->end(): nullptr; }
     
-    MyData& operator=(MyArray<char> *arr);
+    char& operator[](size_t i) {
+        return _data->operator[](i);
+    }
+    const char& operator[](size_t i) const {
+        return _data->operator[](i);
+    }
+    
+    MyData& operator=(MyArray<char, false> *arr);
     
     void purge(void);
     
@@ -50,7 +59,7 @@ private:
     MyData(char* data, size_t length);
     virtual ~MyData(void);
     
-    MyArray<char>* _data;
+    MyArray<char, false>* _data;
     char* _manipulator;
 };
 

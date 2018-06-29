@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1401E5F01FCC0EE100D83812 /* MyFileUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1401E5EE1FCC0EE100D83812 /* MyFileUtil.cpp */; };
-		1401E5F11FCC0EE100D83812 /* MyFileUtil.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1401E5EF1FCC0EE100D83812 /* MyFileUtil.hpp */; };
 		1401E5F51FCC13BD00D83812 /* MyErrorDesc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1401E5F31FCC13BC00D83812 /* MyErrorDesc.cpp */; };
 		1401E5F61FCC13BD00D83812 /* MyErrorDesc.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1401E5F41FCC13BD00D83812 /* MyErrorDesc.hpp */; };
 		1401E5F91FCCFC6600D83812 /* MyShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1401E5F71FCCFC6600D83812 /* MyShader.cpp */; };
@@ -112,8 +110,6 @@
 
 /* Begin PBXFileReference section */
 		1401E5E01FCC0AE500D83812 /* libMine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMine.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		1401E5EE1FCC0EE100D83812 /* MyFileUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyFileUtil.cpp; sourceTree = "<group>"; };
-		1401E5EF1FCC0EE100D83812 /* MyFileUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyFileUtil.hpp; sourceTree = "<group>"; };
 		1401E5F21FCC0F0600D83812 /* MyPrecompiled.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyPrecompiled.hpp; sourceTree = "<group>"; };
 		1401E5F31FCC13BC00D83812 /* MyErrorDesc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyErrorDesc.cpp; sourceTree = "<group>"; };
 		1401E5F41FCC13BD00D83812 /* MyErrorDesc.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyErrorDesc.hpp; sourceTree = "<group>"; };
@@ -269,8 +265,6 @@
 				144349171FD13B20006DD6D2 /* MyAutoreleasePool.cpp */,
 				25A889831FDD12E10078F455 /* MyTimerManager.hpp */,
 				25A889821FDD12E10078F455 /* MyTimerManager.cpp */,
-				1401E5EF1FCC0EE100D83812 /* MyFileUtil.hpp */,
-				1401E5EE1FCC0EE100D83812 /* MyFileUtil.cpp */,
 				14AB95F31FDA78FF00CE8617 /* MyStringUtil.hpp */,
 				14AB95F21FDA78FF00CE8617 /* MyStringUtil.cpp */,
 				141A540C1FFB743C00D64180 /* MyModelGenerator.hpp */,
@@ -491,7 +485,6 @@
 				146B9CDC204156BC007A4F59 /* MyTransformation.hpp in Headers */,
 				141A541A1FFCE58C00D64180 /* MyLightActor.hpp in Headers */,
 				14E6D0B61FDE894500999ED6 /* MyLightComponent.hpp in Headers */,
-				1401E5F11FCC0EE100D83812 /* MyFileUtil.hpp in Headers */,
 				14EBA1341FDFB7CC007972D0 /* MyModelComponent.hpp in Headers */,
 				1401E5FA1FCCFC6600D83812 /* MyShader.hpp in Headers */,
 				144504B720440E8B00ED0319 /* MyCoordinate.hpp in Headers */,
@@ -602,7 +595,6 @@
 				144349051FD103CC006DD6D2 /* MyRenderer.cpp in Sources */,
 				14EBA12B1FDFAFD7007972D0 /* MyDirectionalLight.cpp in Sources */,
 				14C4978420E2155800BA13C1 /* MyMemoryObject.cpp in Sources */,
-				1401E5F01FCC0EE100D83812 /* MyFileUtil.cpp in Sources */,
 				1403C3B820D8FD63000BD8E7 /* MyData.cpp in Sources */,
 				14E6D0AD1FDE7E4400999ED6 /* MyActorComponent.cpp in Sources */,
 				14E4A6731FF0F9D20090973F /* MyVertexAttribute.cpp in Sources */,
@@ -732,6 +724,7 @@
 		1401E5EC1FCC0AE500D83812 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P5QERNN666;
 				EXECUTABLE_PREFIX = lib;
@@ -753,6 +746,7 @@
 		1401E5ED1FCC0AE500D83812 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P5QERNN666;
 				EXECUTABLE_PREFIX = lib;

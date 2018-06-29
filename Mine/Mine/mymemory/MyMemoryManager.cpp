@@ -21,15 +21,15 @@ MyMemoryManager* MyMemoryManager::sharedMemoryManager(void) {
     return &sharedInstance;
 }
 
-void MyMemoryManager::destroyGameObject(MyObject* gameObject) {
+void MyMemoryManager::destroyObject(void* tObj) {
     if(isRaw()) {
-        delete gameObject;
+        ::delete static_cast<char*>(tObj);
         return;
     }
     
     while(MyMemoryBlock* blockIter = _memoryBlockHead) {
-        if(blockIter->containGameObject(gameObject)) {
-            blockIter->destroyGameObject(gameObject);
+        if(blockIter->containObject(tObj)) {
+            blockIter->destroyObject(tObj);
         }
     }
 }
@@ -58,15 +58,15 @@ void* MyMemoryManager::allocate(size_t sz, bool resident) {
     return blockIter->allocate(sz, resident);
 }
 
-void MyMemoryManager::deallocate(void* p) {
+void MyMemoryManager::deallocate(void* p, bool guilty) {
     if(isRaw()) {
         ::delete static_cast<char*>(p);
     }
     
     MyMemoryBlock* blockIter = _memoryBlockHead;
     while(blockIter) {
-        if(blockIter->containGameObject(p)) {
-            blockIter->dealloate(p);
+        if(blockIter->containObject(p)) {
+            blockIter->dealloate(p, guilty);
             return;
         }
         blockIter = blockIter->nextMemoryBlock();

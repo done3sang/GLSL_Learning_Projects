@@ -8,7 +8,9 @@
 
 #include "MyObject.hpp"
 #include "MyActorComponent.hpp"
-#include "MyFileUtil.hpp"
+#include "MyArray.hpp"
+#include "MyData.hpp"
+#include "MyFileManager.hpp"
 #include "MyBufferObject.hpp"
 #include "MyProgram.hpp"
 #include "MyShadingManager.hpp"
@@ -48,9 +50,9 @@ void MyModelComponent::destroy(void) {
 
 bool MyModelComponent::loadModelFile(const std::string &path) {
     std::string filedata;
-    if(!MyFileUtil::sharedFileUtil()->readFile(path, filedata)) {
-        return false;
-    }
+    //if(!MyFileUtil::sharedFileUtil()->readFile(path, filedata)) {
+    //    return false;
+    //}
     
     return loadModelSource(filedata, "position[4]_normal[3]");
 }

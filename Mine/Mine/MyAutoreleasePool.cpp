@@ -76,6 +76,12 @@ void MyAutoreleasePool::purgePool(void) {
         obj->release();
     }
 
+#ifdef MINE_DEBUG
+    for(const auto &obj: _objectArray) {
+        MINE_ASSERT(obj->refCount() == 0);
+    }
+#endif
+    
     _objectArray.clear();
 }
 

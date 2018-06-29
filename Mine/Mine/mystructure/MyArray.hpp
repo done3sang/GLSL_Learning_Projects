@@ -19,7 +19,7 @@ MINE_NAMESPACE_BEGIN
 
 class MyObject;
 
-template<typename T>
+template<typename T, bool O = true>
 class MyArray: public MyObject {
 public:
     typedef T* iterator;
@@ -54,6 +54,7 @@ public:
     void emplace_back(Args&&... args);
     
     void clear(void);
+    void shrink(size_t newLength);
     
     void write(const T* dataArr, size_t length);
     
@@ -63,7 +64,7 @@ private:
     size_t _capacity;
     
     void checkCapacity(size_t num = 1);
-    void relength(size_t newCapacity);
+    void expand(size_t newCapacity);
 };
 
 MINE_NAMESPACE_END

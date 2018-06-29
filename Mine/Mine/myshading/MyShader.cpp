@@ -12,7 +12,9 @@
 
 #include "MyObject.hpp"
 #include "MyShader.hpp"
-#include "MyFileUtil.hpp"
+#include "MyArray.hpp"
+#include "MyData.hpp"
+#include "MyFileManager.hpp"
 #include "MyErrorDesc.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -66,15 +68,14 @@ void MyShader::deleteShader(void) {
 }
 
 bool MyShader::loadFromFile(const std::string &filepath) {
-    std::string source;
-    MyFileUtil *sharedFileUtil = MyFileUtil::sharedFileUtil();
+    MyData* filedata = MyFileManager::sharedFileManager()->loadFile(filepath.c_str());
     
-    if(!sharedFileUtil->readFile(filepath, source)) {
+    if(nullptr == filedata) {
         return false;
     }
     
     _filepath = filepath;
-    return loadFromSource(source);
+    return loadFromSource(std::string(filedata->raw()));
 }
 
 bool MyShader::loadFromSource(const std::string &source) {

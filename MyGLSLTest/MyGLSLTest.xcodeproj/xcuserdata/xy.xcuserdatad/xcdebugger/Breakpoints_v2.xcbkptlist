@@ -2977,11 +2977,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/myshading/MyShader.cpp"
-            timestampString = "541934269.957937"
+            timestampString = "551955988.095226"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "MyShader::loadFromSource(const std::string &amp;source)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2993,11 +2993,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/myshading/MyShader.cpp"
-            timestampString = "541934269.957981"
+            timestampString = "551955988.095526"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "MyShader::loadFromSource(const std::string &amp;source)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3009,11 +3009,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/myshading/MyShader.cpp"
-            timestampString = "541934269.95802"
+            timestampString = "551955988.095579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "MyShader::loadFromSource(const std::string &amp;source)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3025,7 +3025,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryManager.cpp"
-            timestampString = "551783473.733143"
+            timestampString = "551955988.095625"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
@@ -3041,7 +3041,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryManager.cpp"
-            timestampString = "551783473.733672"
+            timestampString = "551955988.0958281"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -3056,13 +3056,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Mine/Mine/MyDirector.cpp"
-            timestampString = "551783473.733817"
+            filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
+            timestampString = "551955988.095898"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "MyDirector::sharedDirector(void)"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "MyMemoryBlock::blockWithSize(const char* blockName, size_t memorySize)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3073,7 +3073,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.734152"
+            timestampString = "551955988.0967259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
@@ -3088,29 +3088,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.734524"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "MyMemoryBlock::blockWithSize(const char* blockName, size_t memorySize)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryManager.cpp"
-            timestampString = "551783473.734669"
+            timestampString = "551955988.097247"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
             endingLineNumber = "62"
-            landmarkName = "MyMemoryManager::deallocate(void* p)"
+            landmarkName = "MyMemoryManager::deallocate(void* p, bool guilty)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3121,12 +3105,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryManager.cpp"
-            timestampString = "551783473.734802"
+            timestampString = "551955988.097311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
-            landmarkName = "MyMemoryManager::deallocate(void* p)"
+            landmarkName = "MyMemoryManager::deallocate(void* p, bool guilty)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3137,7 +3121,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/MyObject.cpp"
-            timestampString = "551783473.734937"
+            timestampString = "551955988.0973721"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -3153,7 +3137,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/MyObject.cpp"
-            timestampString = "551783473.735345"
+            timestampString = "551955988.097554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -3169,7 +3153,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryManager.cpp"
-            timestampString = "551783473.735471"
+            timestampString = "551955988.0976059"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
@@ -3185,7 +3169,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryManager.cpp"
-            timestampString = "551783473.735604"
+            timestampString = "551955988.097662"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -3201,12 +3185,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.7357301"
+            timestampString = "551955988.097716"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "MyMemoryBlock::dealloate(void *p)"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "MyMemoryBlock::destroyObject(void* tObject)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3217,12 +3201,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.735867"
+            timestampString = "551955988.098217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "MyMemoryBlock::destroyGameObject(MyObject* gameObject)"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "MyMemoryBlock::memoryObjectByGameObject(void* tObj, MyMemoryObject** nextMemoryObject)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3233,12 +3217,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.735998"
+            timestampString = "551955988.098703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "MyMemoryBlock::memoryObjectByGameObject(T* gameObject, MyMemoryObject** nextMemoryObject)"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "MyMemoryBlock::memoryObjectByGameObject(void* tObj, MyMemoryObject** nextMemoryObject)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3249,12 +3233,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.736123"
+            timestampString = "551955988.099202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "MyMemoryBlock::memoryObjectByGameObject(T* gameObject, MyMemoryObject** nextMemoryObject)"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "MyMemoryBlock::memoryObjectByGameObject(void* tObj, MyMemoryObject** nextMemoryObject)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3265,12 +3249,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.736248"
+            timestampString = "551955988.099686"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "MyMemoryBlock::memoryObjectByGameObject(T* gameObject, MyMemoryObject** nextMemoryObject)"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "MyMemoryBlock::memoryObjectByGameObject(void* tObj, MyMemoryObject** nextMemoryObject)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3281,12 +3265,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.73638"
+            timestampString = "551955988.1001641"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "MyMemoryBlock::memoryObjectByGameObject(T* gameObject, MyMemoryObject** nextMemoryObject)"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "MyMemoryBlock::memoryObjectByGameObject(void* tObj, MyMemoryObject** nextMemoryObject)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3297,12 +3281,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.736511"
+            timestampString = "551955988.100639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "MyMemoryBlock::memoryObjectByGameObject(T* gameObject, MyMemoryObject** nextMemoryObject)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "MyMemoryBlock::recycleObject(MyMemoryObject *memoryObject, MyMemoryObject* nextMemoryObject)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3313,7 +3297,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.736636"
+            timestampString = "551955988.101102"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
@@ -3329,27 +3313,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.7367539"
+            timestampString = "551955988.101554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "MyMemoryBlock::recycleObject(MyMemoryObject *memoryObject, MyMemoryObject* nextMemoryObject)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.736869"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "MyMemoryBlock::allocate(size_t sz, bool resident)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3361,11 +3329,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.736991"
+            timestampString = "551955988.1020139"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "MyMemoryBlock::allocate(size_t sz, bool resident)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3377,11 +3345,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.737113"
+            timestampString = "551955988.102481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "MyMemoryBlock::allocate(size_t sz, bool resident)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3393,11 +3361,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.737232"
+            timestampString = "551955988.102945"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "MyMemoryBlock::blockWithSize(const char* blockName, size_t memorySize)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3409,11 +3377,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.hpp"
-            timestampString = "551783473.7373461"
+            timestampString = "551955988.103469"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -3425,11 +3393,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.73769"
+            timestampString = "551955988.103685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "MyMemoryBlock::allocate(size_t sz, bool resident)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3441,11 +3409,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.73781"
+            timestampString = "551955988.1041501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "MyMemoryBlock::recycleObject(MyMemoryObject *memoryObject, MyMemoryObject* nextMemoryObject)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3457,11 +3425,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.737929"
+            timestampString = "551955988.104604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "MyMemoryBlock::recycleObject(MyMemoryObject *memoryObject, MyMemoryObject* nextMemoryObject)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3473,11 +3441,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
-            timestampString = "551783473.738044"
+            timestampString = "551955988.10506"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "MyMemoryBlock::recycleObject(MyMemoryObject *memoryObject, MyMemoryObject* nextMemoryObject)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3489,7 +3457,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/mymemory/MyMemoryManager.cpp"
-            timestampString = "551783473.73816"
+            timestampString = "551955988.105498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
@@ -3505,13 +3473,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyGLSLTest/main.cpp"
-            timestampString = "551783473.7382669"
+            timestampString = "551955988.105557"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "operator new(size_t sz)"
-            landmarkType = "9">
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3521,13 +3489,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyGLSLTest/main.cpp"
-            timestampString = "551783473.738609"
+            timestampString = "551955988.10575"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "operator delete(void* p)"
-            landmarkType = "9">
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3537,12 +3505,188 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Mine/Mine/MyDirector.cpp"
-            timestampString = "551783473.738732"
+            timestampString = "551955988.105804"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "MyDirector::initialize(void)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/myshading/MyShader.cpp"
+            timestampString = "551955988.105984"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "MyShader::loadFromFile(const std::string &amp;filepath)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/myfile/MyFileManager.cpp"
+            timestampString = "551955988.106035"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "MyFileManager::loadFile(const char *filepath)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mystructure/MyArray.inl"
+            timestampString = "551955988.106216"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mystructure/MyArray.inl"
+            timestampString = "551955988.1063499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mystructure/MyArray.inl"
+            timestampString = "551955988.1064039"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "write(const T* dataArr, size_t length)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/myxml/MyXMLDocument.cpp"
+            timestampString = "551955988.1064579"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "MyXMLDocument::parseXML(const std::string &amp;xmldata)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/myxml/MyXMLDocument.cpp"
+            timestampString = "551955988.1066279"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "MyXMLDocument::loadDocument(const std::string &amp;path)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/mymemory/MyMemoryBlock.cpp"
+            timestampString = "551955988.106675"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "MyMemoryBlock::memoryObjectByGameObject(void* tObj, MyMemoryObject** nextMemoryObject)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::MyMemoryBlock::memoryObjectByGameObject(void*, Mine::MyMemoryObject**) const"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/Mine/Mine/mymemory/MyMemoryBlock.cpp"
+                  timestampString = "551955591.217738"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Mine::MyMemoryBlock::memoryObjectByGameObject(void*, Mine::MyMemoryObject**) const"
+                  moduleName = "MyGLSLTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/Mine/Mine/mymemory/MyMemoryBlock.cpp"
+                  timestampString = "551955591.22023"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "103">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Mine/Mine/MyDirector.cpp"
+            timestampString = "551955988.107152"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "MyDirector::destroy(void)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

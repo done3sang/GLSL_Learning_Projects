@@ -10,7 +10,9 @@
 #include <stack>
 #include "MyObject.hpp"
 #include "MyTemplate.hpp"
-#include "MyFileUtil.hpp"
+#include "MyArray.hpp"
+#include "MyData.hpp"
+#include "MyFileManager.hpp"
 #include "MyErrorDesc.hpp"
 #include "MyXMLNode.hpp"
 #include "MyStringUtil.hpp"
@@ -59,12 +61,12 @@ void MyXMLDocument::rootNode(MyXMLNode *node) {
 }
 
 bool MyXMLDocument::loadDocument(const std::string &path) {
-    std::string filedata;
-    if(!MyFileUtil::sharedFileUtil()->readFile(path, filedata)) {
+    MyData *filedata = MyFileManager::sharedFileManager()->loadFile(path.c_str());
+    if(nullptr == filedata) {
         return false;
     }
     
-    return parseXML(filedata);
+    return parseXML(std::string(filedata->raw()));
 }
 
 bool MyXMLDocument::parseXML(const std::string &xmldata) {

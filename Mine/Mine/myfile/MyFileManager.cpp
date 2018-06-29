@@ -26,7 +26,14 @@ MyFileManager* MyFileManager::sharedFileManager(void) {
     return _sharedFileManager;
 }
 
-MyData* MyFileManager::loadFile(const char *filepath) {
+void MyFileManager::closeFileManager(void) {
+    if(_sharedFileManager) {
+        _sharedFileManager->release();
+        _sharedFileManager = nullptr;
+    }
+}
+
+MyData* MyFileManager::loadFile(const char *filepath) const {
     FILE* fp = fopen(filepath, "rb");
     
     if(nullptr == fp) {
@@ -45,7 +52,7 @@ MyData* MyFileManager::loadFile(const char *filepath) {
     return data;
 }
 
-MyFileStream* MyFileManager::streamFile(const char *filepath, size_t bufferLength) {
+MyFileStream* MyFileManager::streamFile(const char *filepath, size_t bufferLength) const {
     FILE* fp = fopen(filepath, "rb");
     
     if(nullptr == fp) {

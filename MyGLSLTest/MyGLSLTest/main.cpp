@@ -32,6 +32,7 @@ MyErrorDisposer* MyErrorDisposer::create(void) {
     return disposer;
 }
 
+/*
 void* operator new(size_t sz) {
     std::cout << "come up with global new\n";
     return malloc(sz);
@@ -44,7 +45,7 @@ void operator delete(void* p) {
         std::cout << "delete object = " << obj->objectName() << "\n";
     }
     free(p);
-}
+}*/
 
 int main(int argc, const char * argv[]) {
     //MathTest test;

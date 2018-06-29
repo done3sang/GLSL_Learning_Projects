@@ -374,6 +374,7 @@
 		1443492C1FD14B6F006DD6D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P5QERNN666;
@@ -398,12 +399,14 @@
 				);
 				OTHER_LDFLAGS = "-lglfw3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
 			name = Debug;
 		};
 		1443492D1FD14B6F006DD6D2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P5QERNN666;
@@ -423,6 +426,7 @@
 				);
 				OTHER_LDFLAGS = "-lglfw3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 			};
 			name = Release;
 		};

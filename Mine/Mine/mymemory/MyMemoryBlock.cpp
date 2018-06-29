@@ -29,9 +29,9 @@ MyMemoryBlock* MyMemoryBlock::blockWithSize(const char* blockName, size_t memory
     return new(memoryAddress) MyMemoryBlock(blockName, memoryAddress, memorySize);
 }
 
-void MyMemoryBlock::destroyGameObject(MyObject* gameObject) {
+void MyMemoryBlock::destroyObject(void* tObject) {
     MyMemoryObject* nextMemoryObject = nullptr;
-    MyMemoryObject* memoryObject = memoryObjectByGameObject(gameObject, &nextMemoryObject);
+    MyMemoryObject* memoryObject = memoryObjectByGameObject(tObject, &nextMemoryObject);
     
     recycleObject(memoryObject, nextMemoryObject);
 }
@@ -61,8 +61,8 @@ void* MyMemoryBlock::allocate(size_t sz, bool resident) {
     return objectAddress;
 }
 
-void MyMemoryBlock::dealloate(void *p) {
-    destroyGameObject(static_cast<MyObject*>(p));
+void MyMemoryBlock::dealloate(void *p, bool guilty) {
+    destroyObject(p);
 }
 
 void MyMemoryBlock::recycleObject(MyMemoryObject *memoryObject, MyMemoryObject* nextMemoryObject) {
@@ -85,15 +85,14 @@ void MyMemoryBlock::recycleObject(MyMemoryObject *memoryObject, MyMemoryObject* 
     }
 }
 
-template<typename T>
-MyMemoryObject* MyMemoryBlock::memoryObjectByGameObject(T* gameObject, MyMemoryObject** nextMemoryObject) const {
+MyMemoryObject* MyMemoryBlock::memoryObjectByGameObject(void* tObj, MyMemoryObject** nextMemoryObject) const {
     MyMemoryObject* prev;
     MyMemoryObject* memoryArr[] = {_memoryObjectHead, _memoryObjectTail};
     bool found = false;
     
     for(MyMemoryObject* curr: memoryArr) {
         prev = nullptr;
-        while(curr && !(found = curr->gameObject() == gameObject)) {
+        while(curr && !(found = curr->gameObject() == tObj)) {
             prev = curr;
             curr = curr->previousObject();
         }

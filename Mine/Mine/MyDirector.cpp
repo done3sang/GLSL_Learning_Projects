@@ -17,7 +17,7 @@
 #include "MyRenderer.hpp"
 #include "MyAutoreleasePool.hpp"
 #include "MyScenario.hpp"
-#include "MyFileUtil.hpp"
+#include "MyFileManager.hpp"
 #include "MyShadingManager.hpp"
 #include "MyTimerManager.hpp"
 #include "MyVertexAttributeManager.hpp"
@@ -37,22 +37,14 @@ static void myWindowResizeCallback(GLFWwindow *window, int width, int height) {
     glViewport(0, 0, width, height);
 }
 
-MyDirector* MyDirector::_sharedDirector = nullptr;
-
 MyDirector* MyDirector::sharedDirector(void) {
-    if(!_sharedDirector) {
-        _sharedDirector = new MyDirector;
-        _sharedDirector->initialize();
-    }
+    static MyDirector sharedDirector;
     
-    return _sharedDirector;
+    return &sharedDirector;
 }
 
 void MyDirector::closeDirector(void) {
-    if(_sharedDirector) {
-        delete _sharedDirector;
-        _sharedDirector = nullptr;
-    }
+    destroy();
 }
 
 MyDirector::~MyDirector(void) {
@@ -77,12 +69,12 @@ void MyDirector::destroy(void) {
         _mainRenderer = nullptr;
     }
     
-    MyAutoreleasePool::closeAutoreleasePool();
-    MyFileUtil::closeFileUtil();
+    MyFileManager::closeFileManager();
     MyErrorDesc::closeErrorDesc();
     MyTimerManager::closeTimerManager();
     MyShadingManager::closeShadingManager();
     MyVertexAttributeManager::closeVertexAttributeManager();
+    MyAutoreleasePool::closeAutoreleasePool();
     
     if(_glfwWindow) {
         glfwDestroyWindow(_glfwWindow);

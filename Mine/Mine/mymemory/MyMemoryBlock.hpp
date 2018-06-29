@@ -19,7 +19,6 @@
 MINE_NAMESPACE_BEGIN
 
 class MyUnique;
-class MyObject;
 
 class MyMemoryBlock final: public MyUnique {
 public:
@@ -27,17 +26,14 @@ public:
     
 public:
     template<typename T, typename... Args>
-    T* createGameObject(Args&&... args, bool resident = false);
-    void destroyGameObject(MyObject* gameObject);
+    T* createObject(Args&&... args, bool resident = false);
+    void destroyObject(void* tObj);
     void recycleObject(MyMemoryObject* memoryObject, MyMemoryObject* nextMemoryObject);
     
-    template<typename T>
-    MyMemoryObject* memoryObjectByGameObject(T* gameObject, MyMemoryObject** nextMemoryObject = nullptr) const;
+    MyMemoryObject* memoryObjectByGameObject(void* tObj, MyMemoryObject** nextMemoryObject = nullptr) const;
     
-    template<typename T>
-    bool containGameObject(T* gameObject) const {
-        void* ptr = static_cast<void*>(gameObject);
-        return _memoryAddress < ptr && ptr <= _memoryAddress + _memorySize;
+    bool containObject(void* tObj) const {
+        return _memoryAddress < tObj && tObj <= _memoryAddress + _memorySize;
     }
     
     void destroyBlock(void);
@@ -54,7 +50,7 @@ public:
     FORCEINLINE void nextMemoryBlock(MyMemoryBlock* nextBlock) { _nextMemoryBlock = nextBlock; }
     
     void* allocate(size_t sz, bool resident = false);
-    void dealloate(void* p);
+    void dealloate(void* p, bool guilty = true);
     
 private:
     explicit
@@ -81,7 +77,7 @@ private:
 
 // template has to be done in header file for complier to know the full definition to instantiate
 template<typename T, typename... Args>
-T* MyMemoryBlock::createGameObject(Args&&... args, bool resident) {
+T* MyMemoryBlock::createObject(Args&&... args, bool resident) {
     if(availableSize() < sizeof(T)) {
         return nullptr;
     }
