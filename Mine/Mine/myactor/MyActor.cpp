@@ -20,7 +20,7 @@
 #include "MyVertexAttributeManager.hpp"
 #include "MyVertexArrayObject.hpp"
 #include "MyProgram.hpp"
-#include "MyScenario.hpp"
+#include "MyWorld.hpp"
 #include "MyRenderer.hpp"
 #include "MyDirector.hpp"
 #include "MyActor.hpp"
@@ -34,7 +34,7 @@ MINE_NAMESPACE_BEGIN
 size_t MyActor::_sharedActorCount = 0;
 std::vector<size_t> MyActor::_sharedUsedActorId;
 std::vector<size_t> MyActor::_sharedDeletedActorId;
-std::unordered_map<size_t, MyLightActor*> MyActor::_scenarioLightMap;
+std::unordered_map<size_t, MyLightActor*> MyActor::_worldLightMap;
 
 MyActor* MyActor::createWithName(const std::string &name) {
     MyActor *act = new MyActor(name);
@@ -56,19 +56,19 @@ size_t MyActor::sharedActorId(void) {
     return aid;
 }
 
-void MyActor::pushScenarioLight(MyLightActor *light) {
-    _scenarioLightMap[light->actorId()] = light;
+void MyActor::pushWorldLight(MyLightActor *light) {
+    _worldLightMap[light->actorId()] = light;
 }
 
-void MyActor::popScenarioLight(MyLightActor *light) {
-    auto iter = _scenarioLightMap.find(light->actorId());
-    if(_scenarioLightMap.end() != iter) {
-        _scenarioLightMap.erase(iter);
+void MyActor::popWorldLight(MyLightActor *light) {
+    auto iter = _worldLightMap.find(light->actorId());
+    if(_worldLightMap.end() != iter) {
+        _worldLightMap.erase(iter);
     }
 }
 
-const std::unordered_map<size_t, MyLightActor*>& MyActor::scenarioLightMap(void) {
-    return _scenarioLightMap;
+const std::unordered_map<size_t, MyLightActor*>& MyActor::worldLightMap(void) {
+    return _worldLightMap;
 }
 
 MyActor::MyActor(const std::string &name):
@@ -105,9 +105,9 @@ bool MyActor::addComponent(MyActorComponent *comp) {
     comp->addRef();
     
     if(MyActorComponent::kComponentGroupModel == comp->componentType()) {
-        MyScenario *runningScenario = MyDirector::sharedDirector()->runningScenario();
-        if(runningScenario) {
-            runningScenario->attachActorRendered(this);
+        MyWorld *runningWorld = MyDirector::sharedDirector()->runningWorld();
+        if(runningWorld) {
+            runningWorld->attachActorRendered(this);
         }
     }
     
@@ -159,16 +159,16 @@ void MyActor::render(void) {
     //MyBufferObject *elemBuf = modelComp->modelElementBuffer();
     MyProgram *prog = modelComp->modelProgram();
     
-    prog->useProgram();
+    prog->use();
     
     mainVAO->bindVertexArray();
     for(auto &iter: vertexAtt->attributeMap()) {
         mainVAO->vertexAttribPoint(*vertexBuf, iter.attrib, iter.size, vertexAtt->stride(), iter.offset);
     }
     
-    for(const auto &lightIter: _scenarioLightMap) {
+    //for(const auto &lightIter: _worldLightMap) {
        // lightIter.second->bindProgram(prog);
-    }
+    //}
     
     renderer->renderModel(modelComp);
 }

@@ -15,11 +15,11 @@
 MINE_NAMESPACE_BEGIN
 
 MyLightActor::MyLightActor(void) {
-    pushScenarioLight(this);
+    pushWorldLight(this);
 }
 
 MyLightActor::~MyLightActor(void) {
-    popScenarioLight(this);
+    popWorldLight(this);
 }
 
 MINE_NAMESPACE_END

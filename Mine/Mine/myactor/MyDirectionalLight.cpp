@@ -22,7 +22,7 @@ MyDirectionalLight* MyDirectionalLight::createWithName(const std::string &name) 
     MyDirectionalLight *light = new MyDirectionalLight();
     light->actorName(name);
     light->objectName(name);
-    pushScenarioLight(light);
+    pushWorldLight(light);
     return light;
 }
 

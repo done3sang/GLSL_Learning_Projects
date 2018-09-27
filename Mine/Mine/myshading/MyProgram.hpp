@@ -30,13 +30,11 @@ class MyFVector3;
 class MyFVector4;
 class MyFMatrix4;
 
+class MyTexture;
+
 class MyProgram: public MyUniqueObject {
 public:
-    explicit
-    MyProgram(const std::string &programName);
-    ~MyProgram(void);
-    
-    static MyProgram* create(const std::string &programName);
+    static MyProgram* create(const std::string& programName);
     
     bool operator==(const MyProgram &another) const {
         return this == &another || (0 != _programId && _programId == another.programId());
@@ -54,7 +52,7 @@ public:
     bool shaderAttached(const MyShader *shader) const;
     
     int linkPorgram(void);
-    void useProgram(void);
+    void use(void);
     void deleteProgram(void);
     
     bool validate(void) const;
@@ -68,11 +66,16 @@ public:
     int uniformInteger(const std::string &name, int value);
     int uniformBlockIndex(const std::string &blockName, const std::string &indexName, int valueSize, void *valueptr);
     
+    int uniformTexture(const std::string& name);
+    
     void clearUniformBlock(void);
     
     std::string activeUniform(void) const;
     
     static MyProgram* runningProgram(void);
+    
+public:
+    int bindTexture(const char* name, const MyTexture *texture);
     
 public:
     static const int kAttribPosition = 0;
@@ -82,6 +85,10 @@ public:
     static const int kAttribTangent = 4;
     
 private:
+    explicit
+    MyProgram(const std::string& programName);
+    ~MyProgram(void);
+    
     GLuint _programId;
     std::string _programName;
     bool _linked;
@@ -89,6 +96,7 @@ private:
     std::vector<MyShader*>  _shaderVec;
     std::unordered_map<std::string, int> _uniformLocation;
     std::unordered_map<int, MyBufferObject*> _uniformBlock;
+    int _textureNum;
     
     static MyProgram *_runningProgram;
     

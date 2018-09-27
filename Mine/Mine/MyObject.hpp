@@ -17,6 +17,23 @@
 
 MINE_NAMESPACE_BEGIN
 
+#define ASSIGN_OBJECT(dest, src) {\
+if(dest) {\
+    dest->release();\
+}\
+if(src) {\
+    src->addRef();\
+}\
+dest = src;\
+}
+
+#define RELEASE_OBJECT(obj) {\
+if(obj) {\
+obj->release();\
+obj = nullptr;\
+}\
+}
+
 class MyObject {
 public:
     MyObject(void);

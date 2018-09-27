@@ -24,7 +24,7 @@ MINE_NAMESPACE_BEGIN
 class MySingleton;
 class MyErrorCallback;
 class MyRenderer;
-class MyScenario;
+class MyWorld;
 class MyVertexArrayObject;
 
 class MyDirector final: public MySingleton {
@@ -48,8 +48,8 @@ public:
     bool windowShouldClose(void) const;
     
     // main relative
-    MyScenario* runningScenario(void) const { return _runningScenario; }
-    void runScenario(MyScenario *scene);
+    MyWorld* runningWorld(void) const { return _runningWorld; }
+    void runWorld(MyWorld *world);
     
     // renderer relative
     MyRenderer* mainRenderer(void) const { return _mainRenderer; }
@@ -72,7 +72,7 @@ private:
     MyDirector(void):
     _errCode(0),
     _mainRenderer(nullptr),
-    _runningScenario(nullptr),
+    _runningWorld(nullptr),
     _mainVertexArrayObject(nullptr),
     _errorCallback(nullptr),
     _glfwWindow(nullptr),
@@ -83,7 +83,7 @@ private:
     std::string _errDesc;
     MyErrorCallback *_errorCallback;
     GLFWwindow *_glfwWindow;
-    MyScenario *_runningScenario;
+    MyWorld *_runningWorld;
     MyRenderer *_mainRenderer;
     MyVertexArrayObject *_mainVertexArrayObject;
     std::unordered_map<int, std::string> _glErrorMap;

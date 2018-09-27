@@ -18,44 +18,47 @@ MINE_NAMESPACE_BEGIN
 
 class MyUniqueObject;
 class MyTexture;
+class MyProgram;
 class MyFVector3;
 
 class MyMaterial: public MyUniqueObject {
 public:
-    static MyMaterial* create(void);
+    static constexpr char kBaseTexture[] = "baseTexture";
+    static constexpr char kNormalTexture[] = "normalTexture";
     
 public:
-    FORCEINLINE const MyFVector3& baseColor(void) const { return _baseColor; }
-    FORCEINLINE void baseColor(const MyFVector3 &color) { _baseColor = color; _baseUniform = true; }
+    static MyMaterial* materialWithName(const char* name);
     
-    FORCEINLINE bool baseUniform(void) const { return _baseUniform; }
+public:
+    FORCEINLINE float metallic(void) const { return _metallic; }
+    FORCEINLINE void metallic(float metallic) { _metallic = metallic; }
+    FORCEINLINE float opacity(void) const { return _opacity; }
+    FORCEINLINE void opacity(float opacity) { _opacity = opacity; }
+    FORCEINLINE const MyProgram* shadingProgram(void) const { return _shadingProgram; }
+    FORCEINLINE const MyTexture* baseTexture(void) const { return _baseTexture; }
+    FORCEINLINE const MyTexture* normalTexture(void) const { return _normalTexture; }
     
-    FORCEINLINE const MyTexture* baseTexture() const { return _baseTexture; }
+    void shadingProgram(MyProgram *prog);
+    void baseTexture(MyTexture *baseTex);
+    void normalTexture(MyTexture *normalTex);
     
-    FORCEINLINE void baseTexture(MyTexture *baseTex) {
-        if(_baseTexture) {
-            _baseTexture->release();
-            _baseUniform = true;
-        }
-        _baseTexture = baseTex;
-        if(baseTex) {
-            baseTex->addRef();
-            _baseUniform = false;
-        }
-    }
+    void purge(void);
     
 private:
     explicit
-    FORCEINLINE MyMaterial(void): _baseColor(1.0f, 1.0f, 1.0f),
-    _baseTexture(nullptr), _normalTexture(nullptr), _metallic(16.0f), _opacity(1.0f), _baseUniform(true) {}
-    FORCEINLINE ~MyMaterial(void) {}
+    FORCEINLINE MyMaterial(void):
+    _shadingProgram(nullptr),
+    _baseTexture(nullptr),
+    _normalTexture(nullptr),
+    _metallic(16.0f),
+    _opacity(1.0f) {}
+    ~MyMaterial(void);
     
-    MyFVector3 _baseColor;
+    MyProgram *_shadingProgram;
     MyTexture *_baseTexture;
     MyTexture *_normalTexture;
     float _metallic;
     float _opacity;
-    bool _baseUniform;
 };
 
 MINE_NAMESPACE_END

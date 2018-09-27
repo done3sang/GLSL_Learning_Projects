@@ -3,10 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Mine::MyObject::release():MyObject.cpp">
+      </ContextState>
+      <ContextState
          contextName = "Mine::MyMatrix&lt;2, 2, float&gt; Mine::operator*&lt;2, 2, 2, float, int&gt;(Mine::MyMatrix&lt;2, 2, float&gt; const&amp;, Mine::MyMatrix&lt;2, 2, int&gt; const&amp;):MyMatrix.inl">
          <PersistentStrings>
             <PersistentString
                value = "multiNum">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Mine::MyTexture2D::generateTexture():MyTexture2D.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "_image">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

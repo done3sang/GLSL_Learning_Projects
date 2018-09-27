@@ -12,9 +12,9 @@
 		144349471FD14E5A006DD6D2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144349441FD14E44006DD6D2 /* Cocoa.framework */; };
 		144349491FD14E67006DD6D2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144349481FD14E62006DD6D2 /* IOKit.framework */; };
 		1443494B1FD14E74006DD6D2 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1443494A1FD14E6E006DD6D2 /* CoreVideo.framework */; };
-		144396DB1FD6A4480068D685 /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396D91FD6A4480068D685 /* BaseScene.cpp */; };
-		144396DF1FD6ADF90068D685 /* UniformScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396DD1FD6ADF90068D685 /* UniformScene.cpp */; };
-		145AE12F1FF382A9005ACE8B /* TestScenario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 145AE12D1FF382A9005ACE8B /* TestScenario.cpp */; };
+		144396DB1FD6A4480068D685 /* BaseWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396D91FD6A4480068D685 /* BaseWorld.cpp */; };
+		144396DF1FD6ADF90068D685 /* UniformWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144396DD1FD6ADF90068D685 /* UniformWorld.cpp */; };
+		145AE12F1FF382A9005ACE8B /* TestWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 145AE12D1FF382A9005ACE8B /* TestWorld.cpp */; };
 		1476A6281FDFC05100820B28 /* libMine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1476A6271FDFC04700820B28 /* libMine.a */; };
 		149E1F372043B23C00173503 /* TestMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 149E1F352043B23C00173503 /* TestMath.cpp */; };
 		149E1F3B2043B32F00173503 /* TestXML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 149E1F392043B32F00173503 /* TestXML.cpp */; };
@@ -50,12 +50,12 @@
 		144349451FD14E4A006DD6D2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		144349481FD14E62006DD6D2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		1443494A1FD14E6E006DD6D2 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		144396D91FD6A4480068D685 /* BaseScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseScene.cpp; sourceTree = "<group>"; };
-		144396DA1FD6A4480068D685 /* BaseScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseScene.hpp; sourceTree = "<group>"; };
-		144396DD1FD6ADF90068D685 /* UniformScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UniformScene.cpp; sourceTree = "<group>"; };
-		144396DE1FD6ADF90068D685 /* UniformScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UniformScene.hpp; sourceTree = "<group>"; };
-		145AE12D1FF382A9005ACE8B /* TestScenario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestScenario.cpp; sourceTree = "<group>"; };
-		145AE12E1FF382A9005ACE8B /* TestScenario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestScenario.hpp; sourceTree = "<group>"; };
+		144396D91FD6A4480068D685 /* BaseWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseWorld.cpp; sourceTree = "<group>"; };
+		144396DA1FD6A4480068D685 /* BaseWorld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseWorld.hpp; sourceTree = "<group>"; };
+		144396DD1FD6ADF90068D685 /* UniformWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UniformWorld.cpp; sourceTree = "<group>"; };
+		144396DE1FD6ADF90068D685 /* UniformWorld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UniformWorld.hpp; sourceTree = "<group>"; };
+		145AE12D1FF382A9005ACE8B /* TestWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestWorld.cpp; sourceTree = "<group>"; };
+		145AE12E1FF382A9005ACE8B /* TestWorld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestWorld.hpp; sourceTree = "<group>"; };
 		1476A6221FDFC04700820B28 /* Mine.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mine.xcodeproj; path = ../Mine/Mine.xcodeproj; sourceTree = "<group>"; };
 		149E1F352043B23C00173503 /* TestMath.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestMath.cpp; sourceTree = "<group>"; };
 		149E1F362043B23C00173503 /* TestMath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestMath.hpp; sourceTree = "<group>"; };
@@ -104,12 +104,12 @@
 			children = (
 				149E1F3C2043B33F00173503 /* MyTest */,
 				144349271FD14B6F006DD6D2 /* main.cpp */,
-				145AE12E1FF382A9005ACE8B /* TestScenario.hpp */,
-				145AE12D1FF382A9005ACE8B /* TestScenario.cpp */,
-				144396DA1FD6A4480068D685 /* BaseScene.hpp */,
-				144396D91FD6A4480068D685 /* BaseScene.cpp */,
-				144396DE1FD6ADF90068D685 /* UniformScene.hpp */,
-				144396DD1FD6ADF90068D685 /* UniformScene.cpp */,
+				145AE12E1FF382A9005ACE8B /* TestWorld.hpp */,
+				145AE12D1FF382A9005ACE8B /* TestWorld.cpp */,
+				144396DA1FD6A4480068D685 /* BaseWorld.hpp */,
+				144396D91FD6A4480068D685 /* BaseWorld.cpp */,
+				144396DE1FD6ADF90068D685 /* UniformWorld.hpp */,
+				144396DD1FD6ADF90068D685 /* UniformWorld.cpp */,
 			);
 			path = MyGLSLTest;
 			sourceTree = "<group>";
@@ -180,7 +180,7 @@
 		1443491C1FD14B6F006DD6D2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = SangDesu;
 				TargetAttributes = {
 					144349231FD14B6F006DD6D2 = {
@@ -254,11 +254,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				144396DF1FD6ADF90068D685 /* UniformScene.cpp in Sources */,
-				145AE12F1FF382A9005ACE8B /* TestScenario.cpp in Sources */,
+				144396DF1FD6ADF90068D685 /* UniformWorld.cpp in Sources */,
+				145AE12F1FF382A9005ACE8B /* TestWorld.cpp in Sources */,
 				144349281FD14B6F006DD6D2 /* main.cpp in Sources */,
 				149E1F372043B23C00173503 /* TestMath.cpp in Sources */,
-				144396DB1FD6A4480068D685 /* BaseScene.cpp in Sources */,
+				144396DB1FD6A4480068D685 /* BaseWorld.cpp in Sources */,
 				149E1F3B2043B32F00173503 /* TestXML.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +280,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -287,6 +288,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -336,6 +338,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -343,6 +346,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

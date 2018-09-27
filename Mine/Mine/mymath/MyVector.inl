@@ -124,6 +124,9 @@ x(other.x), y(other.y), z(other.z) {}
 FORCEINLINE MyFVector3::MyFVector3(const MyFVector3 &&other):
 x(other.x), y(other.y), z(other.z) {}
 
+FORCEINLINE MyFVector3::MyFVector3(const MyFVector2& vec2):
+x(vec2.x), y(vec2.y), z(0.0f) {}
+
 FORCEINLINE MyFVector3::~MyFVector3(void) {}
 
 FORCEINLINE MyFVector3& MyFVector3::operator=(const MyFVector3 &other) {
@@ -247,6 +250,9 @@ x(other.x), y(other.y), z(other.z), w(other.w) {}
 
 FORCEINLINE MyFVector4::MyFVector4(const MyFVector4 &&other):
 x(other.x), y(other.y), z(other.z), w(other.w) {}
+
+FORCEINLINE MyFVector4::MyFVector4(const MyFVector3& vec3):
+x(vec3.x), y(vec3.y), z(vec3.z), w(1.0f) {}
 
 FORCEINLINE MyFVector4::~MyFVector4(void) {}
 

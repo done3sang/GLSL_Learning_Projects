@@ -16,7 +16,7 @@
 #include "MyVertexArrayObject.hpp"
 #include "MyRenderer.hpp"
 #include "MyAutoreleasePool.hpp"
-#include "MyScenario.hpp"
+#include "MyWorld.hpp"
 #include "MyFileManager.hpp"
 #include "MyShadingManager.hpp"
 #include "MyTimerManager.hpp"
@@ -56,9 +56,9 @@ void MyDirector::destroy(void) {
         _errorCallback->release();
         _errorCallback = nullptr;
     }
-    if(_runningScenario) {
-        _runningScenario->release();
-        _runningScenario = nullptr;
+    if(_runningWorld) {
+        _runningWorld->release();
+        _runningWorld = nullptr;
     }
     if(_mainVertexArrayObject) {
         _mainVertexArrayObject->release();
@@ -130,15 +130,15 @@ void MyDirector::mainRenderer(MyRenderer *renderer) {
     _mainRenderer = renderer;
 }
 
-void MyDirector::runScenario(MyScenario *scenario) {
-    if(_runningScenario) {
-        _runningScenario->release();
+void MyDirector::runWorld(MyWorld *world) {
+    if(_runningWorld) {
+        _runningWorld->release();
     }
-    if(scenario) {
-        scenario->addRef();
+    if(world) {
+        world->addRef();
     }
     
-    _runningScenario = scenario;
+    _runningWorld = world;
 }
 
 void MyDirector::runMainLoop(void) {
@@ -161,9 +161,9 @@ void MyDirector::runMainLoop(void) {
             _mainRenderer->prepareRender();
         }
         
-        if(_runningScenario) {
-            _runningScenario->update(static_cast<float>(timerMgr->tickTime()));
-            _runningScenario->render();
+        if(_runningWorld) {
+            _runningWorld->update(static_cast<float>(timerMgr->tickTime()));
+            _runningWorld->render();
         }
         
         if(_glfwWindow) {

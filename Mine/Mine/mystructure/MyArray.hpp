@@ -26,7 +26,7 @@ public:
     typedef const T* const_iterator;
     
     MyArray(size_t length = 0);
-    MyArray(T* dataArr, size_t length);
+    MyArray(const T* dataArr, size_t length);
     MyArray(const MyArray& other);
     MyArray(const MyArray&& other);
     ~MyArray(void);

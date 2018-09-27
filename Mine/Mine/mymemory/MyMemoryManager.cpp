@@ -51,7 +51,7 @@ void* MyMemoryManager::allocate(size_t sz, bool resident) {
     }
     
     if(nullptr == blockIter) {
-        MyMemoryBlock *memoryBlock = createMemoryBlock("gameobject", sz * 16);
+        MyMemoryBlock* memoryBlock = createMemoryBlock("gameobject", sz * 16);
         prevBlock->nextMemoryBlock(memoryBlock);
         blockIter = memoryBlock;
     }
@@ -61,6 +61,7 @@ void* MyMemoryManager::allocate(size_t sz, bool resident) {
 void MyMemoryManager::deallocate(void* p, bool guilty) {
     if(isRaw()) {
         ::delete static_cast<char*>(p);
+        return;
     }
     
     MyMemoryBlock* blockIter = _memoryBlockHead;

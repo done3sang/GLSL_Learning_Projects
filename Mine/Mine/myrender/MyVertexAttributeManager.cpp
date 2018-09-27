@@ -7,7 +7,7 @@
 //
 
 #include "MyObject.hpp"
-#include "MyVertexAttribute.hpp"
+#include "MyVertex.hpp"
 #include "MyVertexAttributeManager.hpp"
 
 MINE_NAMESPACE_BEGIN

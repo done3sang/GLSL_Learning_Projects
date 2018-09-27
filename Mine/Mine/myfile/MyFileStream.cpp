@@ -21,7 +21,7 @@ MyFileStream* MyFileStream::createWithFile(FILE *fileptr, size_t bufferLength) {
 MyFileStream::MyFileStream(FILE* fileptr, size_t bufferLength):
 _filePointer(fileptr),
 _streamPosition(0) {
-    _dataBuffer = MyData::createWithLength(bufferLength);
+    _dataBuffer = MyData<char>::createWithLength(bufferLength);
     fseek(fileptr, 0, SEEK_END);
     _streamLength = ftell(fileptr);
     fseek(fileptr, 0, SEEK_SET);
@@ -37,7 +37,7 @@ void MyFileStream::rewind(void) {
     _streamPosition = 0;
 }
 
-MyData* MyFileStream::forward(size_t steps) {
+MyData<char>* MyFileStream::forward(size_t steps) {
     _streamPosition += steps;
     _dataBuffer->pop_front(steps);
     fread(_dataBuffer->rawEnd(), steps, 1, _filePointer);

@@ -10,8 +10,8 @@
 #include <memory>
 #include <string>
 #include <sstream>
-//#include "TestScenario.hpp"
-#include "BaseScene.hpp"
+//#include "TestWorld.hpp"
+#include "BaseWorld.hpp"
 //#include "UniformScene.hpp"
 #include "MyTest/TestMath.hpp"
 
@@ -59,14 +59,14 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    MyScenario *myScenerio = BaseScene::create();
+    MyWorld *myWorld = BaseScene::create();
     
-    if(!myScenerio->initialize()) {
+    if(!myWorld->initialize()) {
         sharedDirector->closeDirector();
         return -1;
     }
     
-    sharedDirector->runScenario(myScenerio);
+    sharedDirector->runWorld(myWorld);
     sharedDirector->runMainLoop();
     
     sharedDirector->closeDirector();

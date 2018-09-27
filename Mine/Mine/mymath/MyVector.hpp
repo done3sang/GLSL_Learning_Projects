@@ -70,6 +70,7 @@ public:
     MyFVector3(float vx, float vy, float vz);
     MyFVector3(const MyFVector3 &other);
     MyFVector3(const MyFVector3 &&other);
+    MyFVector3(const MyFVector2& vec2);
     ~MyFVector3(void);
     
     MyFVector3& operator=(const MyFVector3 &other);
@@ -123,6 +124,7 @@ public:
               float vw);
     MyFVector4(const MyFVector4 &other);
     MyFVector4(const MyFVector4 &&other);
+    MyFVector4(const MyFVector3& vec2);
     ~MyFVector4(void);
     
     MyFVector4& operator=(const MyFVector4 &other);

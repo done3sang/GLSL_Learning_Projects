@@ -9,6 +9,9 @@
 #ifndef MyPercompiled_hpp
 #define MyPercompiled_hpp
 
+//#define MINE_LIBRARY_PUSH #pragma GCC visibility push(default)
+//#define MINE_LIBRARY_POP #pragma GCC visibility pop
+
 #define MINE_NAMESPACE_BEGIN namespace Mine {
 #define MINE_NAMESPACE_END }
 #define USING_MINE_NAMESPACE using namespace Mine

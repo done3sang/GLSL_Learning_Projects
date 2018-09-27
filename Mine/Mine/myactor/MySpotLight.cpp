@@ -22,7 +22,7 @@ MySpotLight* MySpotLight::createWithName(const std::string &name) {
     MySpotLight *light = new MySpotLight;
     light->actorName(name);
     light->objectName(name);
-    pushScenarioLight(light);
+    pushWorldLight(light);
     return light;
 }
 

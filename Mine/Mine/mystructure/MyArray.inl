@@ -21,7 +21,7 @@ _capacity(0) {
 }
 
 template<typename T, bool O>
-FORCEINLINE MyArray<T, O>::MyArray(T* dataArr, size_t length):
+FORCEINLINE MyArray<T, O>::MyArray(const T* dataArr, size_t length):
 _data(nullptr),
 _length(0),
 _capacity(0) {

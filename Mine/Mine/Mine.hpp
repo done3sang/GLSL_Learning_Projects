@@ -45,9 +45,12 @@
 #include "myactor/MySpotLight.hpp"
 
 // world
-#include "MyScenario.hpp"
+#include "MyWorld.hpp"
 
 // renderer
 #include "myrender/MyVertexAttribute.hpp"
+#include "mymaterial/MyImage.hpp"
+#include "mymaterial/MyTexture.hpp"
+#include "mymaterial/MyTexture2D.hpp"
 
 #endif /* Mine_h */

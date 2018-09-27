@@ -2,13 +2,14 @@
 //  MyTexture.hpp
 //  Mine
 //
-//  Created by xy on 2018/6/22.
+//  Created by xy on 2018/9/25.
 //  Copyright © 2018 SangDesu. All rights reserved.
 //
 
 #ifndef MyTexture_hpp
 #define MyTexture_hpp
 
+#include <GLFW/glfw3.h>
 #include "MyPrecompiled.hpp"
 
 /* The classes below are exported */
@@ -17,33 +18,53 @@
 MINE_NAMESPACE_BEGIN
 
 class MyUniqueObject;
-class MyFVector3;
-class MyFVector4;
+class MyImage;
+
+enum class MyTextureType {
+    Image,
+    Cube
+};
+
+enum class MyTextureFilter {
+    Linear = GL_LINEAR,
+    Nearest = GL_NEAREST
+};
+
+enum class MyTextureWrap {
+    Clamp = GL_CLAMP_TO_BORDER,
+    Repeat = GL_REPEAT
+};
 
 class MyTexture: public MyUniqueObject {
 public:
-    static MyTexture* create(void);
-    static MyTexture* createWithColor(const MyFVector3 &color);
-    static MyTexture* createWithColor(const MyFVector4 &color);
+    FORCEINLINE const MyTextureFilter& filter(void) const { return _filter; }
+    FORCEINLINE const MyTextureWrap& wrap(void) const { return _wrap; }
+    FORCEINLINE const bool ready(void) const { return 0 != _Id; }
+    FORCEINLINE GLuint textureId(void) const { return _Id; }
     
-public:
-    FORCEINLINE const MyFVector4& baseColor(void) const { return _baseColor; }
-    FORCEINLINE void baseColor(const MyFVector4 &color) { _baseColor = color; }
+    void filter(const MyTextureFilter& newFilter);
+    void wrap(const MyTextureWrap& newWrap);
     
-    FORCEINLINE float shininess(void) const { return _shininess; }
-    FORCEINLINE void shininess(float shin) { _shininess = shin; }
+    void purge(void);
     
-    FORCEINLINE float ambientFactor(void) const { return _ambientFactor; }
-    FORCEINLINE void ambientFactor(float factor) { _ambientFactor = factor; }
+    virtual void bind(void) const = 0;
     
-    FORCEINLINE float specularFactor(void) const { return _specularFactor; }
-    FORCEINLINE void specularFactor(float factor) { _specularFactor = factor; }
+protected:
+    FORCEINLINE MyTexture(const MyTextureFilter& filter,
+                          const MyTextureWrap& wrap):
+    _Id(0),
+    _filter(filter),
+    _wrap(wrap) {}
+    virtual ~MyTexture(void);
     
-private:    
-    MyFVector4 _baseColor;
-    float _shininess;
-    float _ambientFactor;
-    float _specularFactor;
+    virtual void generateTexture(void) = 0;
+    virtual void changeFilter(void) = 0;
+    virtual void changeWrap(void) = 0;
+    
+private:
+    GLuint _Id;
+    MyTextureFilter _filter;
+    MyTextureWrap _wrap;
 };
 
 MINE_NAMESPACE_END

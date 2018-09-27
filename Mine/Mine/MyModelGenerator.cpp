@@ -6,10 +6,10 @@
 //  Copyright © 2018 SangDesu. All rights reserved.
 //
 
-#include <cassert>
 #include "MyObject.hpp"
 #include "MyTemplate.hpp"
 #include "MyVector.hpp"
+#include "MyImage.hpp"
 #include "MyTexture.hpp"
 #include "MyMathUtil.hpp"
 #include "MyActorComponent.hpp"
@@ -22,17 +22,15 @@ MyModelComponent* MyModelGenerator::generateTorus(float innerRadius,
                                                   float outerRadius,
                                                   size_t nsides,
                                                   size_t nrings) {
-    assert(innerRadius > 0.0f && outerRadius > innerRadius &&
-           "ERROR = MyModelGenerator::generateTorus, radius not paired");
-    assert(nsides > 0 && nrings > 0 &&
-           "ERROR = MyModelGenerator::generateTorus, side and ring not valid");
+    MINE_ASSERT2(innerRadius > 0.0f && outerRadius > innerRadius, "ERROR = MyModelGenerator::generateTorus, radius not paired");
+    MINE_ASSERT2(nsides > 0 && nrings > 0,  "ERROR = MyModelGenerator::generateTorus, side and ring not valid");
     
     std::vector<float> dataVec;
     std::vector<unsigned int> elemVec;
     
     torusGenerator(innerRadius, outerRadius, nsides, nrings, dataVec, elemVec);
     
-    MyModelComponent *model = MyModelComponent::create();
+    MyModelComponent *model = MyModelComponent::model();
     if(!model->loadVertexData(dataVec,
                               "position[3]_normal[3]_texcoord0[2]",
                               MyModelComponent::kModelPrimitiveTriangleStrip)) {

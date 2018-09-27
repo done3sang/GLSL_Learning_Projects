@@ -10,6 +10,7 @@
 #define MyData_hpp
 
 #include "MyPrecompiled.hpp"
+#include "MyArray.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
@@ -17,25 +18,27 @@
 MINE_NAMESPACE_BEGIN
 
 class MyUniqueObject;
-template<typename T, bool O>
-class MyArray;
 
+template<typename T>
 class MyData: public MyUniqueObject {
 public:
     static MyData* create(void);
     static MyData* createWithLength(size_t length);
-    static MyData* createWithData(char* data, size_t length);
+    static MyData* createWithData(const T* data, size_t length);
     
+    FORCEINLINE size_t size(void) const {
+        return _data != nullptr ? _data->length() * sizeof(T): 0;
+    }
     FORCEINLINE size_t length(void) const {
         return _data != nullptr ? _data->length(): 0;
     }
     FORCEINLINE size_t offset(void) const {
         return _data != nullptr ? _manipulator - _data->begin(): 0;
     }
-    FORCEINLINE char* raw(void) { return _data != nullptr ?  _data->raw(): nullptr; }
-    FORCEINLINE const char* raw(void) const { return _data != nullptr ? _data->raw(): nullptr; }
-    FORCEINLINE char* rawEnd(void) { return _data != nullptr ? _data->end(): nullptr; }
-    FORCEINLINE const char* rawEnd(void) const { return _data != nullptr ? _data->end(): nullptr; }
+    FORCEINLINE T* raw(void) { return _data != nullptr ?  _data->raw(): nullptr; }
+    FORCEINLINE const T* raw(void) const { return _data != nullptr ? _data->raw(): nullptr; }
+    FORCEINLINE T* rawEnd(void) { return _data != nullptr ? _data->end(): nullptr; }
+    FORCEINLINE const T* rawEnd(void) const { return _data != nullptr ? _data->end(): nullptr; }
     
     char& operator[](size_t i) {
         return _data->operator[](i);
@@ -44,7 +47,7 @@ public:
         return _data->operator[](i);
     }
     
-    MyData& operator=(MyArray<char, false> *arr);
+    MyData& operator=(MyArray<T, false>* arr);
     
     void purge(void);
     
@@ -56,15 +59,17 @@ private:
     _data(nullptr),
     _manipulator(nullptr) {}
     MyData(size_t length);
-    MyData(char* data, size_t length);
+    MyData(const T* data, size_t length);
     virtual ~MyData(void);
     
-    MyArray<char, false>* _data;
-    char* _manipulator;
+    MyArray<T, false>* _data;
+    T* _manipulator;
 };
 
 MINE_NAMESPACE_END
 
 #pragma GCC visibility pop
+
+#include "MyData.inl"
 
 #endif /* MyData_hpp */

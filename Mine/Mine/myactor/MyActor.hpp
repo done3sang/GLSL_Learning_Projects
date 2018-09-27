@@ -65,9 +65,9 @@ protected:
     MyActor(const std::string &name = "Actor");
     virtual ~MyActor(void) { destroy(); }
     
-    static void pushScenarioLight(MyLightActor *light);
-    static void popScenarioLight(MyLightActor *light);
-    static const std::unordered_map<size_t, MyLightActor*>& scenarioLightMap(void);
+    static void pushWorldLight(MyLightActor *light);
+    static void popWorldLight(MyLightActor *light);
+    static const std::unordered_map<size_t, MyLightActor*>& worldLightMap(void);
     
 private:
     size_t _actorId;
@@ -77,7 +77,7 @@ private:
     static size_t _sharedActorCount;
     static std::vector<size_t> _sharedUsedActorId;
     static std::vector<size_t> _sharedDeletedActorId;
-    static std::unordered_map<size_t, MyLightActor*> _scenarioLightMap;
+    static std::unordered_map<size_t, MyLightActor*> _worldLightMap;
     static size_t sharedActorId(void);
     MyTransformComponent *_transform;
     

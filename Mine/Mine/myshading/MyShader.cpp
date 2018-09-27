@@ -68,7 +68,7 @@ void MyShader::deleteShader(void) {
 }
 
 bool MyShader::loadFromFile(const std::string &filepath) {
-    MyData* filedata = MyFileManager::sharedFileManager()->loadFile(filepath.c_str());
+    MyData<char>* filedata = MyFileManager::sharedFileManager()->loadFile(filepath.c_str());
     
     if(nullptr == filedata) {
         return false;

@@ -19,6 +19,8 @@
 MINE_NAMESPACE_BEGIN
 
 class MyUniqueObject;
+
+template<typename T>
 class MyData;
 
 class MyFileStream: public MyUniqueObject {
@@ -28,11 +30,11 @@ public:
     FORCEINLINE size_t bufferLength(void) const { return _dataBuffer->length(); }
     FORCEINLINE size_t streamLength(void) const { return _streamLength; }
     FORCEINLINE size_t streamPosition(void) const { return _streamPosition; }
-    FORCEINLINE MyData* bufferData(void) const { return _dataBuffer; }
+    FORCEINLINE MyData<char>* bufferData(void) const { return _dataBuffer; }
     FORCEINLINE bool endOfStream(void) const { return _streamPosition >= _streamLength; }
     
     void rewind(void);
-    MyData* forward(size_t steps);
+    MyData<char>* forward(size_t steps);
     
 private:
     explicit
@@ -40,7 +42,7 @@ private:
     virtual ~MyFileStream(void);
     
     FILE* _filePointer;
-    MyData* _dataBuffer;
+    MyData<char>* _dataBuffer;
     size_t _streamPosition;
     size_t _streamLength;
 };

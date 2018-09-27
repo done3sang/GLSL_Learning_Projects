@@ -9,26 +9,28 @@
 #include <cassert>
 #include "MyObject.hpp"
 #include "MyBufferObject.hpp"
-#include "MyProgram.hpp"
 #include "MyShader.hpp"
 #include "MyErrorDesc.hpp"
 #include "MyVector.hpp"
 #include "MyMatrix.hpp"
+#include "MyTexture.hpp"
+#include "MyProgram.hpp"
 
 MINE_NAMESPACE_BEGIN
 
 MyProgram* MyProgram::_runningProgram = nullptr;
 
-MyProgram::MyProgram(const std::string &programName):
+MyProgram::MyProgram(const std::string& programName):
 _programId(0),
 _programName(programName),
-_linked(false) {}
+_linked(false),
+_textureNum(0) {}
 
 MyProgram::~MyProgram(void) {
     deleteProgram();
 }
 
-MyProgram* MyProgram::create(const std::string &programName) {
+MyProgram* MyProgram::create(const std::string& programName) {
     MyProgram *prog = new MyProgram(programName);
     prog->objectName("MyProgram");
     
@@ -143,8 +145,9 @@ MyProgram* MyProgram::runningProgram(void) {
     return _runningProgram;
 }
 
-void MyProgram::useProgram(void) {
-    assert(linked() && "ERROR = MyProgram::useProgram, not linked");
+void MyProgram::use(void) {
+    assert(linked() && "ERROR = MyProgram::use, not linked");
+    _textureNum = 0;
     if(_runningProgram && operator==(*_runningProgram)) {
         return;
     }
@@ -273,6 +276,11 @@ int MyProgram::uniformInteger(const std::string &name, int value) {
     return MyErrorDesc::kErrOk;
 }
 
+int MyProgram::uniformTexture(const std::string &name) {
+    glActiveTexture(GL_TEXTURE0 + _textureNum);
+    return uniformInteger(name, _textureNum++);
+}
+
 int MyProgram::uniformBlockIndex(const std::string &blockName, const std::string &indexName, int valueSize, void *valueptr) {
     auto iter = _uniformLocation.find(blockName);
     int blockIndex(-1);
@@ -303,7 +311,7 @@ int MyProgram::uniformBlockIndex(const std::string &blockName, const std::string
         blockBuffer->bindBuffer();
         blockBuffer->bufferData(blockSize, nullptr, MyBufferObject::kBufferUsageDynamicDraw);
         
-        useProgram();
+        use();
         glBindBufferBase(MyBufferObject::kBufferUniform, blockIndex, blockBuffer->bufferId());
         
         addUniformBlock(blockIndex, blockBuffer);
@@ -364,4 +372,12 @@ std::string MyProgram::activeUniform(void) const {
     
     return uniformStr;
 }
+
+int MyProgram::bindTexture(const char *name, const MyTexture *texture) {
+    MINE_ASSERT2(texture && name, "Error MyProgram::bindTexture, name or texture null");
+    texture->bind();
+    glActiveTexture(GL_TEXTURE0 + _textureNum);
+    return uniformInteger(name, _textureNum++);
+}
+
 MINE_NAMESPACE_END

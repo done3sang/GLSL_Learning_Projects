@@ -17,15 +17,16 @@
 MINE_NAMESPACE_BEGIN
 
 class MySingletonObject;
-class MyData;
 class MyFileStream;
+template<typename T>
+class MyData;
 
 class MyFileManager: public MySingletonObject {
 public:
     static MyFileManager* sharedFileManager(void);
     static void closeFileManager(void);
     
-    MyData* loadFile(const char* filepath) const;
+    MyData<char>* loadFile(const char* filepath) const;
     MyFileStream* streamFile(const char* filepath, size_t bufferLength = 1024) const;
     
 public:

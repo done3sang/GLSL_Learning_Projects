@@ -1,0 +1,12 @@
+prefix=/Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/third_party/libpng/build//Users/xy/Documents/OpenGLProjects/GLSL_Learning_Projects/third_party/libpng/build
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/libpng16
+
+Name: libpng
+Description: Loads and saves PNG files
+Version: 1.6.34
+Requires: zlib
+Libs: -L${libdir} -lpng16
+Libs.private: -lz 
+Cflags: -I${includedir}

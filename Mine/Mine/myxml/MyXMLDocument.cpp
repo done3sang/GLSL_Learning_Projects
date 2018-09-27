@@ -61,7 +61,7 @@ void MyXMLDocument::rootNode(MyXMLNode *node) {
 }
 
 bool MyXMLDocument::loadDocument(const std::string &path) {
-    MyData *filedata = MyFileManager::sharedFileManager()->loadFile(path.c_str());
+    MyData<char> *filedata = MyFileManager::sharedFileManager()->loadFile(path.c_str());
     if(nullptr == filedata) {
         return false;
     }
