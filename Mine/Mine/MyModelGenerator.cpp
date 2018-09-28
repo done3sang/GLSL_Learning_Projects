@@ -14,6 +14,7 @@
 #include "MyMathUtil.hpp"
 #include "MyActorComponent.hpp"
 #include "MyModelComponent.hpp"
+#include "MyData.hpp"
 #include "MyModelGenerator.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -25,10 +26,10 @@ MyModelComponent* MyModelGenerator::generateTorus(float innerRadius,
     MINE_ASSERT2(innerRadius > 0.0f && outerRadius > innerRadius, "ERROR = MyModelGenerator::generateTorus, radius not paired");
     MINE_ASSERT2(nsides > 0 && nrings > 0,  "ERROR = MyModelGenerator::generateTorus, side and ring not valid");
     
-    std::vector<float> dataVec;
-    std::vector<unsigned int> elemVec;
+    MyData<float> vertexData;
+    MyData<unsigned int> elemData;
     
-    torusGenerator(innerRadius, outerRadius, nsides, nrings, dataVec, elemVec);
+    torusGenerator(innerRadius, outerRadius, nsides, nrings, vertexData, elemData);
     
     MyModelComponent *model = MyModelComponent::model();
     if(!model->loadVertexData(dataVec,
@@ -48,8 +49,8 @@ void MyModelGenerator::torusGenerator(float innerRadius,
                                       float outerRadius,
                                       size_t nsides,
                                       size_t nrings,
-                                      std::vector<float> &dataVec,
-                                      std::vector<unsigned int> &elemVec) {
+                                      MyData<float> &vertexData,
+                                      MyData<unsigned int> &elemData) {
     const float ringRadius((innerRadius + outerRadius) * 0.5f);
     const float sideRadius((outerRadius - innerRadius) * 0.5f);
     const float frings(static_cast<float>(nrings));
@@ -91,14 +92,14 @@ void MyModelGenerator::torusGenerator(float innerRadius,
             py = sny * sideRadius;
             pz = cz + dz * snx;
             
-            dataVec.push_back(px);
-            dataVec.push_back(py);
-            dataVec.push_back(pz);
-            dataVec.push_back(nx);
-            dataVec.push_back(ny);
-            dataVec.push_back(nz);
-            dataVec.push_back(tx);
-            dataVec.push_back(ty);
+            vertexData.push_back(px);
+            vertexData.push_back(py);
+            vertexData.push_back(pz);
+            vertexData.push_back(nx);
+            vertexData.push_back(ny);
+            vertexData.push_back(nz);
+            vertexData.push_back(tx);
+            vertexData.push_back(ty);
             
             sideRadian += sideStep;
             ty += sideTexStep;

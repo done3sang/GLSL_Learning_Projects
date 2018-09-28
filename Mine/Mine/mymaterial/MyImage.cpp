@@ -140,7 +140,7 @@ void MyImage::initWithContentsOfFile(const char *path) {
     fclose(fp);
     
     _data = MyData<unsigned char>::createWithData(rgba_data, rgba_size);
-    _data->addRef();
+    RETAIN_OBJECT(_data);
     _width = static_cast<int>(width);
     _height = static_cast<int>(height);
     _format = MyTextureFormat::RGBA;
@@ -149,10 +149,7 @@ void MyImage::initWithContentsOfFile(const char *path) {
 }
 
 void MyImage::purge(void) {
-    if(_data) {
-        _data->release();
-        _data = nullptr;
-    }
+    RELEASE_OBJECT(_data);
 }
 
 MINE_NAMESPACE_END

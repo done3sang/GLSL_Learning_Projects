@@ -26,26 +26,20 @@ MyMaterial::~MyMaterial(void) {
 }
 
 void MyMaterial::shadingProgram(MyProgram *prog) {
-    MyObject::assign(_shadingProgram, prog);
+    ASSIGN_OBJECT(_shadingProgram, prog);
 }
 
 void MyMaterial::baseTexture(MyTexture *baseTex) {
-    MyObject::assign(_baseTexture, baseTex);
+    ASSIGN_OBJECT(_baseTexture, baseTex);
 }
 
 void MyMaterial::normalTexture(MyTexture *normalTex) {
-    MyObject::assign(_normalTexture, normalTex);
+    ASSIGN_OBJECT(_normalTexture, normalTex);
 }
 
 void MyMaterial::purge(void) {
-    if(_baseTexture) {
-        _baseTexture->release();
-        _baseTexture = nullptr;
-    }
-    if(_normalTexture) {
-        _normalTexture->release();
-        _normalTexture = nullptr;
-    }
+    RELEASE_OBJECT(_baseTexture);
+    RELEASE_OBJECT(_normalTexture);
 }
 
 MINE_NAMESPACE_END

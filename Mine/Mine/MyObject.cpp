@@ -18,17 +18,6 @@ static int refObjectCount(0);
 
 MINE_NAMESPACE_BEGIN
 
-MyObject* MyObject::assign(MyObject *dest, MyObject *src) {
-    if(dest) {
-        dest->release();
-    }
-    if(src) {
-        src->addRef();
-    }
-    dest = src;
-    return dest;
-}
-
 MyObject::MyObject(void):
 _refCount(1) {
 #ifdef MINE_DEUBG

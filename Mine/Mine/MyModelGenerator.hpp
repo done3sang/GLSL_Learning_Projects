@@ -19,6 +19,8 @@ MINE_NAMESPACE_BEGIN
 
 class MyStatic;
 class MyModelComponent;
+template<typename T>
+class MyData;
 
 class MyModelGenerator final: private MyStatic {
 public:
@@ -33,8 +35,8 @@ private:
                                float outerRadius,
                                size_t nsides,
                                size_t nrings,
-                               std::vector<float> &dataVec,
-                               std::vector<unsigned int> &elemVec);
+                               MyData<float> &dataVec,
+                               MyData<unsigned int> &elemVec);
 };
 
 MINE_NAMESPACE_END

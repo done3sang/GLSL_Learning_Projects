@@ -86,6 +86,7 @@ FORCEINLINE void MyArray<T, O>::push_back(const T& value) {
     if constexpr(O) {
         v->addRef();
     }
+    std::is_base_of<<#class _Bp#>, <#class _Dp#>>
     ++_length;
 }
 

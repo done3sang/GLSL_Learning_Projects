@@ -27,6 +27,12 @@ if(src) {\
 dest = src;\
 }
 
+#define RETAIN_OBJECT(obj) {\
+if(obj) {\
+obj->addRef();\
+}\
+}
+
 #define RELEASE_OBJECT(obj) {\
 if(obj) {\
 obj->release();\

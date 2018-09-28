@@ -22,9 +22,9 @@ class MyUniqueObject;
 template<typename T>
 class MyData: public MyUniqueObject {
 public:
-    static MyData* create(void);
-    static MyData* createWithLength(size_t length);
-    static MyData* createWithData(const T* data, size_t length);
+    static MyData* data(void);
+    static MyData* dataWithLength(size_t length);
+    static MyData* dataWithRaw(const T* data, size_t length);
     
     FORCEINLINE size_t size(void) const {
         return _data != nullptr ? _data->length() * sizeof(T): 0;
@@ -40,19 +40,21 @@ public:
     FORCEINLINE T* rawEnd(void) { return _data != nullptr ? _data->end(): nullptr; }
     FORCEINLINE const T* rawEnd(void) const { return _data != nullptr ? _data->end(): nullptr; }
     
-    char& operator[](size_t i) {
+    FORCEINLINE T& operator[](size_t i) {
         return _data->operator[](i);
     }
-    const char& operator[](size_t i) const {
+    FORCEINLINE const T& operator[](size_t i) const {
         return _data->operator[](i);
     }
     
-    MyData& operator=(MyArray<T, false>* arr);
+    FORCEINLINE MyData& operator=(MyArray<T, false>* arr);
     
-    void purge(void);
+    FORCEINLINE void purge(void);
     
-    void pop_front(size_t num);
-    void pop_back(size_t num);
+    FORCEINLINE void pop_front(size_t num);
+    FORCEINLINE void pop_back(size_t num);
+    
+    FORCEINLINE void push_back(const T &value);
     
 private:
     FORCEINLINE MyData(void):

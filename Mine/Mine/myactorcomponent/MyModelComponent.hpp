@@ -48,10 +48,10 @@ public:
                       const MyData<unsigned int> *elementData = nullptr);
     
     FORCEINLINE int primitive(void) const { return _primitive; }
-    FORCEINLINE const MyVertex* modelVertex(void) const { return _vertex; }
-    FORCEINLINE const MyBufferObject* modelVertexBuffer(void) const { return _vertexBuffer; }
-    FORCEINLINE const MyBufferObject* modelElementBuffer(void) const { return _elementBuffer; }
-    FORCEINLINE const MyMaterial* modelProgram(void) const { return _material; }
+    FORCEINLINE const MyVertex* vertex(void) const { return _vertex; }
+    FORCEINLINE const MyBufferObject* vertexBuffer(void) const { return _vertexBuffer; }
+    FORCEINLINE const MyBufferObject* elementBuffer(void) const { return _elementBuffer; }
+    FORCEINLINE const MyMaterial* material(void) const { return _material; }
     FORCEINLINE int renderStart(void) const { return _renderStart; }
     FORCEINLINE int renderCount(void) const { return _renderCount; }
     

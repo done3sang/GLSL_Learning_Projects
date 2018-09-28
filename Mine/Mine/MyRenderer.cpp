@@ -53,13 +53,14 @@ void MyRenderer::drawArrays(int mode, int first, int count) {
 
 void MyRenderer::renderModel(const MyModelComponent *model) {
     MINE_ASSERT2(model, "ERROR = MyRenderer::renderModel, model null");
-    
+    /*
     if(model->modelElemented()) {
         model->modelElementBuffer()->bindBuffer();
         glDrawElements(model->renderMode(), model->renderCount(), GL_UNSIGNED_INT, nullptr);
     } else {
         glDrawArrays(model->renderMode(), model->renderStart(), model->renderCount());
     }
+     */
 }
 
 MINE_NAMESPACE_END
