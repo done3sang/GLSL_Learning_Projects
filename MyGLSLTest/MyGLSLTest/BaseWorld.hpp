@@ -17,7 +17,7 @@ class BaseScene: public MyWorld  {
 public:
     bool initialize(void) override;
     void update(float deltaTime) override;
-    void render(void) override;
+    void render(void);
     
     static BaseScene* create(void);
     

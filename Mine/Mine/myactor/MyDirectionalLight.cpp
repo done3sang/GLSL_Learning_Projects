@@ -18,7 +18,7 @@
 
 MINE_NAMESPACE_BEGIN
 
-MyDirectionalLight* MyDirectionalLight::createWithName(const std::string &name) {
+MyDirectionalLight* MyDirectionalLight::directionalWithName(const char* name) {
     MyDirectionalLight *light = new MyDirectionalLight();
     light->actorName(name);
     light->objectName(name);

@@ -47,14 +47,14 @@ public:
         return _data->operator[](i);
     }
     
-    FORCEINLINE MyData& operator=(MyArray<T, false>* arr);
+    MyData& operator=(MyArray<T>& arr);
     
-    FORCEINLINE void purge(void);
+    void purge(void);
     
-    FORCEINLINE void pop_front(size_t num);
-    FORCEINLINE void pop_back(size_t num);
+    void pop_front(size_t num);
+    void pop_back(size_t num);
     
-    FORCEINLINE void push_back(const T &value);
+    void push_back(const T &value);
     
 private:
     FORCEINLINE MyData(void):
@@ -64,7 +64,7 @@ private:
     MyData(const T* data, size_t length);
     virtual ~MyData(void);
     
-    MyArray<T, false>* _data;
+    MyArray<T>* _data;
     T* _manipulator;
 };
 

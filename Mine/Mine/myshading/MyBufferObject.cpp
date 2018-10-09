@@ -38,20 +38,21 @@ void MyBufferObject::deleteBuffer(void) {
     _bufferId = 0;
 }
 
-void MyBufferObject::bindBuffer(void) {
+void MyBufferObject::bind(void) const {
+    MINE_ASSERT(valid());
+    
     if(_runningBufferObject && operator==(*_runningBufferObject)) {
         return;
-    }
-    
-    if(!valid()) {
-        glGenBuffers(1, &_bufferId);
     }
     
     glBindBuffer(_bufferType, _bufferId);
 }
 
 void MyBufferObject::bufferData(size_t bufferSize, const void *data, int usage) {
-    bindBuffer();
+    if(!valid()) {
+        glGenBuffers(1, &_bufferId);
+    }
+    bind();
     _bufferUsage = usage;
     glBufferData(_bufferType, bufferSize, data, usage);
 }
@@ -59,7 +60,7 @@ void MyBufferObject::bufferData(size_t bufferSize, const void *data, int usage) 
 void MyBufferObject::bufferSubData(size_t bufferOffset, size_t bufferSize, const void *data) {
     assert(kBufferUsageDynamicDraw == _bufferUsage && "Buffer sub data should be operated on dynamic buffer");
     
-    bindBuffer();
+    bind();
     glBufferSubData(_bufferType, bufferOffset, bufferSize, data);
 }
 

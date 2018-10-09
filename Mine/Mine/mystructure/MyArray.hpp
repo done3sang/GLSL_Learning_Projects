@@ -19,17 +19,19 @@ MINE_NAMESPACE_BEGIN
 
 class MyObject;
 
-template<typename T, bool O = true>
+// for MyObject only accept MyObject*
+template<class T>
 class MyArray: public MyObject {
 public:
     typedef T* iterator;
     typedef const T* const_iterator;
     
-    MyArray(size_t length = 0);
-    MyArray(const T* dataArr, size_t length);
-    MyArray(const MyArray& other);
-    MyArray(const MyArray&& other);
-    ~MyArray(void);
+    static_assert(!std::is_pointer<T>::value || (!std::is_pointer<typename std::remove_pointer<T>::type>::value && !std::is_base_of<MyObject, typename std::remove_pointer<T>::type>::value), "Error MyArray<T>: Not SUPPORT pointer-to-pointer and MyObject*");
+    
+    static MyArray* array(void);
+    static MyArray* arrayWithCapacity(size_t capacity);
+    static MyArray* arrayWithRaw(const T* dataArr, size_t length);
+    static MyArray* arrayWithArray(const MyArray& arr);
     
     FORCEINLINE size_t length(void) const { return _length; }
     FORCEINLINE size_t capacity(void) const { return _capacity; }
@@ -59,12 +61,18 @@ public:
     void write(const T* dataArr, size_t length);
     
 private:
-    T* _data;
-    size_t _length;
-    size_t _capacity;
+    MyArray(size_t capacity = 0);
+    MyArray(const T* dataArr, size_t length);
+    MyArray(const MyArray& arr);
+    ~MyArray(void);
     
     void checkCapacity(size_t num = 1);
     void expand(size_t newCapacity);
+    
+private:
+    T* _data;
+    size_t _length;
+    size_t _capacity;
 };
 
 MINE_NAMESPACE_END

@@ -12,89 +12,100 @@
 
 MINE_NAMESPACE_BEGIN
 
-template<typename T, bool O>
-FORCEINLINE MyArray<T, O>::MyArray(size_t length):
+template<class T>
+FORCEINLINE MyArray<T>* MyArray<T>::array(void) {
+    return new MyArray<T>();
+}
+
+template<class T>
+FORCEINLINE MyArray<T>* MyArray<T>::arrayWithCapacity(size_t capacity) {
+    return new MyArray<T>(capacity);
+}
+
+template<class T>
+FORCEINLINE MyArray<T>* MyArray<T>::arrayWithRaw(const T* dataArr, size_t length) {
+    MINE_ASSERT(dataArr && length > 0);
+    return new MyArray<T>(dataArr, length);
+}
+
+template<class T>
+FORCEINLINE MyArray<T>* MyArray<T>::arrayWithArray(const MyArray& arr) {
+    return new MyArray<T>(arr);
+}
+
+template<typename T>
+FORCEINLINE MyArray<T>::MyArray(size_t capacity):
 _data(nullptr),
 _length(0),
 _capacity(0) {
-    expand(length);
+    expand(capacity);
 }
 
-template<typename T, bool O>
-FORCEINLINE MyArray<T, O>::MyArray(const T* dataArr, size_t length):
+template<typename T>
+FORCEINLINE MyArray<T>::MyArray(const T* dataArr, size_t length):
 _data(nullptr),
 _length(0),
 _capacity(0) {
     write(dataArr, length);
 }
 
-template<typename T, bool O>
-FORCEINLINE MyArray<T, O>::MyArray(const MyArray& other) {
-    operator=(other);
+template<typename T>
+FORCEINLINE MyArray<T>::MyArray(const MyArray& arr) {
+    operator=(arr);
 }
 
-template<typename T, bool O>
-FORCEINLINE MyArray<T, O>::MyArray(const MyArray&& other):
-_data(other._data),
-_length(other._length),
-_capacity(other._length) {
-    other._data = nullptr;
-    other._length = other._capacity = 0;
-}
-
-template<typename T, bool O>
-FORCEINLINE MyArray<T, O>::~MyArray(void) {
+template<typename T>
+FORCEINLINE MyArray<T>::~MyArray(void) {
     if(_data) {
         MyMemoryManager::sharedMemoryManager()->deallocate(_data);
     }
 }
 
-template<typename T, bool O>
-FORCEINLINE typename MyArray<T, O>::iterator MyArray<T, O>::begin(void) {
+template<typename T>
+FORCEINLINE typename MyArray<T>::iterator MyArray<T>::begin(void) {
     return _data;
 }
 
-template<typename T, bool O>
-FORCEINLINE typename MyArray<T, O>::iterator MyArray<T, O>::end(void) {
+template<typename T>
+FORCEINLINE typename MyArray<T>::iterator MyArray<T>::end(void) {
     return _data + _length;
 }
 
-template<typename T, bool O>
-FORCEINLINE typename MyArray<T, O>::const_iterator MyArray<T, O>::begin(void) const {
+template<typename T>
+FORCEINLINE typename MyArray<T>::const_iterator MyArray<T>::begin(void) const {
     return _data;
 }
 
-template<typename T, bool O>
-FORCEINLINE typename MyArray<T, O>::const_iterator MyArray<T, O>::end(void) const {
+template<typename T>
+FORCEINLINE typename MyArray<T>::const_iterator MyArray<T>::end(void) const {
     return _data + _length;
 }
 
-template<typename T, bool O>
-FORCEINLINE T& MyArray<T, O>::operator[](size_t i) {
+template<typename T>
+FORCEINLINE T& MyArray<T>::operator[](size_t i) {
     return _data[i];
 }
 
-template<typename T, bool O>
-FORCEINLINE const T& MyArray<T, O>::operator[](size_t i) const {
+template<typename T>
+FORCEINLINE const T& MyArray<T>::operator[](size_t i) const {
     return _data[i];
 }
 
-template<typename T, bool O>
-FORCEINLINE void MyArray<T, O>::push_back(const T& value) {
+template<typename T>
+FORCEINLINE void MyArray<T>::push_back(const T& value) {
     checkCapacity();
     T* v = new(_data + _length) T(value);
-    if constexpr(O) {
+    if constexpr(std::is_base_of<MyObject, T>::value) {
         v->addRef();
     }
-    std::is_base_of<<#class _Bp#>, <#class _Dp#>>
     ++_length;
 }
 
-template<typename T, bool O>
-FORCEINLINE void MyArray<T, O>::pop_back(size_t num) {
+template<typename T>
+FORCEINLINE void MyArray<T>::pop_back(size_t num) {
     num = num > _length ? _length: num;
     if(num > 0) {
-        if constexpr(O) {
+        if constexpr(std::is_base_of<MyObject, T>::value) {
             for(size_t i = _length - num; i != _length; ++i) {
                 _data[i].release();
             }
@@ -103,13 +114,13 @@ FORCEINLINE void MyArray<T, O>::pop_back(size_t num) {
     }
 }
 
-template<typename T, bool O>
-FORCEINLINE void MyArray<T, O>::pop_front(size_t num) {
+template<typename T>
+FORCEINLINE void MyArray<T>::pop_front(size_t num) {
     if(num >= _length) {
         clear();
     } else if(num > 0) {
         for(size_t i = 0; i != _length - num; ++i) {
-            if constexpr(O) {
+            if constexpr(std::is_base_of<MyObject, T>::value) {
                 _data[i].release();
             }
             _data[i] = _data[i + num];
@@ -118,20 +129,20 @@ FORCEINLINE void MyArray<T, O>::pop_front(size_t num) {
     }
 }
 
-template<typename T, bool O>
+template<typename T>
 template<typename ...Args>
-FORCEINLINE void MyArray<T, O>::emplace_back(Args&&... args) {
+FORCEINLINE void MyArray<T>::emplace_back(Args&&... args) {
     checkCapacity();
     T* v = ::new(_data + _length) T(args...);
-    if constexpr(O) {
+    if constexpr(std::is_base_of<MyObject, T>::value) {
         v->addRef();
     }
     ++_length;
 }
 
-template<typename T, bool O>
-FORCEINLINE void MyArray<T, O>::clear(void) {
-    if constexpr(O) {
+template<typename T>
+FORCEINLINE void MyArray<T>::clear(void) {
+    if constexpr(std::is_base_of<MyObject, T>::value) {
         for(size_t i = 0; i != _length; ++i) {
             _data[i].release();
         }
@@ -139,14 +150,14 @@ FORCEINLINE void MyArray<T, O>::clear(void) {
     _length = 0;
 }
 
-template<typename T, bool O>
-FORCEINLINE void MyArray<T, O>::shrink(size_t newLength) {
+template<typename T>
+FORCEINLINE void MyArray<T>::shrink(size_t newLength) {
     MINE_ASSERT(newLength <= _length);
     pop_back(_length - newLength);
 }
 
-template<typename T, bool O>
-FORCEINLINE void MyArray<T, O>::write(const T* dataArr, size_t length) {
+template<typename T>
+FORCEINLINE void MyArray<T>::write(const T* dataArr, size_t length) {
     expand(length);
     _length = 0;
     for(size_t i = 0; i != length; ++i) {
@@ -154,16 +165,16 @@ FORCEINLINE void MyArray<T, O>::write(const T* dataArr, size_t length) {
     }
 }
 
-template<typename T, bool O>
-FORCEINLINE void MyArray<T, O>::checkCapacity(size_t num) {
+template<typename T>
+FORCEINLINE void MyArray<T>::checkCapacity(size_t num) {
     size_t nextLength = _length + num;
     if(nextLength > _capacity) {
         expand(nextLength << 1);
     }
 }
 
-template<typename T, bool O>
-FORCEINLINE void MyArray<T, O>::expand(size_t newCapacity) {
+template<typename T>
+FORCEINLINE void MyArray<T>::expand(size_t newCapacity) {
     if(_capacity > newCapacity) {
         return;
     }
@@ -181,7 +192,7 @@ FORCEINLINE void MyArray<T, O>::expand(size_t newCapacity) {
         T* newIter = newData;
         for(const_iterator iter = begin(); iter != end(); ++iter) {
             T* v = new (newIter) T(*iter);
-            if constexpr(O) {
+            if constexpr(std::is_base_of<MyObject, T>::value) {
                 iter->release();
                 v->addRef();
             }

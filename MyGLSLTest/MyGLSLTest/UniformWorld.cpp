@@ -40,11 +40,6 @@ bool UniformScene::initialize(void) {
     sharedDirector->resizeWindow(800, 800);
     sharedDirector->windowTitle("Uniform Block");
     
-    _myRenderer = MyRenderer::create("normal");
-    _myRenderer->addRef();
-    _myRenderer->clearBufferBit(MyRenderer::kBufferBitColor | MyRenderer::kBufferBitDepth);
-    sharedDirector->mainRenderer(_myRenderer);
-    
     _myProgram = MyShadingManager::sharedShadingManager()->programByName("uniformblock");
     _myProgram->addRef();
     
@@ -69,8 +64,7 @@ bool UniformScene::initialize(void) {
         return false;
     }
     
-    _myVertexArray = MyVertexArrayObject::create();
-    _myVertexArray->addRef();
+    _myVertexArray = MyVertexArrayObject::sharedVertexArrayObject();
     _myVertexArray->vertexAttribPoint(*_myVertexBuffer, MyProgram::kAttribPosition, 3, 5 * sizeof(float));
     _myVertexArray->vertexAttribPoint(*_myVertexBuffer, MyProgram::kAttribTexCoord0, 2, 5 * sizeof(float), 3 * sizeof(float));
     
@@ -109,7 +103,7 @@ void UniformScene::update(float deltaTime) {
 void UniformScene::render(void) {
     _myProgram->use();
     
-    _myVertexArray->bindVertexArray();
+    _myVertexArray->bind();
     _myRenderer->drawArrays(MyRenderer::kRenderPrimitiveTriangles, 0, 6);
 }
 

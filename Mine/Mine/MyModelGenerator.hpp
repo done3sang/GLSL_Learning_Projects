@@ -35,8 +35,8 @@ private:
                                float outerRadius,
                                size_t nsides,
                                size_t nrings,
-                               MyData<float> &dataVec,
-                               MyData<unsigned int> &elemVec);
+                               MyData<float> *dataVec,
+                               MyData<unsigned int> *elemVec);
 };
 
 MINE_NAMESPACE_END

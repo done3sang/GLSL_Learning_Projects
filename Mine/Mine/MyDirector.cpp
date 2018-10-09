@@ -20,7 +20,7 @@
 #include "MyFileManager.hpp"
 #include "MyShadingManager.hpp"
 #include "MyTimerManager.hpp"
-#include "MyVertexAttributeManager.hpp"
+#include "MyVertexManager.hpp"
 #include "MyDirector.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -60,21 +60,15 @@ void MyDirector::destroy(void) {
         _runningWorld->release();
         _runningWorld = nullptr;
     }
-    if(_mainVertexArrayObject) {
-        _mainVertexArrayObject->release();
-        _mainVertexArrayObject = nullptr;
-    }
-    if(_mainRenderer) {
-        _mainRenderer->release();
-        _mainRenderer = nullptr;
-    }
     
+    /*
     MyFileManager::closeFileManager();
     MyErrorDesc::closeErrorDesc();
     MyTimerManager::closeTimerManager();
     MyShadingManager::closeShadingManager();
-    MyVertexAttributeManager::closeVertexAttributeManager();
+    MyVertexManager::closeVertexManager();
     MyAutoreleasePool::closeAutoreleasePool();
+    */
     
     if(_glfwWindow) {
         glfwDestroyWindow(_glfwWindow);
@@ -108,28 +102,6 @@ void MyDirector::errorCallback(MyErrorCallback *errCallback) {
     _errorCallback = errCallback;
 }
 
-void MyDirector::mainVertexArrayObject(MyVertexArrayObject *vao) {
-    if(_mainVertexArrayObject) {
-        _mainVertexArrayObject->release();
-    }
-    if(vao) {
-        vao->addRef();
-    }
-    
-    _mainVertexArrayObject = vao;
-}
-
-void MyDirector::mainRenderer(MyRenderer *renderer) {
-    if(_mainRenderer) {
-        _mainRenderer->release();
-    }
-    if(renderer) {
-        renderer->addRef();
-    }
-    
-    _mainRenderer = renderer;
-}
-
 void MyDirector::runWorld(MyWorld *world) {
     if(_runningWorld) {
         _runningWorld->release();
@@ -142,24 +114,20 @@ void MyDirector::runWorld(MyWorld *world) {
 }
 
 void MyDirector::runMainLoop(void) {
-#ifdef DEBUG
-    assert(_mainVertexArrayObject && "ERROR = MyDirector::runMainLoop, VertexArrayObject null");
-    assert(_mainRenderer && "ERROR = MyDirector::runMainLoop, Renderer null");
-#endif
-    
+    MyRenderer *renderer = MyRenderer::sharedRenderer();
+    MyVertexArrayObject *vertexArrayObj = MyVertexArrayObject::sharedVertexArrayObject();
     MyTimerManager *timerMgr = MyTimerManager::sharedTimerManager();
     double fpstime(0.0f);
     double frames(0.0f);
     
+    vertexArrayObj->bind();
     timerMgr->beginTiming();
     
     fpstime = timerMgr->currentTime();
     while(!windowShouldClose()) {
         timerMgr->beginTick();
         
-        if(_mainRenderer) {
-            _mainRenderer->prepareRender();
-        }
+        renderer->prepareRender();
         
         if(_runningWorld) {
             _runningWorld->update(static_cast<float>(timerMgr->tickTime()));

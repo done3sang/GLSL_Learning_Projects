@@ -16,7 +16,7 @@
 #include "MyMaterial.hpp"
 #include "MyShadingManager.hpp"
 #include "MyVertex.hpp"
-#include "MyVertexAttributeManager.hpp"
+#include "MyVertexManager.hpp"
 #include "MyModelComponent.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -40,6 +40,20 @@ MyModelComponent* MyModelComponent::modelWithContentsOfFile(const char *path) {
     return model;
 }
 
+MyModelComponent* MyModelComponent::modelWithData(int primitive,
+                                                  const MyData<float> *vertexData,
+                                                  const char *vertexFormat,
+                                                  const MyData<unsigned int> *elementData) {
+    MyModelComponent *model = new MyModelComponent();
+    model->objectName("MyModelComponent");
+    model->initWithData(primitive, vertexData, vertexFormat, elementData);
+    return model;
+}
+
+MyModelComponent::~MyModelComponent(void) {
+    purge();
+}
+
 void MyModelComponent::purge(void) {
     RELEASE_OBJECT(_vertexBuffer);
     RELEASE_OBJECT(_elementBuffer);
@@ -57,6 +71,10 @@ bool MyModelComponent::loadWithData(int primitive,
                                     const MyData<unsigned int> *elementData) {
     purge();
     return initWithData(primitive, vertexData, vertexFormat, elementData);
+}
+
+bool MyModelComponent::initWithContentsOfFile(const char *path) {
+    return false;
 }
 
 bool MyModelComponent::initWithData(int primitive,

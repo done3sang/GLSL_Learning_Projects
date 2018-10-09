@@ -14,6 +14,9 @@
 #include "MyVector.hpp"
 #include "MyMatrix.hpp"
 #include "MyTexture.hpp"
+#include "MyActorComponent.hpp"
+#include "MyTransformComponent.hpp"
+#include "MyMaterial.hpp"
 #include "MyProgram.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -308,7 +311,7 @@ int MyProgram::uniformBlockIndex(const std::string &blockName, const std::string
         int blockSize(0);
         
         glGetActiveUniformBlockiv(_programId, blockIndex, GL_UNIFORM_BLOCK_DATA_SIZE, &blockSize);
-        blockBuffer->bindBuffer();
+        blockBuffer->bind();
         blockBuffer->bufferData(blockSize, nullptr, MyBufferObject::kBufferUsageDynamicDraw);
         
         use();
@@ -378,6 +381,22 @@ int MyProgram::bindTexture(const char *name, const MyTexture *texture) {
     texture->bind();
     glActiveTexture(GL_TEXTURE0 + _textureNum);
     return uniformInteger(name, _textureNum++);
+}
+
+void MyProgram::bindActor(const MyTransformComponent *transform, const MyMaterial *material) {
+    MINE_ASSERT(transform && material);
+    
+    use();
+    uniformMatrix4("modelViewProjectionMatrix", transform->transformMatrix());
+    
+    if(material->baseTexture()) {
+        bindTexture("baseTexture", material->baseTexture());
+    }
+    if(material->normalTexture()) {
+        bindTexture("normalTexture", material->normalTexture());
+    }
+    uniformFloat("metallic", material->metallic());
+    uniformFloat("opacity", material->opacity());
 }
 
 MINE_NAMESPACE_END

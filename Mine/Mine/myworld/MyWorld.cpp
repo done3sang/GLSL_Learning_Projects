@@ -6,11 +6,12 @@
 //  Copyright © 2017 SangDesu. All rights reserved.
 //
 
-#include <glm/glm.hpp>
 #include "MyObject.hpp"
 #include "MyActorComponent.hpp"
 #include "MyActor.hpp"
 #include "MyModelComponent.hpp"
+#include "MyVertexArrayObject.hpp"
+#include "MyRenderer.hpp"
 #include "MyWorld.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -37,8 +38,9 @@ void MyWorld::update(float deltaTime) {
 }
 
 void MyWorld::render(void) {
+    MyRenderer *renderer = MyRenderer::sharedRenderer();
     for(auto &iter: _renderActorMap) {
-        iter.second->render();
+        renderer->renderActor(iter.second);
     }
 }
 

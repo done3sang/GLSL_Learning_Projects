@@ -26,7 +26,7 @@ class MyLightActor;
 
 class MyActor: public MyUniqueObject {
 public:
-    static MyActor* createWithName(const std::string &name);
+    static MyActor* actorWithName(const char* name);
     
     size_t actorId(void) const { return _actorId; }
     void actorName(const std::string &name) { _actorName = name; }
@@ -55,14 +55,13 @@ public:
     bool deleteComponent(int compType);
     
     virtual void update(float deltaTime) {}
-    virtual void render(void);
     
     static bool componentTypeImplicit(int compType) {
         return MyActorComponent::kComponentTypeTransform == compType;
     }
     
 protected:
-    MyActor(const std::string &name = "Actor");
+    MyActor(const char* name = "Actor");
     virtual ~MyActor(void) { destroy(); }
     
     static void pushWorldLight(MyLightActor *light);

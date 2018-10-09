@@ -60,4 +60,8 @@ void* MySingletonObject::operator new(size_t sz) {
     return MyMemoryManager::sharedMemoryManager()->allocate(sz, true);
 }
 
+MySingletonObject::~MySingletonObject(void) {
+    release();
+}
+
 MINE_NAMESPACE_END

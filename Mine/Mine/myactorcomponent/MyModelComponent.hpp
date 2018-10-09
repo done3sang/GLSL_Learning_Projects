@@ -70,7 +70,7 @@ private:
     _material(nullptr),
     _renderStart(0),
     _renderCount(0) {}
-    ~MyModelComponent(void);
+    virtual ~MyModelComponent(void);
     
     int _primitive;
     MyVertex *_vertex;

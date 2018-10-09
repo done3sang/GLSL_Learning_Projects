@@ -21,7 +21,7 @@ MyFileStream* MyFileStream::createWithFile(FILE *fileptr, size_t bufferLength) {
 MyFileStream::MyFileStream(FILE* fileptr, size_t bufferLength):
 _filePointer(fileptr),
 _streamPosition(0) {
-    _dataBuffer = MyData<char>::createWithLength(bufferLength);
+    _dataBuffer = MyData<char>::dataWithLength(bufferLength);
     fseek(fileptr, 0, SEEK_END);
     _streamLength = ftell(fileptr);
     fseek(fileptr, 0, SEEK_SET);

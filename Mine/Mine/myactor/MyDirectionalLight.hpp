@@ -23,7 +23,7 @@ class MyDirectionalLightComponent;
 
 class MyDirectionalLight: public MyLightActor {
 public:
-    static MyDirectionalLight* createWithName(const std::string &name = "Directional Light");
+    static MyDirectionalLight* directionalWithName(const char* name = "Directional Light");
     
     void bindProgram(MyProgram *prog) override;
     

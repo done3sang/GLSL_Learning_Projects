@@ -51,14 +51,6 @@ public:
     MyWorld* runningWorld(void) const { return _runningWorld; }
     void runWorld(MyWorld *world);
     
-    // renderer relative
-    MyRenderer* mainRenderer(void) const { return _mainRenderer; }
-    void mainRenderer(MyRenderer *renderer);
-    
-    // vao relative
-    MyVertexArrayObject* mainVertexArrayObject(void) const { return _mainVertexArrayObject; }
-    void mainVertexArrayObject(MyVertexArrayObject *vao);
-    
     // main loop
     void runMainLoop(void);
     
@@ -71,9 +63,7 @@ public:
 private:
     MyDirector(void):
     _errCode(0),
-    _mainRenderer(nullptr),
     _runningWorld(nullptr),
-    _mainVertexArrayObject(nullptr),
     _errorCallback(nullptr),
     _glfwWindow(nullptr),
     _framesPerSecond(0.0f) { initialize(); }
@@ -84,8 +74,6 @@ private:
     MyErrorCallback *_errorCallback;
     GLFWwindow *_glfwWindow;
     MyWorld *_runningWorld;
-    MyRenderer *_mainRenderer;
-    MyVertexArrayObject *_mainVertexArrayObject;
     std::unordered_map<int, std::string> _glErrorMap;
     
     // fps

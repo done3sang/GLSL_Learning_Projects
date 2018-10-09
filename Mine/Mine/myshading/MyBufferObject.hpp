@@ -53,7 +53,7 @@ public:
     int bufferUsage(void) const { return _bufferUsage; }
     GLuint bufferId(void) const { return _bufferId; }
     
-    void bindBuffer(void);
+    void bind(void) const;
     void bufferData(size_t bufferSize, const void *data, int usage = kBufferUsageStaticDraw);
     void bufferSubData(size_t bufferOffset, size_t bufferSize, const void *data);
     void deleteBuffer(void);

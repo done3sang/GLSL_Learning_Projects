@@ -49,11 +49,6 @@ BaseScene::~BaseScene(void) {
 bool BaseScene::initialize(void) {
     MyDirector *sharedDirector = MyDirector::sharedDirector();
     
-    _myRenderer = MyRenderer::create("normal");
-    _myRenderer->retain();
-    _myRenderer->clearBufferBit(MyRenderer::kBufferBitColor | MyRenderer::kBufferBitDepth);
-    sharedDirector->mainRenderer(_myRenderer);
-    
     _myProgram = MyShadingManager::sharedShadingManager()->programByName("basic");
     _myProgram->retain();
     
@@ -93,12 +88,11 @@ bool BaseScene::initialize(void) {
         return false;
     }
     
-    _myVertexArray = MyVertexArrayObject::create();
+    _myVertexArray = MyVertexArrayObject::sharedVertexArrayObject();
     _myVertexArray->vertexAttribPoint(*_positionBuffer, MyProgram::kAttribPosition, 3, 0);
     _myVertexArray->vertexAttribPoint(*_colorBuffer, MyProgram::kAttribColor, 3, 0);
     _myVertexArray->vertexAttribPoint(*_texCoordBuffer, MyProgram::kAttribTexCoord0, 2, 0);
     _myVertexArray->addRef();
-    sharedDirector->mainVertexArrayObject(_myVertexArray);
     
     _myTexture = MyTexture2D::textureWithImage(MyImage::imageWithContentsOfFile("./Texture/flower.png"));
     _myTexture->addRef();
@@ -127,6 +121,6 @@ void BaseScene::render(void) {
     _myTexture->bind();
     _myProgram->uniformTexture("baseTexture");
     
-    _myVertexArray->bindVertexArray();
+    _myVertexArray->bind();
     _myRenderer->drawArrays(MyRenderer::kRenderPrimitiveTriangles, 0, 3);
 }

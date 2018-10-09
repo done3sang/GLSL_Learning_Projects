@@ -18,7 +18,7 @@ class UniformScene: public MyWorld  {
 public:
     bool initialize(void) override;
     void update(float deltaTime) override;
-    void render(void) override;
+    void render(void);
     void destroy(void);
     
     static UniformScene* create(void);

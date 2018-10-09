@@ -27,14 +27,14 @@ public:
     static constexpr char kNormalTexture[] = "normalTexture";
     
 public:
-    static MyMaterial* materialWithName(const char* name);
+    static MyMaterial* material(void);
     
 public:
     FORCEINLINE float metallic(void) const { return _metallic; }
     FORCEINLINE void metallic(float metallic) { _metallic = metallic; }
     FORCEINLINE float opacity(void) const { return _opacity; }
     FORCEINLINE void opacity(float opacity) { _opacity = opacity; }
-    FORCEINLINE const MyProgram* shadingProgram(void) const { return _shadingProgram; }
+    FORCEINLINE MyProgram* shadingProgram(void) const { return _shadingProgram; }
     FORCEINLINE const MyTexture* baseTexture(void) const { return _baseTexture; }
     FORCEINLINE const MyTexture* normalTexture(void) const { return _normalTexture; }
     
@@ -52,7 +52,7 @@ private:
     _normalTexture(nullptr),
     _metallic(16.0f),
     _opacity(1.0f) {}
-    ~MyMaterial(void);
+    virtual ~MyMaterial(void);
     
     MyProgram *_shadingProgram;
     MyTexture *_baseTexture;

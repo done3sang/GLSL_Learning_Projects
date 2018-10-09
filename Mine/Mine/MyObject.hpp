@@ -19,23 +19,23 @@ MINE_NAMESPACE_BEGIN
 
 #define ASSIGN_OBJECT(dest, src) {\
 if(dest) {\
-    dest->release();\
+    (dest)->release();\
 }\
 if(src) {\
-    src->addRef();\
+    (src)->addRef();\
 }\
 dest = src;\
 }
 
 #define RETAIN_OBJECT(obj) {\
 if(obj) {\
-obj->addRef();\
+(obj)->addRef();\
 }\
 }
 
 #define RELEASE_OBJECT(obj) {\
 if(obj) {\
-obj->release();\
+(obj)->release();\
 obj = nullptr;\
 }\
 }
@@ -83,11 +83,8 @@ public:
     void* operator new(size_t sz);
     
 protected:
-    FORCEINLINE MySingletonObject(void) { MyObject::retain(); }
-    FORCEINLINE virtual ~MySingletonObject(void) {}
-    
-    FORCEINLINE void addRef(void) { MyObject::addRef(); }
-    FORCEINLINE void retain(void) { MyObject::retain(); }
+    FORCEINLINE MySingletonObject(void) { retain(); }
+    virtual ~MySingletonObject(void);
 };
 
 class MyUniqueObject: public MyObject {

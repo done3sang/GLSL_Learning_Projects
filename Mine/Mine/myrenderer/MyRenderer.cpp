@@ -9,20 +9,25 @@
 #include "MyObject.hpp"
 #include "MyBufferObject.hpp"
 #include "MyActorComponent.hpp"
+#include "MyActor.hpp"
 #include "MyModelComponent.hpp"
+#include "MyVertexArrayObject.hpp"
+#include "MyProgram.hpp"
+#include "MyMaterial.hpp"
 #include "MyRenderer.hpp"
 
 MINE_NAMESPACE_BEGIN
 
-MyRenderer* MyRenderer::create(const std::string &name) {
-    MyRenderer *mr = new MyRenderer(name);
-    mr->objectName(name);
+MyRenderer* MyRenderer::sharedRenderer(void) {
+    if(nullptr == _sharedRenderer) {
+        _sharedRenderer = new MyRenderer();
+        _sharedRenderer->objectName("MyRenderer");
+    }
     
-    return mr;
+    return _sharedRenderer;
 }
 
-MyRenderer::MyRenderer(const std::string &name):
-_rendererName(name),
+MyRenderer::MyRenderer(void):
 _bufferBits(kBufferBitColor | kBufferBitDepth) {
     initialize();
 }
@@ -51,6 +56,10 @@ void MyRenderer::drawArrays(int mode, int first, int count) {
     glDrawArrays(mode, first, count);
 }
 
+void MyRenderer::drawElements(const MyBufferObject *elementBuf, int mode, int count) {
+    glDrawElements(mode, count, GL_UNSIGNED_INT, elementBuf);
+}
+
 void MyRenderer::renderModel(const MyModelComponent *model) {
     MINE_ASSERT2(model, "ERROR = MyRenderer::renderModel, model null");
     /*
@@ -61,6 +70,21 @@ void MyRenderer::renderModel(const MyModelComponent *model) {
         glDrawArrays(model->renderMode(), model->renderStart(), model->renderCount());
     }
      */
+}
+
+void MyRenderer::renderActor(const MyActor *actor) {
+    MyModelComponent *model = dynamic_cast<MyModelComponent*>(actor->componentByType(MyActorComponent::kComponentTypeModel));
+    MyVertexArrayObject *vertexArrayObj = MyVertexArrayObject::sharedVertexArrayObject();
+    vertexArrayObj->bindModel(model);
+    const MyMaterial *material = model->material();
+    MyProgram *program = material->shadingProgram();
+    
+    program->bindActor(actor->transform(), material);
+    if(model->elementBuffer()) {
+        drawElements(model->elementBuffer(), model->primitive(), model->renderCount());
+    } else {
+        drawArrays(model->primitive(), model->renderStart(), model->renderCount());
+    }
 }
 
 MINE_NAMESPACE_END

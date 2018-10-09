@@ -31,6 +31,8 @@ class MyFVector4;
 class MyFMatrix4;
 
 class MyTexture;
+class MyMaterial;
+class MyTransformComponent;
 
 class MyProgram: public MyUniqueObject {
 public:
@@ -76,6 +78,7 @@ public:
     
 public:
     int bindTexture(const char* name, const MyTexture *texture);
+    void bindActor(const MyTransformComponent *transform, const MyMaterial *material);
     
 public:
     static const int kAttribPosition = 0;

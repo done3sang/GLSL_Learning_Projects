@@ -12,7 +12,7 @@
 #include "MyObject.hpp"
 #include "MyTemplate.hpp"
 #include "MyDirector.hpp"
-#include "MyRenderer.hpp"
+#include "myrenderer/MyRenderer.hpp"
 #include "MyErrorDesc.hpp"
 
 // math
@@ -45,10 +45,10 @@
 #include "myactor/MySpotLight.hpp"
 
 // world
-#include "MyWorld.hpp"
+#include "myworld/MyWorld.hpp"
 
 // renderer
-#include "myrender/MyVertexAttribute.hpp"
+#include "myrender/MyVertex.hpp"
 #include "mymaterial/MyImage.hpp"
 #include "mymaterial/MyTexture.hpp"
 #include "mymaterial/MyTexture2D.hpp"

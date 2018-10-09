@@ -21,13 +21,11 @@ MINE_NAMESPACE_BEGIN
 class MyUniqueObject;
 class MyBufferObject;
 class MyObject;
+class MyModelComponent;
 
-class MyVertexArrayObject: public MyUniqueObject {
+class MyVertexArrayObject: public MySingletonObject {
 public:
-    MyVertexArrayObject(void):_vertexArrayId(0) {}
-    ~MyVertexArrayObject(void);
-    
-    static MyVertexArrayObject* create(void);
+    static MyVertexArrayObject* sharedVertexArrayObject(void);
     
     bool operator==(const MyVertexArrayObject& another) const {
         return 0 != _vertexArrayId && _vertexArrayId == another._vertexArrayId;
@@ -37,24 +35,27 @@ public:
         return !operator==(another);
     }
     
-    bool valid(void) const { return 0 != _vertexArrayId; }
-    bool validate(void) const;
+    void bind(void) const;
+    void enableVertexAttribArray(int attrib) const;
     
-    void bindVertexArray(void);
-    void enableVertexAttribArray(int attrib);
+    void vertexAttribPoint(const MyBufferObject &bufferObject,
+                           int attrib, int size, int stride, int offset = 0) const;
     
-    void vertexAttribPoint(MyBufferObject &bufferObject,
-                           int attrib, int size, int stride, int offset = 0);
-    
-    void deleteVertexArray(void);
+    void bindModel(const MyModelComponent *model) const;
     
 public:
-    static MyVertexArrayObject* runningVertexArrayObject(void);
+    static const MyVertexArrayObject* current(void);
+    
+private:
+    MyVertexArrayObject(void);
+    virtual ~MyVertexArrayObject(void);
+    
+    void purge(void);
     
 private:
     GLuint _vertexArrayId;
     
-    static MyVertexArrayObject *_runningVertexArrayObject;
+    static MyVertexArrayObject *_sharedVertexArrayObject;
 };
 
 MINE_NAMESPACE_END

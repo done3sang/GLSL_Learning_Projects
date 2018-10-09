@@ -17,11 +17,6 @@ TestWorld* TestWorld::create(void) {
 
 bool TestWorld::initialize(void) {
     MyDirector *sharedDirector = MyDirector::sharedDirector();
-    MyRenderer *renderer = MyRenderer::create("Normal");
-    renderer->clearBufferBit(MyRenderer::kBufferBitColor | MyRenderer::kBufferBitDepth);
-    sharedDirector->mainRenderer(renderer);
-    MyVertexArrayObject *vao = MyVertexArrayObject::create();
-    sharedDirector->mainVertexArrayObject(vao);
     
     /*
     MyActor *actor = MyActor::createWithName("triangle");
@@ -37,14 +32,14 @@ bool TestWorld::initialize(void) {
     actor->addComponent(model);
     attachActor(actor);
     */
-    MyActor *actor = MyActor::createWithName("torus");
+    MyActor *actor = MyActor::actorWithName("torus");
     if(MyModelComponent *model = MyModelGenerator::generateTorus(.4f, .6f, 8, 8)) {
         actor->addComponent(model);
     } else {
         return false;
     }
     attachActor(actor);
-    MyPointLight *light = MyPointLight::createWithName();
+    MyPointLight *light = MyPointLight::pointWithName();
     attachActor(light);
     
     return true;

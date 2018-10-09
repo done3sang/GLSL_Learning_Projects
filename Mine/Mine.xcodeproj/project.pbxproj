@@ -16,6 +16,8 @@
 		1401E6011FCD11EA00D83812 /* MyProgram.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1401E5FF1FCD11EA00D83812 /* MyProgram.hpp */; };
 		1403C3B820D8FD63000BD8E7 /* MyData.inl in Sources */ = {isa = PBXBuildFile; fileRef = 1403C3B620D8FD63000BD8E7 /* MyData.inl */; };
 		1403C3B920D8FD63000BD8E7 /* MyData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 1403C3B720D8FD63000BD8E7 /* MyData.hpp */; };
+		140560A8216C8554008AD87B /* MyString.inl in Sources */ = {isa = PBXBuildFile; fileRef = 140560A6216C8554008AD87B /* MyString.inl */; };
+		140560A9216C8554008AD87B /* MyString.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 140560A7216C8554008AD87B /* MyString.hpp */; };
 		141A540D1FFB743C00D64180 /* MyModelGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 141A540B1FFB743C00D64180 /* MyModelGenerator.cpp */; };
 		141A540E1FFB743C00D64180 /* MyModelGenerator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 141A540C1FFB743C00D64180 /* MyModelGenerator.hpp */; };
 		141A54191FFCE58C00D64180 /* MyLightActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 141A54171FFCE58C00D64180 /* MyLightActor.cpp */; };
@@ -131,6 +133,8 @@
 		1401E5FF1FCD11EA00D83812 /* MyProgram.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyProgram.hpp; sourceTree = "<group>"; };
 		1403C3B620D8FD63000BD8E7 /* MyData.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyData.inl; sourceTree = "<group>"; };
 		1403C3B720D8FD63000BD8E7 /* MyData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyData.hpp; sourceTree = "<group>"; };
+		140560A6216C8554008AD87B /* MyString.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyString.inl; sourceTree = "<group>"; };
+		140560A7216C8554008AD87B /* MyString.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyString.hpp; sourceTree = "<group>"; };
 		141A540B1FFB743C00D64180 /* MyModelGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyModelGenerator.cpp; sourceTree = "<group>"; };
 		141A540C1FFB743C00D64180 /* MyModelGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyModelGenerator.hpp; sourceTree = "<group>"; };
 		141A54171FFCE58C00D64180 /* MyLightActor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyLightActor.cpp; sourceTree = "<group>"; };
@@ -282,10 +286,10 @@
 				14E6D0911FDE447000999ED6 /* myactor */,
 				14E6D0AA1FDE7E1800999ED6 /* myactorcomponent */,
 				14BBD6571FDA59F800EFBF0D /* myxml */,
+				140560AA216C9897008AD87B /* myworld */,
+				140560AB216C9FB1008AD87B /* myrenderer */,
 				14EF00771FD69FD70048F4D5 /* MyDirector.hpp */,
 				14EF00761FD69FD70048F4D5 /* MyDirector.cpp */,
-				14E4A6691FF0A8920090973F /* MyWorld.hpp */,
-				14E4A6681FF0A8920090973F /* MyWorld.cpp */,
 				144349181FD13B20006DD6D2 /* MyAutoreleasePool.hpp */,
 				144349171FD13B20006DD6D2 /* MyAutoreleasePool.cpp */,
 				25A889831FDD12E10078F455 /* MyTimerManager.hpp */,
@@ -298,8 +302,6 @@
 				1401E5F41FCC13BD00D83812 /* MyErrorDesc.hpp */,
 				1401E5F31FCC13BC00D83812 /* MyErrorDesc.cpp */,
 				14B24D931FCEAD9900121A65 /* MyTemplate.hpp */,
-				144349041FD103CC006DD6D2 /* MyRenderer.hpp */,
-				144349031FD103CC006DD6D2 /* MyRenderer.cpp */,
 				1443490C1FD12BB3006DD6D2 /* MyObject.hpp */,
 				1443490B1FD12BB3006DD6D2 /* MyObject.cpp */,
 				14F9EFC81FD79B7E00EAF6E1 /* Mine.hpp */,
@@ -322,6 +324,24 @@
 				1403C3B620D8FD63000BD8E7 /* MyData.inl */,
 			);
 			path = mydata;
+			sourceTree = "<group>";
+		};
+		140560AA216C9897008AD87B /* myworld */ = {
+			isa = PBXGroup;
+			children = (
+				14E4A6691FF0A8920090973F /* MyWorld.hpp */,
+				14E4A6681FF0A8920090973F /* MyWorld.cpp */,
+			);
+			path = myworld;
+			sourceTree = "<group>";
+		};
+		140560AB216C9FB1008AD87B /* myrenderer */ = {
+			isa = PBXGroup;
+			children = (
+				144349041FD103CC006DD6D2 /* MyRenderer.hpp */,
+				144349031FD103CC006DD6D2 /* MyRenderer.cpp */,
+			);
+			path = myrenderer;
 			sourceTree = "<group>";
 		};
 		143B02BD20DCE7FA006CDD08 /* mymaterial */ = {
@@ -372,6 +392,8 @@
 			children = (
 				1464073D20E4C50D008F17B5 /* MyArray.hpp */,
 				1464073C20E4C50D008F17B5 /* MyArray.inl */,
+				140560A7216C8554008AD87B /* MyString.hpp */,
+				140560A6216C8554008AD87B /* MyString.inl */,
 			);
 			path = mystructure;
 			sourceTree = "<group>";
@@ -588,6 +610,7 @@
 				143B02C120DCE83B006CDD08 /* MyMaterial.hpp in Headers */,
 				14E6D0A51FDE6F4F00999ED6 /* MyActor.hpp in Headers */,
 				14BBD65F1FDA655300EFBF0D /* MyXMLNode.hpp in Headers */,
+				140560A9216C8554008AD87B /* MyString.hpp in Headers */,
 				14E6D0B21FDE854100999ED6 /* MyMaterialComponent.hpp in Headers */,
 				14E4A66B1FF0A8920090973F /* MyWorld.hpp in Headers */,
 				1464074320E4E42C008F17B5 /* MyFileStream.hpp in Headers */,
@@ -703,6 +726,7 @@
 				14BBD65E1FDA655300EFBF0D /* MyXMLNode.cpp in Sources */,
 				14C4978020E20EEE00BA13C1 /* MyMemoryBlock.cpp in Sources */,
 				143B02C020DCE83B006CDD08 /* MyMaterial.cpp in Sources */,
+				140560A8216C8554008AD87B /* MyString.inl in Sources */,
 				14E4A66A1FF0A8920090973F /* MyWorld.cpp in Sources */,
 				14E6D0B11FDE854100999ED6 /* MyMaterialComponent.cpp in Sources */,
 				146B9CDB204156BC007A4F59 /* MyTransformation.inl in Sources */,

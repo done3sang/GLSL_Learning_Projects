@@ -15,9 +15,9 @@
 
 MINE_NAMESPACE_BEGIN
 
-MyMaterial* MyMaterial::materialWithName(const char *name) {
+MyMaterial* MyMaterial::material(void) {
     MyMaterial *mat = new MyMaterial;
-    mat->objectName(name);
+    mat->objectName("MyMaterial");
     return mat;
 }
 

@@ -43,7 +43,7 @@ MyData<char>* MyFileManager::loadFile(const char *filepath) const {
     fseek(fp, 0, SEEK_END);
     
     size_t fileLength = ftell(fp);
-    MyData<char>* data = MyData<char>::createWithLength(fileLength);
+    MyData<char>* data = MyData<char>::dataWithLength(fileLength);
     
     fseek(fp, 0, SEEK_SET);
     fread(data->raw(), fileLength, 1, fp);

@@ -22,13 +22,6 @@ MyAutoreleasePool* MyAutoreleasePool::sharedAutoreleasePool(void) {
     return _sharedAutorelasePool;
 }
 
-void MyAutoreleasePool::closeAutoreleasePool(void) {
-    if(_sharedAutorelasePool) {
-        delete _sharedAutorelasePool;
-        _sharedAutorelasePool = nullptr;
-    }
-}
-
 bool MyAutoreleasePool::contains(const MyObject *object) const {
     MINE_ASSERT2(object, "MyAutoreleasePool::contains should be non-null");
     

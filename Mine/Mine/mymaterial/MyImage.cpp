@@ -53,7 +53,7 @@ void MyImage::initWithColor(const MyFVector4 &color) {
         static_cast<unsigned char>(color.y * 255),
         static_cast<unsigned char>(color.z * 255),
         static_cast<unsigned char>(color.w * 255)};
-    _data = MyData<unsigned char>::createWithData(data, sizeof(data));
+    _data = MyData<unsigned char>::dataWithRaw(data, sizeof(data));
     _data->addRef();
 }
 
@@ -139,7 +139,7 @@ void MyImage::initWithContentsOfFile(const char *path) {
     png_destroy_read_struct(&png_ptr, &info_ptr, nullptr);
     fclose(fp);
     
-    _data = MyData<unsigned char>::createWithData(rgba_data, rgba_size);
+    _data = MyData<unsigned char>::dataWithRaw(rgba_data, rgba_size);
     RETAIN_OBJECT(_data);
     _width = static_cast<int>(width);
     _height = static_cast<int>(height);

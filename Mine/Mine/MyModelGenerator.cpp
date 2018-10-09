@@ -26,19 +26,16 @@ MyModelComponent* MyModelGenerator::generateTorus(float innerRadius,
     MINE_ASSERT2(innerRadius > 0.0f && outerRadius > innerRadius, "ERROR = MyModelGenerator::generateTorus, radius not paired");
     MINE_ASSERT2(nsides > 0 && nrings > 0,  "ERROR = MyModelGenerator::generateTorus, side and ring not valid");
     
-    MyData<float> vertexData;
-    MyData<unsigned int> elemData;
+    MyData<float> *vertexData = MyData<float>::data();
+    MyData<unsigned int> *elemData = MyData<unsigned int>::data();
     
     torusGenerator(innerRadius, outerRadius, nsides, nrings, vertexData, elemData);
     
     MyModelComponent *model = MyModelComponent::model();
-    if(!model->loadVertexData(dataVec,
+    if(!model->loadWithData(MyModelComponent::kModelPrimitiveTriangleStrip,
+                              vertexData,
                               "position[3]_normal[3]_texcoord0[2]",
-                              MyModelComponent::kModelPrimitiveTriangleStrip)) {
-        return nullptr;
-    }
-    model->modelProgram("basic");
-    if(!model->loadElementData(elemVec)) {
+                              elemData)) {
         return nullptr;
     }
     
@@ -49,8 +46,10 @@ void MyModelGenerator::torusGenerator(float innerRadius,
                                       float outerRadius,
                                       size_t nsides,
                                       size_t nrings,
-                                      MyData<float> &vertexData,
-                                      MyData<unsigned int> &elemData) {
+                                      MyData<float> *vertexData,
+                                      MyData<unsigned int> *elemData) {
+    MINE_ASSERT(innerRadius < outerRadius && vertexData && elemData);
+    
     const float ringRadius((innerRadius + outerRadius) * 0.5f);
     const float sideRadius((outerRadius - innerRadius) * 0.5f);
     const float frings(static_cast<float>(nrings));
@@ -92,22 +91,22 @@ void MyModelGenerator::torusGenerator(float innerRadius,
             py = sny * sideRadius;
             pz = cz + dz * snx;
             
-            vertexData.push_back(px);
-            vertexData.push_back(py);
-            vertexData.push_back(pz);
-            vertexData.push_back(nx);
-            vertexData.push_back(ny);
-            vertexData.push_back(nz);
-            vertexData.push_back(tx);
-            vertexData.push_back(ty);
+            vertexData->push_back(px);
+            vertexData->push_back(py);
+            vertexData->push_back(pz);
+            vertexData->push_back(nx);
+            vertexData->push_back(ny);
+            vertexData->push_back(nz);
+            vertexData->push_back(tx);
+            vertexData->push_back(ty);
             
             sideRadian += sideStep;
             ty += sideTexStep;
             
             // element drawn by gl_triangle_strip
             if(ringIndex < nrings) {
-                elemVec.push_back(elemIndex);
-                elemVec.push_back(elemIndex + ringStride);
+                elemData->push_back(elemIndex);
+                elemData->push_back(elemIndex + ringStride);
             }
         }
         

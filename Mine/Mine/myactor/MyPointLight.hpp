@@ -23,7 +23,7 @@ class MyPointLightComponent;
 
 class MyPointLight: public MyLightActor {
 public:
-    static MyPointLight* createWithName(const std::string &name = "Point Light");
+    static MyPointLight* pointWithName(const char* name = "Point Light");
     
     void bindProgram(MyProgram *prog) override;
     

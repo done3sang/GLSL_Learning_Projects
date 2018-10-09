@@ -23,7 +23,7 @@ class MySpotLightComponent;
 
 class MySpotLight: public MyLightActor {
 public:
-    static MySpotLight* createWithName(const std::string &name);
+    static MySpotLight* spotWithName(const char* name);
     
     void bindProgram(MyProgram *prog) override;
     

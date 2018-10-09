@@ -16,8 +16,8 @@
 #include "MyCoordinate.hpp"
 #include "MyTransformComponent.hpp"
 #include "MyModelComponent.hpp"
-#include "MyVertexAttribute.hpp"
-#include "MyVertexAttributeManager.hpp"
+#include "MyVertex.hpp"
+#include "MyVertexManager.hpp"
 #include "MyVertexArrayObject.hpp"
 #include "MyProgram.hpp"
 #include "MyWorld.hpp"
@@ -36,7 +36,7 @@ std::vector<size_t> MyActor::_sharedUsedActorId;
 std::vector<size_t> MyActor::_sharedDeletedActorId;
 std::unordered_map<size_t, MyLightActor*> MyActor::_worldLightMap;
 
-MyActor* MyActor::createWithName(const std::string &name) {
+MyActor* MyActor::actorWithName(const char *name) {
     MyActor *act = new MyActor(name);
     act->objectName(name);
     return act;
@@ -71,7 +71,7 @@ const std::unordered_map<size_t, MyLightActor*>& MyActor::worldLightMap(void) {
     return _worldLightMap;
 }
 
-MyActor::MyActor(const std::string &name):
+MyActor::MyActor(const char *name):
 _actorName(name), _actorId(sharedActorId()) {
     _transform = MyTransformComponent::create();
     addComponent(_transform);
@@ -144,33 +144,6 @@ void MyActor::clearComponent(void) {
     }
     
     _actorComponents.clear();
-}
-
-void MyActor::render(void) {
-    MyActorComponent *comp = componentByType(MyActorComponent::kComponentTypeModel);
-    MyModelComponent *modelComp = dynamic_cast<MyModelComponent*>(comp);
-    MyVertexArrayObject *mainVAO = MyDirector::sharedDirector()->mainVertexArrayObject();
-    MyRenderer *renderer = MyDirector::sharedDirector()->mainRenderer();
-    MINE_ASSERT2(modelComp, "ERROR = MyActor::render, model null");
-    MINE_ASSERT2(mainVAO, "ERROR = MyActor::render, vao null");
-    
-    auto vertexAtt = modelComp->modelVertexAttribute();
-    MyBufferObject *vertexBuf = modelComp->modelVertexBuffer();
-    //MyBufferObject *elemBuf = modelComp->modelElementBuffer();
-    MyProgram *prog = modelComp->modelProgram();
-    
-    prog->use();
-    
-    mainVAO->bindVertexArray();
-    for(auto &iter: vertexAtt->attributeMap()) {
-        mainVAO->vertexAttribPoint(*vertexBuf, iter.attrib, iter.size, vertexAtt->stride(), iter.offset);
-    }
-    
-    //for(const auto &lightIter: _worldLightMap) {
-       // lightIter.second->bindProgram(prog);
-    //}
-    
-    renderer->renderModel(modelComp);
 }
 
 MINE_NAMESPACE_END

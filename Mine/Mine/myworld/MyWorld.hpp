@@ -26,9 +26,7 @@ public:
     void destroy(void);
     
     virtual void update(float deltaTime);
-    virtual void render(void);
-    
-    static MyWorld* create(void) { return nullptr; }
+    void render(void);
     
 public:
     bool isActorAttached(MyActor *actor) const;
@@ -46,6 +44,8 @@ public:
 protected:
     MyWorld(void) {}
     virtual ~MyWorld(void) { destroy(); }
+    
+    void renderActor(const MyActor* actor);
     
 private:
     std::unordered_map<size_t, MyActor*> _worldActorMap;

@@ -20,12 +20,14 @@
 
 MINE_NAMESPACE_BEGIN
 
-class MyUniqueObject;
+class MySingletonObject;
 class MyModelComponent;
+class MyActor;
+class MyBufferObject;
 
-class MyRenderer: public MyUniqueObject {
+class MyRenderer: public MySingletonObject {
 public:
-    static MyRenderer* create(const std::string &name);
+    static MyRenderer* sharedRenderer(void);
     
     static const int kBufferBitColor = GL_COLOR_BUFFER_BIT;
     static const int kBufferBitDepth = GL_DEPTH_BUFFER_BIT;
@@ -34,26 +36,26 @@ public:
     static const int kRenderPrimitiveTriangleStrip = GL_TRIANGLE_STRIP;
     
 public:
-    const std::string &rendererName(void) const { return _rendererName;}
-    
     void clearColor(float red, float green, float blue, float alpha);
     void clearBufferBit(int bufferBits);
     void viewport(int, int ,int, int);
     
     void prepareRender(void);
     void drawArrays(int mode, int first, int count);
-    //void drawElements(int mode, int count, int elemType, )
+    void drawElements(const MyBufferObject *elementBuf, int mode, int count);
     
     // model
+    void renderActor(const MyActor *actor);
     void renderModel(const MyModelComponent *model);
     
 private:
     explicit
-    MyRenderer(const std::string &name);
-    ~MyRenderer(void) {}
+    MyRenderer(void);
+    virtual FORCEINLINE ~MyRenderer(void) {}
     
-    std::string _rendererName;
     int _bufferBits;
+    
+    static MyRenderer *_sharedRenderer;
     
     void initialize(void);
 };
