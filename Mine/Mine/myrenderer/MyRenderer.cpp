@@ -18,9 +18,11 @@
 
 MINE_NAMESPACE_BEGIN
 
+MyRenderer* MyRenderer::_sharedRenderer = nullptr;
+
 MyRenderer* MyRenderer::sharedRenderer(void) {
     if(nullptr == _sharedRenderer) {
-        _sharedRenderer = new MyRenderer();
+        _sharedRenderer = new MyRenderer;
         _sharedRenderer->objectName("MyRenderer");
     }
     
@@ -56,20 +58,8 @@ void MyRenderer::drawArrays(int mode, int first, int count) {
     glDrawArrays(mode, first, count);
 }
 
-void MyRenderer::drawElements(const MyBufferObject *elementBuf, int mode, int count) {
-    glDrawElements(mode, count, GL_UNSIGNED_INT, elementBuf);
-}
-
-void MyRenderer::renderModel(const MyModelComponent *model) {
-    MINE_ASSERT2(model, "ERROR = MyRenderer::renderModel, model null");
-    /*
-    if(model->modelElemented()) {
-        model->modelElementBuffer()->bindBuffer();
-        glDrawElements(model->renderMode(), model->renderCount(), GL_UNSIGNED_INT, nullptr);
-    } else {
-        glDrawArrays(model->renderMode(), model->renderStart(), model->renderCount());
-    }
-     */
+void MyRenderer::drawElements(int mode, int count) {
+    glDrawElements(mode, count, GL_UNSIGNED_INT, nullptr);
 }
 
 void MyRenderer::renderActor(const MyActor *actor) {
@@ -81,7 +71,7 @@ void MyRenderer::renderActor(const MyActor *actor) {
     
     program->bindActor(actor->transform(), material);
     if(model->elementBuffer()) {
-        drawElements(model->elementBuffer(), model->primitive(), model->renderCount());
+        drawElements(model->primitive(), model->renderCount());
     } else {
         drawArrays(model->primitive(), model->renderStart(), model->renderCount());
     }

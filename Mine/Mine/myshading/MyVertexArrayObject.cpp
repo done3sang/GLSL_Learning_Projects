@@ -66,6 +66,9 @@ void MyVertexArrayObject::bindModel(const MyModelComponent *model) const {
     for(auto &iter: vertex->attributeMap()) {
         vertexAttribPoint(vertexBuf, iter.attrib, iter.size, vertex->stride(), iter.offset);
     }
+    if(model->elementBuffer()) {
+        model->elementBuffer()->bind();
+    }
 }
 
 MINE_NAMESPACE_END

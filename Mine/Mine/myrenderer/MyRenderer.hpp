@@ -42,11 +42,10 @@ public:
     
     void prepareRender(void);
     void drawArrays(int mode, int first, int count);
-    void drawElements(const MyBufferObject *elementBuf, int mode, int count);
+    void drawElements(int mode, int count);
     
-    // model
+    // actor
     void renderActor(const MyActor *actor);
-    void renderModel(const MyModelComponent *model);
     
 private:
     explicit
