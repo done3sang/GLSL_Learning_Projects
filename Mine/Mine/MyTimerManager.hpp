@@ -21,7 +21,7 @@ class MySingletonObject;
 class MyTimerManager final: public MySingletonObject {
 public:
     static MyTimerManager* sharedTimerManager(void);
-    static void closeTimerManager(void);
+    static void close(void);
     
     bool timing(void) const { return _timing; }
     double startTime(void) const { return _startTime; }

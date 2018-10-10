@@ -22,6 +22,13 @@ MyAutoreleasePool* MyAutoreleasePool::sharedAutoreleasePool(void) {
     return _sharedAutorelasePool;
 }
 
+void MyAutoreleasePool::close(void) {
+    if(_sharedAutorelasePool) {
+        _sharedAutorelasePool->purgePool();
+        _sharedAutorelasePool = nullptr;
+    }
+}
+
 bool MyAutoreleasePool::contains(const MyObject *object) const {
     MINE_ASSERT2(object, "MyAutoreleasePool::contains should be non-null");
     
@@ -65,11 +72,11 @@ void MyAutoreleasePool::clearPool(void) {
 }
 
 void MyAutoreleasePool::purgePool(void) {
-    for(const auto &obj: _objectArray) {
+    for(auto &obj: _objectArray) {
         obj->release();
     }
 
-#ifdef MINE_DEBUG
+#ifdef MINE_ARC_DEBUG
     for(const auto &obj: _objectArray) {
         MINE_ASSERT(obj->refCount() == 0);
     }

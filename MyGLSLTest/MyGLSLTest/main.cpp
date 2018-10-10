@@ -11,8 +11,9 @@
 #include <string>
 #include <sstream>
 //#include "TestWorld.hpp"
-#include "BaseWorld.hpp"
+//#include "BaseWorld.hpp"
 //#include "UniformScene.hpp"
+#include "MineWorld.hpp"
 #include "MyTest/TestMath.hpp"
 
 USING_MINE_NAMESPACE;
@@ -32,21 +33,6 @@ MyErrorDisposer* MyErrorDisposer::create(void) {
     return disposer;
 }
 
-/*
-void* operator new(size_t sz) {
-    std::cout << "come up with global new\n";
-    return malloc(sz);
-}
-
-void operator delete(void* p) {
-    std::cout << "come up with global delete\n";
-    MyObject *obj = (MyObject*)p;
-    if(obj) {
-        std::cout << "delete object = " << obj->objectName() << "\n";
-    }
-    free(p);
-}*/
-
 int main(int argc, const char * argv[]) {
     //MathTest test;
     //test.run();
@@ -59,7 +45,7 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    MyWorld *myWorld = BaseScene::create();
+    MyWorld *myWorld = MineWorld::world();
     
     if(!myWorld->initialize()) {
         sharedDirector->closeDirector();

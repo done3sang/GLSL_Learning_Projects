@@ -10,10 +10,11 @@
 #define MyTransformComponent_hpp
 
 #include "MyPrecompiled.hpp"
-#include "MyVector.hpp"
+//#include "MyVector.hpp"
+#include "../mymath/MyVector.hpp"
 //#include "MyMatrix.hpp"
 //#include "MyCoordinate.hpp"
-#include "MyTransformation.hpp"
+#include "../mymath/MyTransformation.hpp"
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
@@ -106,6 +107,7 @@ private:
     MyFVector3 _forward;
     
     FORCEINLINE void update(void) {
+        normalizeQuaternion(_rotation);
         MyTransformation::quaternionToMatrix(_rotation, _transformMatrix);
         _right.x = _transformMatrix.valueAt(0, 0);
         _right.y = _transformMatrix.valueAt(1, 0);

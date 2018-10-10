@@ -23,7 +23,7 @@ class MyObject;
 class MyAutoreleasePool final: public MySingleton {
 public:
     static MyAutoreleasePool* sharedAutoreleasePool(void);
-    static void closeAutoreleasePool(void);
+    static void close(void);
     
     void addObject(MyObject *object);
     bool contains(const MyObject *object) const;

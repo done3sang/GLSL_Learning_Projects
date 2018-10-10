@@ -38,9 +38,9 @@ void MyWorld::update(float deltaTime) {
 }
 
 void MyWorld::render(void) {
-    MyRenderer *renderer = MyRenderer::sharedRenderer();
+    MyRenderer *rendererMgr = MyRenderer::sharedRenderer();
     for(auto &iter: _renderActorMap) {
-        renderer->renderActor(iter.second);
+        rendererMgr->renderActor(iter.second);
     }
 }
 

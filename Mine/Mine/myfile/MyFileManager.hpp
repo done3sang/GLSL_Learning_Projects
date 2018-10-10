@@ -24,7 +24,7 @@ class MyData;
 class MyFileManager: public MySingletonObject {
 public:
     static MyFileManager* sharedFileManager(void);
-    static void closeFileManager(void);
+    static void close(void);
     
     MyData<char>* loadFile(const char* filepath) const;
     MyFileStream* streamFile(const char* filepath, size_t bufferLength = 1024) const;

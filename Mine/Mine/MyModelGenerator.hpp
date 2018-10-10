@@ -30,6 +30,8 @@ public:
                                     size_t nsides,
                                     size_t nrings);
     
+    static MyModelComponent* generateSimpleTriangle(float span);
+    
 private:
     static void torusGenerator(float innerRadius,
                                float outerRadius,

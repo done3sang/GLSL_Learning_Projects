@@ -38,6 +38,7 @@ FORCEINLINE MyArray<T>::MyArray(size_t capacity):
 _data(nullptr),
 _length(0),
 _capacity(0) {
+    objectName("MyArray");
     expand(capacity);
 }
 
@@ -46,11 +47,13 @@ FORCEINLINE MyArray<T>::MyArray(const T* dataArr, size_t length):
 _data(nullptr),
 _length(0),
 _capacity(0) {
+    objectName("MyArray");
     write(dataArr, length);
 }
 
 template<typename T>
 FORCEINLINE MyArray<T>::MyArray(const MyArray& arr) {
+    objectName("MyArray");
     operator=(arr);
 }
 
@@ -107,7 +110,7 @@ FORCEINLINE void MyArray<T>::pop_back(size_t num) {
     if(num > 0) {
         if constexpr(std::is_base_of<MyObject, T>::value) {
             for(size_t i = _length - num; i != _length; ++i) {
-                _data[i].release();
+                _data[i]->release();
             }
         }
         _length -= num;
@@ -144,7 +147,7 @@ template<typename T>
 FORCEINLINE void MyArray<T>::clear(void) {
     if constexpr(std::is_base_of<MyObject, T>::value) {
         for(size_t i = 0; i != _length; ++i) {
-            _data[i].release();
+            _data[i]->release();
         }
     }
     _length = 0;
@@ -197,6 +200,8 @@ FORCEINLINE void MyArray<T>::expand(size_t newCapacity) {
                 v->addRef();
             }
         }
+        
+        MyMemoryManager::sharedMemoryManager()->deallocate(_data);
     }
     
     _data = newData;

@@ -31,11 +31,8 @@ MyShadingManager* MyShadingManager::sharedShadingManager(void) {
     return _sharedShadingManager;
 }
 
-void MyShadingManager::closeShadingManager(void)  {
-    if(_sharedShadingManager) {
-        _sharedShadingManager->release();
-        _sharedShadingManager = nullptr;
-    }
+void MyShadingManager::close(void)  {
+    RELEASE_OBJECT(_sharedShadingManager);
 }
 
 MyShadingManager::~MyShadingManager(void) {

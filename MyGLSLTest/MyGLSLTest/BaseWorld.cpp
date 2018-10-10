@@ -49,36 +49,36 @@ BaseScene::~BaseScene(void) {
 bool BaseScene::initialize(void) {
     MyDirector *sharedDirector = MyDirector::sharedDirector();
     
-    _myProgram = MyShadingManager::sharedShadingManager()->programByName("basic");
-    _myProgram->retain();
-    
-    float positionData[] = {
-        -0.8f, -0.8f, 0.0f,
-        0.8f, -0.8f, 0.0f,
-        0.0f, 0.8f, 0.0f
-    };
-    float colorData[] = {
-        1.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 1.0f
-    };
-    float texCoordData[] = {
-        0.0f, 0.0f,
-        1.0f, 0.0f,
-        0.5f, 1.0f
-    };
-    
-    _positionBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
-    _positionBuffer->addRef();
-    _positionBuffer->bufferData(9 * sizeof(float), positionData);
-    
-    _colorBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
-    _colorBuffer->addRef();
-    _colorBuffer->bufferData(9 * sizeof(float), colorData);
-    
-    _texCoordBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
-    _texCoordBuffer->addRef();
-    _texCoordBuffer->bufferData(6 * sizeof(float), texCoordData);
+//    _myProgram = MyShadingManager::sharedShadingManager()->programByName("basic");
+//    _myProgram->retain();
+//
+//    float positionData[] = {
+//        -0.8f, -0.8f, 0.0f,
+//        0.8f, -0.8f, 0.0f,
+//        0.0f, 0.8f, 0.0f
+//    };
+//    float colorData[] = {
+//        1.0f, 0.0f, 0.0f,
+//        0.0f, 1.0f, 0.0f,
+//        0.0f, 0.0f, 1.0f
+//    };
+//    float texCoordData[] = {
+//        0.0f, 0.0f,
+//        1.0f, 0.0f,
+//        0.5f, 1.0f
+//    };
+//
+//    _positionBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
+//    _positionBuffer->addRef();
+//    _positionBuffer->bufferData(9 * sizeof(float), positionData);
+//
+//    _colorBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
+//    _colorBuffer->addRef();
+//    _colorBuffer->bufferData(9 * sizeof(float), colorData);
+//
+//    _texCoordBuffer = MyBufferObject::createWithBufferType(MyBufferObject::kBufferArray);
+//    _texCoordBuffer->addRef();
+//    _texCoordBuffer->bufferData(6 * sizeof(float), texCoordData);
     
     if(!sharedDirector->checkError()) {
         std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<
@@ -87,15 +87,15 @@ bool BaseScene::initialize(void) {
         sharedDirector->closeDirector();
         return false;
     }
-    
-    _myVertexArray = MyVertexArrayObject::sharedVertexArrayObject();
-    _myVertexArray->vertexAttribPoint(*_positionBuffer, MyProgram::kAttribPosition, 3, 0);
-    _myVertexArray->vertexAttribPoint(*_colorBuffer, MyProgram::kAttribColor, 3, 0);
-    _myVertexArray->vertexAttribPoint(*_texCoordBuffer, MyProgram::kAttribTexCoord0, 2, 0);
-    _myVertexArray->addRef();
-    
-    _myTexture = MyTexture2D::textureWithImage(MyImage::imageWithContentsOfFile("./Texture/flower.png"));
-    _myTexture->addRef();
+//
+//    _myVertexArray = MyVertexArrayObject::sharedVertexArrayObject();
+//    _myVertexArray->vertexAttribPoint(*_positionBuffer, MyProgram::kAttribPosition, 3, 0);
+//    _myVertexArray->vertexAttribPoint(*_colorBuffer, MyProgram::kAttribColor, 3, 0);
+//    _myVertexArray->vertexAttribPoint(*_texCoordBuffer, MyProgram::kAttribTexCoord0, 2, 0);
+//    _myVertexArray->addRef();
+//
+//    _myTexture = MyTexture2D::textureWithImage(MyImage::imageWithContentsOfFile("./Texture/flower.png"));
+//    _myTexture->addRef();
     
     if(!sharedDirector->checkError()) {
         std::cout << "OpenGL Error(" << sharedDirector->errCode() << ") = " <<

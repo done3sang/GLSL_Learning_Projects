@@ -55,6 +55,7 @@ MyModelComponent::~MyModelComponent(void) {
 }
 
 void MyModelComponent::purge(void) {
+    RELEASE_OBJECT(_vertex);
     RELEASE_OBJECT(_vertexBuffer);
     RELEASE_OBJECT(_elementBuffer);
     RELEASE_OBJECT(_material);
@@ -97,7 +98,7 @@ bool MyModelComponent::initWithData(int primitive,
     }
     
     _renderStart = 0;
-    _renderCount = static_cast<int>(vertexData->size())/vertex->strideSize();
+    _renderCount = static_cast<int>(vertexData->length())/vertex->strideSize();
     
     ASSIGN_OBJECT(_vertex, vertex);
     ASSIGN_OBJECT(_vertexBuffer, vertexBuf);

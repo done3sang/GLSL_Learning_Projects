@@ -23,7 +23,7 @@ class MyVertex;
 class MyVertexManager final: public MySingletonObject {
 public:
     static MyVertexManager* sharedVertexManager(void);
-    static void closeVertexManager(void);
+    static void close(void);
     
     MyVertex* vertexByFormat(const char *format);
     

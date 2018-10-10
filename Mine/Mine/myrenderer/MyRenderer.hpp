@@ -28,6 +28,7 @@ class MyBufferObject;
 class MyRenderer: public MySingletonObject {
 public:
     static MyRenderer* sharedRenderer(void);
+    static void close(void);
     
     static const int kBufferBitColor = GL_COLOR_BUFFER_BIT;
     static const int kBufferBitDepth = GL_DEPTH_BUFFER_BIT;

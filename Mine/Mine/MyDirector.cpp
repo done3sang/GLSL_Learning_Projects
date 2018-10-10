@@ -52,23 +52,17 @@ MyDirector::~MyDirector(void) {
 }
 
 void MyDirector::destroy(void) {
-    if(_errorCallback) {
-        _errorCallback->release();
-        _errorCallback = nullptr;
-    }
-    if(_runningWorld) {
-        _runningWorld->release();
-        _runningWorld = nullptr;
-    }
+    RELEASE_OBJECT(_errorCallback);
+    RELEASE_OBJECT(_runningWorld);
     
-    /*
-    MyFileManager::closeFileManager();
-    MyErrorDesc::closeErrorDesc();
-    MyTimerManager::closeTimerManager();
-    MyShadingManager::closeShadingManager();
-    MyVertexManager::closeVertexManager();
-    MyAutoreleasePool::closeAutoreleasePool();
-    */
+    MyFileManager::close();
+    MyErrorDesc::close();
+    MyTimerManager::close();
+    MyShadingManager::close();
+    MyVertexManager::close();
+    MyRenderer::close();
+    MyVertexArrayObject::close();
+    MyAutoreleasePool::close();
     
     if(_glfwWindow) {
         glfwDestroyWindow(_glfwWindow);
@@ -92,25 +86,11 @@ bool MyDirector::checkError(void) {
 }
 
 void MyDirector::errorCallback(MyErrorCallback *errCallback) {
-    if(_errorCallback) {
-        _errorCallback->release();
-    }
-    if(errCallback) {
-        errCallback->addRef();
-    }
-    
-    _errorCallback = errCallback;
+    ASSIGN_OBJECT(_errorCallback, errCallback);
 }
 
 void MyDirector::runWorld(MyWorld *world) {
-    if(_runningWorld) {
-        _runningWorld->release();
-    }
-    if(world) {
-        world->addRef();
-    }
-    
-    _runningWorld = world;
+    ASSIGN_OBJECT(_runningWorld, world);
 }
 
 void MyDirector::runMainLoop(void) {

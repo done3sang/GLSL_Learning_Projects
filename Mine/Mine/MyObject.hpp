@@ -84,7 +84,7 @@ public:
     
 protected:
     FORCEINLINE MySingletonObject(void) { retain(); }
-    virtual ~MySingletonObject(void);
+    FORCEINLINE virtual ~MySingletonObject(void) {}
 };
 
 class MyUniqueObject: public MyObject {

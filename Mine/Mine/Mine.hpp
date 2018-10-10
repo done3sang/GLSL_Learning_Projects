@@ -9,6 +9,7 @@
 #ifndef Mine_hpp
 #define Mine_hpp
 
+// base
 #include "MyObject.hpp"
 #include "MyTemplate.hpp"
 #include "MyDirector.hpp"
@@ -35,6 +36,7 @@
 
 // acotr component
 #include "myactorcomponent/MyActorComponent.hpp"
+#include "myactorcomponent/MyTransformComponent.hpp"
 #include "myactorcomponent/MyModelComponent.hpp"
 
 // actor
@@ -52,5 +54,6 @@
 #include "mymaterial/MyImage.hpp"
 #include "mymaterial/MyTexture.hpp"
 #include "mymaterial/MyTexture2D.hpp"
+#include "mymaterial/MyMaterial.hpp"
 
 #endif /* Mine_h */

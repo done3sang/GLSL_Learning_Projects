@@ -34,7 +34,8 @@ public:
     FORCEINLINE void metallic(float metallic) { _metallic = metallic; }
     FORCEINLINE float opacity(void) const { return _opacity; }
     FORCEINLINE void opacity(float opacity) { _opacity = opacity; }
-    FORCEINLINE MyProgram* shadingProgram(void) const { return _shadingProgram; }
+    FORCEINLINE MyProgram* shadingProgram(void) { return _shadingProgram; }
+    FORCEINLINE const MyProgram* shadingProgram(void) const { return _shadingProgram; }
     FORCEINLINE const MyTexture* baseTexture(void) const { return _baseTexture; }
     FORCEINLINE const MyTexture* normalTexture(void) const { return _normalTexture; }
     

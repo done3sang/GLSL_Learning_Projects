@@ -25,8 +25,7 @@ public:
     _memoryAddress(memoryAddress),
     _memorySize(memorySize),
     _gameObject(nullptr),
-    _previousObject(nullptr)
-    {}
+    _previousObject(nullptr) {}
     ~MyMemoryObject(void) {}
     
     FORCEINLINE void* gameObject(void) const { return _gameObject; }

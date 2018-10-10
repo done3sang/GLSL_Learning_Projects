@@ -48,7 +48,8 @@ public:
     }
     bool containComponent(const MyActorComponent *comp) const;
     
-    MyTransformComponent* transform(void) const { return _transform; }
+    MyTransformComponent* transform(void) { return _transform; }
+    const MyTransformComponent* transform(void) const { return _transform; }
     
     bool addComponent(MyActorComponent *comp);
     bool deleteComponent(MyActorComponent *comp);

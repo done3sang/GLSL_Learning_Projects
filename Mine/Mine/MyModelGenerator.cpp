@@ -42,6 +42,27 @@ MyModelComponent* MyModelGenerator::generateTorus(float innerRadius,
     return model;
 }
 
+MyModelComponent* MyModelGenerator::generateSimpleTriangle(float span) {
+    MINE_ASSERT(span > 0.0f);
+    
+    float triangleData[] = {
+        -span, -span, 0.0f,     1.0f, 0.0f, 0.0f,   0.0f, 0.0f,
+        span, -span, 0.0f,      0.0f, 1.0f, 0.0f,   1.0f, 0.0f,
+        0.0f, span, 0.0f,       0.0f, 0.0f, 1.0f,   0.5f, 1.0f
+    };
+    MyData<float> *vertexData = MyData<float>::dataWithRaw(triangleData, sizeof(triangleData)/sizeof(float));
+    MyModelComponent *model = MyModelComponent::model();
+    
+    if(!model->loadWithData(MyModelComponent::kModelPrimitiveTriangles,
+                            vertexData,
+                            "position[3]_color[3]_texcoord0[2]",
+                            nullptr)) {
+        return nullptr;
+    }
+    
+    return model;
+}
+
 void MyModelGenerator::torusGenerator(float innerRadius,
                                       float outerRadius,
                                       size_t nsides,

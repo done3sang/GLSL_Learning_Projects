@@ -15,15 +15,21 @@
 MINE_NAMESPACE_BEGIN
 
 MyImage* MyImage::image(void) {
-    return new MyImage;
+    MyImage *image = new MyImage;
+    image->objectName("image");
+    return image;
 }
 
 MyImage* MyImage::imageWithColor(const MyFVector3 &color) {
-    return imageWithColor(MyFVector4(color));
+    MyImage *image = imageWithColor(MyFVector4(color));
+    image->objectName("image");
+    return image;
 }
 
 MyImage* MyImage::imageWithColor(const MyFVector4 &color) {
-    return new MyImage(color);
+    MyImage *image = new MyImage(color);
+    image->objectName("image");
+    return image;
 }
 
 MyImage* MyImage::imageWithContentsOfFile(const char *path) {

@@ -22,11 +22,15 @@ MyRenderer* MyRenderer::_sharedRenderer = nullptr;
 
 MyRenderer* MyRenderer::sharedRenderer(void) {
     if(nullptr == _sharedRenderer) {
-        _sharedRenderer = new MyRenderer;
+        _sharedRenderer = new MyRenderer();
         _sharedRenderer->objectName("MyRenderer");
     }
     
     return _sharedRenderer;
+}
+
+void MyRenderer::close(void) {
+    RELEASE_OBJECT(_sharedRenderer);
 }
 
 MyRenderer::MyRenderer(void):
@@ -66,9 +70,8 @@ void MyRenderer::renderActor(const MyActor *actor) {
     MyModelComponent *model = dynamic_cast<MyModelComponent*>(actor->componentByType(MyActorComponent::kComponentTypeModel));
     MyVertexArrayObject *vertexArrayObj = MyVertexArrayObject::sharedVertexArrayObject();
     vertexArrayObj->bindModel(model);
-    const MyMaterial *material = model->material();
+    MyMaterial *material = model->material();
     MyProgram *program = material->shadingProgram();
-    
     program->bindActor(actor->transform(), material);
     if(model->elementBuffer()) {
         drawElements(model->primitive(), model->renderCount());

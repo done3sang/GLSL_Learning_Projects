@@ -23,7 +23,7 @@ MyVertexManager* MyVertexManager::sharedVertexManager(void) {
     return _sharedVertexMgr;
 }
 
-void MyVertexManager::closeVertexManager(void) {
+void MyVertexManager::close(void) {
     RELEASE_OBJECT(_sharedVertexMgr);
 }
 

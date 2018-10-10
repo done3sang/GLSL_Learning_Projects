@@ -17,19 +17,25 @@ MINE_NAMESPACE_BEGIN
 
 MyTexture2D* MyTexture2D::texture(const MyTextureFilter& filter,
                                   const MyTextureWrap& wrap) {
-    return new MyTexture2D(filter, wrap);
+    MyTexture2D *texture = new MyTexture2D(filter, wrap);
+    texture->objectName("MyTexture2D");
+    return texture;
 }
 
 MyTexture2D* MyTexture2D::textureWithColor(const MyFVector4 &color,
                                            const MyTextureFilter& filter,
                                            const MyTextureWrap& wrap) {
-    return new MyTexture2D(color, filter, wrap);
+    MyTexture2D *texture = new MyTexture2D(color, filter, wrap);
+    texture->objectName("MyTexture2D");
+    return texture;
 }
 
 MyTexture2D* MyTexture2D::textureWithImage(MyImage* image,
                                            const MyTextureFilter& filter,
                                            const MyTextureWrap& wrap) {
-    return new MyTexture2D(image, filter, wrap);
+    MyTexture2D *texture = new MyTexture2D(image, filter, wrap);
+    texture->objectName("MyTexture2D");
+    return texture;
 }
 
 MyTexture2D::MyTexture2D(const MyFVector4 &color,

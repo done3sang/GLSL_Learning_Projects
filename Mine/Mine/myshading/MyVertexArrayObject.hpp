@@ -26,6 +26,7 @@ class MyModelComponent;
 class MyVertexArrayObject: public MySingletonObject {
 public:
     static MyVertexArrayObject* sharedVertexArrayObject(void);
+    static void close(void);
     
     bool operator==(const MyVertexArrayObject& another) const {
         return 0 != _vertexArrayId && _vertexArrayId == another._vertexArrayId;

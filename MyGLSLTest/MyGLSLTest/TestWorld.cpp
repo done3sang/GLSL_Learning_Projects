@@ -17,7 +17,6 @@ TestWorld* TestWorld::create(void) {
 
 bool TestWorld::initialize(void) {
     MyDirector *sharedDirector = MyDirector::sharedDirector();
-    
     /*
     MyActor *actor = MyActor::createWithName("triangle");
     MyModelComponent *model = MyModelComponent::create();

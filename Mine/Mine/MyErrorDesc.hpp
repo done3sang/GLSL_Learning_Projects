@@ -25,7 +25,7 @@ class MyErrorCallback;
 class MyErrorDesc final: public MySingletonObject {
 public:
     static MyErrorDesc* sharedErrorDesc(void);
-    static void closeErrorDesc(void);
+    static void close(void);
     
     static bool successed(int errCode);
     static int invokeErrorCode(int errCode);

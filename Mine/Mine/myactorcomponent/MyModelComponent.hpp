@@ -52,6 +52,7 @@ public:
     FORCEINLINE const MyBufferObject* vertexBuffer(void) const { return _vertexBuffer; }
     FORCEINLINE const MyBufferObject* elementBuffer(void) const { return _elementBuffer; }
     FORCEINLINE const MyMaterial* material(void) const { return _material; }
+    FORCEINLINE MyMaterial* material(void) { return _material; }
     FORCEINLINE int renderStart(void) const { return _renderStart; }
     FORCEINLINE int renderCount(void) const { return _renderCount; }
     

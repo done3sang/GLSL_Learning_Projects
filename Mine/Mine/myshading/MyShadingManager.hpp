@@ -26,7 +26,7 @@ class MyProgram;
 class MyShadingManager final: public MySingletonObject {
 public:
     static MyShadingManager* sharedShadingManager();
-    static void closeShadingManager(void);
+    static void close(void);
     
     bool loadShaderConfig(const std::string  &path);
     bool shaderLoaded(void) const { return _shaderLoaded; }

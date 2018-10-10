@@ -12,17 +12,25 @@ MINE_NAMESPACE_BEGIN
 
 template<class T>
 FORCEINLINE MyData<T>* MyData<T>::data(void) {
-    return new MyData;
+    MyData* data = new MyData;
+    data->objectName("MyData");
+    MyArray<T> *arr = MyArray<T>::arrayWithCapacity(4);
+    data->operator=(*arr);
+    return data;
 }
 
 template<class T>
 FORCEINLINE MyData<T>* MyData<T>::dataWithLength(size_t length) {
-    return new MyData(length);
+    MyData* data = new MyData(length);
+    data->objectName("MyData");
+    return data;
 }
 
 template<class T>
 FORCEINLINE MyData<T>* MyData<T>::dataWithRaw(const T* data, size_t length) {
-    return new MyData(data, length);
+    MyData* rdata = new MyData(data, length);
+    rdata->objectName("MyData");
+    return rdata;
 }
 
 template<class T>
@@ -58,7 +66,6 @@ FORCEINLINE void MyData<T>::purge(void) {
 
 template<class T>
 FORCEINLINE void MyData<T>::push_back(const T &value) {
-    MINE_ASSERT(_data);
     _data->push_back(value);
 }
 

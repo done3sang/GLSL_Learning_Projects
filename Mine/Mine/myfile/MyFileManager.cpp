@@ -26,11 +26,8 @@ MyFileManager* MyFileManager::sharedFileManager(void) {
     return _sharedFileManager;
 }
 
-void MyFileManager::closeFileManager(void) {
-    if(_sharedFileManager) {
-        _sharedFileManager->release();
-        _sharedFileManager = nullptr;
-    }
+void MyFileManager::close(void) {
+    RELEASE_OBJECT(_sharedFileManager);
 }
 
 MyData<char>* MyFileManager::loadFile(const char *filepath) const {

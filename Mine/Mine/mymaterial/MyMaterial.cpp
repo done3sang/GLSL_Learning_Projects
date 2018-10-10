@@ -40,6 +40,7 @@ void MyMaterial::normalTexture(MyTexture *normalTex) {
 void MyMaterial::purge(void) {
     RELEASE_OBJECT(_baseTexture);
     RELEASE_OBJECT(_normalTexture);
+    RELEASE_OBJECT(_shadingProgram);
 }
 
 MINE_NAMESPACE_END

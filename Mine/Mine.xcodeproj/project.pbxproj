@@ -863,6 +863,7 @@
 					"ENABLE_TEMPLATE_META=1",
 					"$(inherited)",
 					MINE_DEBUG,
+					MINE_ARC_DEBUG,
 				);
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				LIBRARY_SEARCH_PATHS = (

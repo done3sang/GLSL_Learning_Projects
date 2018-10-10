@@ -29,6 +29,10 @@ MyVertexArrayObject* MyVertexArrayObject::sharedVertexArrayObject(void) {
     return _sharedVertexArrayObject;
 }
 
+void MyVertexArrayObject::close(void) {
+    RELEASE_OBJECT(_sharedVertexArrayObject);
+}
+
 MyVertexArrayObject::MyVertexArrayObject(void) {
     glGenVertexArrays(1, &_vertexArrayId);
 }

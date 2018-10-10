@@ -22,11 +22,8 @@ MyTimerManager* MyTimerManager::sharedTimerManager(void) {
     return _sharedTimerManager;
 }
 
-void MyTimerManager::closeTimerManager(void) {
-    if(_sharedTimerManager) {
-        _sharedTimerManager->release();
-        _sharedTimerManager = nullptr;
-    }
+void MyTimerManager::close(void) {
+    RELEASE_OBJECT(_sharedTimerManager);
 }
 
 double MyTimerManager::currentTime(void) const {

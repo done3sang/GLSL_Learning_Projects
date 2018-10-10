@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140560B2216DE046008AD87B /* MineWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 140560B0216DE046008AD87B /* MineWorld.cpp */; };
 		144349281FD14B6F006DD6D2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 144349271FD14B6F006DD6D2 /* main.cpp */; };
 		144349461FD14E4F006DD6D2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144349451FD14E4A006DD6D2 /* OpenGL.framework */; };
 		144349471FD14E5A006DD6D2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144349441FD14E44006DD6D2 /* Cocoa.framework */; };
@@ -44,6 +45,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		140560B0216DE046008AD87B /* MineWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MineWorld.cpp; sourceTree = "<group>"; };
+		140560B1216DE046008AD87B /* MineWorld.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MineWorld.hpp; sourceTree = "<group>"; };
 		144349241FD14B6F006DD6D2 /* MyGLSLTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MyGLSLTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		144349271FD14B6F006DD6D2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		144349441FD14E44006DD6D2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -110,6 +113,8 @@
 				144396D91FD6A4480068D685 /* BaseWorld.cpp */,
 				144396DE1FD6ADF90068D685 /* UniformWorld.hpp */,
 				144396DD1FD6ADF90068D685 /* UniformWorld.cpp */,
+				140560B1216DE046008AD87B /* MineWorld.hpp */,
+				140560B0216DE046008AD87B /* MineWorld.cpp */,
 			);
 			path = MyGLSLTest;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				144396DF1FD6ADF90068D685 /* UniformWorld.cpp in Sources */,
+				140560B2216DE046008AD87B /* MineWorld.cpp in Sources */,
 				145AE12F1FF382A9005ACE8B /* TestWorld.cpp in Sources */,
 				144349281FD14B6F006DD6D2 /* main.cpp in Sources */,
 				149E1F372043B23C00173503 /* TestMath.cpp in Sources */,
@@ -310,6 +316,7 @@
 					"DEBUG=1",
 					"ENABLE_TEMPLATE_META=1",
 					"$(inherited)",
+					MINE_ARC_DEBUG,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -388,6 +395,7 @@
 					"$(inherited)",
 					"TEMPLATE_INSTANTIATION_DEPTH=1024",
 					"MINE_DEBUG=1",
+					"MINE_ARC_DEBUG=1",
 					"MINE_ENABLE_TEMPLATE_META=1",
 					"MINE_TEMPLATE_INSTANTIATION_DEPTH=1024",
 				);

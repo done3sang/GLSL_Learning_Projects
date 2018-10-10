@@ -38,12 +38,10 @@ MyErrorDesc* MyErrorDesc::sharedErrorDesc(void) {
     return _sharedErrorDesc;
 }
 
-void MyErrorDesc::closeErrorDesc(void) {
-    if(_sharedErrorDesc) {
-        _sharedErrorDesc->release();
-        _sharedErrorDesc = nullptr;
-    }
+void MyErrorDesc::close(void) {
+    RELEASE_OBJECT(_sharedErrorDesc);
 }
+
 bool MyErrorDesc::successed(int errCode) {
     return kErrOk == errCode;
 }

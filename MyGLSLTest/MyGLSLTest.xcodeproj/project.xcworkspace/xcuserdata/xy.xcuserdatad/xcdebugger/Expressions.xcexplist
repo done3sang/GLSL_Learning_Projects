@@ -3,7 +3,50 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Mine::MyObject::release():MyObject.cpp">
+         contextName = "Mine::MyObject::MyObject():MyObject.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "refObjectCount">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Mine::MyAutoreleasePool::purgePool():MyAutoreleasePool.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Mine::MyTexture2D::generateTexture():MyTexture2D.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "_image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Mine::MyMemoryBlock::destroyBlock():MyMemoryBlock.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "(MyObject*)_memoryObjectHead-&gt;gameObject">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Mine::MyTransformation::quaternionToMatrix(Mine::MyFQuaternion const&amp;, Mine::MyFMatrix4&amp;):MyTransformation.inl">
+         <PersistentStrings>
+            <PersistentString
+               value = "magnitudeSquareQuaternion(quat)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Mine::MyModelComponent::initWithData(int, Mine::MyData&lt;float&gt; const*, char const*, Mine::MyData&lt;unsigned int&gt; const*):MyModelComponent.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "vertex-&gt;strideSize()">
+            </PersistentString>
+            <PersistentString
+               value = "vertexData-&gt;size()">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Mine::MyMatrix&lt;2, 2, float&gt; Mine::operator*&lt;2, 2, 2, float, int&gt;(Mine::MyMatrix&lt;2, 2, float&gt; const&amp;, Mine::MyMatrix&lt;2, 2, int&gt; const&amp;):MyMatrix.inl">
@@ -14,12 +57,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Mine::MyTexture2D::generateTexture():MyTexture2D.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "_image">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "Mine::MyObject::release():MyObject.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Mine::MyModelGenerator::generateSimpleTriangle(float):MyModelGenerator.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "MineWorld::initialize():MineWorld.cpp">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
