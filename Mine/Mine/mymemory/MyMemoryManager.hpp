@@ -18,6 +18,10 @@
 
 MINE_NAMESPACE_BEGIN
 
+#define ALLOCATE_MOMERY(Type, quantity) MyMemoryManager::sharedMemoryManager()->allocate(sizeof(Type) * (quantity))
+#define DEALLOCATE_MOMERY(pointer) MyMemoryManager::sharedMemoryManager()->deallocate(pointer);\
+pointer = nullptr;
+
 class MySingleton;
 class MyObject;
 

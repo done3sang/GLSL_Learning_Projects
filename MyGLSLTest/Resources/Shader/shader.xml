@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- what's this in english -->
 <root>
+    <module>
+        <material>./Shader/material.glsl</material>
+    </module>
     <shader>
         <vertex>
             <basic_vert>./Shader/basic.vert</basic_vert>

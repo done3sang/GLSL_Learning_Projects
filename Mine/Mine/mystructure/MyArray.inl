@@ -8,6 +8,7 @@
 
 #include "MyObject.hpp"
 #include "MyTemplate.hpp"
+#include "MyMathUtil.hpp"
 #include "MyMemoryManager.hpp"
 
 MINE_NAMESPACE_BEGIN
@@ -60,7 +61,7 @@ FORCEINLINE MyArray<T>::MyArray(const MyArray& arr) {
 template<typename T>
 FORCEINLINE MyArray<T>::~MyArray(void) {
     if(_data) {
-        MyMemoryManager::sharedMemoryManager()->deallocate(_data);
+        DEALLOCATE_MOMERY(_data);
     }
 }
 
@@ -182,14 +183,15 @@ FORCEINLINE void MyArray<T>::expand(size_t newCapacity) {
         return;
     }
     
-    T* newData = static_cast<T*>(MyMemoryManager::sharedMemoryManager()->allocate(sizeof(T) * newCapacity));
+    newCapacity = MyMathUtil::align4(newCapacity);
+    T* newData = static_cast<T*>(ALLOCATE_MOMERY(T, newCapacity));
     
     if(nullptr == newData) {
         return;
     }
     
-    newData[0] = 'c';
-    newData[newCapacity - 1] = 'w';
+    //newData[0] = 'c';
+    //newData[newCapacity - 1] = 'w';
     // memset(newData, _data, sizeof(T) * _length);
     if(_data) {
         T* newIter = newData;
@@ -201,7 +203,7 @@ FORCEINLINE void MyArray<T>::expand(size_t newCapacity) {
             }
         }
         
-        MyMemoryManager::sharedMemoryManager()->deallocate(_data);
+        DEALLOCATE_MOMERY(_data);
     }
     
     _data = newData;

@@ -120,7 +120,7 @@ public:
     // byte alignment
     template<int B = 4, typename T>
     static FORCEINLINE T align(T x) {
-        return (x + B) & ~B;
+        return (x + B - 1) & ~B;
     }
     
     template<typename T>

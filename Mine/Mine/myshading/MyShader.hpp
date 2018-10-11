@@ -18,42 +18,47 @@
 
 MINE_NAMESPACE_BEGIN
 
+template<class T>
+class MyArray;
+template<class T>
+class MyData;
 class MyUniqueObject;
 
 class MyShader: public MyUniqueObject {
 public:
-    explicit
-    MyShader(const std::string &shaderName, int shaderType = kShaderTypeVertex);
-    MyShader(const std::string &shaderName, int shaderType, const std::string &filepath);
-    ~MyShader(void);
+    static constexpr int kShaderTypeVertex = GL_VERTEX_SHADER;
+    static constexpr int kShaderTypeFragment = GL_FRAGMENT_SHADER;
     
-    static MyShader* createWithShaderType(const std::string &shaderName, int shaderType = kShaderTypeVertex);
-    static MyShader* createWithShaderTypeAndPath(const std::string &shaderName, int shaderType, const std::string &filepath);
+    static MyShader* shaderWithType(const std::string &shaderName, int shaderType = kShaderTypeVertex);
+    static MyShader* shaderWithContentsOfFile(const std::string &shaderName, int shaderType, const std::string &filepath);
     
     bool operator==(const MyShader &another) const {
         return 0 != _shaderId && _shaderId == another.shaderId();
     }
     
     bool loadFromFile(const std::string &filepath);
-    bool loadFromSource(const std::string &source);
+    bool loadFromSource(const char *source);
     
     int shaderType(void) const { return _shaderType; }
     GLuint shaderId(void) const { return _shaderId; }
     const std::string& shaderName(void) const { return _shaderName;}
     const std::string& shaderLog(void) const { return _shaderLog; }
     bool valid(void) const { return 0 != _shaderId; }
-    bool compiled(void) const { return _compiled;  }
+    bool ready(void) const { return _compiled;  }
     
     bool validate(void) const;
     void deleteShader(void);
     
 public:
-    static const int kShaderTypeVertex = GL_VERTEX_SHADER;
-    static const int kShaderTypeFragment = GL_FRAGMENT_SHADER;
-    
     static bool shaderType(int st) {
         return st == kShaderTypeVertex || st == kShaderTypeFragment;
     }
+    
+private:
+    explicit
+    MyShader(const std::string &shaderName, int shaderType = kShaderTypeVertex);
+    MyShader(const std::string &shaderName, int shaderType, const std::string &filepath);
+    ~MyShader(void);
     
 private:
     GLuint _shaderId;

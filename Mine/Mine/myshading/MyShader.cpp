@@ -37,16 +37,16 @@ MyShader::~MyShader(void) {
     deleteShader();
 }
 
-MyShader* MyShader::createWithShaderType(const std::string &shaderName,
+MyShader* MyShader::shaderWithType(const std::string &shaderName,
                                          int shaderType) {
     MyShader *shader = new MyShader(shaderName, shaderType);
     shader->objectName(shaderName);
     return shader;
 }
 
-MyShader* MyShader::createWithShaderTypeAndPath(const std::string &shaderName,
-                                                int shaderType,
-                                                const std::string &filepath) {
+MyShader* MyShader::shaderWithContentsOfFile(const std::string &shaderName,
+                                             int shaderType,
+                                             const std::string &filepath) {
     MyShader *shader = new MyShader(shaderName, shaderType);
     shader->objectName(shaderName);
     
@@ -75,17 +75,17 @@ bool MyShader::loadFromFile(const std::string &filepath) {
     }
     
     _filepath = filepath;
-    return loadFromSource(std::string(filedata->raw()));
+    return loadFromSource(filedata->raw());
 }
 
-bool MyShader::loadFromSource(const std::string &source) {
+bool MyShader::loadFromSource(const char *source) {
     GLuint shaderId = glCreateShader(_shaderType);
     
     if(0 == shaderId) {
         return MyErrorDesc::invokeErrorFailed(MyErrorDesc::kErrShaderCreatingFailed);
     }
     
-    const GLchar *sourceArr[1] = {source.c_str()};
+    const GLchar *sourceArr[] = {source};
     glShaderSource(shaderId, 1, sourceArr, nullptr);
     glCompileShader(shaderId);
     

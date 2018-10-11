@@ -26,7 +26,7 @@ public:
     typedef T* iterator;
     typedef const T* const_iterator;
     
-    static_assert(!std::is_pointer<T>::value || (!std::is_pointer<typename std::remove_pointer<T>::type>::value && !std::is_base_of<MyObject, typename std::remove_pointer<T>::type>::value), "Error MyArray<T>: Not SUPPORT pointer-to-pointer and MyObject*");
+    static_assert(!std::is_pointer<T>::value || (!std::is_pointer<typename std::remove_pointer<T>::type>::value && std::is_base_of<MyObject, typename std::remove_pointer<T>::type>::value), "Error MyArray<T>: Not SUPPORT pointer-to-pointer and MyObject*");
     
     static MyArray* array(void);
     static MyArray* arrayWithCapacity(size_t capacity);

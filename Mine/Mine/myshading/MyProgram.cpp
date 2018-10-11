@@ -66,7 +66,7 @@ int MyProgram::attachShader(MyShader *shader) {
         }
     }
     
-    if(!shader->compiled()) {
+    if(!shader->ready()) {
         return MyErrorDesc::kErrShaderNotCompiled;
     }
     
@@ -391,12 +391,16 @@ void MyProgram::bindActor(const MyTransformComponent *transform, const MyMateria
     
     if(material->baseTexture()) {
         bindTexture("baseTexture", material->baseTexture());
+        //bindTexture("material.baseTexture", material->baseTexture());
     }
     if(material->normalTexture()) {
         bindTexture("normalTexture", material->normalTexture());
+        //bindTexture("material.normalTexture", material->normalTexture());
     }
     uniformFloat("metallic", material->metallic());
     uniformFloat("opacity", material->opacity());
+    //uniformFloat("material.metallic", material->metallic());
+    //uniformFloat("material.opacity", material->opacity());
 }
 
 MINE_NAMESPACE_END

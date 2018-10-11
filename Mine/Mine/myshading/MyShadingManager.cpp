@@ -68,8 +68,16 @@ bool MyShadingManager::loadShaderConfig(const std::string  &path) {
         return true;
     }
     
+    MyArray<MyData<char>* > *modules = MyArray<MyData<char>* >::array();
     for(auto node = rootnode->childNode(); node; node = node->siblingNode()) {
-        if(node->nodeName() == "shader") {
+        if(node->nodeName() == "module") {
+            for(auto moduleNode = node->childNode(); moduleNode; moduleNode = moduleNode->siblingNode()) {
+                MyData<char>* filedata = MyFileManager::sharedFileManager()->loadFile(moduleNode->nodeValue().c_str());
+                if(nullptr != filedata) {
+                    modules->push_back(filedata);
+                }
+            }
+        } else if(node->nodeName() == "shader") {
             for(auto shadernode = node->childNode(); shadernode;
                 shadernode = shadernode->siblingNode()) {
                 if(shadernode->nodeName() == "vertex" ||
@@ -77,10 +85,10 @@ bool MyShadingManager::loadShaderConfig(const std::string  &path) {
                     shaderType = shadernode->nodeName() == "vertex" ? MyShader::kShaderTypeVertex: MyShader::kShaderTypeFragment;
                     for(auto vertnode = shadernode->childNode(); vertnode;
                         vertnode = vertnode->siblingNode()) {
-                        if((shader = MyShader::createWithShaderTypeAndPath(
-                                                                           vertnode->nodeName(),
-                                                                           shaderType,
-                                                                           vertnode->nodeValue()))) {
+                        if((shader = MyShader::shaderWithContentsOfFile(
+                                                                        vertnode->nodeName(),
+                                                                        shaderType,
+                                                                        vertnode->nodeValue()))) {
                             addShader(shader);
                         }
                     }
@@ -115,8 +123,8 @@ bool MyShadingManager::loadShader(int shaderType, const std::string &name, const
         return true;
     }
     
-    MyShader *shader = MyShader::createWithShaderType(name, shaderType);
-    if(!shader || !shader->loadFromFile(path)) {
+    MyShader *shader = MyShader::shaderWithType(name.c_str(), shaderType);
+    if(!shader || !shader->loadFromFile(path.c_str())) {
         return false;
     }
     
